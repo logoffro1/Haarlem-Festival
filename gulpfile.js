@@ -10,62 +10,49 @@ const browserSync = require("browser-sync").create(); //https://browsersync.io/d
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
 
-// 
-// TOP LEVEL FUNCTIONS
-//     gulp.task = Define tasks
-//     gulp.src = Point to files to use
-//     gulp.dest = Points to the folder to output
-//     gulp.watch = Watch files and folders for changes
-//
+const filePath = {
+    baseDir: "dist/",
+    js: "src/scripts/**/*.js",
+    html: "src/**/*.html",
+    scss: "src/styles/**/*.scss",
+    images: "src/assets/images/**/*",
+    dist: {
+        js: "dist/scripts",
+        html: "dist",
+        scss: "dist/styles",
+        images: "dist/images",
+    }
+}
 
 // Optimise Images
 function imageMin(cb) {
-    gulp.src("src/assets/images/*")
+    gulp.src(filePath.images)
         .pipe(imagemin())
-        .pipe(gulp.dest("dist/images"));
-    cb();
-}
-
-// Copy all HTML files to Dist
-function copyHTML(cb) {
-    gulp.src("src/*.html").pipe(gulp.dest("dist"));
-    cb();
-}
-
-// Minify HTML
-function minifyHTML(cb) {
-    gulp.src("src/*.html")
-        .pipe(gulp.dest("dist"))
-        .pipe(
-            htmlmin({
-                collapseWhitespace: true
-            })
-        )
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest(filePath.dist.images));
     cb();
 }
 
 // Scripts
 function js(cb) {
-    gulp.src("src/scripts/*js")
+    gulp.src(filePath.js)
         .pipe(babel({
             presets: ['@babel/preset-env']
         }))
         .pipe(concat("index.js"))
         .pipe(uglify())
-        .pipe(gulp.dest("dist/scripts"));
+        .pipe(gulp.dest(filePath.dist.js));
     cb();
 }
 
 // Compile Sass
 function css(cb) {
-    gulp.src("src/styles/*.scss")
+    gulp.src(filePath.scss)
         .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
         .pipe(autoprefixer({
             browserlist: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest("dist/styles"))
+        .pipe(gulp.dest(filePath.dist.scss))
         // Stream changes to all browsers
         .pipe(browserSync.stream());
     cb();
@@ -73,19 +60,19 @@ function css(cb) {
 
 // Process Nunjucks
 function nunjucks(cb) {
-    gulp.src("src/**/*.html")
-        .pipe(gulp.dest("dist"));
+    gulp.src(filePath.html)
+        .pipe(gulp.dest(filePath.dist.html));
     cb();
 }
 
 function nunjucksMinify(cb) {
-    gulp.src("src/**/*.html")
+    gulp.src(filePath.html)
         .pipe(
             htmlmin({
                 collapseWhitespace: true
             })
         )
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest(filePath.dist.html));
     cb();
 }
 
@@ -93,12 +80,12 @@ function nunjucksMinify(cb) {
 function watch_files() {
     browserSync.init({
         server: {
-            baseDir: "dist/"
+            baseDir: filePath.baseDir
         }
     });
-    gulp.watch("src/styles/**/*.scss", css);
-    gulp.watch("src/scripts/*.js", js).on("change", browserSync.reload);
-    gulp.watch("src/**/*.html", nunjucks).on("change", browserSync.reload);
+    gulp.watch(filePath.scss, css);
+    gulp.watch(filePath.js, js).on("change", browserSync.reload);
+    gulp.watch(filePath.html, nunjucks).on("change", browserSync.reload);
 }
 
 // Default 'gulp' command with start local server and watch files for changes.
