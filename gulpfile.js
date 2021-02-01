@@ -11,10 +11,10 @@ const webpack = require('webpack-stream');
 
 const filePath = {
     baseDir: "./dist",
-    js: "./src/scripts/**/*.js",
+    js: "./src/assets/scripts/**/*.js",
     html: "./src/**/*.html",
     php: "./src/**/*.php",
-    scss: "./src/styles/**/*.scss",
+    scss: "./src/assets/styles/**/*.scss",
     images: "./src/assets/images/**/*",
     dist: {
         js: "./dist/assets/scripts",
