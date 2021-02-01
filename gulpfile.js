@@ -6,10 +6,7 @@ const runSequence = require('run-sequence').use(gulp);
 
 const imagemin = require("gulp-imagemin");
 const htmlmin = require("gulp-htmlmin");
-const uglify = require("gulp-uglify");
-const concat = require("gulp-concat");
 const autoprefixer = require('gulp-autoprefixer');
-const babel = require('gulp-babel');
 const webpack = require('webpack-stream');
 
 const filePath = {
@@ -46,8 +43,7 @@ gulp.task('js', function(){
                 filename: 'index.js'
             },
             module: {
-                rules: [
-                    {
+                rules: [{
                     test: /\.js$/,
                     exclude: /(node_modules|bower_components)/,
                     use: {
@@ -56,8 +52,7 @@ gulp.task('js', function(){
                             presets: ['@babel/preset-env']
                         }
                     }
-                    }
-                ]
+                }]
             }
         }))
         .pipe(gulp.dest(filePath.dist.js));   
