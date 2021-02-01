@@ -1,51 +1,70 @@
 const gulp = require("gulp");
-const { parallel, series } = require("gulp");
+const sass = require("gulp-sass");
+const browserSync = require("browser-sync").create(); //https://browsersync.io/docs/gulp#page-top
+const php = require('gulp-connect-php');
+const runSequence = require('run-sequence').use(gulp);
 
 const imagemin = require("gulp-imagemin");
 const htmlmin = require("gulp-htmlmin");
 const uglify = require("gulp-uglify");
-const sass = require("gulp-sass");
 const concat = require("gulp-concat");
-const browserSync = require("browser-sync").create(); //https://browsersync.io/docs/gulp#page-top
 const autoprefixer = require('gulp-autoprefixer');
 const babel = require('gulp-babel');
+const webpack = require('webpack-stream');
 
 const filePath = {
-    baseDir: "dist/",
-    js: "src/scripts/**/*.js",
-    html: "src/**/*.html",
-    scss: "src/styles/**/*.scss",
-    images: "src/assets/images/**/*",
+    baseDir: "./dist",
+    js: "./src/scripts/**/*.js",
+    html: "./src/**/*.html",
+    php: "./src/**/*.php",
+    scss: "./src/styles/**/*.scss",
+    images: "./src/assets/images/**/*",
     dist: {
-        js: "dist/scripts",
-        html: "dist",
-        scss: "dist/styles",
-        images: "dist/images",
+        js: "./dist/assets/scripts",
+        html: "./dist",
+        php: "./dist",
+        scss: "./dist/assets/styles",
+        images: "./dist/assets/images",
     }
 }
 
-// Optimise Images
-function imageMin(cb) {
+// Images
+gulp.task('images', function(){
     gulp.src(filePath.images)
         .pipe(imagemin())
         .pipe(gulp.dest(filePath.dist.images));
-    cb();
-}
+});
+
 
 // Scripts
-function js(cb) {
-    gulp.src(filePath.js)
-        .pipe(babel({
-            presets: ['@babel/preset-env']
+gulp.task('js', function(){
+   return gulp.src(filePath.js)
+        .pipe(webpack({
+            mode: 'development',
+            watch: true,
+            output: { 
+                filename: 'index.js'
+            },
+            module: {
+                rules: [
+                    {
+                    test: /\.js$/,
+                    exclude: /(node_modules|bower_components)/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env']
+                        }
+                    }
+                    }
+                ]
+            }
         }))
-        .pipe(concat("index.js"))
-        .pipe(uglify())
-        .pipe(gulp.dest(filePath.dist.js));
-    cb();
-}
+        .pipe(gulp.dest(filePath.dist.js));   
+});
 
 // Compile Sass
-function css(cb) {
+gulp.task('css', function(){
     gulp.src(filePath.scss)
         .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
         .pipe(autoprefixer({
@@ -55,41 +74,45 @@ function css(cb) {
         .pipe(gulp.dest(filePath.dist.scss))
         // Stream changes to all browsers
         .pipe(browserSync.stream());
-    cb();
-}
+});
 
 // Process Nunjucks
-function nunjucks(cb) {
-    gulp.src(filePath.html)
-        .pipe(gulp.dest(filePath.dist.html));
-    cb();
-}
+gulp.task('nunjucks', function(){
+    gulp.src([filePath.html, filePath.php])
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            ignoreCustomFragments: [ /<%[\s\S]*?%>/, /<\?[=|php]?[\s\S]*?\?>/ ]
+        }))
+        .pipe(gulp.dest(filePath.baseDir));
+});
 
-function nunjucksMinify(cb) {
-    gulp.src(filePath.html)
-        .pipe(
-            htmlmin({
-                collapseWhitespace: true
-            })
-        )
-        .pipe(gulp.dest(filePath.dist.html));
-    cb();
-}
 
-// Watch Files
-function watch_files() {
-    browserSync.init({
-        server: {
-            baseDir: filePath.baseDir
-        }
-    });
-    gulp.watch(filePath.scss, css);
-    gulp.watch(filePath.js, js).on("change", browserSync.reload);
-    gulp.watch(filePath.html, nunjucks).on("change", browserSync.reload);
-}
+// Build dist folder
+gulp.task('build', function(){
+    const tasks = ['js', 'css', 'images', 'nunjucks'];
 
-// Default 'gulp' command with start local server and watch files for changes.
-exports.default = series(nunjucks, css, js, imageMin, watch_files);
+    runSequence(tasks)
+});
 
-// 'gulp build' will build all assets but not run on a local server.
-exports.build = parallel(nunjucksMinify, css, js, imageMin);
+// Create browser sync with proxy
+gulp.task('browserSync', ['build'], function() {
+    php.server({
+        base: filePath.baseDir + "/", port:3000, keepalive:true
+    }, function(){
+        browserSync.init({
+            proxy:"localhost:3000",
+            baseDir: "./",
+            open: true,
+            notify: false,
+            injectChanges: true,
+        });
+    })
+});
+
+// Run development enviorement
+gulp.task('dev', ['browserSync'], function() {
+    gulp.watch(filePath.scss, ['css']);
+    gulp.watch(filePath.js, ['js']).on("change", browserSync.reload);
+    gulp.watch(filePath.images, ['images']).on("change", browserSync.reload);
+    gulp.watch([filePath.html, filePath.php], ['nunjucks']).on("change", browserSync.reload);
+});

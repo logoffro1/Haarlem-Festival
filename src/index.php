@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/main.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>test</h1>
-    <script src="./scripts/index.js"></script>
+    <h1>etho</h1>
+    <script src="./assets/scripts/index.js"></script>
 </body>
 </html>
