@@ -8,6 +8,7 @@ const imagemin = require("gulp-imagemin");
 const htmlmin = require("gulp-htmlmin");
 const autoprefixer = require('gulp-autoprefixer');
 const webpack = require('webpack-stream');
+const cache = require('gulp-cache');
 
 const filePath = {
     baseDir: "./dist",
@@ -21,14 +22,14 @@ const filePath = {
         html: "./dist",
         php: "./dist",
         scss: "./dist/assets/styles",
-        images: "./dist/assets/images",
+        images: "dist/assets/images",
     }
 }
 
 // Images
 gulp.task('images', function(){
     gulp.src(filePath.images)
-        .pipe(imagemin())
+        .pipe(cache(imagemin()))
         .pipe(gulp.dest(filePath.dist.images));
 });
 
