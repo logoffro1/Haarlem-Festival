@@ -12,11 +12,11 @@ const cache = require('gulp-cache');
 
 const filePath = {
     baseDir: "./dist",
-    js: "./src/assets/scripts/**/*.js",
-    html: "./src/**/*.html",
-    php: "./src/**/*.php",
-    scss: "./src/assets/styles/**/*.scss",
-    images: "./src/assets/images/**/*",
+    js: "src/assets/scripts/**/*.js",
+    html: "src/**/*.html",
+    php: "src/**/*.php",
+    scss: "src/assets/styles/**/*.scss",
+    images: "src/assets/images/**/*",
     dist: {
         js: "./dist/assets/scripts",
         html: "./dist",
