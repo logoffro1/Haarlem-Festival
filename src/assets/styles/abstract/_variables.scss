@@ -1,0 +1,45 @@
+/* 
+* Colors
+*/
+// Primary
+$color-primary-cuisine: #FFAA01; 
+$color-primary-jazz: #F1185C; 
+$color-primary-dance: #A336FF; 
+$color-primary-history: #01DAC5;
+
+// Text
+$color-title: #090909;
+$color-text: #373737;
+
+// Miscellaneous
+$color-error: #F60000;
+$color-valid: #6EE415;
+$color-slated-blue: #1C294D;
+$color-dark-blue: #08061B;
+
+// Shades
+$color-grey-1: #090909;
+$color-grey-2: #373737;
+$color-grey-3: #737373;
+$color-grey-4: #7D7D7D;
+$color-grey-5: #F4F4F5;
+$color-grey-6: #F1F1F1;
+
+/*
+* Fonts
+*/
+// Font Families
+$font-fallback: sans-serif;
+$font-primary: 'Open Sans' , $font-fallback;
+$font-secondary: 'Montserrat' , $font-fallback;
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+/*
+* Urls
+*/
+$url-image: './assets/images';
+$url-svg: './assets/images/svg';

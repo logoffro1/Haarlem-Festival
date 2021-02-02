@@ -24,5 +24,7 @@
     "run-sequence": "^2.2.1",
     "webpack-stream": "^6.1.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "normalize-scss": "^7.0.1"
+  }
 }

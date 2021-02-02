@@ -1,1 +1,5 @@
-@import 'variables';
+// Normalize styling across all browsers and fix common bugs
+@import "node_modules/normalize-scss/sass/normalize/import-now";
+
+@import 'abstract/__abstract';
+@import 'elements/__elements';
