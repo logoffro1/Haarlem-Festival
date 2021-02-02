@@ -3,9 +3,9 @@
 */
 // Primary
 $color-primary-cuisine: #FFAA01; 
-$color-primary-jazz: #F1185C; 
 $color-primary-dance: #A336FF; 
 $color-primary-history: #01DAC5;
+$color-primary-jazz: #F1185C; 
 
 // Text
 $color-title: #090909;
@@ -41,5 +41,5 @@ $font-weight-bold: 700;
 /*
 * Urls
 */
-$url-image: './assets/images';
-$url-svg: './assets/images/svg';
+$url-image: '../images';
+$url-svg: '../images/svg';

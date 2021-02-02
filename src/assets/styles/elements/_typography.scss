@@ -1,3 +1,37 @@
 body {
     font-family: $font-primary;
 }
+
+.title {
+    font-weight: $font-weight-bold;
+    color: $color-title;
+
+    &.title--page {
+        font-size: 63px;
+
+        &:before {
+            content: "";
+            height: 20px;
+            display: block;
+            background-repeat: no-repeat;
+            position: relative;
+            top: 5px;
+        }
+
+        &.jazz::before {
+            background-image: url("#{$url-svg}/strokes/title-stroke-jazz.svg");
+        }
+
+        &.dance::before {
+            background-image: url("#{$url-svg}/strokes/title-stroke-dance.svg");
+        }
+
+        &.cuisine::before {
+            background-image: url("#{$url-svg}/strokes/title-stroke-cuisine.svg");
+        }
+
+        &.history::before {
+            background-image: url("#{$url-svg}/strokes/title-stroke-history.svg");
+        }
+    }
+}

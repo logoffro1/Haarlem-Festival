@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><?php echo "home"; ?></h1>
+    <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
     <script src="./assets/scripts/index.js"></script>
 </body>
 </html>
