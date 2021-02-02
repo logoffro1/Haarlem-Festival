@@ -92,10 +92,10 @@ gulp.task('build', function(){
 // Create browser sync with proxy
 gulp.task('browserSync', ['build'], function() {
     php.server({
-        base: filePath.baseDir + "/", port:3000, keepalive:true
+        base: filePath.baseDir + "/", port:8080, keepalive:true
     }, function(){
         browserSync.init({
-            proxy:"localhost:3000",
+            proxy:"localhost:8080",
             baseDir: "./",
             open: true,
             notify: false,
