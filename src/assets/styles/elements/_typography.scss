@@ -4,7 +4,7 @@ body {
 }
 
 p {
-    font-size: 18px;
+    font-size: $font-size-body;
     line-height: 26px;
 }
 
@@ -23,7 +23,7 @@ label, .label {
         line-height: 65px;
         margin-bottom: 21px;
         margin-top: 0;
-        
+
         &:before {
             content: "";
             height: 20px;
