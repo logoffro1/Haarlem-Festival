@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
+    <input type="text" name="" placeholder="full name" id="">
     <script src="./assets/scripts/index.js"></script>
 </body>
 </html>

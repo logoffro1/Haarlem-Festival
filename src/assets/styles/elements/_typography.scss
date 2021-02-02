@@ -1,5 +1,15 @@
 body {
     font-family: $font-primary;
+    color: $color-text;
+}
+
+p {
+    font-size: 18px;
+    line-height: 26px;
+}
+
+label, .label {
+    font-size: 16px;
 }
 
 .title {
@@ -10,7 +20,10 @@ body {
         $svg-stroke-url: "#{$url-svg}/strokes/title-stroke";
 
         font-size: 63px;
-
+        line-height: 65px;
+        margin-bottom: 21px;
+        margin-top: 0;
+        
         &:before {
             content: "";
             height: 20px;
@@ -35,5 +48,17 @@ body {
         &.history::before {
             background-image: url("#{$svg-stroke-url}-history.svg");
         }
+    }
+
+    &.title--secondary {
+        font-family: $font-secondary;
+        font-size: 36px;
+        line-height: 34px;
+    }
+
+    &.title--tetriary {
+        font-weight: $font-weight-semibold;
+        font-size: 26px;
+        line-height: 28px;
     }
 }
