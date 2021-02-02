@@ -7,6 +7,8 @@ body {
     color: $color-title;
 
     &.title--page {
+        $svg-stroke-url: "#{$url-svg}/strokes/title-stroke";
+
         font-size: 63px;
 
         &:before {
@@ -19,19 +21,19 @@ body {
         }
 
         &.jazz::before {
-            background-image: url("#{$url-svg}/strokes/title-stroke-jazz.svg");
+            background-image: url("#{$svg-stroke-url}-jazz.svg");
         }
 
         &.dance::before {
-            background-image: url("#{$url-svg}/strokes/title-stroke-dance.svg");
+            background-image: url("#{$svg-stroke-url}-dance.svg");
         }
 
         &.cuisine::before {
-            background-image: url("#{$url-svg}/strokes/title-stroke-cuisine.svg");
+            background-image: url("#{$svg-stroke-url}-cuisine.svg");
         }
 
         &.history::before {
-            background-image: url("#{$url-svg}/strokes/title-stroke-history.svg");
+            background-image: url("#{$svg-stroke-url}-history.svg");
         }
     }
 }
