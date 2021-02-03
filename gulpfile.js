@@ -9,6 +9,7 @@ const htmlmin = require("gulp-htmlmin");
 const autoprefixer = require('gulp-autoprefixer');
 const webpack = require('webpack-stream');
 const cache = require('gulp-cache');
+const del = require('del');
 
 const filePath = {
     baseDir: "./dist",
@@ -25,6 +26,10 @@ const filePath = {
         images: "dist/assets/images",
     }
 }
+
+gulp.task('clean', () => {
+    return del(['dist/**', '!dist']);
+});
 
 // Images
 gulp.task('images', function(){
@@ -87,7 +92,7 @@ gulp.task('nunjucks', function(){
 gulp.task('build', function(){
     const tasks = ['js', 'css', 'images', 'nunjucks'];
 
-    runSequence(tasks)
+    runSequence(tasks);
 });
 
 // Create browser sync with proxy
@@ -106,7 +111,9 @@ gulp.task('browserSync', ['build'], function() {
 });
 
 // Run development enviorement
-gulp.task('dev', ['browserSync'], function() {
+gulp.task('dev', function() {
+    runSequence('clean', 'browserSync');
+    
     gulp.watch(filePath.scss, ['css']);
     gulp.watch(filePath.js, ['js']).on("change", browserSync.reload);
     gulp.watch(filePath.images, ['images']).on("change", browserSync.reload);
