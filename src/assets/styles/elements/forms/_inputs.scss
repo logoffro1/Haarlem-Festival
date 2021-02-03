@@ -18,3 +18,14 @@ input, .input {
         border-color: $color-error;
     }
 }
+
+input[type=checkbox], input[type=radiobutton]{
+    border: 1px solid $color-slated-blue;
+    height: 26px;
+    width: 26px;
+}
+
+input[type=checkbox] {
+    border-radius: $border-radius;
+    
+}

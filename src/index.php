@@ -25,6 +25,10 @@
 
         <button>test</button>
         <button disabled>test</button>
+        
+    <input type="checkbox" name="" id="">
+    <input type="radio" name="" id="">
+
     <input type="text" name="" placeholder="full name" id="">
 
         <button class="button--secondary">test</button>
