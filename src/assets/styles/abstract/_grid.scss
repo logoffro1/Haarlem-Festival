@@ -1,0 +1,62 @@
+/*
+ * Generates classes for a grid of columns, prefixed by size.
+ * The result will be .col-$i E.g. '.col-6'
+*/
+@for $i from 1 through $grid-columns {
+    // Calculate the percentage width of the columns. E.g 'percentage(1 / 12) = 8.3333%'
+    $percentage: percentage($i / 12);
+
+    .col-#{$i} {
+        max-width: $percentage;
+        flex: 0 0 $percentage;
+        margin: 0 $grid-gutter-width;
+        /*
+        * Back up if; flex-box does not work, or 'row' class cannot be used because we need to work semantic
+            max-width: $percentage;
+            width: 100%;
+            display: inline-block;
+        */
+    }
+
+    .col-offset-#{$i} {
+        margin-left: $percentage;
+    }
+}
+
+.container {
+    max-width: $container-width;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+// Column that fills the remainder of the available width
+.col-auto {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+
+    // Vertical alignment
+    &.justify-content-center {
+        justify-content: center;
+    }
+    &.justify-content-end {
+        justify-content: flex-end;
+    }
+
+    // Horizontal alignment
+    &.align-items-start {
+        align-items: flex-start;
+    }
+    &.align-items-center {
+        align-items: center;
+    }
+    &.align-items-end {
+        align-items: flex-end;
+    }
+}

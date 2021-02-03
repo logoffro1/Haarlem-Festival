@@ -11,6 +11,14 @@
 <body>
     <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
     <input type="text" name="" placeholder="full name" id="">
+
+    <div class="row">
+        <div style="background-color:red" class="col-1">Test red</div>
+        <div style="background-color:blue" class="col-auto">Test blue</div>
+        <div style="background-color:green" class="col-1">Test green</div>
+
+    </div>
+
     <script src="./assets/scripts/index.js"></script>
 </body>
 </html>
