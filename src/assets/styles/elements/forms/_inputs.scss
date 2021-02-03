@@ -2,10 +2,11 @@ input, .input {
     border: 1px solid $color-grey-3;
     font-size: $font-size-label;
     color: $color-black;
-    padding: 15px 12px 13px;
+    padding: 0 12px;
     border-radius: $border-radius;
     outline: none;
-
+    height: $input-height - 2;
+    
     &::placeholder {
         color: $color-input-placeholder;
     }
@@ -19,13 +20,34 @@ input, .input {
     }
 }
 
-input[type=checkbox], input[type=radiobutton]{
+input[type=checkbox], input[type=radio]{
     border: 1px solid $color-slated-blue;
     height: 26px;
     width: 26px;
+    vertical-align: middle;
+
+    &:checked {
+        background-color: $color-slated-blue;
+    }
 }
 
-input[type=checkbox] {
+label, .label {
+    font-size: $font-size-label;
+    display: block;
+
+    span {
+        vertical-align: middle;
+    }
+
+    &.error {
+        color: $color-error;
+    }
+}
+
+select {
     border-radius: $border-radius;
-    
+    border: 1px solid $color-slated-blue;
+    height: $input-height;
+    min-width: 195px;
+    padding-left: 12px;
 }

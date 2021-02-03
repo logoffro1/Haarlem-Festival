@@ -9,7 +9,14 @@ p {
 }
 
 label, .label {
-    font-size: 16px;
+    font-size: $font-size-label;
+    &.label--warning {
+        font-size: $font-size-label-error;
+    }
+}
+
+label, input, select {
+    font-family: $font-primary;
 }
 
 .title {
