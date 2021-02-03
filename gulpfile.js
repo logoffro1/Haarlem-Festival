@@ -27,6 +27,7 @@ const filePath = {
     }
 }
 
+// Clean dist folder
 gulp.task('clean', () => {
     return del(['dist/**', '!dist']);
 });
@@ -113,7 +114,7 @@ gulp.task('browserSync', ['build'], function() {
 // Run development enviorement
 gulp.task('dev', function() {
     runSequence('clean', 'browserSync');
-    
+
     gulp.watch(filePath.scss, ['css']);
     gulp.watch(filePath.js, ['js']).on("change", browserSync.reload);
     gulp.watch(filePath.images, ['images']).on("change", browserSync.reload);
