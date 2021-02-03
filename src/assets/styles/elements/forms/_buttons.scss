@@ -1,0 +1,36 @@
+button, .button {
+    $color-button-disabled: #767E94;
+
+    background-color: $color-slated-blue;
+    color: $color-white;
+    font-size: $font-size-label;
+    font-weight: $font-weight-semibold;
+    font-family: $font-primary;
+    border-radius: $border-radius;
+    height: $input-height;
+    min-width: 195px;
+    padding: 13px 37px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    &:hover {
+        color: $color-slated-blue;
+        border: 1px solid $color-slated-blue;
+        background-color: transparent;
+    }
+
+    &.button--secondary {
+        background-color: transparent;
+        color: $color-slated-blue;
+        border: 1px solid $color-slated-blue;
+        &:hover {
+            background-color: $color-grey-5;
+        }
+    }
+
+    &:disabled, &.disabled {
+        pointer-events: none;
+        background-color: $color-button-disabled;
+    }
+}

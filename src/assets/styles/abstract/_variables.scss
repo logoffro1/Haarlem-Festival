@@ -15,6 +15,7 @@ $color-text: #373737;
 $color-error: #F60000;
 $color-valid: #6EE415;
 $color-black: #000000;
+$color-white: #ffffff;
 $color-slated-blue: #1C294D;
 $color-dark-blue: #08061B;
 
@@ -44,6 +45,7 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 $font-size-body: 18px;
+$font-size-label: 16px;
 
 /*
 * Urls
@@ -56,6 +58,13 @@ $url-svg: '../images/svg';
 */
 // Container
 $container-width: 1080px;
+
 // Columns
 $grid-columns: 12;
 $grid-gutter-width: 15px;
+
+/*
+* Elements
+*/
+$border-radius: 4px;
+$input-height: 48px;

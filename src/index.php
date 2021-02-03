@@ -10,13 +10,24 @@
 </head>
 <body>
     <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-1"><div style="background-color:red">Test red</div></div>
+            <div class="col-auto"><div style="background-color:blue">Test blue</div></div>
+            <div class="col-1"><div style="background-color:green">Test green</div></div>
+        </div>
+        <div class="row">
+            <div class="col-6"><div style="background-color:blue">Test blue</div></div>
+            <div class="col-6"><div style="background-color:green">Test green</div></div>
+        </div>
+
+        <button>test</button>
+        <button disabled>test</button>
     <input type="text" name="" placeholder="full name" id="">
 
-    <div class="row">
-        <div style="background-color:red" class="col-1">Test red</div>
-        <div style="background-color:blue" class="col-auto">Test blue</div>
-        <div style="background-color:green" class="col-1">Test green</div>
-
+        <button class="button--secondary">test</button>
     </div>
 
     <script src="./assets/scripts/index.js"></script>

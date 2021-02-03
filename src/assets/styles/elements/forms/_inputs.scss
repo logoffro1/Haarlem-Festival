@@ -1,15 +1,20 @@
 input, .input {
     border: 1px solid $color-grey-3;
-    font-size: 16px;
+    font-size: $font-size-label;
     color: $color-black;
-    padding: 12px;
-    padding-bottom: 11px;
-    border-radius: 4px;
+    padding: 15px 12px 13px;
+    border-radius: $border-radius;
     outline: none;
+
     &::placeholder {
         color: $color-input-placeholder;
     }
+
     &:focus {
         border-color: $color-input-focus;;
+    }
+
+    &.error {
+        border-color: $color-error;
     }
 }
