@@ -4,6 +4,11 @@ body {
     line-height: $line-height-body;
 }
 
+h1, h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
 p {
     font-size: $font-size-body;
 }

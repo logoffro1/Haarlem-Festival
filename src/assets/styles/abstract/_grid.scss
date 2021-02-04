@@ -24,7 +24,7 @@
 
 .container {
     max-width: $container-width;
-    width: 100%;
+    padding: 0 $container-padding;
     margin-right: auto;
     margin-left: auto;
 }

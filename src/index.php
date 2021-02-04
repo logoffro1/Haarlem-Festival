@@ -13,9 +13,21 @@
 </head>
 
 <body>
-    <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
-
+    
+    <div class="hero hero--large" style="background-image: url('./assets/images/hero-image.png');">
+        <div class="hero__body hero__body--background">
+            <h1 class="hero__body__title--page">test</h1>
+            <p>test, testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
+        </div>
+    </div>
+    <div class="hero hero--small hero--overlay cuisine" style="background-image: url('./assets/images/hero-image.png');">
+        <div class="hero__body">
+            <h1>test</h1>
+            <p>test, testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
+        </div>
+    </div>
     <div class="container">
+        <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
         <div class="row">
             <div class="col-1">
                 <div style="background-color:red">Test red</div>
