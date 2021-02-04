@@ -13,11 +13,29 @@
 </head>
 
 <body>
-    
+    <nav class="navigation">
+        <a href="#">
+            <img class="navigation__brand" src="./assets/images/svg/logo.svg"/>
+        </a>
+        <ul class="navigation__links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Your Programme</a></li>
+        </ul>
+        <div class="navigation__shop">
+            <a class="icon icon--small icon--background icon--rounded" href="#">
+                <span class="navigation__shop__item-count badge">1</span>
+                <img src="./assets/images/svg/icons/shopping_cart-24px.svg" alt="" />
+            </a>
+        </div>
+    </nav>
+
     <div class="hero hero--large" style="background-image: url('./assets/images/hero-image.png');">
         <div class="hero__body hero__body--background">
-            <h1 class="hero__body__title--page">test</h1>
-            <p>test, testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
+            <h1 class="hero__body__title--page">4 days of<br/>
+summer & culture<br/> 
+in Haarlem<br/></h1>
+            <p>The Haarlem Festival is a four day festival to experience the culture of Haarlem.<br/>Enjoy different kinds of events online or offline.</p>
         </div>
     </div>
     <div class="hero hero--small hero--overlay cuisine" style="background-image: url('./assets/images/hero-image.png');">

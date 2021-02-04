@@ -1,14 +1,29 @@
 .icon {
     $icon-size: 35px;
     $icon-size-small: 25px;
-    width: $icon-size;
-    height: $icon-size;
-    &.icon--small {
-        width: $icon-size-small;
-        height: $icon-size-small;
-    }
+
     img {
-        width: auto;
-        height: 100%;
+        width: $icon-size;
+        height: $icon-size;
+        display: block;
+    }
+    &.icon--small {
+        img {
+            width: $icon-size-small;
+            height: $icon-size-small;
+        }
+    }
+
+    &.icon--background {
+        img {
+            padding: 10px;
+            background-color: $color-grey-4;
+        }
+    }
+
+    &.icon--rounded {
+        img {
+            border-radius: 100%;
+        }
     }
 }
