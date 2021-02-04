@@ -1,11 +1,11 @@
 body {
     font-family: $font-primary;
     color: $color-text;
+    line-height: $line-height-body;
 }
 
 p {
     font-size: $font-size-body;
-    line-height: 26px;
 }
 
 label, .label {

@@ -1,0 +1,14 @@
+.icon {
+    $icon-size: 35px;
+    $icon-size-small: 25px;
+    width: $icon-size;
+    height: $icon-size;
+    &.icon--small {
+        width: $icon-size-small;
+        height: $icon-size-small;
+    }
+    img {
+        width: auto;
+        height: 100%;
+    }
+}
