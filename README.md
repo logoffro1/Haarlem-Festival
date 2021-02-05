@@ -8,4 +8,4 @@ Please follow the instructions provided to run the application:
 2. Clone the repository
 3. Open the project in VS Code and open the integrated terminal.<br/>Or if your IDE does not have an integraded terminal, go to the location of the project in the terminal provided by your OS 
 4. Install the node_modules packages with `npm i` or `npm install`
-5. Run the application with `gulp dev` or `npm run dev`
+5. Run the application with `gulp dev` or `npm run dev`.<br/>To close it press `ctrl + c`.
