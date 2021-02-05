@@ -1,13 +1,19 @@
+/*
+* For this component we make use of the 'General sibling combinator' selector to style the different step states (Todo, Active, Done).
+* By using this selector we only have to specify the 'Active' step, and the others will be styled accordingly
+*/
+
 .steps {
     $step-size: 35px;
     $step-size--active: 40px;
 
-    display: flex;
     width: 700px;
+    position: relative;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
 
+    // Line behind the buttons
     &::before {
         content: "";
         position: absolute;
@@ -19,10 +25,40 @@
         background-color: $color-slated-blue;
     }
 
+    // General styling for states
+    .step {
+        a {
+            display: block;
+            position: relative;
+            
+            &::before {
+                content: "";
+                border-color: $color-slated-blue;
+                border-style: solid;
+                border-radius: 100%;
+                display: block;
+                margin: auto;
+                position: relative;
+            }
+        }
+    }
+
     .step {
         position: relative;
 
+        // Done State
+        a {
+            &::before {
+                border-width: 0px;
+                background-color: $color-slated-blue;
+                width: $step-size;
+                height: $step-size;
+            }
+        }
+
+        // Active
         &.step--active {
+            // Extra circle for the Active step
             &::before {
                 content: "";
                 width: 25px;
@@ -38,43 +74,24 @@
 
             a {
                 font-weight: $font-weight-semibold;
+
                 &::before {
-                    border-width: 4px;
+                    background-color: $color-white;
                     width: $step-size--active;
                     height: $step-size--active;
+                    border-width: 4px;
                 }
             }
         }
 
-        a {
-            display: block;
-            position: relative;
-            
-            &::before {
-                content: "";
-                background-color: $color-white;
-                border: 3px solid $color-slated-blue;
-                width: $step-size;
-                height: $step-size;
-                border-radius: 100%;
-                display: block;
-                margin: auto;
-                position: relative;
-            }
-        }
-
-        &.step--done {
+        // To-do State (Check all steps after the active step)
+        &.step--active ~ .step {
             a {
                 &::before {
-                    border-width: 0px;
-                    background-color: $color-slated-blue;
+                    background-color: $color-white;
                     width: $step-size;
                     height: $step-size;
-                }
-
-                span {
-                    position: relative;
-                    top: 5px;
+                    border-width: 3px;
                 }
             }
         }

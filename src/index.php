@@ -91,7 +91,7 @@ in Haarlem<br/></h1>
 
         <section>
             <ul class="steps">
-                <li class="step step--done">
+                <li class="step">
                     <a href=""><span>Your Cart</span></a>
                 </li>
                 <li class="step step--active">
