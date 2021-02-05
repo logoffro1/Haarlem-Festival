@@ -1,0 +1,82 @@
+.steps {
+    $step-size: 35px;
+    $step-size--active: 40px;
+
+    display: flex;
+    width: 700px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 90%;
+        height: 4px;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $color-slated-blue;
+    }
+
+    .step {
+        position: relative;
+
+        &.step--active {
+            &::before {
+                content: "";
+                width: 25px;
+                height: 25px;
+                background-color: $color-slated-blue;
+                position: absolute;
+                border-radius: 100%;
+                z-index: 1;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 15%;
+            }
+
+            a {
+                font-weight: $font-weight-semibold;
+                &::before {
+                    border-width: 4px;
+                    width: $step-size--active;
+                    height: $step-size--active;
+                }
+            }
+        }
+
+        a {
+            display: block;
+            position: relative;
+            
+            &::before {
+                content: "";
+                background-color: $color-white;
+                border: 3px solid $color-slated-blue;
+                width: $step-size;
+                height: $step-size;
+                border-radius: 100%;
+                display: block;
+                margin: auto;
+                position: relative;
+            }
+        }
+
+        &.step--done {
+            a {
+                &::before {
+                    border-width: 0px;
+                    background-color: $color-slated-blue;
+                    width: $step-size;
+                    height: $step-size;
+                }
+
+                span {
+                    position: relative;
+                    top: 5px;
+                }
+            }
+        }
+    }
+}
