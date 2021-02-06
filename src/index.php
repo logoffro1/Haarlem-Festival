@@ -114,7 +114,7 @@ in Haarlem<br/></h1>
             </ul>
         </section>
     </div>
-        <section class="container countdown">
+        <section class="countdown section section--background">
             <h3 class="countdown__title title title--tetriary">Ticket sales and in:</h3>
 
             <p class="countdown__wrapper-text">

@@ -1,0 +1,14 @@
+.has-color {
+    &--cuisine {
+        color: $color-primary-cuisine;
+    }
+    &--history {
+        color: $color-primary-history;
+    }
+    &--dance {
+        color: $color-primary-dance;
+    }
+    &--jazz {
+        color: $color-primary-jazz;
+    }
+}

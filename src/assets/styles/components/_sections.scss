@@ -1,0 +1,9 @@
+.section {
+    $section-padding: 100px 140px;
+
+    padding: $section-padding;
+
+    &.section--background {
+        background-color: $color-background-section;
+    }
+}
