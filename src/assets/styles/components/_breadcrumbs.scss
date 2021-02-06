@@ -1,0 +1,30 @@
+.breadcrumbs {
+    $breadcrumb-arrow-size: 6px;
+
+    ul {
+        margin: 0;
+        display: flex;
+    }
+
+    .breadcrumbs__breadcrumb {
+        margin-right: 40px;
+        position: relative;
+
+        &::after {
+            content: "";
+            background-image: url("#{$url-svg}/breadcrumb-arrow.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: block;
+            width: $breadcrumb-arrow-size;
+            height: 100%;
+            position: absolute;
+            top: 9px;
+            right: -25px;
+        }
+
+        &:last-of-type::after {
+            content: none;
+        }
+    }
+}

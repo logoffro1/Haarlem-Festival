@@ -15,6 +15,10 @@ a {
     &:focus, &:active {
         color: $color-slated-blue;
     }
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 p {

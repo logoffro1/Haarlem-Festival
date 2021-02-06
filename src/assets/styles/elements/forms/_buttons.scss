@@ -18,6 +18,7 @@ button, .button {
         color: $color-slated-blue;
         border: 1px solid $color-slated-blue;
         background-color: transparent;
+        text-decoration: none;
     }
 
     &.button--secondary {

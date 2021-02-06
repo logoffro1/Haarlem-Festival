@@ -47,6 +47,12 @@ in Haarlem<br/></h1>
     <div class="container">
         <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
 
+        <nav class="breadcrumbs">
+            <ul>
+                <li class="breadcrumbs__breadcrumb"><a href="">Home</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="">Active Page</a></li>
+            </ul>
+        </nav>
         <!-- Testing custom column grid -->
         <div class="row">
             <div class="col-1">
