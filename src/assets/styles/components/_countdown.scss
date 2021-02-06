@@ -1,0 +1,64 @@
+.countdown {
+    $font-size-countdown: 105px;
+    $line-height-countdown: 105px;
+    $circle-divider-size: 15px;
+    $countdown-padding: 100px 0;
+
+    background-color: $color-background-section;
+    padding: $countdown-padding;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .countdown__title, .countdown__button {
+        flex-basis: 100%;
+        text-align: center;
+        margin-top: 0;
+    }
+    
+    .countdown__title {
+        text-transform: uppercase;
+    }
+
+    .countdown__button {
+        margin-top: 50px;
+    }
+
+    .countdown__wrapper-text {
+        margin: 0;
+        text-align: center;
+        width: 200px;
+        position: relative;
+
+        &::after {
+            content: "";
+            height: $circle-divider-size;
+            width: $circle-divider-size;
+            border-radius: 100%;
+            position: absolute;
+            right: -10px;
+            top: 45%;
+            transform: translateY(-50%);
+        }
+
+        &:first-of-type::after {
+            background-color: $color-primary-cuisine;
+        }
+        
+        &:nth-of-type(2)::after {
+            background-color: $color-primary-history;
+        }
+
+        &:nth-of-type(3)::after {
+            background-color: $color-primary-jazz;
+        }
+    }
+
+    .countdown__counter {
+        font-size: $font-size-countdown;
+        font-weight: $font-weight-bold;
+        color: $color-title;
+        line-height: $line-height-countdown;
+        display: block;
+    }
+}

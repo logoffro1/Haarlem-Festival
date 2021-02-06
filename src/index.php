@@ -46,6 +46,8 @@ in Haarlem<br/></h1>
     </div>
     <div class="container">
         <h1 class="title title--page jazz"><?php echo "home"; ?></h1>
+
+        <!-- Testing custom column grid -->
         <div class="row">
             <div class="col-1">
                 <div style="background-color:red">Test red</div>
@@ -68,7 +70,7 @@ in Haarlem<br/></h1>
 
         <button>test</button>
         <button disabled>test</button>
-
+        <a href="#" class="button">test</a>
         <input type="text" name="" placeholder="full name" id="">
 
         <button class="button--secondary">test</button>
@@ -106,6 +108,30 @@ in Haarlem<br/></h1>
             </ul>
         </section>
     </div>
+        <section class="container countdown">
+            <h3 class="countdown__title title title--tetriary">Ticket sales and in:</h3>
+
+            <p class="countdown__wrapper-text">
+                <span class="countdown__counter js-countdown--days">31</span>
+                <span class="title title--tetriary">Days</span>
+            </p>
+            <p class="countdown__wrapper-text">
+                <span class="countdown__counter js-countdown--hours">14</span>
+                <span class="title title--tetriary">Hours</span>
+            </p>
+            <p class="countdown__wrapper-text">
+                <span class="countdown__counter js-countdown--minutes">10</span>
+                <span class="title title--tetriary">Minutes</span>
+            </p>
+            <p class="countdown__wrapper-text">
+                <span class="countdown__counter js-countdown--seconds">20</span>
+                <span class="title title--tetriary">Seconds</span>
+            </p>
+
+            <p class="countdown__button">
+                <a href="#" class="button">Create your programme</a>
+            </p>
+        </section>
 
     <footer>
         <nav class="footer__nav col-3">
