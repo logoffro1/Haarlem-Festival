@@ -7,12 +7,11 @@ button, .button {
     font-weight: $font-weight-semibold;
     font-family: $font-primary;
     border-radius: $border-radius;
-    height: $input-height;
-    min-width: 195px;
     padding: 13px 37px;
     cursor: pointer;
     border: none;
     outline: none;
+    text-align: center;
 
     &:hover {
         color: $color-slated-blue;

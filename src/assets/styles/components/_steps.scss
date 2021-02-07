@@ -30,6 +30,10 @@
         a {
             display: block;
             position: relative;
+
+            &:hover {
+                text-decoration: none;
+            }
             
             &::before {
                 content: "";

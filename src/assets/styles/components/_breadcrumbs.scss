@@ -12,7 +12,7 @@
 
         &::after {
             content: "";
-            background-image: url("#{$url-svg}/breadcrumb-arrow.svg");
+            background-image: url("#{$url-svg}/icons/breadcrumb-arrow.svg");
             background-size: contain;
             background-repeat: no-repeat;
             display: block;

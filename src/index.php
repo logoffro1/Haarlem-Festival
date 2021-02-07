@@ -114,6 +114,32 @@ in Haarlem<br/></h1>
             </ul>
         </section>
     </div>
+
+    <section class="container ticket-list">
+        <ul class="ticket-list__header">
+            <li>When</li>
+            <li>Where</li>
+            <li>Price</li>
+        </ul>
+        <ul class="ticket-list__body">
+            <li class="ticket ticket--jazz">
+                <ul class="ticket-list__ticket__info">
+                    <li>Saturday, 28 July | 21.00 - 22.00</li>
+                    <li>Main Hall - Patronaat</li>
+                    <li>€15,00</li>
+                    <li><a href="#" class="button">Get your tickets</a></li>
+                </ul>
+            </li>
+            <li class="ticket ticket--dance">
+                <ul class="ticket-list__ticket__info">
+                    <li>Saturday, 28 July | 21.00 - 22.00</li>
+                    <li>Main Hall - Patronaat</li>
+                    <li>€15,00</li>
+                    <li><a href="#" class="button">Get your tickets</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
         <section class="countdown section section--background">
             <h3 class="countdown__title title title--tetriary">Ticket sales and in:</h3>
 
