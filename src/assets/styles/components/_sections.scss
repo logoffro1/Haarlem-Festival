@@ -1,7 +1,8 @@
 .section {
-    $section-padding: 100px 140px;
+    $section-padding: 130px;
 
-    padding: $section-padding;
+    padding-top: $section-padding;
+    padding-bottom: $section-padding;
 
     &.section--background {
         background-color: $color-background-section;
