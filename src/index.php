@@ -270,7 +270,7 @@ in Haarlem<br/></h1>
         </p>
     </section>
 
-    <footer>
+    <footer class="footer">
         <nav class="footer__nav col-3">
             <a href="#">
                 <img src="./assets/images/svg/logo-white.svg"/>

@@ -1,19 +1,26 @@
 .navigation {
     $gradient-height: 5px;
+    $navigation-height: 90px;
 
-    height: 90px;
+    height: $navigation-height;
     background-color: $color-grey-7;
     display: flex;
     justify-content: space-between;
     position: fixed;
+    top: 0;
     z-index: 100;
     width: 100%;
+
     &::before {
         content: '';
         height: $gradient-height;
         width: 100%;
         position: absolute;
         background: $color-primary-gradient;
+    }
+   
+    & + * {
+        margin-top: $navigation-height;
     }
     
     > * {
@@ -30,8 +37,6 @@
             padding-right: 50px;
         }
     }
-
-
 
     .navigation__brand {
         height: 60px;

@@ -33,6 +33,17 @@ button, .button {
         }
     }
 
+    &.button--cms {
+        background-color: transparent;
+        color: $color-text;
+        border: none;
+
+        &:hover, &.button--active {
+            color: $color-white;
+            background-color: $color-primary-dance;
+        }
+    }
+
     &:disabled, &.disabled {
         pointer-events: none;
         background-color: $color-button-disabled;

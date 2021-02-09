@@ -36,12 +36,25 @@
 
 .container {
     max-width: $container-width;
-    padding: 0 $container-padding/2;
+    padding: 0 $container-padding / 2;
     margin-right: auto;
     margin-left: auto;
     
     @media screen and (min-width: 1300px) {
         padding: 0 $container-padding;
+    }
+}
+
+.cms-container {
+    flex: 1;
+    padding-left: 75px;
+    padding-right: $container-padding / 2;
+    margin-top: 34px;
+    overflow-y: auto;
+    margin-left: 340px;
+    
+    @media screen and (min-width: 1300px) {
+        padding-right: $container-padding;
     }
 }
 
