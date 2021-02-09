@@ -28,6 +28,16 @@ p {
 ul {
     padding-left: 0;
     list-style-type: none;
+    &.ul--disc {
+        list-style-type: disc;
+    }
+
+    &.ul--large-margin li {
+        margin-bottom: 50px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 label, .label {
