@@ -36,9 +36,13 @@
 
 .container {
     max-width: $container-width;
-    padding: 0 $container-padding;
+    padding: 0 $container-padding/2;
     margin-right: auto;
     margin-left: auto;
+    
+    @media screen and (min-width: 1300px) {
+        padding: 0 $container-padding;
+    }
 }
 
 .row {
