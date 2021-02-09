@@ -3,12 +3,13 @@
  * The result will be .col-$i E.g. '.col-6'
 */
 @for $i from 1 through $grid-columns {
-    // Calculate the percentage width of the columns. E.g 'percentage(1 / 12) = 8.3333%'
-    $percentage: percentage($i / 12);
+    // Calculate the percentage width of the columns. E.g 'percentage(1 / 12) - 1 = 8.3333% - 1 =7.3333%'
+    $percentage: percentage($i / 12) - 1;
 
     .col-#{$i} {
         max-width: $percentage;
         flex: 0 0 $percentage;
+        margin-right: 1%;
         /*
         * Back up if; flex-box does not work, or 'row' class cannot be used because we need to work semantic
             max-width: $percentage;
@@ -22,18 +23,19 @@
     }
 }
 
+// Column that fills the remainder of the available width
+.col-auto {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 99%;
+    margin-right: 1%;
+}
+
 .container {
     max-width: $container-width;
     padding: 0 $container-padding;
     margin-right: auto;
     margin-left: auto;
-}
-
-// Column that fills the remainder of the available width
-.col-auto {
-    flex-basis: 0;
-    flex-grow: 1;
-    max-width: 100%;
 }
 
 .row {
