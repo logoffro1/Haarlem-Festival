@@ -9,17 +9,20 @@
     .col-#{$i} {
         max-width: $percentage;
         flex: 0 0 $percentage;
-        margin-right: 1%;
-        /*
-        * Back up if; flex-box does not work, or 'row' class cannot be used because we need to work semantic
-            max-width: $percentage;
-            width: 100%;
-            display: inline-block;
-        */
+        margin: 0 0.5%;
     }
+}
+
+/*
+ * Generates classes for grid offset of columns, prefixed by size.
+ * The result will be .col-offset-$i E.g. '.col-offset-6'
+*/
+@for $i from 1 through $grid-columns {
+    // Calculate the percentage width of the columns. E.g 'percentage(1 / 12) - 1 = 8.3333% - 1 =7.3333%'
+    $percentage: percentage($i / 12) - 1;
 
     .col-offset-#{$i} {
-        margin-left: $percentage;
+        margin-left: $percentage + 1.5;
     }
 }
 
@@ -27,8 +30,8 @@
 .col-auto {
     flex-basis: 0;
     flex-grow: 1;
-    max-width: 99%;
-    margin-right: 1%;
+    max-width: 98%;
+    margin: 0 0.5%;
 }
 
 .container {
