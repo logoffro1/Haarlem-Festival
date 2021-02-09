@@ -20,6 +20,10 @@ button, .button {
         text-decoration: none;
     }
 
+    &:focus, &:active {
+        color: $color-white;
+    }
+
     &.button--secondary {
         background-color: transparent;
         color: $color-slated-blue;

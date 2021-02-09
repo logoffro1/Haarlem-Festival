@@ -51,7 +51,7 @@ in Haarlem<br/></h1>
 
     <section class="container section section--background">
         <article class="row align-items-center">
-            <header class="col-5">
+            <header class="col-5 col-offset-1">
                 <h1 class="title title--page history"><?php echo "Corona safety measurments"; ?></h1>
                 <p>
                 The safety during our festival is one of our top
@@ -71,7 +71,7 @@ in Haarlem<br/></h1>
     
     <section class="container section">
         <article class="row align-items-center">
-            <header class="col-5">
+            <header class="col-4">
                 <h1 class="title title--page dance"><?php echo "26 - 29 July<br/>The Best Events"; ?></h1>
                 <p>
                     Enjoy our four day culture festival Online and Offline.
@@ -86,7 +86,60 @@ in Haarlem<br/></h1>
                 </p>
                 <a href="#" class="button">Create your programme</a>
             </header>
-            <img class="col-5 col-offset-1" src="./assets/images/home_image-1.png" alt="">
+            <section class="row col-7 col-offset-1" >
+                <article class="card--events card--events--cuisine">
+                    <p class="card--events__intro">
+                    get inspired by
+                    </p>
+                    <h4 class="card--events__title">
+                        The
+                        haarlem
+                        cuisine
+                    </h4>
+                    <a href="#" class="card--events__arrow" >
+                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
+                    </a>
+                </article>
+                <article class="card--events card--events--history">
+                    <p class="card--events__intro">
+                    Discover
+                    </p>
+                    <h4 class="card--events__title">
+                        The
+                        haarlem
+                        history
+                    </h4>
+                    <a href="#" class="card--events__arrow" >
+                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
+                    </a>
+                </article>
+                <article class="card--events card--events--dance">
+                    <p class="card--events__intro">
+                    Get wild during
+                    </p>
+                    <h4 class="card--events__title">
+                        The
+                        haarlem
+                        dance
+                    </h4>
+                    <a href="#" class="card--events__arrow" >
+                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
+                    </a>
+                </article>
+                <article class="card--events card--events--jazz">
+                    <p class="card--events__intro">
+                    Check out
+                    </p>
+                    <h4 class="card--events__title">
+                        The
+                        haarlem
+                        jazz
+                    </h4>
+                    <a href="#" class="card--events__arrow" >
+                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
+                    </a>
+                </article>
+            </section>
         </article>
     </section>
 <!--
@@ -192,23 +245,23 @@ in Haarlem<br/></h1>
         </ul>
     </section>
 -->
-    <section class="countdown section section--background">
+    <section class="countdown js-countdown section section--background">
         <h3 class="countdown__title title title--tetriary">Ticket sales and in:</h3>
 
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown--days">31</span>
+            <span class="countdown__counter js-countdown__days">31</span>
             <span class="title title--tetriary">Days</span>
         </p>
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown--hours">14</span>
+            <span class="countdown__counter js-countdown__hours">14</span>
             <span class="title title--tetriary">Hours</span>
         </p>
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown--minutes">10</span>
+            <span class="countdown__counter js-countdown__minutes">10</span>
             <span class="title title--tetriary">Minutes</span>
         </p>
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown--seconds">20</span>
+            <span class="countdown__counter js-countdown__seconds">20</span>
             <span class="title title--tetriary">Seconds</span>
         </p>
 
