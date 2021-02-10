@@ -21,6 +21,13 @@
     animation-duration: 0.5s;
     animation-fill-mode: both;
     animation-timing-function: linear;
+    display: none;
+    cursor: pointer;
+    z-index: 100;
+    
+    &.notification--cms--is-visible {
+        display: block;
+    }
 
     &.notification--cms--fade-out {
         animation-name: fadeOutUp;

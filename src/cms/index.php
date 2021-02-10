@@ -85,11 +85,17 @@
                 </tbody>
             </table>
         </article>
+
+        <nav class="tabs--cms">
+            <ul class="tabs--cms__list">
+                <li><a class="is-active" href="#">Jazz</a></li>
+                <li><a href="#">Dance</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Cuisine</a></li>
+            </ul>
+        </nav>
         <article class="card--cms">
-            <header class="card--cms__header">
-                <h3 class="card--cms__header__title">Event Details</h3>
-                <a href="#" class="button button--secondary">Add new artist</a>
-            </header>
+
             <div class="card--cms__body">
                 test
             </div>
