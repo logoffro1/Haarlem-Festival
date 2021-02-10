@@ -1,3 +1,3 @@
-import test from './test.js';
+import { notification } from './notification.js';
 
-new test();
+new notification();

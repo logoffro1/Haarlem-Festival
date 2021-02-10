@@ -1,0 +1,48 @@
+@keyframes fadeOutUp {
+    0% {
+       opacity: 1;
+       transform: translateY(0);
+    }
+    100% {
+       opacity: 0;
+       transform: translateY(-75px);
+    }
+ }
+ 
+
+.notification--cms {
+    padding: 20px 23px;
+    background-color: $color-primary-dance;
+    position: fixed;
+    border-radius: 10px;
+    width: 530px;
+    bottom: 20px;
+    right: 20px;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+
+    &.notification--cms--fade-out {
+        animation-name: fadeOutUp;
+    }
+
+    .notification--cms__title,
+    .notification--cms__body {
+        color: $color-white;
+        font-size: $font-size-body;
+        margin: 0;
+    }
+
+    .notification--cms__title {
+        font-weight: $font-weight-semibold;
+        margin-bottom: 5px;
+    }
+    
+    .notification--cms__body {
+        font-weight: $font-weight-normal;
+
+        .notification--cms__body__important {
+            font-weight: $font-weight-semibold;
+        }
+    }
+}

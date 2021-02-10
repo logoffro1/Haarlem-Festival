@@ -1,9 +1,5 @@
 export class base {
-    constructor(){
-
-    }
-
-    exist(){
-        
+    _exist(selector){
+        return selector.length === 0 ? false : true;
     }
 }

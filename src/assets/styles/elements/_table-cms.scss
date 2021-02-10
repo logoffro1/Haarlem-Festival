@@ -1,0 +1,22 @@
+.table--cms {
+    width: 100%;
+    border-spacing: 0;
+
+    thead {
+        text-align: left;
+    }
+
+    tbody {
+        td {
+            border-bottom: 1px solid $color-grey-4;
+            padding: 25px 0;
+        }
+    }
+
+    .table--cms__item__navigation {
+        text-align: right;
+        a {
+            margin-right: 20px;
+        }
+    }
+}
