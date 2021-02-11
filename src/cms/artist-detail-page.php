@@ -38,8 +38,9 @@
     <section class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
             <ul>
-                <li class="breadcrumbs__breadcrumb"><a href="">Edit Pages</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href="">Jazz Event</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="cms/index.php">Edit Pages</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="detail-pages.php">Jazz Event</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="">Gare Du Nord</a></li>
             </ul>
         </nav>
 
