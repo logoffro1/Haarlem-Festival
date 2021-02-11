@@ -66,6 +66,46 @@
                     </fieldset>
                 </form>
             </article>
+
+            <article class="card--cms">
+                <header class="card--cms__header">
+                    <h3 class="card--cms__header__title">Page Content</h3>
+                    <button class="button button--secondary">Add performance</button>
+                </header>
+                <table class="card--cms__body table--cms">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Location</th>
+                            <th>Hall</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Saturday 28 July</td>
+                            <td>21.00-22.00</td>
+                            <td>Patronaat</td>
+                            <td>Main Hall</td>
+                            <td class="table--cms__item__navigation">
+                                <a href="cms/artist-performance-details.php" class="">Edit</a>
+                                <a href="#" class="">Remove</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Saturday 28 July</td>
+                            <td>21.00-22.00</td>
+                            <td>Patronaat</td>
+                            <td>Main Hall</td>
+                            <td class="table--cms__item__navigation">
+                                <a href="#" class="">Edit</a>
+                                <a href="#" class="">Remove</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
         </section>
 
         <section class="col-4">
@@ -91,33 +131,36 @@
     
             <article class="card--cms">
                 <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Artists</h3>
-                    <button class="button button--secondary">Add artist</button>
+                    <h3 class="card--cms__header__title">Artists Image</h3>
                 </header>
-                <table class="card--cms__body table--cms">
-                    <thead>
-                        <tr>
-                            <th>Band</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Gare du Nord</td>
-                            <td class="table--cms__item__navigation">
-                                <a href="cms/artist-performance-details.php" class="">Edit</a>
-                                <a href="#" class="">Remove</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Gare du Nord</td>
-                            <td class="table--cms__item__navigation">
-                                <a href="#" class="">Edit</a>
-                                <a href="#" class="">Remove</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <form class="card--cms__body table--cms">
+                    <img src="" alt="Artist Image">
+                    <br/>
+                    <button class="button">Upload Image</button>
+                    <button class="button button--secondary">Delete</button>
+                </form>
+            </article>
+            
+            <article class="card--cms">
+                <header class="card--cms__header">
+                    <h3 class="card--cms__header__title">Social Media</h3>
+                </header>
+                <form class="card--cms__body row">
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Youtube</label>
+                        <input placeholder="enter the url..." type="text" name="youtube" id="youtube">
+                    </fieldset>
+                                
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Instagram</label>
+                        <input placeholder="enter the url..." type="text" name="instagram" id="instagram">
+                    </fieldset>
+                                
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Facebook</label>
+                        <input placeholder="enter the url..." type="text" name="facebook" id="facebook">
+                    </fieldset>
+                </form>
             </article>
         </section>
 
