@@ -79,3 +79,10 @@ fieldset {
         margin-bottom: 0;
     }
 }
+
+textarea {
+    resize: vertical;
+    padding: 12px;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+}
