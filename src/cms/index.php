@@ -38,16 +38,21 @@
     <section class="cms-container">
         <nav class="breadcrumbs breadcrumbs--cms">
             <ul>
-                <li class="breadcrumbs__breadcrumb"><a href="">Home</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href="">Edit Pages</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="">Events</a></li>
             </ul>
         </nav>
        
+        <nav class="tabs--cms">
+            <ul class="tabs--cms__list">
+                <li><a class="is-active" href="#">Jazz</a></li>
+                <li><a href="#">Dance</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Cuisine</a></li>
+            </ul>
+        </nav>
         <article class="card--cms">
-            <header class="card--cms__header">
-                <h3 class="card--cms__header__title">Event Details</h3>
-                <a href="#" class="button button--secondary">Add new artist</a>
-            </header>
+            <button class="button button--top">Add artist</button>
+            <button class="button button--top">Add performance</button>
             <table class="card--cms__body table--cms">
                 <thead>
                     <tr>
@@ -67,7 +72,7 @@
                         <td>Patronaat</td>
                         <td>Main Hall</td>
                         <td class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
+                            <a href="cms/artist-performance-details.php" class="">Edit</a>
                             <a href="#" class="">Remove</a>
                         </td>
                     </tr>
@@ -84,21 +89,6 @@
                     </tr>
                 </tbody>
             </table>
-        </article>
-
-        <nav class="tabs--cms">
-            <ul class="tabs--cms__list">
-                <li><a class="is-active" href="#">Jazz</a></li>
-                <li><a href="#">Dance</a></li>
-                <li><a href="#">History</a></li>
-                <li><a href="#">Cuisine</a></li>
-            </ul>
-        </nav>
-        <article class="card--cms">
-
-            <div class="card--cms__body">
-                test
-            </div>
         </article>
     </section>
 

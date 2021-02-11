@@ -1,11 +1,18 @@
 .card--cms {
     $card--cms-padding__header: 0 25px;
     $card--cms-height__header: 75px;
-    $card--cms-padding__body: 45px 25px 25px;
+    $card--cms-padding__body: 25px;
 
     background-color: $color-white;
     border-radius: 4px;
     margin-bottom: 18px;
+    height: fit-content;
+
+    .button--top {
+        float: right;
+        margin-right: 12px;
+        margin-top: 12px;
+    }
 
     .card--cms__header {
         padding: $card--cms-padding__header;
@@ -28,5 +35,23 @@
 
     .card--cms__body {
         padding: $card--cms-padding__body;
+
+        .card--cms__body__form-title {
+            font-weight: $font-weight-semibold;
+            margin-top: 0;
+            margin-bottom: 0;   
+        }
+
+        .card--cms__body__additional {
+            font-size: $font-size-label;
+            color: #7D7D7D;
+            margin: 0;
+        }
+
+        .card--cms__body__results {
+            ul {
+                margin-top: 10px;
+            }
+        }
     }
 }

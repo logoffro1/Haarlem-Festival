@@ -6,13 +6,21 @@ input, .input {
     border-radius: $border-radius;
     outline: none;
     height: $input-height - 2;
-    
+    box-sizing: border-box;
+
     &::placeholder {
         color: $color-input-placeholder;
     }
 
     &:focus {
-        border-color: $color-input-focus;;
+        border-color: $color-input-focus;
+    }
+
+    &:disabled {
+        background-color: $color-white;
+        border-color: $color-input-placeholder;
+        cursor: not-allowed;
+        color: #7D7D7D;
     }
 
     &.error {
@@ -51,4 +59,23 @@ select {
     min-width: 195px;
     padding-left: 12px;
     outline: none;
+    
+    &.has-placeholder {
+        color: $color-input-placeholder;
+    }
+
+    option {
+        color: $color-black;
+    }
+}
+
+fieldset {
+    padding: 0;
+    border: none;
+    margin: 0;
+    margin-bottom: 15px;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
 }
