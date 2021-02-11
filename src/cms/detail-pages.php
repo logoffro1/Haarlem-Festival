@@ -105,7 +105,7 @@
                         <tr>
                             <td>Gare du Nord</td>
                             <td class="table--cms__item__navigation">
-                                <a href="cms/artist-performance-details.php" class="">Edit</a>
+                                <a href="artist-performance-details.php" class="">Edit</a>
                                 <a href="#" class="">Remove</a>
                             </td>
                         </tr>
