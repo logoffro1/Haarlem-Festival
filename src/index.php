@@ -1,43 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+    include 'components/hero.php';
+    include 'components/navigation.php';
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="./assets/styles/main.css">
-    <title>Document</title>
-</head>
+<?php
+include 'components/head3.php'; 
 
-<body>
-    <nav class="navigation">
-        <a href="#">
-            <img class="navigation__brand" src="./assets/images/svg/logo.svg"/>
-        </a>
-        <ul class="navigation__links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Your Programme</a></li>
-        </ul>
-        <div class="navigation__shop">
-            <a class="icon icon--small icon--background icon--rounded" href="#">
-                <span class="navigation__shop__item-count badge">1</span>
-                <img src="./assets/images/svg/icons/shopping_cart-24px.svg" alt="" />
-            </a>
-        </div>
-    </nav>
+$head = new head("homepage");
+$head->render();
 
+?>
+
+
+<?php echo navigation(); ?>
+
+<?php echo hero("hero--large", 
+"4 days of<br/>summer & culture<br/> in Haarlem<br/>", 
+"The Haarlem Festival is a four day festival to experience the culture of Haarlem.<br/>Enjoy different kinds of events online or offline.", 
+"./assets/images/hero-image.png"); ?>
+
+
+<!-- 
     <div class="hero hero--large" style="background-image: url('./assets/images/hero-image.png');">
         <div class="hero__body hero__body--background">
-            <h1 class="hero__body__title--page">4 days of<br/>
-summer & culture<br/> 
-in Haarlem<br/></h1>
+            <h1 class="hero__body__title--page">
+                4 days of<br/>
+                summer & culture<br/> 
+                in Haarlem<br/>
+            </h1>
             <p>The Haarlem Festival is a four day festival to experience the culture of Haarlem.<br/>Enjoy different kinds of events online or offline.</p>
         </div>
-    </div>
+    </div> -->
 
     <section class="container section">
         <article class="row align-items-center">
