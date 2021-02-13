@@ -186,23 +186,23 @@ $head->render();
    
 -->
 
-    <section class="countdown js-countdown section section--background">
+    <section class="countdown js-countdown section section--background" end-date="2021-05-13">
         <h3 class="countdown__title title title--tetriary">Ticket sales and in:</h3>
 
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__days">31</span>
+            <span class="countdown__counter js-countdown__days">00</span>
             <span class="title title--tetriary">Days</span>
         </p>
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__hours">14</span>
+            <span class="countdown__counter js-countdown__hours">00</span>
             <span class="title title--tetriary">Hours</span>
         </p>
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__minutes">10</span>
+            <span class="countdown__counter js-countdown__minutes">00</span>
             <span class="title title--tetriary">Minutes</span>
         </p>
         <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__seconds">20</span>
+            <span class="countdown__counter js-countdown__seconds">00</span>
             <span class="title title--tetriary">Seconds</span>
         </p>
 
