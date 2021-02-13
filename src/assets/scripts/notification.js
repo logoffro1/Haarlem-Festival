@@ -12,7 +12,7 @@ export class notification extends base {
     init(){
         const element = document.querySelector(this.config.selector);
 
-        if(!this._exist(this.config.selector)) return;
+        if(!this._exist(element)) return;
         
         this.config.selector = element;
 
