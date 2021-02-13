@@ -144,13 +144,7 @@ $head->render();
     </div>
 
     <div class="container">
-        <nav class="breadcrumbs">
-            <ul>
-                <li class="breadcrumbs__breadcrumb"><a href="">Home</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href="">Active Page</a></li>
-            </ul>
-        </nav>
-       
+
         <div class="row">
             <div class="col-1 col-offset-3">
                 <div style="background-color:red">Test red</div>
@@ -184,60 +178,14 @@ $head->render();
             <option value="audi">Audi</option>
         </select>
 
-        <label for="1">
-            <input type="checkbox" name="" id="1">
-            <span>test</span>
-        </label>
 
-        <label for="2">
-            <input type="radio" name="" id="2">
-            <span>test</span>
-        </label>
 
-        <section>
-            <ul class="steps">
-                <li class="step">
-                    <a href=""><span>Your Cart</span></a>
-                </li>
-                <li class="step step--active">
-                    <a href=""><span>Personal Details</span></a>
-                </li>
-                <li class="step">
-                    <a href=""><span>Payment</span></a>
-                </li>
-                <li class="step">
-                    <a href=""><span>Confirmation</span></a>
-                </li>
-            </ul>
-        </section>
+
     </div>
 
-    <section class="container ticket-list">
-        <ul class="ticket-list__header">
-            <li>When</li>
-            <li>Where</li>
-            <li>Price</li>
-        </ul>
-        <ul class="ticket-list__body">
-            <li class="ticket ticket--jazz">
-                <ul class="ticket-list__ticket__info">
-                    <li>Saturday, 28 July | 21.00 - 22.00</li>
-                    <li>Main Hall - Patronaat</li>
-                    <li>€15,00</li>
-                    <li><a href="#" class="button">Get your tickets</a></li>
-                </ul>
-            </li>
-            <li class="ticket ticket--dance">
-                <ul class="ticket-list__ticket__info">
-                    <li>Saturday, 28 July | 21.00 - 22.00</li>
-                    <li>Main Hall - Patronaat</li>
-                    <li>€15,00</li>
-                    <li><a href="#" class="button">Get your tickets</a></li>
-                </ul>
-            </li>
-        </ul>
-    </section>
+   
 -->
+
     <section class="countdown js-countdown section section--background">
         <h3 class="countdown__title title title--tetriary">Ticket sales and in:</h3>
 
