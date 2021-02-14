@@ -35,7 +35,7 @@
         </footer>
     </aside>
 
-    <section class="cms-container row">
+    <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
             <ul>
                 <li class="breadcrumbs__breadcrumb"><a href="edit-pages.php">Events</a></li>
@@ -152,7 +152,7 @@
                 </fieldset>
             </form>
         </article>
-    </section>
+    </div>
 
     <div class="notification--cms js-notification">
         <div class="notification--cms__title">Test title</div>

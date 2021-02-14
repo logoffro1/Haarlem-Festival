@@ -35,7 +35,7 @@
         </footer>
     </aside>
 
-    <section class="cms-container">
+    <div class="cms-container">
         <nav class="breadcrumbs breadcrumbs--cms">
             <ul>
                 <li class="breadcrumbs__breadcrumb"><a href="">Events</a></li>
@@ -90,7 +90,7 @@
                 </tbody>
             </table>
         </article>
-    </section>
+    </div>
 
     <div class="notification--cms js-notification">
         <div class="notification--cms__title">Test title</div>

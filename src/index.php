@@ -1,10 +1,10 @@
 <?php
-    include 'components/hero.php';
-    include 'components/navigation.php';
+    include './components/hero.php';
+    include './components/navigation.php';
 ?>
 
 <?php
-include 'components/head3.php'; 
+include './components/head3.php'; 
 
 $head = new head("homepage");
 $head->render();

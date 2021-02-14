@@ -35,7 +35,7 @@
         </footer>
     </aside>
 
-    <section class="cms-container row">
+    <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
             <ul>
                 <li class="breadcrumbs__breadcrumb"><a href="cms/index.php">Edit Pages</a></li>
@@ -44,7 +44,7 @@
             </ul>
         </nav>
 
-        <section class="col-8">
+        <div class="col-8">
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Page Title</h3>
@@ -107,9 +107,9 @@
                     </tbody>
                 </table>
             </article>
-        </section>
+        </div>
 
-        <section class="col-4">
+        <div class="col-4">
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Details</h3>
@@ -163,9 +163,9 @@
                     </fieldset>
                 </form>
             </article>
-        </section>
+        </div>
 
-    </section>
+    </div>
 
     <div class="notification--cms js-notification">
         <div class="notification--cms__title">Test title</div>

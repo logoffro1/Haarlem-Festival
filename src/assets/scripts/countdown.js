@@ -40,10 +40,10 @@ export class countdown extends base {
     }
 
     findChildElements(){
-        this.config.days = document.querySelector('.js-countdown__days');
-        this.config.hours = document.querySelector('.js-countdown__hours');
-        this.config.minutes = document.querySelector('.js-countdown__minutes');
-        this.config.seconds = document.querySelector('.js-countdown__seconds');
+        this.config.days = this.config.selector.querySelector('.js-countdown__days');
+        this.config.hours = this.config.selector.querySelector('.js-countdown__hours');
+        this.config.minutes = this.config.selector.querySelector('.js-countdown__minutes');
+        this.config.seconds = this.config.selector.querySelector('.js-countdown__seconds');
     }
 
     initializeClock(){
