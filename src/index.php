@@ -108,74 +108,21 @@ $navigation->render();
     </div>
 
     <div class="container">
-
-        <div class="row">
-            <div class="col-1 col-offset-3">
-                <div style="background-color:red">Test red</div>
-            </div>
-            <div class="col-5">
-                <div style="background-color:blue">Test blue</div>
-            </div>
-            <div class="col-3">
-                <div style="background-color:green">Test green</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div style="background-color:blue">Test blue</div>
-            </div>
-            <div class="col-6">
-                <div style="background-color:green">Test green</div>
-            </div>
-        </div>
-
         <button>test</button>
         <button disabled>test</button>
         <a href="#" class="button">test</a>
         <input type="text" name="" placeholder="full name" id="">
 
         <button class="button--secondary">test</button>
-        <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-        </select>
-
-
-
-
     </div>
 
    
 -->
-
-    <section class="countdown js-countdown section section--background" end-date="2021-05-13">
-        <h3 class="countdown__title title title--tetriary">Ticket sales and in:</h3>
-
-        <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__days">00</span>
-            <span class="title title--tetriary">Days</span>
-        </p>
-        <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__hours">00</span>
-            <span class="title title--tetriary">Hours</span>
-        </p>
-        <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__minutes">00</span>
-            <span class="title title--tetriary">Minutes</span>
-        </p>
-        <p class="countdown__wrapper-text">
-            <span class="countdown__counter js-countdown__seconds">00</span>
-            <span class="title title--tetriary">Seconds</span>
-        </p>
-
-        <p class="countdown__button">
-            <a href="#" class="button">Create your programme</a>
-        </p>
-    </section>
-
 <?php
+    $countdown = new countdown("Ticket sales and in:", "#");
+    $countdown->render();
+
+
     $footer = new footer();
     $footer->render();
 
