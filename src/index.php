@@ -1,23 +1,28 @@
 <?php
-    include './components/hero.php';
-    include './components/navigation.php';
-?>
+include './classes/autoloader.php';
 
-<?php
-include './components/head3.php'; 
+
 
 $head = new head("homepage");
 $head->render();
 
 ?>
 
+<?php 
+$navigation = new navigation("Home");
+$navigation->render();
+?>
 
-<?php echo navigation(); ?>
+<?php 
+    $hero = new hero(
+        "hero--large", 
+        "4 days of<br/>summer & culture<br/> in Haarlem<br/>", 
+        "The Haarlem Festival is a four day festival to experience the culture of Haarlem.<br/>Enjoy different kinds of events online or offline.", 
+        "./assets/images/hero-image.png"
+    );
 
-<?php echo hero("hero--large", 
-"4 days of<br/>summer & culture<br/> in Haarlem<br/>", 
-"The Haarlem Festival is a four day festival to experience the culture of Haarlem.<br/>Enjoy different kinds of events online or offline.", 
-"./assets/images/hero-image.png"); ?>
+    $hero->render();
+?>
 
 
 <!-- 
@@ -79,59 +84,18 @@ $head->render();
                 </p>
                 <a href="#" class="button">Create your programme</a>
             </header>
-            <section class="row col-7 col-offset-1" >
-                <article class="card--events card--events--cuisine">
-                    <p class="card--events__intro">
-                    get inspired by
-                    </p>
-                    <h4 class="card--events__title">
-                        The
-                        haarlem
-                        cuisine
-                    </h4>
-                    <a href="#" class="card--events__arrow" >
-                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
-                    </a>
-                </article>
-                <article class="card--events card--events--history">
-                    <p class="card--events__intro">
-                    Discover
-                    </p>
-                    <h4 class="card--events__title">
-                        The
-                        haarlem
-                        history
-                    </h4>
-                    <a href="#" class="card--events__arrow" >
-                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
-                    </a>
-                </article>
-                <article class="card--events card--events--dance">
-                    <p class="card--events__intro">
-                    Get wild during
-                    </p>
-                    <h4 class="card--events__title">
-                        The
-                        haarlem
-                        dance
-                    </h4>
-                    <a href="#" class="card--events__arrow" >
-                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
-                    </a>
-                </article>
-                <article class="card--events card--events--jazz">
-                    <p class="card--events__intro">
-                    Check out
-                    </p>
-                    <h4 class="card--events__title">
-                        The
-                        haarlem
-                        jazz
-                    </h4>
-                    <a href="#" class="card--events__arrow" >
-                        <img src="./assets/images/svg/icons/arrow_forward-24px.svg" alt="" srcset="">
-                    </a>
-                </article>
+            <section class="row col-7 col-offset-1">
+                <?php
+                    $cuisineEvent = new eventCards("cuisine", "get inspired by", "The haarlem cuisine", "#");
+                    $historyEvent = new eventCards("history", "Discover", "The haarlem history", "#");
+                    $danceEvent = new eventCards("dance", "Get wild during", "The haarlem dance", "#");
+                    $jazzEvent = new eventCards("jazz", "Check out", "The haarlem jazz", "#");
+
+                    $cuisineEvent->render();
+                    $historyEvent->render();
+                    $danceEvent->render();
+                    $jazzEvent->render();
+                ?>
             </section>
         </article>
     </section>
@@ -211,41 +175,8 @@ $head->render();
         </p>
     </section>
 
-    <footer class="footer">
-        <nav class="footer__nav col-3">
-            <a href="#">
-                <img src="./assets/images/svg/logo-white.svg"/>
-            </a>
-            
-            <ul class="footer__nav__list">
-                <li><a href="#"><img src="./assets/images/svg/instagram.svg" alt=""></a></li>
-                <li><a href="#"><img src="./assets/images/svg/facebook.svg" alt=""></a></li>
-                <li><a href="#"><img src="./assets/images/svg/youtube.svg" alt=""></a></li>
-            </ul>
-        </nav>
-        <ul class="footer__list col-2">
-            <span class="footer__list__title">Events</span>
-            <li><a href="#">Jazz</a></li>
-            <li><a href="#">Dance</a></li>
-            <li><a href="#">History</a></li>
-            <li><a href="#">Cuisine</a></li>
-        </ul>
-        <ul class="footer__list col-2">
-            <span class="footer__list__title">Pages</span>
-            <li><a href="#">Your programme</a></li>
-            <li><a href="#">Shopping Cart</a></li>
-            <li><a href="#">Discount</a></li>
-        </ul>
-        <ul class="footer__list col-2"></ul>
-        <ul class="footer__list col-2">
-        <span class="footer__list__title">Partners with</span>
+<?php
+    $footer = new footer();
+    $footer->render();
 
-            <li><a href="#"><img src="./assets/images/svg/haarlem-city-logo.svg" alt=""></a></li>
-
-        </ul>
-
-    </footer>
-    <script src="./assets/scripts/index.js"></script>
-</body>
-
-</html>
+?>
