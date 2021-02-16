@@ -1,14 +1,13 @@
 <?php
-
 class hero
 {
-    private string $type;
+    private string $class;
     private string $heading;
     private string $text;
     private string $image;
 
-    public function __construct(string $type, string $heading, string $text, string $image) {
-        $this->type = $type;
+    public function __construct(string $class, string $heading, string $text, string $image) {
+        $this->class = $class;
         $this->heading = $heading;
         $this->text = $text;
         $this->image = $image;
@@ -17,7 +16,7 @@ class hero
     public function render()
     {
         echo "
-        <div class='hero $this->type' style='background-image: url($this->image);'>
+        <div class='hero $this->class' style='background-image: url($this->image);'>
             <div class='hero__body hero__body--background'>
                 <h1 class='hero__body__title--page'>
                     $this->heading
