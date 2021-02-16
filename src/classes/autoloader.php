@@ -5,11 +5,11 @@
 */
 spl_autoload_register(function ($class_name) {
     // create path to files
-    $component_class = "./components/$class_name.php";
-    $controller_class = "./controller/$class_name.php";
-    $classes_class = "./classes/$class_name.php";
-    $model_class = "./model/$class_name.php";
-    $view_class = "./view/$class_name.php";
+    $component_class = dirname(__DIR__)."/components/$class_name.php";
+    $controller_class = dirname(__DIR__)."/controller/$class_name.php";
+    $classes_class = dirname(__DIR__)."/classes/$class_name.php";
+    $model_class = dirname(__DIR__)."/model/$class_name.php";
+    $view_class = dirname(__DIR__)."/view/$class_name.php";
 
     // Check if files exist
     if(file_exists($component_class)){

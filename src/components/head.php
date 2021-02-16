@@ -1,9 +1,11 @@
 <?php
     class head {
         private string $title;
+        private string $class;
 
-        public function __construct(string $title) {
+        public function __construct(string $title, string $class) {
             $this->title = $title;
+            $this->class = $class;
         }
 
         public function render()
@@ -23,7 +25,7 @@
                 <title>$this->title</title>
             </head>
 
-            <body>
+            <body class='$this->class'>
             ");
         }
     }
