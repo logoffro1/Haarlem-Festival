@@ -37,7 +37,7 @@ $navigation->render();
                             'Patronaat',
                             'Main Hall',
                             '<div class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
+                            <a href="./artist-detail-page.php?id=1" class="">Edit</a>
                             <a href="#" class="">Remove</a>
                             </div>'
                         ),
@@ -48,7 +48,7 @@ $navigation->render();
                             'Patronaat',
                             'Main Hall',
                             '<div class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
+                            <a href="./artist-detail-page.php?id=2" class="">Edit</a>
                             <a href="#" class="">Remove</a>
                             </div>'
                         ),
@@ -66,24 +66,24 @@ $navigation->render();
                     $tableHeader = array('Band', 'Date', 'Time', 'Location', 'Hall');
                     $tableBody = array(
                         array(
-                            'Gare du Nord',
+                            'Hardwell',
                             'Saturday 28 July',
                             '21.00-22.00',
                             'Patronaat',
                             'Main Hall',
                             '<div class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
+                            <a href="./artist-detail-page.php?id=3" class="">Edit</a>
                             <a href="#" class="">Remove</a>
                             </div>'
                         ),
                         array(
-                            'Gare du Nord',
+                            'Hardwell',
                             'Saturday 28 July',
                             '21.00-22.00',
                             'Patronaat',
                             'Main Hall',
                             '<div class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
+                            <a href="./artist-detail-page.php?id=4" class="">Edit</a>
                             <a href="#" class="">Remove</a>
                             </div>'
                         ),

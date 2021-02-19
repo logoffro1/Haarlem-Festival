@@ -40,7 +40,7 @@ export class tabs extends base {
     switchTabs(el){
         const { navigation, content, toggleClass } = this.config;
 
-        Array.from(navigation).forEach(n => n.classList.remove(toggleClass));
+        navigation.forEach(n => n.classList.remove(toggleClass));
 
         content.forEach(c => {
             c.classList.remove(toggleClass);
