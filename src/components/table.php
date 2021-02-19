@@ -1,7 +1,7 @@
 <?php
     class table
     {
-        private array $class;
+        private string $class;
         private array $tableHeader;
         private array $tableBody;
 
