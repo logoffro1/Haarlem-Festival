@@ -90,5 +90,4 @@ $navigation->render();
 
     $footer = new footer();
     $footer->renderFooter();
-
 ?>

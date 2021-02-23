@@ -1,5 +1,5 @@
 # Haarlem Festival
-This website was made by the students of *Inholland Haarlem*, following the *Information Technology* course..
+This website was made by the students of *Inholland Haarlem*, following the *Information Technology* course.
 
 ## Usage
 Please follow the instructions provided to run the application:
