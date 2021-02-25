@@ -3,7 +3,7 @@ This website was made by the students of *Inholland Haarlem*, following the *Inf
 
 ## Requirements
 The working directory makes use of gulp 3.9 for task running and the local development enviorement.<br/>
-Please download node version 8.16.2, or install [nvm](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to change the version of the working directory.
+This gulp version is incompatible with 'newer' node versions. Please download node version 8.16.2, or install [nvm](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) to change the version of the working directory.
 
 | Application Name | Version |
 |------------------|---------|
