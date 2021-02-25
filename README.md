@@ -19,6 +19,7 @@ Please follow the instructions provided to run the application:
 2. If you need to downscale the node version, please download
 [nvm](https://github.com/coreybutler/nvm-windows#node-version-manager-nvm-for-windows) and install node version 8.16.2
 3. Clone the repository
-4. Open the project in VS Code and open the integrated terminal.<br/>Or if your IDE does not have an integraded terminal, go to the location of the project in the terminal provided by your OS 
-5. Install the node_modules packages with `npm i` or `npm install`
-6. Run the application with `gulp dev` or `npm run dev`.<br/>To close it press `ctrl + c`.
+4. Open the project in VS Code and open the integrated terminal.<br/>Or if your IDE does not have an integraded terminal, go to the location of the project in the terminal provided by your OS
+5. If you need to downscale your node version run `nvm use 8.16.2` in the project location
+6. Install the node_modules packages with `npm i` or `npm install`
+7. Run the application with `gulp dev` or `npm run dev`.<br/>To close it press `ctrl + c`.
