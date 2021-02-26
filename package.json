@@ -27,6 +27,7 @@
     "webpack-stream": "^6.1.2"
   },
   "dependencies": {
-    "normalize-scss": "^7.0.1"
+    "normalize-scss": "^7.0.1",
+    "package.json": "^2.0.1"
   }
 }
