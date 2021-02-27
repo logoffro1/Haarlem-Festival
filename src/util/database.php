@@ -15,7 +15,7 @@ class database {
      * 
      * @return database
     */
-    public function getInstance() : database
+    public static function getInstance() : database
     {
         if(is_null(self::$database)){
             self::$database = new database();
