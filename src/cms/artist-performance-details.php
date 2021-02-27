@@ -139,7 +139,7 @@
                     </select>
                 </fieldset>
 
-                <fieldset class="card--cms__body__results js-card--cms-input-results">
+                <div class="card--cms__body__results js-card--cms-input-results">
                     <p class="card--cms__body__form-title col-12">Swap events with:</p>
                     <ul>
                         <li><span class="has-font-weight-semibold">Artist/Band:</span> Artist value</li>
@@ -149,7 +149,7 @@
                     </ul>
 
                     <button class="button">Swap slots</button>
-                </fieldset>
+                </div>
             </form>
         </article>
     </div>

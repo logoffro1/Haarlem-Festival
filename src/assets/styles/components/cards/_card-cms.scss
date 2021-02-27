@@ -8,6 +8,15 @@
     margin-bottom: 18px;
     height: fit-content;
 
+    
+    &.js-tab-content {
+        display: none;
+
+        &.is-active {
+            display: block;
+        }
+    }
+    
     .button--top {
         float: right;
         margin-right: 12px;

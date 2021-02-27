@@ -1,39 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include '../classes/autoloader.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="./assets/styles/main.css">
-    <title>CMS - Dashboard</title>
-</head>
+$head = new head("CMS - Dashboard", "page--cms");
+$head->render();
 
-<body class="page--cms">
-    <aside class="navigation--cms">
-        <header class="navigation--cms__header">
-            <img src="./assets/images/svg/logo.svg" alt="">
-            <a href="#" class="navigation--cms__header__profile">
-                <img src="" alt="">
-            </a>
-        </header>
-        <nav class="navigation--cms__body">
-            <ul>
-                <li><a href="#" class="button button--cms button--active">Edit Pages</a></li>
-                <li><a href="#" class="button button--cms">Events</a></li>
-                <li><a href="#" class="button button--cms">Reservations</a></li>
-                <li><a href="#" class="button button--cms">Invoices</a></li>
-                <li><a href="#" class="button button--cms">Users</a></li>
-                <li><a href="#" class="button button--cms">API</a></li>
-            </ul>
-        </nav>
-        <footer class="navigation--cms__footer">
-            <a href="#" class="button button--secondary">Log out</a>
-        </footer>
-    </aside>
+$navigation = new cmsNavigation("Events");
+$navigation->render();
+?>
 
     <div class="cms-container">
         <nav class="breadcrumbs breadcrumbs--cms">
@@ -42,54 +15,87 @@
             </ul>
         </nav>
        
-        <nav class="tabs--cms">
-            <ul class="tabs--cms__list">
-                <li><a class="is-active" href="#">Jazz</a></li>
-                <li><a href="#">Dance</a></li>
-                <li><a href="#">History</a></li>
-                <li><a href="#">Cuisine</a></li>
-            </ul>
-        </nav>
-        <article class="card--cms">
-            <button class="button button--top">Add artist</button>
-            <button class="button button--top">Add performance</button>
-            <table class="card--cms__body table--cms">
-                <thead>
-                    <tr>
-                        <th>Band</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Location</th>
-                        <th>Hall</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Gare du Nord</td>
-                        <td>Saturday 28 July</td>
-                        <td>21.00-22.00</td>
-                        <td>Patronaat</td>
-                        <td>Main Hall</td>
-                        <td class="table--cms__item__navigation">
-                            <a href="cms/artist-performance-details.php" class="">Edit</a>
+        <div class="js-tabs">
+            <nav class="tabs--cms js-tabs-navigation">
+                <ul class="tabs--cms__list">
+                    <li><a data-content="jazz" class="is-active" href="#">Jazz</a></li>
+                    <li><a data-content="dance" href="#">Dance</a></li>
+                    <li><a data-content="history" href="#">History</a></li>
+                    <li><a data-content="cuisine" href="#">Cuisine</a></li>
+                </ul>
+            </nav>
+            <article data-content="jazz" class="card--cms js-tab-content is-active">
+                <button class="button button--top">Add artist</button>
+                <button class="button button--top">Add performance</button>
+                <?php
+                    $tableHeader = array('Band', 'Date', 'Time', 'Location', 'Hall');
+                    $tableBody = array(
+                        array(
+                            'Gare du Nord',
+                            'Saturday 28 July',
+                            '21.00-22.00',
+                            'Patronaat',
+                            'Main Hall',
+                            '<div class="table--cms__item__navigation">
+                            <a href="./artist-detail-page.php?id=1" class="">Edit</a>
                             <a href="#" class="">Remove</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Gare du Nord</td>
-                        <td>Saturday 28 July</td>
-                        <td>21.00-22.00</td>
-                        <td>Patronaat</td>
-                        <td>Main Hall</td>
-                        <td class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
+                            </div>'
+                        ),
+                        array(
+                            'Gare du Nord',
+                            'Saturday 28 July',
+                            '21.00-22.00',
+                            'Patronaat',
+                            'Main Hall',
+                            '<div class="table--cms__item__navigation">
+                            <a href="./artist-detail-page.php?id=2" class="">Edit</a>
                             <a href="#" class="">Remove</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </article>
+                            </div>'
+                        ),
+                    );
+
+                    $table = new table('card--cms__body table--cms', $tableHeader, $tableBody);
+                    $table->render();
+                ?>
+
+            </article>
+            <article data-content="dance" class="card--cms js-tab-content">
+                <button class="button button--top">Add artist</button>
+                <button class="button button--top">Add performance</button>
+                <?php
+                    $tableHeader = array('Band', 'Date', 'Time', 'Location', 'Hall');
+                    $tableBody = array(
+                        array(
+                            'Hardwell',
+                            'Saturday 28 July',
+                            '21.00-22.00',
+                            'Patronaat',
+                            'Main Hall',
+                            '<div class="table--cms__item__navigation">
+                            <a href="./artist-detail-page.php?id=3" class="">Edit</a>
+                            <a href="#" class="">Remove</a>
+                            </div>'
+                        ),
+                        array(
+                            'Hardwell',
+                            'Saturday 28 July',
+                            '21.00-22.00',
+                            'Patronaat',
+                            'Main Hall',
+                            '<div class="table--cms__item__navigation">
+                            <a href="./artist-detail-page.php?id=4" class="">Edit</a>
+                            <a href="#" class="">Remove</a>
+                            </div>'
+                        ),
+                    );
+
+                    $table = new table('card--cms__body table--cms', $tableHeader, $tableBody);
+                    $table->render();
+                ?>
+
+            </article>
+        </div>
+        
     </div>
 
     <div class="notification--cms js-notification">
@@ -98,6 +104,6 @@
             test content <span class="notification--cms__body__important">Bold</span>
         </div>
     </div>
-    <script src="./assets/scripts/index.js"></script>
+    <script src="/assets/scripts/index.js"></script>
 </body>
 </html>

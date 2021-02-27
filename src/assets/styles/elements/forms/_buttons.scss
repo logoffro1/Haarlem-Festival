@@ -12,10 +12,14 @@ button, .button {
     border: none;
     outline: none;
     text-align: center;
-
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    
     &:hover {
+        border-color: $color-slated-blue;
         color: $color-slated-blue;
-        border: 1px solid $color-slated-blue;
         background-color: transparent;
         text-decoration: none;
     }
@@ -27,7 +31,7 @@ button, .button {
     &.button--secondary {
         background-color: transparent;
         color: $color-slated-blue;
-        border: 1px solid $color-slated-blue;
+        border-color: $color-slated-blue;
         &:hover {
             background-color: $color-grey-5;
         }
