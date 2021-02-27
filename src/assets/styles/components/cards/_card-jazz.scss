@@ -1,0 +1,51 @@
+.card--jazz {
+    width: 620px;
+    height: 300px;
+    box-shadow: 6px 6px 13px #F5F5F5;
+    margin-top: 50px;
+
+.card--jazz__rightcontainer{
+    float:right;
+    height:300px;
+    width: 310px;
+    margin: 0;
+}
+
+.card-jazz_img{
+    float:left;
+    height:300px;
+    width: 310px;
+    margin:0;
+}
+
+.card--jazz__artist{
+    font-size: 32px;
+    font-weight: 900;
+    padding-left: 53%;
+    padding-top: 15px;
+    line-height: 31px;
+    
+}
+
+.card--jazz__time{
+    margin-top: 120px;
+    font-size: 16px;
+    padding-left: 53%;
+    color: #787878;
+    
+}
+
+.card--jazz__loc{
+    font-size: 14px;
+    padding-left: 53%;
+    color: #787878;
+    font-weight: 900;
+}
+
+.card--jazz__date{
+
+    
+}
+
+}
+
