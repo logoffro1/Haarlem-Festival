@@ -21,7 +21,16 @@ class jazzEventCard
 
     public function render()
     {
-        echo "I am gay";
+        echo "
+        <article class='card--jazz'>
+        <img src='$this->eventImg' class='card-jazz_img'>
+            <section class='card-jazz_rightcontainer'>
+                <p class='card--jazz__artist'>$this->artistName</p>
+                <p class='card--jazz__time'>$this->eventTime</p>
+                <p class='card--jazz__loc'><img src='../assets/images/svg/icons/location-icon.svg' style= 'margin-right:15px; opacity:0.5;'>$this->eventLoc</p>
+                <img src='arrow image link' alt='' srcset=''></a>
+            </section>
+        </article>";
     }
 
 }
