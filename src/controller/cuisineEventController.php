@@ -3,7 +3,7 @@
 
     class cuisineEventController
     {
-        private cuisineEventService $jazzEventService;
+        private cuisineEventService $cuisineEventService;
 
         public function __construct() {
             $this->cuisineEventService = new cuisineEventService();
