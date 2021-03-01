@@ -1,5 +1,5 @@
 <?php
-include './classes/autoloader.php';
+include 'classes/autoloader.php';
 
 $head = new head("homepage", "");
 $head->render();
