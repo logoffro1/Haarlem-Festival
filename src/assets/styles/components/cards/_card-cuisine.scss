@@ -1,5 +1,100 @@
-.card--restaurant{
+.card--container{
     width: 670px;
-    height: 280px;
-    background-color: black;
+    height: 350px;
+    margin-top: 100px;
+}
+.card--restaurant{
+    width: 100%;
+    height: 270px;
+    box-shadow: 3px 3px 6px $color-grey-8;
+    position: relative;
+}
+.right--container{
+    float: right;
+    background: rgba($color-primary-cuisine,.07);
+    width: 60%;
+    height: 270px;
+    margin-top: 1px;
+}
+.card--img{
+    float:left;
+    width:40%;
+    height:270px;
+    float:left;
+    margin-top:1px;
+}
+.card--address{
+    font-weight: $font-weight-bold;
+    font-family: $font-primary;
+    margin-left: 40px;
+    font-size: 18px;
+}
+.card--homeicon{
+    width: 32px;
+    height: 32px;
+    margin-top: 25px;
+    margin-left: 5px;
+    position: absolute;
+}
+.card--sessions{
+    margin-left: 40px;
+    font-family: $font-primary;
+    font-size: 20px;
+}
+.card--stars{
+display: inline;
+position: absolute;
+margin-top: -235px;
+margin-left: 240px;
+    img{
+        width: 25px;
+        height: 25px;
+    }
+}
+.card--duration{
+font-weight: $font-weight-bold;
+font-family: $font-primary;
+font-size: $font-size-body;
+position: absolute;
+margin-top: -170px;
+margin-left: 307px; 
+    img {
+        width: 30px;
+        height: 30px;
+        position:absolute;
+        margin-left: 4px;
+        margin-top: -1px;
+    }
+}
+.card--foodicon{
+    width: 16px;
+    height: 16px;
+}
+.card--seats{
+    font-weight: $font-weight-bold;
+    font-family: $font-primary;
+    font-size: $font-size-body;
+    position: absolute;
+    margin-top: -120px;
+    margin-left: 329px; 
+        img {
+            width: 32px;
+            height: 32px;
+            position:absolute;
+            margin-left: 4px;
+            margin-top: -2px;
+        }
+}
+.card--arrow{
+position:absolute;
+bottom: 30px;
+right:15px;
+width: 40px;
+}
+.card--swoosh{
+    position: absolute;
+   right: -1px;
+   bottom: -1px;
+   width: 70px;
+
 }

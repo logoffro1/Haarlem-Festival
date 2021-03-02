@@ -1,7 +1,11 @@
-.cuisineCheck{
+.checkboxes--wrapper{
 
-    display: inline;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-weight: $font-weight-semibold;
+    label{
+        display: inline;
+        margin-right: 10px;
+        font-weight: $font-weight-semibold;
+        :last-child{
+            margin-right:0px;
+        }
+    }
 }
