@@ -1,12 +1,13 @@
 <?php 
+include '../classes/autoloader.php';
 
 class cmsNavigation {
     private string $activePage;
     private accountController $accountController;
 
-    public function __construct(string $activePage, accountController $accountController) {
+    public function __construct(string $activePage) {
         $this->activePage = $activePage;
-        $this->accountController = $accountController;
+        $this->accountController = new accountController();
     }
 
     public function render()

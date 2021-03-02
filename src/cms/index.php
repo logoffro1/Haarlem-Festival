@@ -4,7 +4,7 @@ include '../classes/autoloader.php';
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
-$navigation = new cmsNavigation("Events", new accountController());
+$navigation = new cmsNavigation("Events");
 $navigation->render();
 ?>
 
