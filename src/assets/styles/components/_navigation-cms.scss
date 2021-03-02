@@ -37,6 +37,7 @@
         a {
             display: flex;
             font-weight: $font-weight-normal;
+            text-decoration: none;
         }
     }
 
@@ -49,6 +50,7 @@
         .button {
             display: block;
             text-align: center;
+            width: 100%;
         }
     }
 }

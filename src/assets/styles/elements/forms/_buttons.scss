@@ -16,12 +16,13 @@ button, .button {
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
+    text-decoration: none;
     
     &:hover {
+        text-decoration: none;
         border-color: $color-slated-blue;
         color: $color-slated-blue;
         background-color: transparent;
-        text-decoration: none;
     }
 
     &:focus, &:active {

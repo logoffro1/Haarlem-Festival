@@ -2,13 +2,18 @@
 
 class cmsNavigation {
     private string $activePage;
+    private accountController $accountController;
 
-    public function __construct(string $activePage) {
+    public function __construct(string $activePage, accountController $accountController) {
         $this->activePage = $activePage;
+        $this->accountController = $accountController;
     }
 
     public function render()
     {
+        if(isset($_POST['logout'])){ 
+            $this->accountController->logout(); 
+        }
         echo "
         <aside class='navigation--cms'>
             <header class='navigation--cms__header'>
@@ -28,7 +33,9 @@ class cmsNavigation {
                 </ul>
             </nav>
             <footer class='navigation--cms__footer'>
-                <a href='#' class='button button--secondary'>Log out</a>
+                <form method='POST'>
+                    <input type='submit' name='logout' class='button button--secondary' value='Log out'>
+                </form>
             </footer>
         </aside>
         ";

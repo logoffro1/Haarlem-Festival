@@ -19,9 +19,9 @@
             text-transform: uppercase;
             color: $color-slated-blue;
             font-weight: $font-weight-semibold;
+            text-decoration: none;
             
             &:hover, &.is-active {
-                text-decoration: none;
                 background-color: $color-tab--hover;
             }
 

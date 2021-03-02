@@ -26,7 +26,7 @@
                 }
     
                 // Get user from database (password check is in the called model method)
-                $loggedInUser = $this->userModel->getUserByCredentials($username, $password);
+                $loggedInUser = $this->accountService->getAccountByCredentials($username, $password);
     
                 // If user does not exist show error message and stop the method
                 if($loggedInUser == null){
@@ -90,6 +90,7 @@
         // Logout and clear session and cookies
         public function logout() : void
         {
+            $this->helper->startSession();
             session_unset();
             session_destroy();
 
@@ -102,7 +103,7 @@
                 }
             }
 
-            $this->helpers->redirect("index.php");
+            $this->helper->redirect("login.php");
         }
     }
 
