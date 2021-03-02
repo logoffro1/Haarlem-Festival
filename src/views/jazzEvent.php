@@ -13,16 +13,17 @@
 <section class="container section">
 <h1 class="header">Upcoming Jazz Events</h1>
 
-<article class='card--jazz'>
-    <img src='http://qnimate.com/wp-content/uploads/2014/03/images2.jpg' class='card-jazz_img'>
-    <section class='card-jazz_rightcontainer'>
-        <p class='card--jazz__artist'>Gumbo Kings</p>
-        <p class='card--jazz__time'>17:00 - 18:00</p>
-        <p class='card--jazz__loc'><img src="../assets/images/svg/icons/location-icon.svg" style="margin-right:15px; opacity:0.5;">Main Patronaat</p>
-        <a href='$this->url' class='card--events__arrow'>
-        <img src='arrow image link' alt='' srcset=''></a>
-    </section>
-</article>
+<?php 
+$card_test = new jazzEventCard("Gumbo Kings", "18:00 - 19:00", "Main Hall, Patronaat", "26 July", "#", "https://i.scdn.co/image/4f6740f2892dda60259a29b52ba96977e26b0b9a");
+$card_test->render();
+
+$card_test2 = new jazzEventCard("Gumbo Kings", "18:00 - 19:00", "Main Hall, Patronaat", "26 July", "#", "https://i.scdn.co/image/4f6740f2892dda60259a29b52ba96977e26b0b9a");
+$card_test2->render();
+
+$card_test3 = new jazzEventCard("Gumbo Kings", "18:00 - 19:00", "Main Hall, Patronaat", "26 July", "#", "https://i.scdn.co/image/4f6740f2892dda60259a29b52ba96977e26b0b9a");
+$card_test3->render();
+
+?>
 
 </section>
 

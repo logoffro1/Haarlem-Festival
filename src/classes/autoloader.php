@@ -6,6 +6,7 @@
 spl_autoload_register(function ($class_name) {
     // create path to files
     $component_class = dirname(__DIR__)."/components/$class_name.php";
+    $jazz_class = dirname(__DIR__)."/components/jazz/$class_name.php";
     $controller_class = dirname(__DIR__)."/controller/$class_name.php";
     $classes_class = dirname(__DIR__)."/classes/$class_name.php";
     $model_class = dirname(__DIR__)."/model/$class_name.php";
@@ -28,6 +29,8 @@ spl_autoload_register(function ($class_name) {
         include $util_class;
     } else if(file_exists($view_class)){
         include $view_class;
+    }else if(file_exists($jazz_class)){
+        include $jazz_class;
     }
 });
 
