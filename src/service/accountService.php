@@ -6,9 +6,9 @@
         protected mysqli $conn;
 
         public function __construct() {
-            // $this->db = database::getInstance();
+            $this->db = database::getInstance();
 
-            // $this->conn = $this->db->getConnection();
+            $this->conn = $this->db->getConnection();
         }
 
         /*
@@ -78,6 +78,69 @@
                     $password, 
                 );
             }
+        }
+
+        /*
+        * addUser - adds user to the database
+        *
+        * @param user $user - new user
+        */
+        public function addUser(cmsUser $user) : void
+        {
+            // Build query
+            $sql = "INSERT INTO php1Users (name, email, password) VALUES (?,?,?)";
+
+            // Get connection
+            $connection =  $this->conn;
+
+            // preapre statement
+            if($query = $connection->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param(
+                    "sss",
+                    $name,
+                    $email,
+                    $password,
+                );
+                
+                // Add values to params
+                $name = $user->getName();
+                $email = $user->getEmail();
+                $password = $user->getPassword();
+
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception("Cannot add a new user. please try again.");
+            }
+        }
+
+        /*
+        * getUsersCountByEmail - checks if email already exists in the database
+        *
+        * @param string $userEmail - string to check for emails
+        * @return int $result - number of occurences
+        */
+        public function getUsersCountByEmail(string $userEmail) : int
+        {
+            // Build query
+            $query = "SELECT * FROM cmsUsers WHERE email = ?";
+
+            // Get connection and prepare statement
+            $stmt = self::getConnection()->prepare($query);
+
+            // Create bind params to prevent sql injection
+            $stmt->bind_param("s", $userEmail);
+
+            // Execute query
+            $stmt->execute();
+
+            // Get the result
+            $result = $stmt->get_result();
+           
+            // Return number of occurences
+            return $result->num_rows;
         }
     }
 

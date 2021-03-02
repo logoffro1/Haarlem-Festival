@@ -44,6 +44,42 @@
             }
         }
 
+        /*
+        * Register user
+        */
+        public function register() : void
+        {           
+            // Add user to database.
+            try {
+                $name = $_POST["fullname"];
+                $email = $_POST["email"];
+                $password = $_POST["password"];
+
+                // Check if email already exist in database
+                if($this->accountService->getUsersCountByEmail($email) > 0){
+                    throw new Exception('Account with these credentials already exist');
+                    return;
+                }
+                
+                // Create user class with values
+                $user = new cmsUser(
+                    0,
+                    $name,
+                    $email,
+                    $this->helpers->encryptPassword($password),
+                );
+
+                // Add user to the database via the model layer
+                $this->accountService->addUser($user);
+
+                // Redirect to login
+                $this->helpers->redirect("cms/login.php");
+            } catch(Exception $e){
+                // If error occured, show it in the website
+                // Todo $e->getMessage();
+            }
+        }
+
         // Create user session value
         private function createUserSession(cmsUser $loggedInUser) : void
         {

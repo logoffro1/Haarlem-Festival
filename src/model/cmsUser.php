@@ -1,12 +1,14 @@
 <?php 
     class cmsUser {
         private int $id;
-        private string $username;
+        private string $name;
+        private string $email;
         private string $password;
 
-        public function __construct(int $id, string $username, string $password) {
+        public function __construct(int $id, string $name, string $email, string $password) {
             $this->id = $id;
-            $this->username = $username;
+            $this->name = $name;
+            $this->email = $email;
             $this->password = $password;
         }
     }
