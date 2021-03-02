@@ -19,7 +19,17 @@
      or be surprised at one of the gastronomic events that the city has to offer.
 </h2>
 <hr class="line">
-
+<?php
+//Get cuisine from DB later
+$cuisines = array("All", "Dutch", "French", "Argentinian", "European", "Fish and Seafood", "Steakhouse", "Modern");
+echo "<section style='text-align:center;'>";
+foreach($cuisines as $cuisine){
+    $checkbox = new checkbox($cuisine,$cuisine,$cuisine,"cuisineCheck");
+    $checkbox->render();
+}
+echo "</section>";
+?>
+<hr class="line">
 </section>
 
 
