@@ -1,11 +1,16 @@
 <?php
 include '../classes/autoloader.php';
 
+$editPagesController = new editPagesController();
+$pagesList = $editPagesController->getPagesList();
+
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
 $navigation = new cmsNavigation("Edit Pages");
 $navigation->render();
+
+$table = new table('card--cms__body table--cms', array(), $pagesList);
 ?>
 
     <div class="cms-container row">
@@ -18,22 +23,22 @@ $navigation->render();
         <article class="card--cms col-8">
             <header class="card--cms__header">
                 <h3 class="card--cms__header__title">Pages</h3>
-                <button class="button">Add page</button>
             </header>
+
+            <?php $table->render(); ?>
+
             <table class="card--cms__body table--cms">
                 <tbody>
                     <tr>
                         <td>Homepage</td>
                         <td class="table--cms__item__navigation">
                             <a href="#" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
                         </td>
                     </tr>
                     <tr>
                         <td>Jazz event page</td>
                         <td class="table--cms__item__navigation">
                             <a href="cms/detail-pages.php" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
                         </td>
                     </tr>
                 </tbody>
@@ -42,10 +47,10 @@ $navigation->render();
     </div>
 
     <div class="notification--cms js-notification">
-        <div class="notification--cms__title">Test title</div>
-        <div class="notification--cms__body">
+        <h5 class="notification--cms__title">Test title</h5>
+        <p class="notification--cms__body">
             test content <span class="notification--cms__body__important">Bold</span>
-        </div>
+        </p>
     </div>
     <script src="/assets/scripts/index.js"></script>
 </body>
