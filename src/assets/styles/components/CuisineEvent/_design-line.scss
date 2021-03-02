@@ -10,8 +10,8 @@
 //Vertical Line
 .vLine{
     border-left: 3px solid $color-black;
-    height: 2000px;
-    position: relative;
+    height: 300px;
+    position: absolute;
     left: 50%;
     opacity: 0.2;
 }

@@ -22,15 +22,16 @@
 <?php
 //Get cuisine from DB later
 $cuisines = array("All", "Dutch", "French", "Argentinian", "European", "Fish and Seafood", "Steakhouse", "Modern");
-echo "<section style='text-align:center;'>";
+echo "<article style='text-align:center;'>";
 foreach($cuisines as $cuisine){
     $checkbox = new checkbox($cuisine,$cuisine,$cuisine,"cuisineCheck");
     $checkbox->render();
 }
-echo "</section>";
+echo "</article>";
 ?>
 <hr class="hLine">
-<div class="vLine"></div>
+<article class = "vLine"></article>
+<section class = "card--restaurant"></section>
 </section>
 
 
