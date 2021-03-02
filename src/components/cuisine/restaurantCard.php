@@ -35,9 +35,9 @@ class restaurantCard
 2011 DB Haarlem</pre>
         <pre class = 'card--sessions'><span style='font-weight: 900;letter-spacing: 3px;'>Sessions</span>
 18:00-19:30
-            &#8226
+          &#8226
 19:30-21:00
-             &#8226
+          &#8226
 21:00-22:30
         </pre>
         <fieldset class = 'card--stars'>
