@@ -14,11 +14,11 @@
 <h1 class="title title--page cuisine"> The Haarlem Cuisine </h1>
 <img src="../assets/images/cuisineBanner.png" class="banner" alt="The Haarlem Festival" title="The Haarlem Cuisine">
 
-<hr class="line">
+<hr class="hLine">
 <h2 style="width:55%;margin:auto;text-align:center">Pay a visit to Haarlem this year and enjoy the art of good food an drinks in one of our many special restaurants, 
      or be surprised at one of the gastronomic events that the city has to offer.
 </h2>
-<hr class="line">
+<hr class="hLine">
 <?php
 //Get cuisine from DB later
 $cuisines = array("All", "Dutch", "French", "Argentinian", "European", "Fish and Seafood", "Steakhouse", "Modern");
@@ -29,7 +29,8 @@ foreach($cuisines as $cuisine){
 }
 echo "</section>";
 ?>
-<hr class="line">
+<hr class="hLine">
+<div class="vLine"></div>
 </section>
 
 
