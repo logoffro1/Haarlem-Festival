@@ -3,7 +3,7 @@
     margin-left: 130px;
     width: 620px;
     height: 300px;
-    box-shadow: 6px 6px 13px #F5F5F5;
+    box-shadow: 6px 6px 13px $color-grey-4;
     margin-top: 50px;
 
 .card--jazz__rightcontainer{
@@ -72,6 +72,6 @@
 }
 .card--jazz:hover
 {
-    box-shadow: 6px 6px 13px $color-primary-jazz;
+    box-shadow: 1px 1px 20px $color-primary-jazz;
 }
 
