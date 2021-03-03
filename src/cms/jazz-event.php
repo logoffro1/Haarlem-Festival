@@ -1,8 +1,5 @@
 <?php
-include '../../classes/autoloader.php';
-
-$editPagesController = new editPagesController();
-$pagesList = $editPagesController->getPagesList();
+include '../classes/autoloader.php';
 
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();

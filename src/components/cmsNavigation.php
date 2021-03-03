@@ -1,5 +1,5 @@
 <?php 
-include '../classes/autoloader.php';
+include_once '../controller/accountController.php';
 
 class cmsNavigation {
     private string $activePage;
