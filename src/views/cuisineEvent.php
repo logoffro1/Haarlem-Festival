@@ -35,11 +35,12 @@ echo "</fieldset>";
 <?php
 
 for($x = 0; $x<8;$x++){
-    $card = new restaurantCard();
+    $card = new restaurantCard("Restaurant Mr. & Mrs.","../assets/images/cuisine/ratatouille.jpg","Lange Veerstraat 4,
+2011 DB Haarlem",40,4,1.5,array("Dutch","European","Fish and Seafood"),array("18:00-19:30","19:30-21:00","21:00-22:30"));
     $card->render();
 }
 
-//string $name, string $image, string $address, int $seats, int $stars, float $duration, array $cuisine, array $sessions
+//
 ?>
 </article>
 </section>
