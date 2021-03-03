@@ -30,7 +30,7 @@ class restaurantCard
         <h1 style='margin-bottom:0px'>$this->name</h1>
         
         <h3 style='margin-bottom:0px;margin-top:3px;'>
-        <img src='../assets/images/cuisine/foodIcon.svg' class = 'card--foodicon'>";
+        <img src='../assets/images/cuisine/foodIcon.svg' class = 'card--foodicon'> ";
         $lastIndex = array_key_last($this->cuisines);
         $i = 0;
         foreach($this->cuisines as $cuisine){

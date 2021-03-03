@@ -24,6 +24,9 @@
 $cuisines = array("All", "Dutch", "French", "Argentinian", "European", "Fish and Seafood", "Steakhouse", "Modern");
 echo "<fieldset class='checkboxes--wrapper' style='text-align:center;'>";
 foreach($cuisines as $cuisine){
+    if($cuisine == "All")
+    $checkbox = new checkbox($cuisine,$cuisine,$cuisine,true);
+    else
     $checkbox = new checkbox($cuisine,$cuisine,$cuisine);
     $checkbox->render();
 }
@@ -43,6 +46,31 @@ for($x = 0; $x<8;$x++){
 //
 ?>
 </article>
+<section class="cookbook-outer-area">
+        <section class="cookbook-inner-area">
+            <article class="leftContainer">
+                <h1 class="title title--page cuisine">Cook like a Chef</h1>
+                <pre class="cookbook--description">Want to become a chef yourself, or are you ready for
+something new? Try out our new cookbook!
+Checkout a wide array of diverse recipes, made by the chefs
+of the Haarlem Festival.
+            </pre>
+                <button>Download the cookbook</button>
+            </article>
+            <article class="rightContainer">
+                <h2>Cooking Styles</h2>
+                <pre><span class = "bullet">&#8226</span> French               <span class = "bullet">&#8226</span> Fish and Seafood
+<span class = "bullet">&#8226</span> Vegan                <span class = "bullet">&#8226</span> Favorites of the Chefs
+<span class = "bullet">&#8226</span> European
+<span class = "bullet">&#8226</span> Modern
+<span style = "font-weight:600;">And many more! </span>
+                </pre>
+
+            </article>
+            <img src="../assets/images/cuisine/cookbookImg.png" class = "cookbook--image">
+        </section>
+    </section>
+    <img src="../assets/images/cuisine/shareandwin.png" class = "shareandwin">
 </section>
 
 
