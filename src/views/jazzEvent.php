@@ -11,7 +11,7 @@
 
 ?>
 
-<section class='container section'>
+<section class='container section' style='margin-top: -10px'>
 
 <?php
   $jazzIntro = new jazzIntro();
