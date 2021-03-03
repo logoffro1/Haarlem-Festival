@@ -29,7 +29,7 @@
             return array();
         }
 
-        public function getPageDetail(int $pageId)
+        public function getPageDetails(int $pageId)
         {
             // Build query
             $query = "SELECT * FROM pages WHERE id = ?";

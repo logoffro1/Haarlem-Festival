@@ -71,26 +71,6 @@
         <div class="col-4">
             <article class="card--cms">
                 <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Details</h3>
-                </header>
-                <form class="card--cms__body row">
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">Url</label>
-                        <input placeholder="enter the url..." type="text" name="url" id="url">
-                    </fieldset>
-                                
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">Template</label>
-                        <select name="template" id="template" class="has-placeholder">
-                            <option value="" disabled selected hidden>Template...</option>
-                            <option value="21-3-2020">Haarlem Jazz</option>
-                        </select>
-                    </fieldset>
-                </form>
-            </article>
-    
-            <article class="card--cms">
-                <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artists</h3>
                     <button class="button button--secondary">Add artist</button>
                 </header>

@@ -46,12 +46,7 @@ $table = new table('card--cms__body table--cms', array(), $pagesList);
         </article>
     </div>
 
-    <div class="notification--cms js-notification">
-        <h5 class="notification--cms__title">Test title</h5>
-        <p class="notification--cms__body">
-            test content <span class="notification--cms__body__important">Bold</span>
-        </p>
-    </div>
-    <script src="/assets/scripts/index.js"></script>
-</body>
-</html>
+<?php 
+    $footer = new footer();
+    $footer->renderEndTag();
+?>

@@ -13,6 +13,11 @@
         {
             return $this->editPagesService->getPagesList();
         }
+
+        public function getPageDetails()
+        {
+            return $this->editPagesService->getPageDetails();
+        }
     }
     
 ?>
