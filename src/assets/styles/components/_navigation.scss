@@ -56,10 +56,10 @@
                 text-transform: uppercase;
                 color: $color-grey-1;
                 font-weight: $font-weight-semibold;
+                text-decoration: none;
 
                 &:hover, &.active {
                     background-color: $color-grey-5;
-                    text-decoration: none;
                 }
 
                 &.active {
