@@ -98,12 +98,7 @@ $navigation->render();
         
     </div>
 
-    <div class="notification--cms js-notification">
-        <div class="notification--cms__title">Test title</div>
-        <div class="notification--cms__body">
-            test content <span class="notification--cms__body__important">Bold</span>
-        </div>
-    </div>
-    <script src="/assets/scripts/index.js"></script>
-</body>
-</html>
+<?php 
+    $footer = new footer();
+    $footer->renderEndTag();
+?>
