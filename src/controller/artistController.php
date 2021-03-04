@@ -20,11 +20,15 @@
             return $this->artistService->getArtistList(2); // Todo change id to correct jazz page id in database
         }
 
-        public function getArtist(){
+        public function getArtist() : artist {
             $artistId = $_GET["artistId"];
 
             return $this->artistService->getArtist($artistId);
+        }
 
+        public function updateArtist(artist $artist) : void
+        {
+            $this->artistService->updateArtist($artist);
         }
     }
 ?>

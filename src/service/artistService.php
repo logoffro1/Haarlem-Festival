@@ -83,7 +83,11 @@ class artistService {
         return array();
     }
 
-    public function createArtist($result)
+    /**
+     * @param result - result of artist query limited to one
+     * @return artist - all details of the artist
+     */
+    public function createArtist($result) : artist
     {
         $songs = $this->createSongs();
         $performances = $this->createPerformances();
@@ -101,6 +105,10 @@ class artistService {
         );
     }
 
+    /**
+     * @param result - array of songs from artist query limited to one
+     * @return array<song> - all songs of the artist
+     */
     public function createSongs($result) : array
     {       
         $songs = array();
@@ -113,6 +121,10 @@ class artistService {
     }
 
     
+    /**
+     * @param result - array of performances from artist query limited to one
+     * @return array<performance> - all performances of the artist
+     */
     public function createPerformances($result) : array
     {       
         $performances = array();
@@ -147,6 +159,37 @@ class artistService {
             $seats,
             $price
         );
+    }
+
+    public function updateArtistContent(artist $artist)
+    {
+        $sql = "UPDATE artists 
+                    SET [name]=?, 
+                        biography=?, 
+                        [image]=?,
+                        [facebook]=?,
+                        [instagram]=?,
+                        [youtube]=?
+                WHERE artist_id = $artist->id";
+
+        // Get connection and prepare statement
+        if($query = self::getConnection()->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("ssssss", 
+                $artist->name,
+                $artist->biography,
+                $artist->image,
+                $artist->facebook,
+                $artist->instagram,
+                $artist->youtube
+            );
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not update the artist. Please try again');
+        }
     }
 }
 ?>

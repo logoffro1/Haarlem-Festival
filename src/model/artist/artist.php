@@ -10,7 +10,13 @@
         private ?array $songs;
         private ?array $performances;
 
-        public function __construct(int $id, string $name, ?string $biography, ?string $image, ?string $facebook, ?string $instagram, ?string $youtube, ?array $songs = null, ?array $performances = null) {
+        public function __get($property) {
+            if (property_exists($this, $property)) {
+                return $this->$property;
+            }
+        }
+        
+        public function __construct(int $id, string $name, ?string $biography = null, ?string $image = null, ?string $facebook = null, ?string $instagram = null, ?string $youtube = null, ?array $songs = null, ?array $performances = null) {
             $this->id = $id;
             $this->name = $name;
             $this->biography = $biography;
