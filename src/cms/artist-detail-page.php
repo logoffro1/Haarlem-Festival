@@ -16,6 +16,7 @@ $navigation = new cmsNavigation("Events");
 $navigation->render();
 
 $table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', 'Hall', ''], array());
+$tableSongs = new table('card--cms__body table--cms', ['image', 'title', 'url', ''], array());
 ?>
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
@@ -52,7 +53,7 @@ $table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', 'H
 
             <article class="card--cms">
                 <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Page Content</h3>
+                    <h3 class="card--cms__header__title">Performances</h3>
                     <button class="button button--secondary">Add performance</button>
                 </header>
 
@@ -92,6 +93,17 @@ $table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', 'H
                         </tr>
                     </tbody>
                 </table>
+            </article>
+
+            <article class="card--cms">
+                <header class="card--cms__header">
+                    <h3 class="card--cms__header__title">Songs</h3>
+                    <button class="button button--secondary">Add song</button>
+                </header>
+
+                <?php
+                    $tableSongs->render();
+                ?>
             </article>
         </div>
 

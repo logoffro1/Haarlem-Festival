@@ -191,5 +191,27 @@ class artistService {
             throw new Exception('Could not update the artist. Please try again');
         }
     }
+
+    public function addSong(int $artistId, string $title, string $url, string $image)
+    {
+        $sql = "INSERT INTO songs (artist_id, url, title, image) VALUES (?,?,?,?)";
+
+        // Get connection and prepare statement
+        if($query = $this->conn::getConnection()->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("isss", 
+                $artistId,
+                $url,
+                $title,
+                $image
+            );
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not create a new song. Please try again');
+        }
+    }
 }
 ?>
