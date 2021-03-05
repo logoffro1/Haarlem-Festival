@@ -142,6 +142,38 @@
             // Return number of occurences
             return $result->num_rows;
         }
+
+        /*
+        * activateAccount - activates user's account
+        *
+        * @param string $email - email of the account that needs to be activated
+        */
+        public function activateAccount(string $email) : void
+        {
+            // Build query
+            $sql = "UPDATE cmsUsers SET isActive=1 WHERE email=?";
+
+            // Get connection
+            $connection = self::getConnection();
+
+            // preapre statement
+            if($query = $connection->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param(
+                    "s",
+                    $emailParam
+                );
+                
+                // Add values to params
+                $emailParam = $email;
+
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception("Something went wrong. We could not activate your account. Please try again.");
+            }
+        }
     }
 
     

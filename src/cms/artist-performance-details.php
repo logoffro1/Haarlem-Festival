@@ -37,14 +37,6 @@ $navigation->render();
                     </select>
                 </fieldset>
 
-                <fieldset class="col-6 col--children-fullwidth">
-                    <label class="label">Special Guest</label>
-                    <select name="special_guest" id="special_guest" class="has-placeholder">
-                        <option value="" disabled selected hidden>Special Artist/Band...</option>
-                        <option value="Family XL">Family XL</option>
-                    </select>
-                </fieldset>
-
                 <p class="card--cms__body__form-title col-12">Date and time</p>
                 
                 <fieldset class="col-6 col--children-fullwidth">

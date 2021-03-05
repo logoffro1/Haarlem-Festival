@@ -214,18 +214,21 @@ class artistService {
         }
     }
 
-    public function addPerformance() : void
+    public function addPerformance(artist $artist, $data) : void
     {
-        $sql = "INSERT INTO songs (artist_id, url, title, image) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO performances (location_id, artist_id, date, time, type, duration, tickets) VALUES (?,?,?,?,?,?,?)";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
             // Create bind params to prevent sql injection
-            $query->bind_param("isss", 
-                $artistId,
-                $url,
-                $title,
-                $image
+            $query->bind_param("iisssii", 
+                $data['location'],
+                $artist->id,
+                $data['date'],
+                $data['time'],
+                $data['type'],
+                $data['duration'],
+                $data['tickets'],
             );
 
             // Execute query
