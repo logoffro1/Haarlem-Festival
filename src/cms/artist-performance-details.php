@@ -1,39 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+include '../classes/autoloader.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/assets/styles/main.css">
-    <title>CMS - Artist Performance Details</title>
-</head>
+$head = new head("CMS - Dashboard", "page--cms");
+$head->render();
 
-<body class="page--cms">
-    <aside class="navigation--cms">
-        <header class="navigation--cms__header">
-            <img src="/assets/images/svg/logo.svg" alt="">
-            <a href="#" class="navigation--cms__header__profile">
-                <img src="" alt="">
-            </a>
-        </header>
-        <nav class="navigation--cms__body">
-            <ul>
-                <li><a href="#" class="button button--cms button--active">Edit Pages</a></li>
-                <li><a href="#" class="button button--cms">Events</a></li>
-                <li><a href="#" class="button button--cms">Reservations</a></li>
-                <li><a href="#" class="button button--cms">Invoices</a></li>
-                <li><a href="#" class="button button--cms">Users</a></li>
-                <li><a href="#" class="button button--cms">API</a></li>
-            </ul>
-        </nav>
-        <footer class="navigation--cms__footer">
-            <a href="#" class="button button--secondary">Log out</a>
-        </footer>
-    </aside>
+$artistController = new artistController();
+
+if(isset($_POST['submit']))    
+{
+    $artistController->addPerformance();
+}
+
+$navigation = new cmsNavigation("Events");
+$navigation->render();
+?>
 
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
@@ -114,52 +94,16 @@
                 </fieldset>
 
                 <p class="card--cms__body__additional">*You do not have the rights to change the Seats and Price Per Ticket.</p>
-            </form>
-        </article>
-        <article class="card--cms col-4">
-            <header class="card--cms__header">
-                <h3 class="card--cms__header__title">Swap Events</h3>
-            </header>
-            <form class="card--cms__body row">
-                <p class="card--cms__body__form-title col-12">Select date and Artist</p>
 
-                <fieldset class="col-12 col--children-fullwidth">
-                    <label class="label">Performance Date</label>
-                    <select name="performance_date" id="performance_date" class="has-placeholder">
-                        <option value="" disabled selected hidden>Select option...</option>
-                        <option value="21-3-2020">21-03-2020</option>
-                    </select>
-                </fieldset>
-
-                <fieldset class="col-12 col--children-fullwidth">
-                    <label class="label">Artist/Band</label>
-                    <select name="artist" id="artist" class="has-placeholder">
-                        <option value="" disabled selected hidden>Select option...</option>
-                        <option value="Family XL">Family XL</option>
-                    </select>
-                </fieldset>
-
-                <div class="card--cms__body__results js-card--cms-input-results">
-                    <p class="card--cms__body__form-title col-12">Swap events with:</p>
-                    <ul>
-                        <li><span class="has-font-weight-semibold">Artist/Band:</span> Artist value</li>
-                        <li><span class="has-font-weight-semibold">Date:</span> Date value</li>
-                        <li><span class="has-font-weight-semibold">Time:</span> Time value</li>
-                        <li><span class="has-font-weight-semibold">Location:</span> Location value</li>
-                    </ul>
-
-                    <button class="button">Swap slots</button>
+                <div class="col-12 row justify-content-end">
+                    <input class="button" type="submit" name="submit" value="Create new performance">
                 </div>
             </form>
         </article>
+ 
     </div>
-
-    <div class="notification--cms js-notification">
-        <div class="notification--cms__title">Test title</div>
-        <div class="notification--cms__body">
-            test content <span class="notification--cms__body__important">Bold</span>
-        </div>
-    </div>
-    <script src="/assets/scripts/index.js"></script>
-</body>
-</html>
+    
+<?php 
+    $footer = new footer();
+    $footer->renderEndTag();
+?>

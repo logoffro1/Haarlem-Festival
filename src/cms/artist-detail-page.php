@@ -98,7 +98,7 @@ $tableSongs = new table('card--cms__body table--cms', ['image', 'title', 'url', 
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Songs</h3>
-                    <button class="button button--secondary">Add song</button>
+                    <a class="button button--secondary" href="artist-songs.php">Add song</a>
                 </header>
 
                 <?php

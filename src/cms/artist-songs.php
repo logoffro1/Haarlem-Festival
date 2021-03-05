@@ -5,6 +5,11 @@ $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
 $artistController = new artistController();
+
+if(isset($_POST['submit']))    
+{
+    $artistController->addSong();
+}
 // $artistController->getArtist();
 $artist = new artist(1, "test", "bio");
 
@@ -24,7 +29,7 @@ $navigation->render();
         <header class="card--cms__header">
             <h3 class="card--cms__header__title">Song Details</h3>
         </header>
-        <form class="card--cms__body row">
+        <form class="card--cms__body row" method="post">
             <p class="card--cms__body__form-title col-12">Song</p>
 
             <fieldset class="col-12 col--children-fullwidth">
@@ -35,18 +40,20 @@ $navigation->render();
                 <label class="label">Song url</label>
                 <input placeholder="Url..." type="text" name="url" id="url">
             </fieldset>
-        </form>
-        
-    </article>
-    <article class="card--cms col-8">
-        <header class="card--cms__header">
-            <h3 class="card--cms__header__title">Artists Image</h3>
-        </header>
-        <form class="card--cms__body table--cms">
-            <img src="<?php echo $artist->image ?>" alt="Artist Image">
+
+            <fieldset>
+                <?php if($artist->image) { ?>
+                    <img src="<?php echo $artist->image ?>" alt="Artist Image">
+                    <br/>
+                <?php } else { ?>
+                    <p>No image present</p>
+                <?php } ?>
+                <button class="button button--secondary">Upload Image</button>
+            </fieldset>
             <br/>
-            <button class="button">Upload Image</button>
-            <button class="button button--secondary">Delete</button>
+            <div class="col-12 row justify-content-end">
+                <input class="button" type="submit" name="submit" value="Create new song">
+            </div>
         </form>
     </article>
 </div>

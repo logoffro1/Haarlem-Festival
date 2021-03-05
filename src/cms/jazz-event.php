@@ -58,7 +58,7 @@ $navigation->render();
                         <tr>
                             <td>Gare du Nord</td>
                             <td class="table--cms__item__navigation">
-                                <a href="artist-performance-details.php" class="">Edit</a>
+                                <a href="artist-detail-page.php" class="">Edit</a>
                                 <a href="#" class="">Remove</a>
                             </td>
                         </tr>

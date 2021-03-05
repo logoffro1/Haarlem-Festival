@@ -173,7 +173,7 @@ class artistService {
                 WHERE artist_id = $artist->id";
 
         // Get connection and prepare statement
-        if($query = self::getConnection()->prepare($sql)) {
+        if($query = $this->conn->prepare($sql)) {
             // Create bind params to prevent sql injection
             $query->bind_param("ssssss", 
                 $artist->name,
@@ -192,12 +192,34 @@ class artistService {
         }
     }
 
-    public function addSong(int $artistId, string $title, string $url, string $image)
+    public function addSong(int $artistId, string $title, string $url, string $image) : void
     {
         $sql = "INSERT INTO songs (artist_id, url, title, image) VALUES (?,?,?,?)";
 
         // Get connection and prepare statement
-        if($query = $this->conn::getConnection()->prepare($sql)) {
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("isss", 
+                $artistId,
+                $url,
+                $title,
+                $image
+            );
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not create a new song. Please try again');
+        }
+    }
+
+    public function addPerformance() : void
+    {
+        $sql = "INSERT INTO songs (artist_id, url, title, image) VALUES (?,?,?,?)";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
             // Create bind params to prevent sql injection
             $query->bind_param("isss", 
                 $artistId,

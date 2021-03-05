@@ -30,5 +30,15 @@
         {
             $this->artistService->updateArtist($artist);
         }
+
+        public function addSong() : void
+        {
+            $this->artistService->addSong();
+        }
+
+        public function addPerformance() : void
+        {
+            $this->artistService->addPerformance();
+        }
     }
 ?>
