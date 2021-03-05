@@ -10,9 +10,9 @@
             $this->locationService = new locationService();
         }
 
-        public function getLocations() : array
+        public function getDanceLocations() : ?array
         {
-            return $this->getDanceLocations();
+            return $this->locationService->getDanceLocations();
         }
     }
 ?>

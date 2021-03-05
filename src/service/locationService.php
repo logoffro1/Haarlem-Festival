@@ -9,9 +9,9 @@
             $this->conn = $this->db->getConnection();
         }
 
-        public function getJazzLocations() : array
+        public function getJazzLocations() : ?array
         {
-            $query = "SELECT select l.*
+            $query = "SELECT l.*
             FROM locations l
             JOIN jazz_locations jl
                 ON l.location_id = jl.location_id";
@@ -19,14 +19,19 @@
             $locations = $this->getLocations($query);
         }
 
-        public function getDanceLocations() : array
+        public function getDanceLocations() : ?array
         {
-            $query = "SELECT select l.*
-            FROM locations l
-            JOIN dance_locations dl
+            $query = "SELECT l.*
+            FROM Locations l
+            JOIN Locations_Dance dl
                 ON l.location_id = dl.location_id";
 
-            $locations = $this->getLocations($query);
+            try {
+
+                return $this->getLocations($query);
+            } catch(Exception $e){
+                echo $e;
+            }
         }
 
         public function getLocations(string $query) : ?array
@@ -35,7 +40,7 @@
                 return $this->createLocations($result);
             } else {
                 // If connection could not be established throw an error
-                throw new Exception('Something went  wrong. We could not retrieve the users. Please try again.');
+                // throw new Exception('Something went  wrong. We could not retrieve the users. Please try again.');
             }
 
             return null;
@@ -53,8 +58,8 @@
                     (int)$row["location_id"], 
                     $row["name"], 
                     $row["address"],
-                    $row["seats"],
-                    $row["price"],
+                    (int)$row["seats"],
+                    (double)$row["price"],
                 );
 
                 // add new location to list

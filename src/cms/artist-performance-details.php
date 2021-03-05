@@ -5,7 +5,8 @@ $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
 $artistController = new artistController();
-
+$locationController = new locationController();
+$location = $locationController->getDanceLocations();
 if(isset($_POST['submit']))    
 {
     $artistController->addPerformance();
@@ -61,17 +62,15 @@ $navigation->render();
                 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Location</label>
+
                     <select name="location" id="location" class="has-placeholder">
                         <option value="" disabled selected hidden>Location...</option>
+                        <?php
+                        foreach ($location as $l) {
+                            echo "<option value=" . $l->mutateToArray()['id'] . ">" . $l->mutateToArray()['name'] . "</option>";
+                        }
+                        ?> 
                         <option value="patronaat">Patronaat</option>
-                    </select>
-                </fieldset>
-
-                <fieldset class="col-6 col--children-fullwidth">
-                    <label class="label">Hall</label>
-                    <select name="hall" id="hall" class="has-placeholder">
-                        <option value="" disabled selected hidden>Hall...</option>
-                        <option value="patronaat">Main Hall</option>
                     </select>
                 </fieldset>
 
