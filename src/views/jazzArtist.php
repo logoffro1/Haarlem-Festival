@@ -11,7 +11,6 @@
 
 ?>
 
-
 <section style="display:inline-flex; height: 713px; width: 100%;">
     <section style="display:inline-flex;
                                 height: 100%; 
@@ -49,10 +48,13 @@
         </section>
     </section>
 
-<section class='container section' style='margin-top: -10px'>
+<section class='container section' style='margin-top: -10px'></section>
+
 </section>
 
 <?php 
+    $swoosh = new jazzSwoosh();
+    $swoosh->render();
     $footer = new footer();
     $footer->renderFooter();
 ?>
