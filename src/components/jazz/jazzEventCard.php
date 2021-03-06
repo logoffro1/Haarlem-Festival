@@ -31,7 +31,7 @@ class jazzEventCard
                 <p class='card--jazz__artist'>$this->artistName</p>
                 <p class='card--jazz__time'>$this->eventTime</p>
                 <p class='card--jazz__loc'><img src='../assets/images/svg/icons/location-icon.svg' style='margin-right:15px; opacity:0.5;'>$this->eventLoc</p>
-                <img class='card--jazz__arrow' src='../assets/images/jazz/jazz-card-arrow.png' alt='' srcset=''>
+                <img class='card--jazz__arrow' src='../assets/images/jazz/icons/jazz-card-arrow.png' alt='' srcset=''>
                 <p class='card--jazz__date'>$this->eventDate</p>  
             </section>   
         </article>
