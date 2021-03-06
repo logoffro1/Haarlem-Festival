@@ -28,7 +28,7 @@
                                     background-color:white;
                                     transform: rotate(5deg);">
         
-            <section style="transform: rotate(-5deg);">
+            <section style="transform: rotate(-5deg); width:76%;">
                 <h1 class='title title--page jazz'> Gare du Nord </h1>
                 <p>
                     Gare du Nord is a Dutch-Belgian jazz band, originally consisting of Doc (Ferdi Lancee) and Inca (Barend Fransen). 
@@ -40,15 +40,18 @@
                 <a href="#"><img src="../assets/images/jazz/icons/jazz-facebook.png" alt="" style="margin-right:30px"></a>
                 <a href="#"><img src="../assets/images/jazz/icons/jazz-youtube.png" alt="" style="margin-right:30px"></a>
 
-                <button style="float: right;">Get Your Tickets</button>
+                <a href="#"><button style="float: right;">Get Your Tickets</button></a>
             </section>
             </section>
         </section>
         <img>
         </section>
     </section>
+</section>
+<section class='container section'>
 
-<section class='container section' style='margin-top: -10px'></section>
+
+
 
 </section>
 
