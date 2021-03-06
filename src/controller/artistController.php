@@ -21,7 +21,7 @@
         }
 
         public function getArtist() : artist {
-            $artistId = $_GET["artistId"];
+            $artistId = $_GET["id"];
 
             return $this->artistService->getArtist($artistId);
         }

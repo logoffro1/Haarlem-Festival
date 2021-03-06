@@ -29,8 +29,10 @@
                     if ($this->tableBody) {                
                         foreach ($this->tableBody as $item) {
                             echo "<tr>";
-                            foreach ($item as $value) {
-                                echo "<td>$value</td>";
+                            foreach ($item as $key => $value) {
+                                if(strpos($key, 'id') === false){
+                                    echo "<td>$value</td>";
+                                }
                             }
                             echo "</tr>";
                         }

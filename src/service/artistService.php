@@ -71,7 +71,7 @@ class artistService {
      */
     public function getArtist(int $artistId)
     {
-        $query = "SELECT * FROM artists where page_id = $pageId"; // Todo: Create subselect and group songs and performances
+        $query = "SELECT * FROM artists where artist_id = $artistId"; // Todo: Create subselect and group songs and performances
 
 
         if ($result = $this->conn->query($query)) {
@@ -89,17 +89,18 @@ class artistService {
      */
     public function createArtist($result) : artist
     {
-        $songs = $this->createSongs();
-        $performances = $this->createPerformances();
+        $artistId = (int)$result->artist_id
+        $songs = $this->createSongs($artistId);
+        $performances = $this->createPerformances($artistId);
 
         return new artist(
-            (int)$row["id"], 
-            $row["name"], 
-            $row["biography"], 
-            $row["image"], 
-            $row["facebook"], 
-            $row["instagram"], 
-            $row["youtube"],
+            $artistId
+            $result->name, 
+            $result->biography, 
+            $result->image, 
+            $result->facebook, 
+            $result->instagram, 
+            $result->youtube,
             $songs,
             $performances
         );
@@ -109,15 +110,31 @@ class artistService {
      * @param result - array of songs from artist query limited to one
      * @return array<song> - all songs of the artist
      */
-    public function createSongs($result) : array
+    public function createSongs($artistId) : array
     {       
-        $songs = array();
-        foreach ($song as $result->songs) {
-            $songClass = new Song($song[0], $song[1],$song[2], $song[3]);
-            $songs[$songClass];
-        }
+        $query = "SELECT * FROM songs where artist_id = $artistId"; // No user input, so binding would be redundant
 
-        return $songs;
+        if ($result = $this->conn->query($query)) {
+            $songList = array();
+                
+            // fetch results, and loop over it
+            while($row = $result->fetch_assoc()) {
+                // Create page classes based on data
+
+                $song = new song(
+                    (int)$row["song_id"], 
+                    $row["image"], 
+                    $row["title"], 
+                    $row["url"]
+                );
+    
+                // add new page to list
+                $songList[] = $song;
+            }
+    
+            // return array 
+            return $songList;
+        }
     }
 
     
@@ -125,9 +142,35 @@ class artistService {
      * @param result - array of performances from artist query limited to one
      * @return array<performance> - all performances of the artist
      */
-    public function createPerformances($result) : array
+    public function createPerformances($artistId) : array
     {       
         $performances = array();
+
+
+        $query = "SELECT * FROM performances where artist_id = $artistId"; // No user input, so binding would be redundant
+
+        if ($result = $this->conn->query($query)) {
+            $performances = array();
+                
+            // fetch results, and loop over it
+            while($row = $result->fetch_assoc()) {
+                // Create page classes based on data
+
+                $performance = new performance(
+                    (int)$row["performance_id"], 
+                    $row["date"], 
+                    $row["time"], 
+                    $row["duration"],
+                    $row["availableTickets"]
+                );
+    
+                // add new page to list
+                $performances[] = $performance;
+            }
+    
+            // return array 
+            return $performances;
+        }
 
         foreach ($performance as $result->performances) {
             $id = $performance[0];

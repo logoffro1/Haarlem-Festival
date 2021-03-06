@@ -5,8 +5,16 @@ $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
 $artistController = new artistController();
-// $artistController->getArtist();
-$artist = new artist(1, "test", "bio");
+
+$artist = $artistController->getArtist();
+// var_dump($artist);
+$songs = array(); 
+
+foreach($artist->songs as $song){
+    $songArray = $song->mutateToArray();
+    $songArray[] = "<a href='artist-songs.php?id=$song->id'>edit</a>";
+    $songs[] = $songArray;
+};
 
 /**
  * array(performance(date, time, duration, Location(name, hall)))
@@ -16,7 +24,7 @@ $navigation = new cmsNavigation("Events");
 $navigation->render();
 
 $table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', 'Hall', ''], array());
-$tableSongs = new table('card--cms__body table--cms', ['image', 'title', 'url', ''], array());
+$tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', ''], $songs);
 ?>
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
