@@ -8,6 +8,11 @@
         public function __construct() {
             $this->jazzArtistService = new jazzArtistService();
         }
+
+        public function getAnArtistById(int $id)
+        {
+            return $this->jazzArtistService->getAnArtistById($id);
+        }
     }
     
 ?>

@@ -3,7 +3,7 @@
 
     $contoller = new jazzArtistController();
 
-    $head = new head("Artist Name", "");
+    $head = new head("Gare du Nord | Haarlem Festival", "");
     $head->render();
 
     $navigation = new navigation("Events");
@@ -39,7 +39,6 @@
                 <a href="#"><img src="../assets/images/jazz/icons/jazz-instagram.png" alt="" style="margin-right:30px"></a>
                 <a href="#"><img src="../assets/images/jazz/icons/jazz-facebook.png" alt="" style="margin-right:30px"></a>
                 <a href="#"><img src="../assets/images/jazz/icons/jazz-youtube.png" alt="" style="margin-right:30px"></a>
-
                 <a href="#"><button style="float: right;">Get Your Tickets</button></a>
             </section>
             </section>
@@ -48,12 +47,22 @@
         </section>
     </section>
 </section>
+
 <section class='container section'>
+    <h1>Explore The Music</h2>
+    <section style='margin-top:40px;'>
+        <section style='float: left; height:300px; width: 25%; background-color:black'></section>
+        <section style='float: left; height:300px; width: 25%; background-color:red'></section>
+        <section style='float: left; height:300px; width: 25%; background-color:black'></section>
+        <section style='float: left; height:300px; width: 25%; background-color:red'></section>
+    </section> 
+</section> 
 
 
 
 
-</section>
+
+
 
 <?php 
     $swoosh = new jazzSwoosh();

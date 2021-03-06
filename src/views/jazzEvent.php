@@ -1,46 +1,46 @@
 <?php
-    include '../classes/autoloader.php';
 
-    $contoller = new jazzEventController();
+include '../classes/autoloader.php';
 
-    $head = new head("Jazz Event", "");
-    $head->render();
+$contoller = new jazzPerformanceController();
+$performances = $contoller -> getAllJazzPerformances();
+$performanceCount = count($performances);
 
-    $navigation = new navigation("Events");
-    $navigation->render();
+$head = new head("Jazz Events | Haarlem Festival", "");
+$head->render();
+$navigation = new navigation("Events");
+$navigation->render();
 
-?>
+echo "<section class='container section' style='margin-top: -10px'>";
+$jazzIntro = new jazzIntro();
+$jazzIntro->render();
 
-<section class='container section' style='margin-top: -10px'>
+$artists = array();
+$dates = array();
 
-<?php
-  $jazzIntro = new jazzIntro();
-  $jazzIntro->render();
+foreach($performances as $performance)
+{
+    $artists[] = $performance->getArtistName();
+    $dates[] = $performance->getDate();
+}
+$artists_unique = array_unique($artists);
+$dates_unique = array_unique($dates);
 
-  $artists = array("Artist1", "Artist2", "Artist3");
-  $dates = array("Thursday, 26 July", "Friday, 27 July","Saturday, 28 July", "Sunday, 29 July");
+$cmb = new jazzComboBox($artists_unique, $dates_unique);
+$cmb->render();
+  
 
-  $cmb = new jazzComboBox($artists, $dates);
-  $cmb->render();
-?>
+echo "<p style='font-size: 14px'> There are $performanceCount event(s) listed.</p>";
 
-  <p style="font-size: 14px"> There are 3 event(s) listed.</p>
-
-<?php 
-$card_test = new jazzEventCard("Gumbo Kings", "18:00 - 19:00", "Main Hall, Patronaat", "26 July", "#", "https://i.scdn.co/image/4f6740f2892dda60259a29b52ba96977e26b0b9a");
+foreach($performances as $performance)
+{
+$card_test = new jazzPerformanceCard($performance);
 $card_test->render();
+}
+echo "</section>";
 
-$card_test2 = new jazzEventCard("Gumbo Kings", "18:00 - 19:00", "Main Hall, Patronaat", "26 July", "#", "https://i.scdn.co/image/4f6740f2892dda60259a29b52ba96977e26b0b9a");
-$card_test2->render();
-
-$card_test3 = new jazzEventCard("Gumbo Kings", "18:00 - 19:00", "Main Hall, Patronaat", "26 July", "#", "https://i.scdn.co/image/4f6740f2892dda60259a29b52ba96977e26b0b9a");
-$card_test3->render();
-
-?>
-</section>
-<?php 
-    $swoosh = new jazzSwoosh();
-    $swoosh->render();
-    $footer = new footer();
-    $footer->renderFooter();
+$swoosh = new jazzSwoosh();
+$swoosh->render();
+$footer = new footer();
+$footer->renderFooter();
 ?>

@@ -1,6 +1,5 @@
 <?php           
-
-class jazzEventCard
+class jazzPerformanceCard
 {
     private string $artistName;
     private string $eventTime;
@@ -9,14 +8,14 @@ class jazzEventCard
     private string $eventLink;
     private string $eventImg;
 
-    public function __construct(string $artistName, string $eventTime, string $eventLoc, string $eventDate, string $eventLink, string $eventImg)
+    public function __construct(jazzPerformance $performance)
     {
-        $this->artistName = $artistName;
-        $this->eventTime = $eventTime;
-        $this->eventLoc = $eventLoc;
-        $this->eventDate = $eventDate;
-        $this->eventLink = $eventLink;
-        $this->eventImg = $eventImg;
+        $this->artistName = $performance->getArtistName();
+        $this->eventTime = $performance->getTime();
+        $this->eventLoc = $performance->getLocation();
+        $this->eventDate = $performance->getDate();
+        $this->eventLink = "#";
+        $this->eventImg = "#";
     }
 
     public function render()
