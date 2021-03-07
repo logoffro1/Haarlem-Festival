@@ -2,11 +2,11 @@
 class jazzPerformanceCard
 {
     private string $artistName;
-    private string $eventTime;
-    private string $eventLoc;
-    private string $eventDate;
-    private string $eventLink;
-    private string $eventThumbnail;
+    private string $performanceTime;
+    private string $performanceLoc;
+    private string $performanceDate;
+    private string $performanceLink;
+    private string $artistThumbnail;
 
     public function __construct(jazzPerformance $performance, string $artistName, string $artistThumbnail)
     {
@@ -16,6 +16,17 @@ class jazzPerformanceCard
         $this->performanceDate = $performance->getDate();
         $this->performanceLink = "#";
         $this->artistThumbnail = $artistThumbnail;
+    }
+
+    public function __get($property) {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
+    }
+
+    public function getDayOfMonth()
+    {
+        return intval(explode(" ",$this->__get('performanceDate'))[0]);
     }
 
     public function render()
