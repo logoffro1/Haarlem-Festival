@@ -1,52 +1,61 @@
 <?php
     include '../classes/autoloader.php';
     $contoller = new cuisineEventController();
-
+    $restaurantTypeController = new restaurantTypeController();
+    $restaurantController = new restaurantController();
+    $restaurants = $restaurantController->getRestaurants();
+    
     $head = new head("Cuisine Event", "");
     $head->render();
 
-    $navigation = new navigation("Home");
+    $navigation = new navigation("");
     $navigation->render();
+    
 ?>
+<section class="container section" style="margin-top:-50px;">
+    <pre style="letter-spacing:1px"><a href = "#">Events </a> > <a href = "#"> Haarlem Cuisine</a> </pre>
+    <h1 class="title title--page cuisine"> The Haarlem Cuisine </h1>
+    <img src="../assets/images/cuisine/cuisineBanner.png" class="banner" alt="The Haarlem Festival"
+        title="The Haarlem Cuisine">
 
-<section class="container section" style="margin-top:-50px">
-<pre style="letter-spacing:1px"><a href = "#">Events </a> > <a hrtef = "#"> Haarlem Cuisine</a> </pre>
-<h1 class="title title--page cuisine"> The Haarlem Cuisine </h1>
-<img src="../assets/images/cuisine/cuisineBanner.png" class="banner" alt="The Haarlem Festival" title="The Haarlem Cuisine">
-
-<hr class="hLine">
-<h2 style="width:55%;margin:auto;text-align:center">Pay a visit to Haarlem this year and enjoy the art of good food an drinks in one of our many special restaurants, 
-     or be surprised at one of the gastronomic events that the city has to offer.
-</h2>
-<hr class="hLine">
-<?php
-//Get cuisine from DB later
-$cuisines = array("All", "Dutch", "French", "Argentinian", "European", "Fish and Seafood", "Steakhouse", "Modern");
+    <hr class="hLine">
+    <h2 style="width:55%;margin:auto;text-align:center">Pay a visit to Haarlem this year and enjoy the art of good food
+        an drinks in one of our many special restaurants,
+        or be surprised at one of the gastronomic events that the city has to offer.
+    </h2>
+    <hr class="hLine">
+    <?php
+        $cuisines = $restaurantTypeController->getRestaurantTypes();
 echo "<fieldset class='checkboxes--wrapper' style='text-align:center;'>";
+$checkbox = new checkbox("All","All","All",true);
+$checkbox->render();
 foreach($cuisines as $cuisine){
-    if($cuisine == "All")
-    $checkbox = new checkbox($cuisine,$cuisine,$cuisine,true);
-    else
-    $checkbox = new checkbox($cuisine,$cuisine,$cuisine);
+    $checkbox = new checkbox($cuisine->__get('name'),$cuisine->__get('name'),$cuisine->__get('name'));
     $checkbox->render();
 }
 echo "</fieldset>";
 ?>
-<hr class="hLine">
-<article class = "vLine"></article>
-<article class="row">
-<?php
+    <hr class="hLine">
+    <article class="vLine"></article>
+    <article class="row">
+        <?php
 
-for($x = 0; $x<8;$x++){
-    $card = new restaurantCard("Restaurant Mr. & Mrs.","../assets/images/cuisine/ratatouille.jpg","Lange Veerstraat 4,
-2011 DB Haarlem",40,4,1.5,array("Dutch","European","Fish and Seafood"),array("18:00-19:30","19:30-21:00","21:00-22:30"));
+
+foreach($restaurants as $r){
+    $card = new restaurantCard($r->__get('name'),
+    "../assets/images/cuisine/ratatouille.jpg",
+    $r->__get('address'),
+    $r->__get('seats'),
+    $r->__get('stars'),
+    $r->__get('duration'),
+    $r->__get('cuisines'),
+    $r->getSessions());
+
     $card->render();
 }
-
-//
 ?>
-</article>
-<section class="cookbook-outer-area">
+    </article>
+    <section class="cookbook-outer-area">
         <section class="cookbook-inner-area">
             <article class="leftContainer">
                 <h1 class="title title--page cuisine">Cook like a Chef</h1>
@@ -55,7 +64,8 @@ something new? Try out our new cookbook!
 Checkout a wide array of diverse recipes, made by the chefs
 of the Haarlem Festival.
             </pre>
-                <button>Download the cookbook</button>
+            <button>Download the cookbook</button>
+                
             </article>
             <article class="rightContainer">
                 <h2>Cooking Styles</h2>
@@ -67,11 +77,13 @@ of the Haarlem Festival.
                 </pre>
 
             </article>
-            <img src="../assets/images/cuisine/cookbookImg.png" class = "cookbook--image">
+            <img src="../assets/images/cuisine/cookbookImg.png" class="cookbook--image">
         </section>
     </section>
-    <img src="../assets/images/cuisine/shareandwin.png" class = "shareandwin">
-</section>
+    <img src="../assets/images/cuisine/shareandwin.png" class="shareandwin">
+    </section>
+    
+
 
 
 <?php 

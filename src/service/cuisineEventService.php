@@ -10,6 +10,7 @@
         public function getEventPageContent(){
             
         }
+        
     }
     
 ?>

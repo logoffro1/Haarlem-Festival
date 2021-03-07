@@ -4,7 +4,8 @@ class restaurantCard
 {
     private string $name;
     private string $image;
-    private string $address;
+    private string $street;
+    private string $zipCode;
     private int $seats;
     private int $stars;
     private float $duration;
@@ -15,14 +16,21 @@ class restaurantCard
     {
       $this->name = $name;
       $this->image = $image;
-      $this->address = $address;
+      $this->street = $this->getStreet($address);
+      $this->zipCode = $this->getZipCode($address);
       $this->seats = $seats;
       $this->stars = $stars;
       $this->duration = $duration;
       $this->cuisines =  $cuisines;
       $this->sessions = $sessions;
     }
-
+private function getStreet(string $address)
+{
+    return explode(",",$address)[0].",";
+}
+private function getZipCode(string $address){
+    return explode(",",$address)[1];
+}
     public function render()
     {
         echo "<section class = 'card--container'>
@@ -34,7 +42,7 @@ class restaurantCard
         $lastIndex = array_key_last($this->cuisines);
         $i = 0;
         foreach($this->cuisines as $cuisine){
-            echo "$cuisine"; 
+            echo $cuisine->__get('name'); 
             if($i++ != $lastIndex)
                  echo " &#8226 ";
         }
@@ -46,7 +54,10 @@ class restaurantCard
         
         <article class='right--container'>
             <img src='../assets/images/cuisine/homeIcon.svg' class = 'card--homeicon'>
-        <pre class = 'card--address'>$this->address</pre>
+            <fieldset class = 'card--address'>
+        <p>$this->street</p>
+        <p>$this->zipCode</p>
+        </fieldset>
         <pre class = 'card--sessions'><span style='font-weight: 900;letter-spacing: 3px;'>Sessions</span>";
         $lastIndex = array_key_last($this->sessions);
         $i = 0;

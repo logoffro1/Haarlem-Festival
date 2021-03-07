@@ -9,6 +9,7 @@ spl_autoload_register(function ($class_name) {
     $controller_class = dirname(__DIR__)."/controller/$class_name.php";
     $classes_class = dirname(__DIR__)."/classes/$class_name.php";
     $model_class = dirname(__DIR__)."/model/$class_name.php";
+    $model_cuisine_class = dirname(__DIR__)."/model/cuisine/$class_name.php";
     $service_class = dirname(__DIR__)."/service/$class_name.php";
     $view_class = dirname(__DIR__)."/view/$class_name.php";
     $util_class = dirname(__DIR__)."/util/$class_name.php";
@@ -31,6 +32,8 @@ spl_autoload_register(function ($class_name) {
         include $view_class;
     } else if(file_exists($cuisine_class)){
         include $cuisine_class;
+    }else if(file_exists($model_cuisine_class)){
+        include $model_cuisine_class;
     }
 });
 

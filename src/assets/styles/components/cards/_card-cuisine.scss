@@ -16,6 +16,7 @@ html{
 }
 .card--restaurant:hover{
     background: rgba($color-primary-cuisine,.07);
+
 }
 .right--container{
     float: right;
@@ -32,10 +33,12 @@ html{
     margin-top:1px;
 }
 .card--address{
+    margin-top:11px;
     font-weight: $font-weight-bold;
     font-family: $font-primary;
     margin-left: 40px;
     font-size: 18px;
+    line-height: 30%;
 }
 .card--homeicon{
     width: 32px;
