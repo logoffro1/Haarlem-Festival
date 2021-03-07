@@ -13,10 +13,14 @@ html{
     height: 270px;
     box-shadow: 3px 3px 6px $color-grey-8;
     position: relative;
-}
-.card--restaurant:hover{
-    background: rgba($color-primary-cuisine,.07);
-
+    &:hover{
+        background: rgba($color-primary-cuisine,.07);
+        .card--arrow{  
+           
+            transform: translateX(-30px);
+        }
+    }
+   
 }
 .right--container{
     float: right;
@@ -101,6 +105,7 @@ right: 45px;
     bottom: 30px;
     right:15px;
     width: 40px;
+    transition: all 0.3s;
 }
 .card--swoosh{
     position: absolute;
