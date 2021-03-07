@@ -30,6 +30,7 @@ class jazzPerformance{
     public function getDate(){return date("d M",strtotime($this->performanceDate));}
     public function getTime(){return $this->performanceTime;}
     public function getLocation(){return $this->location->getName();}
+    public function getThumbnail(){return $this->artist->getThumbnail();}
 }
 
 ?>

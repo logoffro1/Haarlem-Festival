@@ -23,6 +23,7 @@
                     $row["name"],
                     $row["biography"],
                     $row["image"],
+                    $row["thumbnail"],
                     $row["facebook"],
                     $row["instagram"],
                     $row["youtube"],

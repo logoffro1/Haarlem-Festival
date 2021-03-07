@@ -6,7 +6,7 @@ class jazzPerformanceCard
     private string $eventLoc;
     private string $eventDate;
     private string $eventLink;
-    private string $eventImg;
+    private string $eventThumbnail;
 
     public function __construct(jazzPerformance $performance)
     {
@@ -15,7 +15,7 @@ class jazzPerformanceCard
         $this->eventLoc = $performance->getLocation();
         $this->eventDate = $performance->getDate();
         $this->eventLink = "#";
-        $this->eventImg = "#";
+        $this->eventThumbnail = $performance->getThumbnail();
     }
 
     public function render()
@@ -24,7 +24,7 @@ class jazzPerformanceCard
         <a href='$this->eventLink' >
         <article class='card--jazz'>
             <section class='card-jazz_img'>
-                <img src='$this->eventImg' class=''>
+                <img src='$this->eventThumbnail' class=''>
             </section>
             <section class='card-jazz_rightcontainer'>
                 <p class='card--jazz__artist'>$this->artistName</p>

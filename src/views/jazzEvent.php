@@ -28,7 +28,6 @@ $dates_unique = array_unique($dates);
 
 $cmb = new jazzComboBox($artists_unique, $dates_unique);
 $cmb->render();
-  
 
 echo "<p style='font-size: 14px'> There are $performanceCount event(s) listed.</p>";
 
