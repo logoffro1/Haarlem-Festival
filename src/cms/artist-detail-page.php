@@ -9,6 +9,7 @@ $artistController = new artistController();
 $artist = $artistController->getArtist();
 // var_dump($artist);
 $songs = array(); 
+$performances = array(); 
 
 foreach($artist->songs as $song){
     $songArray = $song->mutateToArray();
@@ -16,14 +17,21 @@ foreach($artist->songs as $song){
     $songs[] = $songArray;
 };
 
-/**
- * array(performance(date, time, duration, Location(name, hall)))
- * 
- */
+foreach($artist->performances as $performance){
+    $performanceArray = $performance->mutateToArray();
+    $performanceArray[] = "<a href='artist-performance-details.php?id=$performance->id'>edit</a>";
+  
+    $performanceArray['location'] = $performanceArray['location']->name;
+    unset($performanceArray['tickets']);
+    unset($performanceArray['duration']);
+    $performances[] = $performanceArray;
+};
+
+
 $navigation = new cmsNavigation("Events");
 $navigation->render();
 
-$table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', 'Hall', ''], array());
+$table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', ''], $performances);
 $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', ''], $songs);
 ?>
     <div class="cms-container row">
@@ -68,39 +76,6 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                 <?php
                     $table->render();
                 ?>
-                <table class="card--cms__body table--cms">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Location</th>
-                            <th>Hall</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Saturday 28 July</td>
-                            <td>21.00-22.00</td>
-                            <td>Patronaat</td>
-                            <td>Main Hall</td>
-                            <td class="table--cms__item__navigation">
-                                <a href="cms/artist-performance-details.php" class="">Edit</a>
-                                <a href="#" class="">Remove</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Saturday 28 July</td>
-                            <td>21.00-22.00</td>
-                            <td>Patronaat</td>
-                            <td>Main Hall</td>
-                            <td class="table--cms__item__navigation">
-                                <a href="#" class="">Edit</a>
-                                <a href="#" class="">Remove</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </article>
 
             <article class="card--cms">

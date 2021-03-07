@@ -40,7 +40,7 @@ class database {
      * @return mysqli
     */
     private function dbConnect() : mysqli {
-        $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DB);
+        $conn = mysqli_connect("localhost", "root", "", "test");
         
         if(!$conn){
             throw new DomainException("Could not make a connection to the database");

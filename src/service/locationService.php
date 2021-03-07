@@ -27,7 +27,6 @@
                 ON l.location_id = dl.location_id";
 
             try {
-
                 return $this->getLocations($query);
             } catch(Exception $e){
                 echo $e;
@@ -39,8 +38,7 @@
             if ($result = $this->conn->query($query)) {
                 return $this->createLocations($result);
             } else {
-                // If connection could not be established throw an error
-                // throw new Exception('Something went  wrong. We could not retrieve the users. Please try again.');
+                throw new Exception('Something went  wrong. We could not retrieve the users. Please try again.');
             }
 
             return null;
@@ -69,5 +67,28 @@
             // return array 
             return $locationsList;
         }
+
+        public function getLocation(int $location_id) : location
+        {
+            $query = "SELECT * FROM locations where location_id = $location_id";
+
+            if ($result = $this->conn->query($query)) {
+                $objectResult = $result->fetch_object();
+    
+                return $this->createLocation($objectResult);
+            }
+        }
+
+        public function createLocation($result) : location
+        {
+            return new location(
+                $result['location_id'],
+                $result['name'],
+                $result['address'],
+                $result['seats'],
+                $result['price']
+            );
+        }
+    
     }
 ?>
