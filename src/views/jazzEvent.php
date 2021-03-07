@@ -44,9 +44,6 @@ foreach($jazzCards as $card)
     $card->render();
 }
 
-
-
-
 echo "</section>";
 
 $swoosh = new jazzSwoosh();
