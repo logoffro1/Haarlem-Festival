@@ -39,6 +39,11 @@ input[type=checkbox], input[type=radio]{
     }
 }
 
+input[type=file] {
+    border: none;
+    padding-left: 0;
+}
+
 label, .label {
     font-size: $font-size-label;
     display: block;

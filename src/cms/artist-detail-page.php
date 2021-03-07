@@ -7,7 +7,8 @@ $head->render();
 $artistController = new artistController();
 
 $artist = $artistController->getArtist();
-// var_dump($artist);
+$artistController->createSession($artist);
+
 $songs = array(); 
 $performances = array(); 
 

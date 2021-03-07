@@ -31,5 +31,19 @@
             $this->artistService->updateArtist($artist);
         }
 
+        public function createSession(artist $artist) : void
+        {
+            $this->helper->startSession();
+            $_SESSION["artist"] = serialize($artist);
+        }
+
+        public function getSession() : ?artist
+        {
+            if(isset($_SESSION['artist'])){
+                return unserialize($_SESSION["artist"]);
+            }
+
+            return null;
+        }
     }
 ?>
