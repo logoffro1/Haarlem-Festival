@@ -1,10 +1,5 @@
 <?php
-
 include '../classes/autoloader.php';
-
-$contoller = new jazzPerformanceController();
-$performances = $contoller -> getAllJazzPerformances();
-$performanceCount = count($performances);
 
 $head = new head("Jazz Events | Haarlem Festival", "");
 $head->render();
@@ -15,27 +10,43 @@ echo "<section class='container section' style='margin-top: -10px'>";
 $jazzIntro = new jazzIntro();
 $jazzIntro->render();
 
-$artists = array();
-$dates = array();
+$jazzArtistService = new jazzArtistService();
+$allJazzArtists = $jazzArtistService->getAllJazzArtists();
 
-foreach($performances as $performance)
+$artistNames = array();
+$performanceDates = array();
+$performanceCount = 0;
+
+$jazzCards = array();
+foreach($allJazzArtists as $jazzArtist)
 {
-    $artists[] = $performance->getArtistName();
-    $dates[] = $performance->getDate();
-}
-$artists_unique = array_unique($artists);
-$dates_unique = array_unique($dates);
+    $artistNames[] = $jazzArtist->__get('artistName');
 
-$cmb = new jazzComboBox($artists_unique, $dates_unique);
+    foreach($jazzArtist->__get('performances') as $performance)
+    {
+        $performanceDates[] = $performance->getDate();
+        $performanceCount++;
+
+        $jazzCard = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+        $jazzCards[] = $jazzCard;
+    }
+}
+
+$uniqueArtistNames = array_unique($artistNames);
+$uniquePerformanceDates = array_unique($performanceDates);
+
+$cmb = new jazzComboBox($uniqueArtistNames, $uniquePerformanceDates);
 $cmb->render();
 
 echo "<p style='font-size: 14px'> There are $performanceCount event(s) listed.</p>";
-
-foreach($performances as $performance)
+foreach($jazzCards as $card)
 {
-$card_test = new jazzPerformanceCard($performance);
-$card_test->render();
+    $card->render();
 }
+
+
+
+
 echo "</section>";
 
 $swoosh = new jazzSwoosh();

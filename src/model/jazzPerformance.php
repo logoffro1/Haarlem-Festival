@@ -2,17 +2,15 @@
 class jazzPerformance{
 
     private int $performanceID;
-    private jazzArtist $artist;
     private location $location;
     private string $performanceDate;
     private string $performanceTime;
     private int $duration;
     private int $availableTickets;
 
-    public function __construct(int $performanceID, jazzArtist $artist, location $location, string $performanceDate, string $performanceTime, int $duration, int $availableTickets)
+    public function __construct(int $performanceID, location $location, string $performanceDate, string $performanceTime, int $duration, int $availableTickets)
     {
         $this->performanceID = $performanceID;
-        $this->artist = $artist;
         $this->location = $location;
         $this->performanceDate = $performanceDate;
         $this->performanceTime = $performanceTime;
@@ -26,11 +24,15 @@ class jazzPerformance{
         }
     }
 
-    public function getArtistName(){return $this->artist->getName();}
     public function getDate(){return date("d M",strtotime($this->performanceDate));}
-    public function getTime(){return $this->performanceTime;}
+    public function getTime()
+    {
+        $startTime = date("H:i",strtotime($this->performanceTime));
+        $endTime = date("H:i",strtotime($this->performanceTime) + $this->duration * 3600);
+
+        return ($startTime." - ".$endTime);
+    }
     public function getLocation(){return $this->location->getName();}
-    public function getThumbnail(){return $this->artist->getThumbnail();}
 }
 
 ?>
