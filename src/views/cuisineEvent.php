@@ -4,7 +4,6 @@
     $restaurantTypeController = new restaurantTypeController();
     $restaurantController = new restaurantController();
     $restaurants = $restaurantController->getRestaurants();
-    
     $head = new head("Cuisine Event", "");
     $head->render();
 
@@ -43,7 +42,7 @@ echo "</fieldset>";
 
 foreach($restaurants as $r){
     $card = new restaurantCard($r->__get('name'),
-    "../assets/images/cuisine/ratatouille.jpg",
+    "..".$r->__get('images')[0],
     $r->__get('address'),
     $r->__get('seats'),
     $r->__get('stars'),

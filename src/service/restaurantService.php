@@ -29,7 +29,7 @@ class restaurantService {
                     $this->getCuisinesById($row["restaurant_id"]),
                     $row["address"],
                     $row["biography"],
-                    array(" "),
+                    explode(",",$row["images"]),
                     (double)$row["duration"],
                     $row["sessions"],
                     $row["start_of_session"],
@@ -38,9 +38,8 @@ class restaurantService {
                     $row["price"]
                 );
                 $restaurants[] = $restaurant;
-            
             }
-
+            
         }
         return $restaurants;
     }
