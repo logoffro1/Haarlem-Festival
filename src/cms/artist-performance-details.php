@@ -70,7 +70,6 @@ $navigation->render();
                             echo "<option value=" . $l->mutateToArray()['id'] . ">" . $l->mutateToArray()['name'] . "</option>";
                         }
                         ?> 
-                        <option value="patronaat">Patronaat</option>
                     </select>
                 </fieldset>
 
