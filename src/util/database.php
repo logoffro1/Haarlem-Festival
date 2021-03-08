@@ -49,6 +49,14 @@ class database {
         return $conn;
     }
 
+    /**
+     * Upload image to upload folder.
+     * 
+     * @param tmpName - name of temporary image storage location
+     * @param name - name of image to upload
+     * 
+     * @return bool - if deletion was succesfull
+     */
     public function uploadImage(string $tmpName, string $name) : bool
     {
         $target_file = UPLOAD_PATH . basename($name);
@@ -68,6 +76,18 @@ class database {
             return true;
         } else {
             throw new RuntimeException('Failed to move uploaded file.');
+        }
+    }
+
+    public function deleteImage(string $name) : bool
+    {
+        $target_file = UPLOAD_PATH . basename($name);
+
+        if (file_exists($target_file)) {
+            unlink($target_file);
+            return true;
+        } else {
+            throw new RuntimeException('Failed to delete image.');
         }
     }
 

@@ -18,6 +18,10 @@ if(isset($_POST['update_image']))
 {
     $artistController->updateArtistImage($artist);
 }
+if(isset($_POST['delete_image']))    
+{
+    $artistController->deleteArtistImage($artist);
+}
 
 $songs = array(); 
 $performances = array(); 
@@ -103,7 +107,7 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artists Image</h3>
                 </header>
-                <form class="card--cms__body table--cms" method="post">
+                <form class="card--cms__body table--cms" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <?php if($artist->image) { ?>
                             <img src="<?php echo UPLOAD_FOLDER.$artist->image ?>" alt="Artist Image">
@@ -111,7 +115,7 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>
-                        <input type="file" name="image" >
+                        <input type="file" name="artist_image">
                     </fieldset>
 
                     <input class="button" type="submit" name="update_image" value="Update image">

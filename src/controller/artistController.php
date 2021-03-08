@@ -41,22 +41,37 @@
 
         public function updateArtistImage(artist $artist) : void
         {
-            $data = [
-                'image' => $_FILES['image']
-            ];
+            $data = array(
+                'image'=>$_FILES["artist_image"]
+            );
 
-            $this->artistService->updateArtistImage($artist, $data);
+            if($this->artistService->uploadImage($data)){
+                $this->artistService->updateArtistImage($artist, $data);
+            }
+        }
+
+        public function deleteArtistImage(artist $artist) : void
+        {
+            $data = array(
+                'image'=>null
+            );
+
+            if($this->artistService->deleteImage($artist->image)){
+                $this->artistService->updateArtistImage($artist, $data);
+            }
         }
 
         public function createSession(artist $artist) : void
         {
             $this->helper->startSession();
+            
             $_SESSION["artist"] = serialize($artist);
         }
         
         public function getSession() : ?artist
         {
             $this->helper->startSession();
+
             if(isset($_SESSION['artist'])){
                 return unserialize($_SESSION["artist"]);
             }

@@ -7,6 +7,7 @@ class artistService {
     private songService $songService;
     private performanceService $performanceService;
     private helper $helper;
+
     public function __construct() {
         $this->db = database::getInstance();
 
@@ -112,7 +113,13 @@ class artistService {
         );
     }
 
-    public function updateArtist(artist $artist, array $data)
+    /**
+     * Updates the artist data, funciton used for both content and social media update.
+     * 
+     * @param artist $artist - active artist o page
+     * @param array $data - data from form post
+     */
+    public function updateArtist(artist $artist, array $data) : void
     {
         $sql = "UPDATE artists 
                     SET name=?, 
@@ -124,13 +131,14 @@ class artistService {
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
-            // Create bind params to prevent sql injection
+            // Social or content can be null, but will both be updated, so we need to check for values not present in post request
             $title = $data['title'] ?? $artist->name;
             $page_content = $data['page_content'] ?? $artist->biography;
             $facebook = $data['facebook'] ?? $artist->facebook;
             $instagram = $data['instagram'] ?? $artist->instagram;
             $youtube = $data['youtube'] ?? $artist->youtube;
-
+            
+            // Create bind params to prevent sql injection
             $query->bind_param("sssss", 
                 $title,
                 $page_content,
@@ -148,31 +156,57 @@ class artistService {
             throw new Exception('Could not update the artist. Please try again');
         }
     }
+
+     /**
+     * Updates the artist image path
+     * 
+     * @param artist $artist - active artist o page
+     * @param array $data - data from form post
+     */
     public function updateArtistImage(artist $artist, array $data)
     {
         $sql = "UPDATE artists 
-                    SET [image]=?
+                    SET image=?
                 WHERE artist_id = $artist->id";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
             // Create bind params to prevent sql injection
+            $imageName = $data['image']['name'] ?? null;
+
             $query->bind_param("s", 
-                $data['image']['name']
+                $imageName    
             );
 
-            if($this->db->uploadImage($data['image']['tmp_name'], $data['image']['name'])){
-                // Execute query
-                $query->execute();
-                $this->helper->refresh();
-            } else {
-                throw new Exception('Could not update the song. Please try again');
-            }
-
+            // Execute query
+            $query->execute();
+            $this->helper->refresh();
         } else {
             // If connection cannot be established, throw an error
-            throw new Exception('Could not update the artist image. Please try again');
+            throw new Exception('Could not update the song. Please try again');
         }
+    }
+
+     /**
+     * Uploads the image to the upload folder
+     * 
+     * @param array $data - image data from form post
+     * @return bool - check if upload was succesfull
+     */
+    public function uploadImage(array $data) : bool
+    {
+        return $this->db->uploadImage($data['image']['tmp_name'], $data['image']['name']);
+    }
+    
+     /**
+     * Deletes the image to the upload folder
+     * 
+     * @param string $name - name of the image that needs to be delete
+     * @return bool - check if deletion was succesfull
+     */
+    public function deleteImage(string $name) : bool
+    {
+        return $this->db->deleteImage($name);
     }
 }
 ?>
