@@ -35,7 +35,7 @@
                 );
     
                 $this->songService->updateSong($song->id, $data);
-                // $this->helper->redirect("cms");
+                header("Refresh: 0");
             } catch(Exception $e) {
                 echo $e;
             }

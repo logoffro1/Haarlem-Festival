@@ -1,6 +1,10 @@
 .page--cms {
     background-color: $color-background-section;
     display: flex;
+
+    textarea {
+        height: 200px;
+    }
 }
 
 .section--login-wrapper {

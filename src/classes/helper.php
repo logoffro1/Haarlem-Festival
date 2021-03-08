@@ -22,6 +22,11 @@ class helper
         header("location: $url");
     }
 
+    public function refresh()
+    {
+        header("Refresh: 0");
+    }
+
     public function startSession()
     {
         if(!isset($_SESSION)){

@@ -49,6 +49,28 @@ class database {
         return $conn;
     }
 
+    public function uploadImage(string $tmpName, string $name) : bool
+    {
+        $target_file = UPLOAD_PATH . basename($name);
+    
+        // Select file type
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    
+        // Valid file extensions
+        $extensions_arr = array("jpg","jpeg","png");
+    
+        // Check extension
+        if(!in_array($imageFileType,$extensions_arr) ){
+            throw new Exception("File type not supported");
+        }
+
+        if(move_uploaded_file($tmpName, $target_file)){
+            return true;
+        } else {
+            throw new RuntimeException('Failed to move uploaded file.');
+        }
+    }
+
     /**
      * Disable the cloning of this singleton class.
      * 

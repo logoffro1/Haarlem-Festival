@@ -6,6 +6,7 @@ class artistService {
     private mysqli $conn;
     private songService $songService;
     private performanceService $performanceService;
+    private helper $helper;
     public function __construct() {
         $this->db = database::getInstance();
 
@@ -13,6 +14,7 @@ class artistService {
 
         $this->songService = new songService();
         $this->performanceService = new performanceService();
+        $this->helper = new helper();
     }
 
     public function getJazzArtists() : array
@@ -110,37 +112,67 @@ class artistService {
         );
     }
 
-    public function updateArtistContent(artist $artist)
+    public function updateArtist(artist $artist, array $data)
     {
         $sql = "UPDATE artists 
-                    SET [name]=?, 
+                    SET name=?, 
                         biography=?, 
-                        [image]=?,
-                        [facebook]=?,
-                        [instagram]=?,
-                        [youtube]=?
+                        facebook=?,
+                        instagram=?,
+                        youtube=?
                 WHERE artist_id = $artist->id";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
             // Create bind params to prevent sql injection
-            $query->bind_param("ssssss", 
-                $artist->name,
-                $artist->biography,
-                $artist->image,
-                $artist->facebook,
-                $artist->instagram,
-                $artist->youtube
+            $title = $data['title'] ?? $artist->name;
+            $page_content = $data['page_content'] ?? $artist->biography;
+            $facebook = $data['facebook'] ?? $artist->facebook;
+            $instagram = $data['instagram'] ?? $artist->instagram;
+            $youtube = $data['youtube'] ?? $artist->youtube;
+
+            $query->bind_param("sssss", 
+                $title,
+                $page_content,
+                $facebook,
+                $instagram,
+                $youtube
             );
 
             // Execute query
             $query->execute();
+
+            $this->helper->refresh();
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the artist. Please try again');
         }
     }
+    public function updateArtistImage(artist $artist, array $data)
+    {
+        $sql = "UPDATE artists 
+                    SET [image]=?
+                WHERE artist_id = $artist->id";
 
-   
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("s", 
+                $data['image']['name']
+            );
+
+            if($this->db->uploadImage($data['image']['tmp_name'], $data['image']['name'])){
+                // Execute query
+                $query->execute();
+                $this->helper->refresh();
+            } else {
+                throw new Exception('Could not update the song. Please try again');
+            }
+
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not update the artist image. Please try again');
+        }
+    }
 }
 ?>

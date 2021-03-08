@@ -102,13 +102,15 @@ include_once '../config/config.php';
                     $songId
                 );
 
-                move_uploaded_file($data['image']['tmp_name'], UPLOAD_PATH.$data['image']['name']);
-
-                // Execute query
-                $query->execute();
+                if($this->db->uploadImage($data['image']['tmp_name'], $data['image']['name'])){
+                    // Execute query
+                    $query->execute();
+                } else {
+                    throw new Exception('Could not update the song. Please try again');
+                }
             } else {
                 // If connection cannot be established, throw an error
-                throw new Exception('Could not update song. Please try again');
+                throw new Exception('Could not connect to the database. Please try again');
             }
         }
     }

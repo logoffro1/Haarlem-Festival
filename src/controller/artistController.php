@@ -28,7 +28,24 @@
 
         public function updateArtist(artist $artist) : void
         {
-            $this->artistService->updateArtist($artist);
+            $data = [
+                'title' => $_POST['title'] ?? NULL,
+                'page_content' => $_POST['page_content'] ?? NULL,
+                'youtube' => $_POST['youtube'] ?? NULL,
+                'instagram' => $_POST['instagram'] ?? NULL,
+                'facebook' => $_POST['facebook'] ?? NULL
+            ];
+
+            $this->artistService->updateArtist($artist, $data);
+        }
+
+        public function updateArtistImage(artist $artist) : void
+        {
+            $data = [
+                'image' => $_FILES['image']
+            ];
+
+            $this->artistService->updateArtistImage($artist, $data);
         }
 
         public function createSession(artist $artist) : void
@@ -36,9 +53,10 @@
             $this->helper->startSession();
             $_SESSION["artist"] = serialize($artist);
         }
-
+        
         public function getSession() : ?artist
         {
+            $this->helper->startSession();
             if(isset($_SESSION['artist'])){
                 return unserialize($_SESSION["artist"]);
             }

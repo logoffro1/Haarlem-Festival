@@ -23,12 +23,11 @@ if(isset($_POST['submit']))
     $songController->updateSong($song);
 }
 
-
 $navigation = new cmsNavigation("Events");
 $navigation->render();
 
 $breadcrumbsArray = array(
-    array('text' => 'test', 'url' => '#')
+    array('text' => $artist->name, 'url' => "./artist-detail-page.php?id=$artist->id")
 );
 $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
 ?>
@@ -40,7 +39,7 @@ $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
         <header class="card--cms__header">
             <h3 class="card--cms__header__title">Song Details</h3>
         </header>
-        <form class="card--cms__body row" method="post" enctype="multipart/form-data">
+        <form class="card--cms__body row" method="post" enctype="multipart/form-data" action="">
             <p class="card--cms__body__form-title col-12">Song</p>
 
             <fieldset class="col-12 col--children-fullwidth">

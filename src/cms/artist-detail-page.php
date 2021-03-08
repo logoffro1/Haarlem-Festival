@@ -4,10 +4,20 @@ include '../classes/autoloader.php';
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
+
 $artistController = new artistController();
 
 $artist = $artistController->getArtist();
 $artistController->createSession($artist);
+
+if(isset($_POST['content']) || isset($_POST['social']))    
+{
+    $artistController->updateArtist($artist);
+}
+if(isset($_POST['update_image']))    
+{
+    $artistController->updateArtistImage($artist);
+}
 
 $songs = array(); 
 $performances = array(); 
@@ -40,7 +50,7 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
             <ul>
                 <li class="breadcrumbs__breadcrumb"><a href="cms/index.php">Edit Pages</a></li>
                 <li class="breadcrumbs__breadcrumb"><a href="detail-pages.php">Jazz Event</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href=""><?php echo $artist->name; ?>  Gare Du Nord</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href=""><?php echo $artist->name; ?></a></li>
             </ul>
         </nav>
 
@@ -49,21 +59,18 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artist Name</h3>
                 </header>
-                <form class="card--cms__body row">
+                <form class="card--cms__body row" method="post">
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Name</label>
                         <input placeholder="enter the title..." type="text" name="title" id="title" value="<?php echo $artist->name ?>">
                     </fieldset>
-                </form>
-            </article>
-
-            <article class="card--cms">
-                <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Biography Content</h3>
-                </header>
-                <form class="card--cms__body row">
                     <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Biography</label>
                         <textarea placeholder="enter the content..." name="page_content" id="page_content" ><?php echo $artist->biography ?></textarea>
+                    </fieldset>
+                    
+                    <fieldset class="col-12">
+                        <input type="submit" name="content" value="Update content" class="button">
                     </fieldset>
                 </form>
             </article>
@@ -96,11 +103,20 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artists Image</h3>
                 </header>
-                <form class="card--cms__body table--cms">
-                    <img src="<?php echo $artist->image ?>" alt="Artist Image">
-                    <br/>
-                    <button class="button">Upload Image</button>
-                    <button class="button button--secondary">Delete</button>
+                <form class="card--cms__body table--cms" method="post">
+                    <fieldset>
+                        <?php if($artist->image) { ?>
+                            <img src="<?php echo UPLOAD_FOLDER.$artist->image ?>" alt="Artist Image">
+                            <br/>
+                        <?php } else { ?>
+                            <p>No image present</p>
+                        <?php } ?>
+                        <input type="file" name="image" >
+                    </fieldset>
+
+                    <input class="button" type="submit" name="update_image" value="Update image">
+                    <input class="button button--secondary" type="submit" value="Delete image" name="delete_image">
+
                 </form>
             </article>
             
@@ -108,7 +124,7 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Social Media</h3>
                 </header>
-                <form class="card--cms__body row">
+                <form class="card--cms__body row" method="post">
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Youtube</label>
                         <input placeholder="YouTube channel..." type="text" name="youtube" id="youtube" value="<?php echo $artist->youtube ?>">
@@ -122,6 +138,10 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Facebook</label>
                         <input placeholder="Facebook page..." type="text" name="facebook" id="facebook" value="<?php echo $artist->facebook ?>">
+                    </fieldset>
+                                
+                    <fieldset class="col-12">
+                        <input type="submit" name="social" value="Update social media" class="button">
                     </fieldset>
                 </form>
             </article>
