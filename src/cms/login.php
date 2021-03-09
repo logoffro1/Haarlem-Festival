@@ -6,12 +6,14 @@ if(isset($_POST['submit']))
 {
     $accountController->login();
 }
-// var_dump($accountController->errors);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+if(isset($_POST['reset']))    
+{
+    $accountController->sentResetPassword();
+}
 
 $cmsNotification = new cmsNotification('Error', $accountController->errors);
+$cmsNotificationSuccess = new cmsNotification('Confirmation', $accountController->success);
 
 $head = new head("CMS - Login", "page--cms");
 $head->render();
@@ -28,15 +30,19 @@ $head->render();
             <input required type="email" name="email" placeholder="e.g. JohnDoe@hotmail.com..."/>
 
             <label for="password">Password</label>
-            <input required type="password" name="password" placeholder="e.g. JohnDoe123..."/>
+            <input type="password" name="password" placeholder="e.g. JohnDoe123..."/>
 
-            <input type="submit" name="submit" class="button" value="Login"/>
+            <div class="row align-items-center">
+                <input type="submit" name="submit" class="button" value="Login"/>
+                <input type="submit" name="reset" class="anchor" value="Reset password"/>
+            </div>
 
-            <a href="#">Forgot password?</a>
+            <a href="register.php">Don't have an account yet? Register now</a>
         </form>
     </section>
     <?php
         $cmsNotification->render();
+        $cmsNotificationSuccess->render();
     ?>
 </div>
 

@@ -119,6 +119,70 @@
             }
         }
 
+        
+        /*
+        * Sent reset password, to email
+        */
+        public function sentResetPassword() : void
+        {
+            try {
+                // Get user email input
+                $email = htmlspecialchars($_POST["email"]);
+    
+                // Create email data
+                $emailData = [
+                    'reciever' => $email,
+                    'sender' => "From: " . EMAIL,
+                    'subject' => 'Haarlem Festival - Password Reset',
+                    'content' => 'Click this link to reset your password. ' . ROOT_URL . "cms/reset-password.php?email=$email" . " <br/> or try " 
+                    . ROOT_URL_PRODUCTION . "cms/reset-password.php?email=$email",
+                ];
+    
+                // Sent  email
+                $this->sentMail($emailData);
+
+                // Create confirmation message
+                $this->addToSuccess('We have sent a mail to your email address. Please follow the instructions provided in the mail.');
+            } catch(Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        /*
+        * Change password of user
+        */
+        public function changeAccountPassword() : void
+        {
+            try {
+                // Check if email exist
+                if(isset($_GET["email"])){
+                    // Get email param, and user inputted password value
+                    $password = $_POST["new_password"];
+                    $email = $_GET["email"];
+    
+                    // Check if password is empty
+                    if(empty($password)){
+                        // Show error message
+                        throw new Exception('Input field is not filled in');
+                        return;
+                    }
+    
+                    // Change user password in model
+                    $this->accountService->changeUserPassword($email, $password);
+    
+                    // Show confirmation message
+                    $this->addToSuccess('Password is updated, please try to login.');
+                } else {
+                    // Show error message
+                    throw new Exception('Email is not present. Please check if the url is correct.');
+                }
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         // Create user session value
         private function createUserSession(cmsUser $loggedInUser) : void
         {

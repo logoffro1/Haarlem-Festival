@@ -26,6 +26,14 @@ input, .input {
     &.error {
         border-color: $color-error;
     }
+
+    &.anchor {
+        background: transparent;
+        padding: 0;
+        border: 0;
+        width: auto;
+        margin-left: 50px;
+    }
 }
 
 input[type=checkbox], input[type=radio]{

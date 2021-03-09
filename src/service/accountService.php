@@ -4,11 +4,13 @@
     class accountService  {
         private database $db;
         private mysqli $conn;
-
+        private helper $helper;
         public function __construct() {
             $this->db = database::getInstance();
 
             $this->conn = $this->db->getConnection();
+
+            $this->helper = new helper();
         }
 
         /*
@@ -175,6 +177,34 @@
             } else {
                 // If connection cannot be established, throw an error
                 throw new Exception("Something went wrong. We could not activate your account. Please try again.");
+            }
+        }
+
+         /*
+        * changeUserPassword - updates password of the logged in user
+        *
+        * @param string $email - email of the user
+        * @param string $passowrd - new password of the user
+        */
+        public function changeUserPassword(string $email, string $password) : void
+        {
+            // Build query
+            $sql = "UPDATE cms_users SET password=? WHERE email=?";
+
+            // Get connection and prepare statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param("ss", $passwordParam, $emailParam);
+
+                // Add values to params
+                $passwordParam = $this->helper->encryptPassword($password);
+                $emailParam = $email;
+                
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception('Could not reset the password. Please try again');
             }
         }
     }

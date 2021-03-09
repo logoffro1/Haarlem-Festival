@@ -9,11 +9,11 @@ h1, h2 {
     margin-bottom: 20px;
 }
 
-a {
+a, .anchor {
     text-decoration: underline;
     outline: none;
     color: $color-slated-blue;
-
+    cursor: pointer;
     &:focus, &:active {
         color: $color-slated-blue;
     }
