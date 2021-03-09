@@ -1,12 +1,13 @@
 <?php
     include '../classes/autoloader.php';
 
-    class accountController
+    class accountController extends controller
     {
         private accountService $accountService;
         private helper $helper;
 
         public function __construct() {
+            parent::__construct();
             $this->helper = new helper();
             $this->accountService = new accountService();
         }
@@ -15,18 +16,18 @@
         {
             try {
                 // Get user input data
-                $username = $_POST["username"];
+                $email = $_POST["email"];
                 $password = $_POST["password"];
                 
                 // Check if none or password is empty, show an error
-                if(empty($username) || empty($password)){
+                if(empty($email) || empty($password)){
                     throw new Exception('Input field(s) is/are not filled in');
 
                     return;
                 }
     
                 // Get user from database (password check is in the called model method)
-                $loggedInUser = $this->accountService->getAccountByCredentials($username, $password);
+                $loggedInUser = $this->accountService->getAccountByCredentials($email, $password);
     
                 // If user does not exist show error message and stop the method
                 if($loggedInUser == null){
@@ -36,11 +37,11 @@
     
                 // Create user session and redirect to dashboard page
                 $this->createUserSession($loggedInUser);
-                $this->helpers->redirect("cms/");
+                $this->helpers->redirect("cms/index.php");
 
                 exit();
             } catch (Exception $e){
-                // Todo add catch method to display error messages
+                $this->addToErrors($e->getMessage());
             }
         }
 
@@ -76,7 +77,7 @@
                 $this->helpers->redirect("cms/login.php");
             } catch(Exception $e){
                 // If error occured, show it in the website
-                // Todo $e->getMessage();
+                $this->addToErrors($e->getMessage());
             }
         }
 

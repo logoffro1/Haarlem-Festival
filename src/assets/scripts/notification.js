@@ -24,6 +24,11 @@ export class notification extends base {
 
         selector.addEventListener('click', () => {
             selector.classList.add('notification--cms--fade-out');
+            
+            setTimeout(() => {
+                selector.classList.remove('notification--cms--is-visible');
+                selector.classList.remove('notification--cms--fade-out');
+            }, 500);
         });
     }
 }

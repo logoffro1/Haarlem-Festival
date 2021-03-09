@@ -1,15 +1,17 @@
 <?php
+include_once '../classes/autoloader.php';
+$accountController = new accountController();
+
 if(isset($_POST['submit']))    
 {
-    header("Location:/cms/index.php");
+    $accountController->login();
 }
-
+// var_dump($accountController->errors);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-include_once '../classes/autoloader.php';
 
-$accountController = new accountController();
+$cmsNotification = new cmsNotification('Error', $accountController->errors);
 
 $head = new head("CMS - Login", "page--cms");
 $head->render();
@@ -22,15 +24,23 @@ $head->render();
         <h1 class="title">Login</h1>
         
         <form action="" method="POST">
-            <label for="username">Username or Email</label>
-            <input type="text" name="username" placeholder="e.g. JohnDoe..."/>
+            <label for="email">Email</label>
+            <input required type="email" name="email" placeholder="e.g. JohnDoe@hotmail.com..."/>
 
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="e.g. JohnDoe123..."/>
+            <input required type="password" name="password" placeholder="e.g. JohnDoe123..."/>
 
             <input type="submit" name="submit" class="button" value="Login"/>
 
             <a href="#">Forgot password?</a>
         </form>
     </section>
+    <?php
+        $cmsNotification->render();
+    ?>
 </div>
+
+<?php 
+    $footer = new footer();
+    $footer->renderEndTag();
+?>

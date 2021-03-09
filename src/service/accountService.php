@@ -22,43 +22,43 @@
         public function getAccountByCredentials(string $email, string $password) : ?cmsUser
         {
             // Build query
-            $query = "SELECT * FROM cmsUsers WHERE email=?";
-
-            // Prepare statement
-            $stmt = $this->conn->prepare($query);
+            $query = "SELECT * FROM cms_users WHERE email=? AND isActive=1 LIMIT 1";
 
             // Escpage email data
             $emailEscaped = htmlspecialchars($email);
 
-            // Create bind params to prevent sql injection
-            $stmt->bind_param("s", $emailEscaped);
+            if($stmt =  $this->conn->prepare($query)) {
+                // Create bind params to prevent sql injection
+                $stmt->bind_param("s", $emailEscaped);
+    
+                // Execute query
+                $stmt->execute();
+    
+                // Get the result
+                $result = $stmt->get_result();
+    
+                // If email cannot be found return null
+                if($result->num_rows == 0){
+                    return null;
+                }
 
-            // Execute query
-            $stmt->execute();
-
-            // Get the result
-            $result = $stmt->get_result();
-
-            // If email cannot be found return null
-            if($result->num_rows == 0){
-                return null;
+                // Fetch data
+                $fetchedResults = $result->fetch_assoc();
+    
+                // Check if inputted password is equal to the hashed password in the database
+                $verifiedPassword = password_verify($password, $fetchedResults["password"]);
+    
+                // If passwordss are equal
+                if (password_verify($password, $fetchedResults["password"])) {
+                    // Create user
+                    return $this->createUser($fetchedResults, $password);
+                }
             }
-
-            // Fetch data
-            $fetchedResults = $result->fetch_assoc();
-
-            // Check if inputted password is equal to the hashed password in the database
-            $verifiedPassword = password_verify($password, $fetchedResults["password"]);
-
-            // If passwordss are equal
-            if (password_verify($password, $fetchedResults["password"])) {
-                // Create user
-                return $this->createUser($fetchedResults, $password);
-            } else {
-                // If password invalid return null
-                return null;
-            }
+            
+            // If password invalid return null
+            return null;
         }
+
         /*
         * createUser - creates one cmsUser class
         *
@@ -67,7 +67,7 @@
         *
         * @return cmsUser - logged in user
         */
-        private function createUser($result, $password) : cmsUser
+        private function createUser($result, $password) : ?cmsUser
         {
             // Check rows in the $results
             while($row = $result) {
@@ -78,6 +78,8 @@
                     $password, 
                 );
             }
+
+            return null;
         }
 
         /*
@@ -128,7 +130,7 @@
             $query = "SELECT * FROM cmsUsers WHERE email = ?";
 
             // Get connection and prepare statement
-            $stmt = self::getConnection()->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
             // Create bind params to prevent sql injection
             $stmt->bind_param("s", $userEmail);
