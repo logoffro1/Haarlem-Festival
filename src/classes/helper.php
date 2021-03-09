@@ -20,6 +20,7 @@ class helper
     public function redirect(string $url)
     {
         header("location: $url");
+        exit;
     }
 
     public function refresh()
@@ -31,6 +32,25 @@ class helper
     {
         if(!isset($_SESSION)){
             session_start();
+        }
+    }
+
+    public function destroySession()
+    {
+        $this->startSession();
+
+        session_unset();
+        session_destroy();
+    }
+
+    public function clearCookies()
+    {
+        if(isset($_POST['remove_cookies'])){
+            $past = time() - 3600;
+            foreach ( $_COOKIE as $key => $value )
+            {
+                setcookie( $key, $value, $past, '/' );
+            }
         }
     }
 }

@@ -37,7 +37,7 @@
     
                 // Create user session and redirect to dashboard page
                 $this->createUserSession($loggedInUser);
-                $this->helpers->redirect("cms/index.php");
+                $this->helper->redirect("index.php");
 
                 exit();
             } catch (Exception $e){
@@ -67,42 +67,72 @@
                     0,
                     $name,
                     $email,
-                    $this->helpers->encryptPassword($password),
+                    $this->helper->encryptPassword($password),
                 );
 
                 // Add user to the database via the model layer
                 $this->accountService->addUser($user);
 
+                // Create email template
+                $mailData = [
+                    'reciever' => "$email",
+                    'subject' => 'Haarlem Festival User Activation',
+                    'content' => "Click this link to activate your account. ". ROOT_URL . "cms/activateAccount.php?email=" . $email . " <br/> or try " 
+                    . ROOT_URL_PRODUCTION . "cms/activateAccount.php?email=" . $email,
+                    'sender' => 'From: ' . EMAIL,
+                ];
+        
+                // Sent email
+                $this->sentMail($mailData);
+
                 // Redirect to login
-                $this->helpers->redirect("cms/login.php");
+                // $this->helper->redirect("login.php");
             } catch(Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
             }
         }
 
+        /*
+        * Activate account based on url from email
+        */
+        public function activateAccount() : bool
+        {
+            try {
+                // Get email from url
+                $email = htmlspecialchars($_GET['email'] ?? "");
+
+                // Check if empty
+                if(empty($email)){
+                    // Throw a new error with message
+                    throw new Exception("No email provided. Please check if the url is correct");
+                }
+    
+                // Activate acount via model layer
+                $this->accountService->activateAccount($email);
+
+                return true;
+            } catch(Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+                return false;
+            }
+        }
+
         // Create user session value
         private function createUserSession(cmsUser $loggedInUser) : void
         {
-            $this->helpers->startSession();
+            $this->helper->startSession();
             $_SESSION["loggedInUser"] = serialize($loggedInUser);
         }
 
         // Logout and clear session and cookies
         public function logout() : void
         {
-            $this->helper->startSession();
-            session_unset();
-            session_destroy();
+            $this->helper->destroySession();
 
             // Clear all cookies
-            if(isset($_POST['remove_cookies'])){
-                $past = time() - 3600;
-                foreach ( $_COOKIE as $key => $value )
-                {
-                    setcookie( $key, $value, $past, '/' );
-                }
-            }
+            $this->helper->clearCookies();
 
             $this->helper->redirect("login.php");
         }

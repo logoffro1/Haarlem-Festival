@@ -73,7 +73,8 @@
             while($row = $result) {
                 // return user class
                 return new cmsUser(
-                    (int)$row["id"], 
+                    (int)$row["users_id"], 
+                    $row["name"], 
                     $row["email"], 
                     $password, 
                 );
@@ -90,7 +91,7 @@
         public function addUser(cmsUser $user) : void
         {
             // Build query
-            $sql = "INSERT INTO php1Users (name, email, password) VALUES (?,?,?)";
+            $sql = "INSERT INTO cms_users (name, email, password) VALUES (?,?,?)";
 
             // Get connection
             $connection =  $this->conn;
@@ -106,9 +107,9 @@
                 );
                 
                 // Add values to params
-                $name = $user->getName();
-                $email = $user->getEmail();
-                $password = $user->getPassword();
+                $name = $user->name;
+                $email = $user->email;
+                $password = $user->password;
 
                 // Execute query
                 $query->execute();
@@ -127,25 +128,28 @@
         public function getUsersCountByEmail(string $userEmail) : int
         {
             // Build query
-            $query = "SELECT * FROM cmsUsers WHERE email = ?";
+            $query = "SELECT * FROM cms_users WHERE email = ?";
 
             // Get connection and prepare statement
-            $stmt = $this->conn->prepare($query);
-
-            // Create bind params to prevent sql injection
-            $stmt->bind_param("s", $userEmail);
-
-            // Execute query
-            $stmt->execute();
-
-            // Get the result
-            $result = $stmt->get_result();
-           
-            // Return number of occurences
-            return $result->num_rows;
+            if($stmt = $this->conn->prepare($query)) {
+                // Create bind params to prevent sql injection
+                $stmt->bind_param("s", $userEmail);
+    
+                // Execute query
+                $stmt->execute();
+    
+                // Get the result
+                $result = $stmt->get_result();
+               
+                // Return number of occurences
+                return $result->num_rows;
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception("Something went wrong. We could not get your account. Please try again.");
+            }
         }
 
-        /*
+        /**
         * activateAccount - activates user's account
         *
         * @param string $email - email of the account that needs to be activated
@@ -153,13 +157,10 @@
         public function activateAccount(string $email) : void
         {
             // Build query
-            $sql = "UPDATE cmsUsers SET isActive=1 WHERE email=?";
+            $sql = "UPDATE cms_users SET isActive=1 WHERE email=?";
 
-            // Get connection
-            $connection = self::getConnection();
-
-            // preapre statement
-            if($query = $connection->prepare($sql)) {
+            // Get connection / preapre statement
+            if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
                 $query->bind_param(
                     "s",

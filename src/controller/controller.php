@@ -1,4 +1,6 @@
 <?php
+include_once '../config/config.php';
+
     class controller {
         protected array $errors;
         protected array $success;
@@ -30,6 +32,15 @@
 
         protected function removeSuccess(){
             unset($success);
+        }
+
+        // Send email
+        protected function sentMail($emailData) : void
+        {
+            if (!mail($emailData['reciever'], $emailData['subject'], $emailData['content']))
+            {
+                throw new Exception("could not send the email, please try again");
+            }
         }
     }
 ?>
