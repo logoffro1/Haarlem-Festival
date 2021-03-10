@@ -1,13 +1,19 @@
 <?php
 include_once '../config/config.php';
+include_once '../classes/helper.php';
 
     class controller {
         protected array $errors;
         protected array $success;
+        protected helper $helper;
 
-        public function __construct() {
+        public function __construct() {            
+            $this->helper = new helper();
+
             $this->errors = array();
             $this->success = array();
+
+            $this->checkIfLoggedIn();
         }
 
         public function __get($property) {
@@ -32,6 +38,25 @@ include_once '../config/config.php';
 
         protected function removeSuccess(){
             unset($success);
+        }
+
+        /**
+         * checkIfLoggedIn - check if user is logged in with sessions,
+         * if not redirect to login page, if user is already on the login page,
+         * or is not on the cms flow stop the check
+         * to avoid infinite redirects.
+         */
+        protected function checkIfLoggedIn(){
+            $this->helper->startSession();
+            $url = $_SERVER['REQUEST_URI'];
+
+            if (strpos($url, "login.php") || !strpos($url, "cms")){
+                return;
+            }
+
+            if(!isset($_SESSION['loggedInUser'])){
+                $this->helper->redirect('login.php');
+            }
         }
 
         // Send email

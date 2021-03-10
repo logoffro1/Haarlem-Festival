@@ -1,82 +1,113 @@
 <?php
     include '../classes/autoloader.php';
 
-    class artistController {
+    class artistController extends controller {
         private artistService $artistService;
-        private helper $helper;
 
         public function __construct() {
-            $this->helper = new helper();
+            parent::construct();
             $this->artistService = new artistService();
         }
 
         public function getJazzArtistList() : array
         {
-            return $this->artistService->getArtistList(1); // Todo change id to correct jazz page id in database
+            try {
+                return $this->artistService->getArtistList(1); // Todo change id to correct jazz page id in database
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
     
         public function getDanceArtistList() : array
         {
-            return $this->artistService->getArtistList(2); // Todo change id to correct jazz page id in database
+            try {
+                return $this->artistService->getArtistList(2); // Todo change id to correct jazz page id in database
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getArtist() : artist {
-            $artistId = $_GET["id"];
-
-            return $this->artistService->getArtist($artistId);
+            try {
+                $artistId = $_GET["id"];
+    
+                return $this->artistService->getArtist($artistId);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function updateArtist(artist $artist) : void
         {
-            $data = [
-                'title' => $_POST['title'] ?? NULL,
-                'page_content' => $_POST['page_content'] ?? NULL,
-                'youtube' => $_POST['youtube'] ?? NULL,
-                'instagram' => $_POST['instagram'] ?? NULL,
-                'facebook' => $_POST['facebook'] ?? NULL
-            ];
-
-            $this->artistService->updateArtist($artist, $data);
+            try {
+                $data = [
+                    'title' => $_POST['title'] ?? NULL,
+                    'page_content' => $_POST['page_content'] ?? NULL,
+                    'youtube' => $_POST['youtube'] ?? NULL,
+                    'instagram' => $_POST['instagram'] ?? NULL,
+                    'facebook' => $_POST['facebook'] ?? NULL
+                ];
+    
+                $this->artistService->updateArtist($artist, $data);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function updateArtistImage(artist $artist) : void
         {
-            $data = array(
-                'image'=>$_FILES["artist_image"]
-            );
-
-            if($this->artistService->uploadImage($data)){
-                $this->artistService->updateArtistImage($artist, $data);
+            try {
+                $data = array(
+                    'image'=>$_FILES["artist_image"]
+                );
+    
+                if($this->artistService->uploadImage($data)){
+                    $this->artistService->updateArtistImage($artist, $data);
+                }
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
             }
         }
 
         public function deleteArtistImage(artist $artist) : void
         {
-            $data = array(
-                'image'=>null
-            );
-
-            if($this->artistService->deleteImage($artist->image)){
-                $this->artistService->updateArtistImage($artist, $data);
+            try {
+                $data = array(
+                    'image'=>null
+                );
+    
+                if($this->artistService->deleteImage($artist->image)){
+                    $this->artistService->updateArtistImage($artist, $data);
+                }
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
             }
         }
 
         public function createSession(artist $artist) : void
         {
-            $this->helper->startSession();
-            
-            $_SESSION["artist"] = serialize($artist);
+            try {
+                $this->helper->startSession();
+                
+                $_SESSION["artist"] = serialize($artist);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
         
         public function getSession() : ?artist
         {
-            $this->helper->startSession();
-
-            if(isset($_SESSION['artist'])){
-                return unserialize($_SESSION["artist"]);
+            try {
+                $this->helper->startSession();
+    
+                if(isset($_SESSION['artist'])){
+                    return unserialize($_SESSION["artist"]);
+                }
+    
+                return null;
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
             }
-
-            return null;
         }
     }
 ?>

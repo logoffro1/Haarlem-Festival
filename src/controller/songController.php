@@ -1,10 +1,10 @@
 <?php
-    class songController {
+    include '../classes/autoloader.php';
+
+    class songController extends controller {
         private songService $songService;
-        private helper $helper;
 
         public function __construct() {
-            $this->helper = new helper();
             $this->songService = new songService();
         }
 

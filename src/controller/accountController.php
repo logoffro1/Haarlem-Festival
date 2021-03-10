@@ -4,11 +4,9 @@
     class accountController extends controller
     {
         private accountService $accountService;
-        private helper $helper;
 
         public function __construct() {
             parent::__construct();
-            $this->helper = new helper();
             $this->accountService = new accountService();
         }
 

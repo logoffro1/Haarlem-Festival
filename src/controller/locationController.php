@@ -1,12 +1,10 @@
 <?php
     include '../classes/autoloader.php';
 
-    class locationController {
+    class locationController extends controller {
         private locationService $locationService;
-        private helper $helper;
 
         public function __construct() {
-            $this->helper = new helper();
             $this->locationService = new locationService();
         }
 
