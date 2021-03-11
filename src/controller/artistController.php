@@ -5,7 +5,7 @@
         private artistService $artistService;
 
         public function __construct() {
-            parent::construct();
+            parent::__construct();
             $this->artistService = new artistService();
         }
 

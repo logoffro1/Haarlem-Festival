@@ -19,7 +19,7 @@ class cmsNavigation {
         <aside class='navigation--cms'>
             <header class='navigation--cms__header'>
                 <img src='/assets/images/svg/logo.svg' alt=''>
-                <a href='#' class='navigation--cms__header__profile'>
+                <a href='./profile-page.php' class='navigation--cms__header__profile'>
                     <img src='' alt=''>
                 </a>
             </header>
@@ -29,7 +29,7 @@ class cmsNavigation {
                     <li><a href='./index.php' class='button button--cms " . $this->getActivePage("Events") . "'>Events</a></li>
                     <li><a href='#' class='button button--cms " . $this->getActivePage("Reservations") . "'>Reservations</a></li>
                     <li><a href='#' class='button button--cms " . $this->getActivePage("Invoices") . "'>Invoices</a></li>
-                    <li><a href='#' class='button button--cms " . $this->getActivePage("Users") . "'>Users</a></li>
+                    <li><a href='./user-page.php' class='button button--cms " . $this->getActivePage("Users") . "'>Users</a></li>
                     <li><a href='#' class='button button--cms " . $this->getActivePage("API") . "'>API</a></li>
                 </ul>
             </nav>

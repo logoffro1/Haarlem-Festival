@@ -17,8 +17,8 @@
          * @return array artists - list of artist without their songs, because it will not be shown in the list
          * @return null if nothing is found
          */
-        public function getUsers() : array {
-            $query = "SELECT * FROM cms_users"; // No user input, so binding would be redundant
+        public function getUsers(cmsUser $user) : array {
+            $query = "SELECT * FROM cms_users WHERE users_id <> $user->id"; // No user input, so binding would be redundant
 
             if ($result = $this->conn->query($query)) {
                 return $this->createAccountList($result);
@@ -40,8 +40,9 @@
 
             if($stmt =  $this->conn->prepare($query)) {
                 // Create bind params to prevent sql injection
-                $stmt->bind_param("i", htmlspecialchars($cmsUserId));
-    
+                $stmt->bind_param("i", $id);
+                $id = htmlspecialchars($cmsUserId);
+
                 // Execute query
                 $stmt->execute();
     
@@ -70,23 +71,25 @@
         * @param string $name - new name value from post
         * @param int $id - current active user id
         */
-        public function updateUser($email, $name, $id) : void
+        public function updateUser(string $email, string $name, int $id) : void
         {
             // Build query
-            $sql = "UPDATE cms_users SET name=?, email=? WHERE id=?";
+            $sql = "UPDATE cms_users SET name=?, email=? WHERE users_id=?";
 
             // Get connection / preapre statement
             if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
                 $query->bind_param(
-                    "s",
-                    "s",
-                    "i",
-                    $name,
-                    $email,
-                    $id
+                    "ssi",
+                    $nameParam,
+                    $emailParam,
+                    $idParam
                 );
-                
+
+                $nameParam = htmlspecialchars($name);
+                $emailParam = htmlspecialchars($email);
+                $idParam = intval(htmlspecialchars($id));
+
                 // Execute query
                 $query->execute();
             } else {

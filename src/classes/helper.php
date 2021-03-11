@@ -1,4 +1,6 @@
 <?php
+include '../classes/autoloader.php';
+
 class helper
 {
     /*
@@ -52,6 +54,18 @@ class helper
                 setcookie( $key, $value, $past, '/' );
             }
         }
+    }
+
+    // Get logged in user
+    public function getLoggedInUser() : ?cmsUser {
+        $this->startSession();
+
+        if(isset($_SESSION['loggedInUser'])){
+            $user = unserialize($_SESSION["loggedInUser"]);
+            return $user;
+        } 
+
+        return null;
     }
 }
 ?>

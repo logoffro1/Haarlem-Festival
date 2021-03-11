@@ -17,5 +17,10 @@
             $this->email = $email;
             $this->password = $password;
         }
+
+        public function mutateToArray()
+        {
+            return get_object_vars($this);
+        }
     }
 ?>

@@ -36,8 +36,6 @@
                 // Create user session and redirect to dashboard page
                 $this->createUserSession($loggedInUser);
                 $this->helper->redirect("index.php");
-
-                exit();
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
@@ -182,12 +180,16 @@
         }
 
         // Create user session value
-        private function createUserSession(cmsUser $loggedInUser) : void
+        public function createUserSession(cmsUser $loggedInUser) : void
         {
             $this->helper->startSession();
             $_SESSION["loggedInUser"] = serialize($loggedInUser);
         }
 
+        public function getLoggedInUser() : ?cmsUser
+        {
+            return $this->helper->getLoggedInUser();
+        }
         // Logout and clear session and cookies
         public function logout() : void
         {

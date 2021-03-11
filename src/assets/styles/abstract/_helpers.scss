@@ -16,3 +16,8 @@
 .has-font-weight-semibold {
     font-weight: $font-weight-semibold;
 }
+
+.align--flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
