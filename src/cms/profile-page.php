@@ -3,13 +3,14 @@ include '../classes/autoloader.php';
 
 $userController = new userController();
 $accountController = new accountController();
-$userObj = $accountController->getLoggedInUser();
-$user = new cmsUser($userObj->id, $userObj->name, $userObj->email, $userObj->password);
+
+$user = $accountController->getLoggedInUser();
 // Todo Make sure session is updated so the new values will be shown
 if(isset($_POST['submit']))
 {
-    $accountController->createUserSession($user);
     $userController->updateUser($user->id);
+    $accountController->updateUserSession();
+    $user = $accountController->getLoggedInUser();
 }
 
 $breadcrumbsArray = array(
@@ -17,7 +18,7 @@ $breadcrumbsArray = array(
 );
 $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
 
-$head = new head("CMS - Profil Page", "page--cms");
+$head = new head("CMS - Profile Page", "page--cms");
 $head->render();
 
 $navigation = new cmsNavigation("");
@@ -30,7 +31,7 @@ $navigation->render();
 
         <article class="card--cms col-8">
         <header class="card--cms__header">
-            <h3 class="card--cms__header__title">Profile Page <?php echo $user->name; ?></h3>
+            <h3 class="card--cms__header__title">Profile Page - <?php echo $user->name; ?></h3>
         </header>
         <form class="card--cms__body row" method="post" action="">
             <fieldset class="col-12 col--children-fullwidth">

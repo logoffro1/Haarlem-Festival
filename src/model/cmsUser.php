@@ -18,6 +18,16 @@
             $this->password = $password;
         }
 
+        public function setName(string $name)
+        {
+            $this->name = $name;
+        }
+
+        public function setEmail(string $email)
+        {
+            $this->email = $email;
+        }
+
         public function mutateToArray()
         {
             return get_object_vars($this);

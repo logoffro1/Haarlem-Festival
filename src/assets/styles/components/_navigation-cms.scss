@@ -7,6 +7,17 @@
     flex-direction: column;
     position: fixed;
     
+    
+    &::before {
+        left: 0;
+        content: '';
+        height: 4px;
+        width: 100%;
+        position: absolute;
+        background: $color-primary-gradient;
+    }
+   
+
     .navigation--cms__header {
         display: flex;
         padding-top: 40px;

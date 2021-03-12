@@ -186,6 +186,21 @@
             $_SESSION["loggedInUser"] = serialize($loggedInUser);
         }
 
+        // Update user session values
+        public function updateUserSession() : void
+        {
+            $this->helper->startSession();
+            $user = $this->helper->getLoggedInUser();
+
+            $email = $_POST['email'];
+            $name = $_POST['name'];
+
+            $user->setName($name);
+            $user->setEmail($email);
+
+            $_SESSION["loggedInUser"] = serialize($user);
+        }
+
         public function getLoggedInUser() : ?cmsUser
         {
             return $this->helper->getLoggedInUser();

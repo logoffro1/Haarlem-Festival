@@ -62,7 +62,7 @@ class helper
 
         if(isset($_SESSION['loggedInUser'])){
             $user = unserialize($_SESSION["loggedInUser"]);
-            return $user;
+            return new cmsUser($user->id, $user->name, $user->email, $user->password);
         } 
 
         return null;
