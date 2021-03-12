@@ -18,7 +18,7 @@ $restaurantList = $restaurantController->getRestaurants();
 
 foreach($restaurantList as $restaurant){
     $restaurantArray[] = $restaurant->name;
-    $restaurantArray[] = "<a class='align--flex-end' href='restaurant-details.php?id=$restaurant->id'>edit</a>";
+    $restaurantArray[] = "<a class='align--flex-end' href='restaurant-detail-page.php?id=$restaurant->id'>edit</a>";
   
 
     $restaurantList[] = $restaurantArray;
