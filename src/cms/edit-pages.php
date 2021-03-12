@@ -41,6 +41,12 @@ $table = new table('card--cms__body table--cms', array(), $pagesList);
                             <a href="jazz-event.php" class="">Edit</a>
                         </td>
                     </tr>
+                    <tr>
+                        <td>Cuisine event page</td>
+                        <td class="table--cms__item__navigation">
+                            <a href="cuisine-event.php" class="">Edit</a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </article>

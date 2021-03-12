@@ -13,7 +13,8 @@ spl_autoload_register(function ($class_name) {
     $service_class = dirname(__DIR__)."/service/$class_name.php";
     $view_class = dirname(__DIR__)."/view/$class_name.php";
     $util_class = dirname(__DIR__)."/util/$class_name.php";
-
+    $cuisine_class = dirname(__DIR__)."/components/cuisine/$class_name.php";
+    $model_cuisine_class = dirname(__DIR__)."/model/cuisine/$class_name.php";
     // Check if files exist
     if(file_exists($component_class)){
         include $component_class;
@@ -31,6 +32,10 @@ spl_autoload_register(function ($class_name) {
         include $util_class;
     } else if(file_exists($view_class)){
         include $view_class;
+    } else if(file_exists($cuisine_class)){
+        include $cuisine_class;
+    } else if(file_exists($model_cuisine_class)){
+        include $model_cuisine_class;
     }
 });
 
