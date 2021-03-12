@@ -25,6 +25,27 @@
             return null;
         }
 
+        public function addRestaurant() : void
+        {
+            try {
+                $data = [
+                    'name'=>$_POST['name'],
+                    'address'=>$_POST['address'],
+                    'biography'=>$_POST['biography'],
+                    'duration'=>$_POST['duration'],
+                    'sessions'=>$_POST['sessions'],
+                    'start_of_session'=>$_POST['start_of_session'],
+                    'seats'=>$_POST['seats'],
+                    'stars'=>$_POST['stars'],
+                    'price'=>$_POST['price']
+                ];
+    
+                $this->restaurantService->addRestaurant($data);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }        
+        }
+
         public function updateRestaurant(restaurant $restaurant) : void
         {
             try {

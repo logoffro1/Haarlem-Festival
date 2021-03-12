@@ -50,7 +50,7 @@ class restaurantService {
 
     /**
      * @param int - id of the selected restaurant
-     * @return array artists - list of artist without their songs, because it will not be shown in the list
+     * @return restaurant || null - restaurant class with the data from the query, or null if error/nothing is found
      */
     public function getRestaurant(int $restaurantId) : ?restaurant {
         $query = "SELECT * FROM restaurants WHERE restaurant_id=? LIMIT 1";
@@ -93,6 +93,48 @@ class restaurantService {
         }
 
         return null;
+    }
+
+    /**
+     * @param data - array of post data from the form
+     */
+    public function addRestaurant($data) : void // Todo add categories to insert statement
+    {
+        $sql = "INSERT INTO restaurants (
+            name,
+            address,
+            biography,
+            duration,
+            sessions,
+            start_of_session,
+            seats,
+            stars,
+            price
+        ) VALUES (?????????)";
+
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
+
+            // Create bind params to prevent sql injection
+            $query->bind_param("sssdisiid", 
+                $data['name'],
+                $data['address'],
+                $data['biography'],
+                $data['duration'],
+                $data['sessions'],
+                $data['start_of_session'],
+                $data['seats'],
+                $data['stars'],
+                $data['price']
+            );
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not update the restaurant. Please try again');
+        }
     }
 
     private function getCuisinesById(int $id){
