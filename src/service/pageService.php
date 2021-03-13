@@ -20,25 +20,26 @@
         public function getPage(int $id) : ?stdClass
         {
             // Build query
-            $query = "SELECT * FROM pages WHERE page_id = ?";
+            $query = "SELECT content FROM pages WHERE page_id = ?";
 
             // Get connection and prepare statement
             if($stmt = $this->conn->prepare($query)) {
                 // Create bind params to prevent sql injection
                 $stmt->bind_param("i", $id);
-                    // Execute query
-                    $stmt->execute();
+                
+                // Execute query
+                $stmt->execute();
 
-                    $result = $stmt->get_result();
+                $result = $stmt->get_result();
 
-                    if($result->num_rows == 0){
-                        return null;
-                    }
+                if($result->num_rows == 0){
+                    return null;
+                }
 
-                    // Get the result
-                    $objectResult = $result->fetch_object();
-                    
-                    return $objectResult;
+                // Get the result
+                $objectResult = $result->fetch_object();
+                
+                return $objectResult;
             } else {
                 // If connection cannot be established, throw an error
                 throw new Exception("Something went wrong. We could not get the page content. Please try again.");

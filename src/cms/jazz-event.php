@@ -7,6 +7,13 @@ $head->render();
 $navigation = new cmsNavigation("Edit Pages");
 $navigation->render();
 
+$pageController = new pageController();
+$page = $pageController->getPage(4);
+
+if(isset($_POST['submit']))    
+{
+    $pageController->updatePage(4);
+}
 ?>
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
@@ -19,23 +26,38 @@ $navigation->render();
         <div class="col-8">
             <article class="card--cms">
                 <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Page Title</h3>
-                </header>
-                <form class="card--cms__body row">
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">Title</label>
-                        <input placeholder="enter the title..." type="text" name="title" id="title">
-                    </fieldset>
-                </form>
-            </article>
-
-            <article class="card--cms">
-                <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Page Content</h3>
                 </header>
-                <form class="card--cms__body row">
+                <form class="card--cms__body row" method="POST">
                     <fieldset class="col-12 col--children-fullwidth">
-                        <textarea placeholder="enter the content..." name="page_content" id="page_content"></textarea>
+                        <label class="label">Page title</label>
+                        <input placeholder="enter the title..." type="text" name="page_title" value="<?php echo $page->page_title ?? ''; ?>">
+                    </fieldset>
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">First section title</label>
+                        <input placeholder="enter the title..." type="text" name="first_section_title" value="<?php echo $page->first_section_title ?? ''; ?>">
+                    </fieldset>
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">First section text</label>
+                        <textarea placeholder="enter the content..." name="first_section_text" value="<?php echo $page->first_section_text ?? ''; ?>"></textarea>
+                    </fieldset>
+
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">hero title</label>
+                        <input placeholder="enter the title..." type="text" name="hero_title" value="<?php echo $page->hero_title ?? ''; ?>">
+                    </fieldset>
+
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Second section title</label>
+                        <input placeholder="enter the title..." type="text" name="second_section_title" value="<?php echo $page->second_section_title ?? ''; ?>">
+                    </fieldset>
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Second section text</label>
+                        <textarea placeholder="enter the content..." name="second_section_text" value="<?php echo $page->second_section_text ?? ''; ?>"></textarea>
+                    </fieldset>
+
+                    <fieldset class="col-12 row justify-content-end">
+                        <input class="button" type="submit" name="submit" value="Update page content">
                     </fieldset>
                 </form>
             </article>
