@@ -2,8 +2,8 @@
     include '../classes/autoloader.php';
 
     class pageService {
-        protected database $db;
-        protected mysqli $conn;
+        private database $db;
+        private mysqli $conn;
 
         public function __construct() {
             $this->db = database::getInstance();
