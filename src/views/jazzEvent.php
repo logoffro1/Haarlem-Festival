@@ -20,20 +20,42 @@ $jazzCards = array();
 foreach ($allJazzArtists as $jazzArtist) {
     $artistNames[] = $jazzArtist->__get('artistName');
 
-    foreach ($jazzArtist->__get('performances') as $performance) {
+    foreach ($jazzArtist->__get('performances') as $performance) 
+    {
         $performanceDates[] = $performance->getDate();
 
-        if (isset($_GET['artist'])) {
+        if (isset($_GET['artist']) || isset($_GET['date'])) 
+        {
             $artistName = $_GET['artist'];
-            if ($jazzArtist->__get('artistName') == $artistName) {
-                $jazzCard = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
-                $jazzCards[] = $jazzCard;
+            $performanceDate = $_GET['date'];
+            
+            if ($jazzArtist->__get('artistName') == $artistName) 
+            {
+                if($performance->getDate() == $performanceDate)
+                {
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                }
+                else if($performanceDate == "allDates")
+                {
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                }
+            }
+            else if($artistName == "allArtists")
+            {
+                 if($performance->getDate() == $performanceDate)
+                {
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                }
+                else if($performanceDate == "allDates")
+                {
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                }
             }
         }
         else
         {
-            $jazzCard = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
-            $jazzCards[] = $jazzCard;}
+            $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+        }
     }}
 
 $uniqueArtistNames = array_unique($artistNames);

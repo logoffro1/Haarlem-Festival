@@ -15,23 +15,26 @@ class jazzComboBox
     {
         echo "
         <section class='cmb--jazz'>
-            <select class='cmb--jazz__box'>
-                <option value='allArtist'>All Artists</option>";
+        <form action='' method='get'>
+            <select name='artist' class='cmb--jazz__box'>
+                <option value='allArtists'>All Artists</option>";
         foreach($this->artists as $artist)
         {
             echo "<option value='$artist'>$artist</option>";
         }
         echo "
         </select>
-            <select select class='cmb--jazz__box'>
-                <option value='allDate'>Date</option>";
+            <select name='date' class='cmb--jazz__box'>
+                <option value='allDates'>Date</option>";
         foreach($this->dates as $date)
         {
             echo "<option value='$date'>$date</option>";
         }
         echo "
+        <input class='button cmb--jazz__button' type='submit' name='submit' value='Search'>  
             </select>
-        </section>      
+        </section>
+        </form>    
         ";
     }
 }
