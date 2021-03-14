@@ -68,13 +68,8 @@
                 // Update with tmp name from $_FILES
                 foreach ($files as $file) {
                     $isUploaded = $this->db->uploadImage($file['tmp_name'], $file['name']);
-
-                    // If image cannot be uploaded abort query
-                    if(!$isUploaded){
-                        throw new Exception('Could not upload ' . $file['name'] . '. Updating data aborted. Please try again');
-                        return;
-                    }
                 }
+                
                 $query->execute();
             } else {
                 // If connection cannot be established, throw an error

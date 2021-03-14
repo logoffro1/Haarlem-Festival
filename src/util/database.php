@@ -57,8 +57,12 @@ class database {
      * 
      * @return bool - if deletion was succesfull
      */
-    public function uploadImage(string $tmpName, string $name) : bool
+    public function uploadImage(string $tmpName, string $name)
     {
+        if(empty($tmpName) || empty($name)){
+            return;
+        }
+
         $target_file = UPLOAD_PATH . basename($name);
     
         // Select file type
@@ -72,10 +76,9 @@ class database {
             throw new Exception("File type not supported");
         }
 
-        if(move_uploaded_file($tmpName, $target_file)){
-            return true;
-        } else {
-            throw new RuntimeException('Failed to move uploaded file.');
+        // If image cannot be uploaded abort query
+        if(!move_uploaded_file($tmpName, $target_file)){
+            throw new RuntimeException('Could not upload ' . $name . '. Updating data aborted. Please try again');
         }
     }
 

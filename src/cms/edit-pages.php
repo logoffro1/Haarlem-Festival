@@ -2,7 +2,6 @@
 include '../classes/autoloader.php';
 
 $editPagesController = new editPagesController();
-$pagesList = $editPagesController->getPagesList();
 
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
@@ -10,7 +9,6 @@ $head->render();
 $navigation = new cmsNavigation("Edit Pages");
 $navigation->render();
 
-$table = new table('card--cms__body table--cms', array(), $pagesList);
 ?>
 
     <div class="cms-container row">
@@ -25,14 +23,24 @@ $table = new table('card--cms__body table--cms', array(), $pagesList);
                 <h3 class="card--cms__header__title">Pages</h3>
             </header>
 
-            <?php $table->render(); ?>
-
             <table class="card--cms__body table--cms">
                 <tbody>
                     <tr>
                         <td>Homepage</td>
                         <td class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
+                            <a href="edit-homepage.php" class="">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dance event page</td>
+                        <td class="table--cms__item__navigation">
+                            <a href="dance-event.php" class="">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cuisine event page</td>
+                        <td class="table--cms__item__navigation">
+                            <a href="cuisine-event.php" class="">Edit</a>
                         </td>
                     </tr>
                     <tr>
@@ -42,9 +50,9 @@ $table = new table('card--cms__body table--cms', array(), $pagesList);
                         </td>
                     </tr>
                     <tr>
-                        <td>Cuisine event page</td>
+                        <td>History event page</td>
                         <td class="table--cms__item__navigation">
-                            <a href="cuisine-event.php" class="">Edit</a>
+                            <a href="history-event.php" class="">Edit</a>
                         </td>
                     </tr>
                 </tbody>

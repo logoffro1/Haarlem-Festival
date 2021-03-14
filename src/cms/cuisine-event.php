@@ -18,7 +18,7 @@ $page = $pageController->getPage(1);
 
 if(isset($_POST['submit']))    
 {
-    $pageController->updatePage(1);
+    $pageController->updatePage($page, 1);
 }
 
 $restaurantController = new restaurantController();
@@ -61,7 +61,7 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $resta
                     <fieldset>
                         <label class="label">Hero Image</label>
 
-                        <?php if($page->image) { ?> <!-- Todo add restaurant data in if -->
+                        <?php if(!empty($page->image)) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>

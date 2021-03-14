@@ -8,11 +8,11 @@ $navigation = new cmsNavigation("Edit Pages");
 $navigation->render();
 
 $pageController = new pageController();
-$page = $pageController->getPage(2);
+$page = $pageController->getPage(5);
 
 if(isset($_POST['submit']))    
 {
-    $pageController->updatePage($page, 2);
+    $pageController->updatePage($page, 5);
 }
 
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
@@ -22,7 +22,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
         <nav class="breadcrumbs breadcrumbs--cms col-12">
             <ul>
                 <li class="breadcrumbs__breadcrumb"><a href="edit-pages.php">Edit Pages</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href="#">Dance Event</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="#">Homepage</a></li>
             </ul>
         </nav>
 
@@ -36,6 +36,11 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                         <label class="label">Page title</label>
                         <input placeholder="enter the title..." type="text" name="page_title" value="<?php echo $page->page_title ?? ''; ?>">
                     </fieldset>
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Page text</label>
+                        <textarea placeholder="enter the content..." name="page_text"><?php echo $page->page_text ?? ''; ?></textarea>
+                    </fieldset>
+
                     <fieldset>
                         <label class="label">Page Image</label>
 
@@ -54,23 +59,18 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">First section text</label>
-                        <textarea placeholder="enter the content..." name="first_section_text" value="<?php echo $page->first_section_text ?? ''; ?>"></textarea>
-                    </fieldset>
-
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">Hero title</label>
-                        <input placeholder="enter the title..." type="text" name="hero_title" value="<?php echo $page->hero_title ?? ''; ?>">
+                        <textarea placeholder="enter the content..." name="first_section_text"><?php echo $page->first_section_text ?? ''; ?></textarea>
                     </fieldset>
                     <fieldset>
-                        <label class="label">Hero Image</label>
+                        <label class="label">First section Image</label>
 
-                        <?php if(!empty($page->hero_image)) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->hero_image ?>" alt="Hero Image">
+                        <?php if(!empty($page->first_section_image)) { ?>
+                            <img src="<?php echo UPLOAD_FOLDER . $page->first_section_image ?>" alt="Page Image">
                             <br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>
-                        <input type="file" name="hero_image" >
+                        <input type="file" name="first_section_image" >
                     </fieldset>
 
                     <fieldset class="col-12 col--children-fullwidth">
@@ -81,6 +81,20 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                         <label class="label">Second section text</label>
                         <textarea placeholder="enter the content..." name="second_section_text" value="<?php echo $page->second_section_text ?? ''; ?>"></textarea>
                     </fieldset>
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Second section list (Seperate with ';')</label>
+                        <textarea placeholder="enter the content..." name="second_section_list" value="<?php echo $page->second_section_list ?? ''; ?>"></textarea>
+                    </fieldset>
+
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">third section title</label>
+                        <input placeholder="enter the title..." type="text" name="third_section_title" value="<?php echo $page->third_section_title ?? ''; ?>">
+                    </fieldset>
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">third section text</label>
+                        <textarea placeholder="enter the content..." name="third_section_text" value="<?php echo $page->third_section_text ?? ''; ?>"></textarea>
+                    </fieldset>
+
 
                     <fieldset class="col-12 row justify-content-end">
                         <input class="button" type="submit" name="submit" value="Update page content">
@@ -89,21 +103,10 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
             </article>
         </div>
 
-        <div class="col-4">
-            <article class="card--cms">
-                <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Artists</h3>
-                    <button class="button button--secondary">Add artist</button>
-                </header>
-                <table class="card--cms__body table--cms">
-                    <!-- TODO: Add artist list from db -->
-                </table>
-            </div>
-        </div>
-
         <?php
             $cmsNotification->render();
         ?>
+
     </div>
 
 <?php 

@@ -12,8 +12,11 @@ $page = $pageController->getPage(4);
 
 if(isset($_POST['submit']))    
 {
-    $pageController->updatePage(4);
+    $pageController->updatePage($page, 4);
 }
+
+$cmsNotification = new cmsNotification('Error', $pageController->errors);
+
 ?>
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
@@ -28,37 +31,28 @@ if(isset($_POST['submit']))
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Page Content</h3>
                 </header>
-                <form class="card--cms__body row" method="POST">
+                <form class="card--cms__body row" method="post" enctype="multipart/form-data">
                     <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">Page title</label>
-                        <input placeholder="enter the title..." type="text" name="page_title" value="<?php echo $page->page_title ?? ''; ?>">
-                    </fieldset>
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">First section title</label>
-                        <input placeholder="enter the title..." type="text" name="first_section_title" value="<?php echo $page->first_section_title ?? ''; ?>">
-                    </fieldset>
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">First section text</label>
-                        <textarea placeholder="enter the content..." name="first_section_text" value="<?php echo $page->first_section_text ?? ''; ?>"></textarea>
+                        <label class="label">Title</label>
+                        <input placeholder="enter the title..." type="text" name="page_title" value="<?php echo $page->page_title ?? ''?>">
                     </fieldset>
 
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">hero title</label>
-                        <input placeholder="enter the title..." type="text" name="hero_title" value="<?php echo $page->hero_title ?? ''; ?>">
+                    <fieldset>
+                        <label class="label">Hero Image</label>
+
+                        <?php if(!empty($page->image)) { ?>
+                            <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
+                            <br/>
+                        <?php } else { ?>
+                            <p>No image present</p>
+                        <?php } ?>
+                        <input type="file" name="image" >
                     </fieldset>
 
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">Second section title</label>
-                        <input placeholder="enter the title..." type="text" name="second_section_title" value="<?php echo $page->second_section_title ?? ''; ?>">
-                    </fieldset>
-                    <fieldset class="col-12 col--children-fullwidth">
-                        <label class="label">Second section text</label>
-                        <textarea placeholder="enter the content..." name="second_section_text" value="<?php echo $page->second_section_text ?? ''; ?>"></textarea>
-                    </fieldset>
-
-                    <fieldset class="col-12 row justify-content-end">
-                        <input class="button" type="submit" name="submit" value="Update page content">
-                    </fieldset>
+                    <br/>
+                    <div class="col-12 row justify-content-end">
+                        <input class="button" type="submit" name="submit" value="Update jazz page">
+                    </div>
                 </form>
             </article>
         </div>
@@ -70,32 +64,14 @@ if(isset($_POST['submit']))
                     <button class="button button--secondary">Add artist</button>
                 </header>
                 <table class="card--cms__body table--cms">
-                    <thead>
-                        <tr>
-                            <th>Band</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Gare du Nord</td>
-                            <td class="table--cms__item__navigation">
-                                <a href="artist-detail-page.php" class="">Edit</a>
-                                <a href="#" class="">Remove</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Gare du Nord</td>
-                            <td class="table--cms__item__navigation">
-                                <a href="#" class="">Edit</a>
-                                <a href="#" class="">Remove</a>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <!-- TODO: Add artist list from db -->
                 </table>
             </div>
         </div>
 
+        <?php
+            $cmsNotification->render();
+        ?>
     </div>
 
 <?php 

@@ -12,19 +12,25 @@
         /**
          * Create encoded json object, combined with the uploaded images names to update the content of the pages
          * 
+         * @param stdClass $page - content of page
          * @param int $id - id of page
          */
-        public function updatePage(int $id) : void
+        public function updatePage(stdClass $page, int $id) : void
         {
             try {
                 // remove submit valuye from post
                 unset($_POST['submit']);
                 
                 // Pass image names from html name attr as key, and image name from file as value
+                // Or use existing string from $page object if no new image is used
                 foreach ($_FILES as $file => $value) {
-                    $_POST[$file] = $value['name'];
+                    if(strlen($value['name']) > 1){
+                        $_POST[$file] = $value['name'];
+                    } else {
+                        $_POST[$file] = $page->$file ?? '';
+                    }
                 }
-                
+
                 $data = json_encode($_POST);
 
                 $this->pageService->updatePage($data, $_FILES, $id);
