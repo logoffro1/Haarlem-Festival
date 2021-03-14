@@ -11,7 +11,7 @@
 
         public function addSong() : void
         {
-            $this->artistService->addSong();
+            $this->songService->addSong();
         }
 
         public function getSong() : ?song
