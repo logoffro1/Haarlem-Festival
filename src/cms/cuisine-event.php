@@ -13,6 +13,14 @@ $breadcrumbsArray = array(
 );
 $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
 
+$pageController = new pageController();
+$page = $pageController->getPage(1);
+
+if(isset($_POST['submit']))    
+{
+    $pageController->updatePage(1);
+}
+
 $restaurantController = new restaurantController();
 $restaurantList = $restaurantController->getRestaurants();
 
@@ -25,6 +33,7 @@ foreach($restaurantList as $restaurant){
 };
 
 
+$cmsNotification = new cmsNotification('Error', $pageController->errors);
 
 $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $restaurantList);
 
@@ -38,21 +47,22 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $resta
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Page Content</h3>
                 </header>
-                <form class="card--cms__body row" enctype="multipart/form-data">
+                <form class="card--cms__body row" method="post" enctype="multipart/form-data">
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Title</label>
-                        <input placeholder="enter the title..." type="text" name="title" id="title">
+                        <input placeholder="enter the title..." type="text" name="page_title" value="<?php echo $page->page_title ?? ''?>">
                     </fieldset>
 
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Content</label>
-                        <textarea placeholder="enter the content..." name="page_content" id="page_content"></textarea>
+                        <textarea placeholder="enter the content..." name="page_content" id="page_content"><?php echo $page->page_content ?? ''?></textarea>
                     </fieldset>
 
                     <fieldset>
                         <label class="label">Hero Image</label>
-                        <?php if(false) { ?> <!-- Todo add restaurant data in if -->
-                            <img src="<?php echo UPLOAD_FOLDER; //. $song->image ?>" alt="Artist Image">
+
+                        <?php if($page->image) { ?> <!-- Todo add restaurant data in if -->
+                            <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>
                             <p>No image present</p>
@@ -79,7 +89,9 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $resta
                 ?>
             </div>
         </div>
-
+        <?php
+            $cmsNotification->render();
+        ?>
     </div>
 
 <?php 
