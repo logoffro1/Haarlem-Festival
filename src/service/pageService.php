@@ -46,13 +46,14 @@
             }
         }
 
-        /*
+        /** 
         * updatePage - updates page content of general pages, based on id
         *
         * @param string (json) $data - POST value encoded to json string  
+        * @param array ($_FILES) $files - FILES value for uploading images  
         * @param int $id - number of page id in the database 
         */
-        public function updatePage(string $data, int $page_id) : void
+        public function updatePage(string $data, array $files, int $page_id) : void
         {
             $sql = "UPDATE pages SET content=? WHERE page_id=?";
 
@@ -64,6 +65,16 @@
                     $page_id
                 );
 
+                // Update with tmp name from $_FILES
+                foreach ($files as $file) {
+                    $isUploaded = $this->db->uploadImage($file['tmp_name'], $file['name']);
+
+                    // If image cannot be uploaded abort query
+                    if(!$isUploaded){
+                        throw new Exception('Could not upload ' . $file['name'] . '. Updating data aborted. Please try again');
+                        return;
+                    }
+                }
                 $query->execute();
             } else {
                 // If connection cannot be established, throw an error
