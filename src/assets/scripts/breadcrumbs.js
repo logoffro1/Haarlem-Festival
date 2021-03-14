@@ -30,7 +30,6 @@ export class breadcrumbs extends base {
     createEventListeners(child, index){
 
         child.addEventListener('click', () => {
-            console.log(child)
             history.go(-(index+1));
         });
     }
