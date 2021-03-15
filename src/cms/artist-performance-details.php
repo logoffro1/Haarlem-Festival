@@ -5,14 +5,23 @@ $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
 $performanceController = new performanceController();
-$performance = $performanceController->getPerformance();
+$artistController = new artistController();
+$artist = $artistController->getSession();
+
+if(isset($_GET['id'])){
+    $performance = $performanceController->getPerformance();
+}
+
+if(isset($_GET['delete'])){
+    $performanceController->deletePerformance($artist);
+}
 
 $locationController = new locationController();
 $location = $locationController->getDanceLocations();
 
 if(isset($_POST['add']))    
 {
-    $performanceController->addPerformance();
+    $performanceController->addPerformance($artist);
 }
 if(isset($_POST['submit']))    
 {
@@ -34,23 +43,24 @@ $navigation->render();
         <article class="card--cms col-8">
             <header class="card--cms__header">
                 <h3 class="card--cms__header__title">Event Details</h3>
+                <a href="artist-performance-details.php?id=<?php echo $performance->id ?>&delete=<?php echo $performance->id ?>" class="button button--secondary">Delete Performance</a>
             </header>
             <form class="card--cms__body row" method="post">
                 <p class="card--cms__body__form-title col-12">Date and time</p>
                 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Date</label>
-                    <input type="date" name="date" value="<?php echo $performance->date; ?>">
+                    <input type="date" name="date" value="<?php echo $performance->date ?? ''; ?>">
                 </fieldset>
 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Start time</label>
-                    <input type="time" name="start_time" id="start_time" value="<?php echo $performance->time; ?>">
+                    <input type="time" name="start_time" id="start_time" value="<?php echo $performance->time ?? ''; ?>">
                 </fieldset>
 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Duration (in hours)</label>
-                    <input type="number" name="duration" id="duration" value="<?php echo $performance->duration; ?>">
+                    <input type="number" name="duration" id="duration" value="<?php echo $performance->duration ?? ''; ?>">
                 </fieldset>
 
                 <p class="card--cms__body__form-title col-12">Location and tickets</p>
@@ -58,10 +68,10 @@ $navigation->render();
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Location</label>
 
-                    <select name="location" id="location" class="has-placeholder">
+                    <select name="location" class="has-placeholder">
                     <?php
                         if(isset($_GET['id'])){
-                            echo "<option value=".$performance->location->id." selected>". $performance->location->name . "</option>";
+                            echo "<option value=".$performance->location->id ?? ''." selected>". $performance->location->name ?? '' . "</option>";
                             
                         } else {
                             echo "<option value='' disabled selected hidden>Location...</option>";
@@ -76,13 +86,8 @@ $navigation->render();
                 </fieldset>
 
                 <fieldset class="col-6 col--children-fullwidth">
-                    <label class="label">Seats*</label>
-                    <input disabled value="200" type="number" name="seats" id="seats">
-                </fieldset>
-
-                <fieldset class="col-6 col--children-fullwidth">
-                    <label class="label">Price per ticket (in euro's)*</label>
-                    <input disabled value="12.50" type="number" name="price" id="price">
+                    <label class="label">Available tickets*</label>
+                    <input value="<?php $performance->tickets ?? ''?>" type="number" name="tickets">
                 </fieldset>
 
                 <p class="card--cms__body__additional">*The Seats and Price Per Ticket are based on the location.</p>

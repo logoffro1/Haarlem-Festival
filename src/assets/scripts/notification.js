@@ -23,8 +23,6 @@ export class notification extends base {
         const { selectors } = this.config;
         const animationDuration = 500; // Should be the same value as in the _notification.scss
 
-        console.log(selectors);
-
         selectors.forEach(selector => {
             selector.addEventListener('click', () => {
                 selector.classList.add('notification--cms--fade-out');

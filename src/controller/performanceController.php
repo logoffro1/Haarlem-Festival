@@ -9,9 +9,29 @@
             $this->performanceService = new performanceService();
         }
 
-        public function addPerformance() : void
+        public function addPerformance(artist $artist) : void
         {
-            $this->performanceService->addPerformance();
+            try {
+                $data = [
+                    'date'=>$_POST['date'],
+                    'time'=>$_POST['start_time'],
+                    'duration'=>$_POST['duration'],
+                    'location'=>$_POST['location'],
+                    'tickets'=>$_POST['tickets']
+                ];
+    
+                $this->performanceService->addPerformance($artist, $data);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function deletePerformance(artist $artist)
+        {
+            $id = $_GET['delete'];
+
+            $this->performanceService->deletePerformance((int)$id);
+            $this->helper->redirect("artist-detail-page.php?id=$artist->id");
         }
 
         public function getPerformance()

@@ -180,7 +180,6 @@ class artistService {
 
             // Execute query
             $query->execute();
-            $this->helper->refresh();
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the song. Please try again');
@@ -193,9 +192,9 @@ class artistService {
      * @param array $data - image data from form post
      * @return bool - check if upload was succesfull
      */
-    public function uploadImage(array $data) : bool
+    public function uploadImage(array $data)
     {
-        return $this->db->uploadImage($data['image']['tmp_name'], $data['image']['name']);
+        $this->db->uploadImage($data['image']['tmp_name'], $data['image']['name']);
     }
     
      /**

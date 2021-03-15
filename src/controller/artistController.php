@@ -61,9 +61,9 @@
                     'image'=>$_FILES["artist_image"]
                 );
     
-                if($this->artistService->uploadImage($data)){
-                    $this->artistService->updateArtistImage($artist, $data);
-                }
+                $this->artistService->uploadImage($data);
+                $this->artistService->updateArtistImage($artist, $data);
+                $this->helper->refresh();
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
@@ -76,8 +76,13 @@
                     'image'=>null
                 );
     
+                if(empty($artist->image)){
+                    throw new Exception("No image provided");
+                }
+
                 if($this->artistService->deleteImage($artist->image)){
                     $this->artistService->updateArtistImage($artist, $data);
+                    $this->helper->refresh();
                 }
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());

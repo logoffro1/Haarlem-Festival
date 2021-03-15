@@ -48,6 +48,8 @@ $navigation->render();
 
 $table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', ''], $performances);
 $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', ''], $songs);
+
+$cmsNotification = new cmsNotification('Error', $artistController->errors);
 ?>
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
@@ -82,7 +84,7 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Performances</h3>
-                    <button class="button button--secondary">Add performance</button>
+                    <a href="artist-performance-details.php" class="button button--secondary">Add performance</a>
                 </header>
 
                 <?php
@@ -150,7 +152,9 @@ $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', 
                 </form>
             </article>
         </div>
-
+        <?php
+            $cmsNotification->render();
+        ?>
     </div>
 
 <?php 

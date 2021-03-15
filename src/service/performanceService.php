@@ -71,27 +71,50 @@
             return $performances;
         }
 
-        public function addPerformance(artist $artist, $data) : void
+        public function addPerformance(artist $artist, array $data) : void
         {
-            $sql = "INSERT INTO performances (location_id, artist_id, date, time, duration, tickets) VALUES (?,?,?,?,?,?)";
+            $sql = "INSERT INTO performances (location_id, artist_id, date, time, duration, availableTickets) VALUES (?,?,?,?,?,?)";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
                 $query->bind_param("iissii", 
                     $data['location'],
-                    $artist->id,
+                    $artistId,
                     $data['date'],
                     $data['time'],
                     $data['duration'],
                     $data['tickets'],
                 );
 
+                $artistId = $artist->id;
+
                 // Execute query
                 $query->execute();
             } else {
                 // If connection cannot be established, throw an error
-                throw new Exception('Could not create a new song. Please try again');
+                throw new Exception('Could not create a new performance. Please try again');
+            }
+        }
+
+        public function deletePerformance(int $idParam)
+        {
+            $sql = "DELETE FROM performances WHERE performance_id=?";
+
+            // Get connection and prepare statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param("i", 
+                    $id
+                );
+
+                $id = $idParam;
+
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception('Could not connect to the database. Please try again');
             }
         }
 
