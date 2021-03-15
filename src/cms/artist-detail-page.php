@@ -54,8 +54,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
             <ul>
-                <li class="breadcrumbs__breadcrumb"><a href="cms/index.php">Edit Pages</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href="detail-pages.php">Jazz Event</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="edit-pages.php">Edit Pages</a></li>
                 <li class="breadcrumbs__breadcrumb"><a href=""><?php echo $artist->name; ?></a></li>
             </ul>
         </nav>
