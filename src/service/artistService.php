@@ -141,6 +141,26 @@ class artistService {
         }
     }
 
+    public function deleteArtist(int $artistId)
+    {
+        $sql = "DELETE FROM artists WHERE artist_id=?";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("i", 
+                $id
+            );
+
+            $id = $artistId;
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not connect to the database. Please try again');
+        }
+    }
     /**
      * Updates the artist data, funciton used for both content and social media update.
      * 

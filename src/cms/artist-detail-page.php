@@ -42,6 +42,11 @@ if(isset($_POST['add']))
     $artistController->addArtist();
 }
 
+if(isset($_GET['delete']))    
+{
+    $artistController->deleteArtist();
+}
+
 if(isset($_GET['id']) && isset($_POST['content']) || isset($_POST['social']))    
 {
     $artistController->updateArtist($artist);
@@ -74,6 +79,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artist Name</h3>
+                    <a class="button button--secondary" href="artist-detail-page.php?id=<?php echo $artist->id ?>&delete=<?php echo $artist->id ?>">Delete artist</a>
                 </header>
                 <form class="card--cms__body row" method="post">
                     <fieldset class="col-12 col--children-fullwidth">

@@ -34,9 +34,8 @@ foreach ($restaurants as $restaurant) {
 
 foreach ($jazzArtist as $artist) {
     $artistArray = array();
+    $artistArray[] = $artist->id;
     $artistArray[] = $artist->name;
-    $artistArray[] = count(array($artist->performances));
-    $artistArray[] = count(array($artist->songs));
     $artistArray[] = "<div class='table--cms__item__navigation'>
     <a href='./artist-detail-page.php?id=$artist->id' class=''>Edit</a>
     </div>";
@@ -47,9 +46,8 @@ foreach ($jazzArtist as $artist) {
 
 foreach ($danceArtist as $artist) {
     $danceArtistArray = array();
+    $danceArtistArray[] = $artist->id;
     $danceArtistArray[] = $artist->name;
-    $danceArtistArray[] = count(array($artist->performances));
-    $danceArtistArray[] = count(array($artist->songs));
     $danceArtistArray[] = "<div class='table--cms__item__navigation'>
     <a href='./artist-detail-page.php?id=$artist->id' class=''>Edit</a>
     </div>";
@@ -57,8 +55,8 @@ foreach ($danceArtist as $artist) {
     $danceArtistTableList[] = $danceArtistArray;
 }
 
-$jazzTable = new table('card--cms__body table--cms', ['Band/Name', 'Amount of performances', 'Amount of songs', ''], $jazzArtistTableList);
-$danceTable = new table('card--cms__body table--cms', ['Band/Name', 'Amount of performances', 'Amount of songs', ''], $danceArtistTableList);
+$jazzTable = new table('card--cms__body table--cms', ['ID', 'Band/Name', ''], $jazzArtistTableList);
+$danceTable = new table('card--cms__body table--cms', ['ID', 'Band/Name', ''], $danceArtistTableList);
 $restaurantTable = new table('card--cms__body table--cms', ['Name', 'Address', 'Stars', ''], $restaurantTableList);
 
 ?>

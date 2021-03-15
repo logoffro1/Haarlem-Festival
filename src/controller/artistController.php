@@ -57,6 +57,18 @@
             }
         }
 
+        public function deleteArtist() : void {
+            try {
+                $artistId = (int)$_GET['delete'];
+
+                $this->artistService->deleteArtist($artistId);
+                $this->helper->redirect("index.php");
+                
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         public function updateArtist(artist $artist) : void
         {
             try {
