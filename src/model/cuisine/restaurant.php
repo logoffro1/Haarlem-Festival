@@ -4,7 +4,7 @@ class restaurant {
     private string $name;
     private array $cuisines;
     private string $address;
-    private string $biography;
+    private ?string $biography;
     private array $images;
     private float $duration;
     private int $sessions;
@@ -13,7 +13,7 @@ class restaurant {
     private int $stars;
     private float $price;
 
-    public function __construct(int $id, string $name, array $cuisines, string $address, string $biography = NULL, array $images = array(), float $duration, int $sessions, string $startOfSession, int $seats, int $stars, float $price){
+    public function __construct(int $id, string $name, array $cuisines, string $address, ?string $biography = "", array $images = array(), float $duration, int $sessions, string $startOfSession, int $seats, int $stars, float $price){
         $this->id = $id;
         $this->name = $name;
         $this->cuisines = $cuisines;

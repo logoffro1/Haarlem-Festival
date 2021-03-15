@@ -66,7 +66,7 @@ include_once '../config/config.php';
             );
         }
 
-        public function addSong(int $artistId, string $title, string $url, string $image) : void
+        public function addSong(array $data, int $id) : void
         {
             $sql = "INSERT INTO songs (artist_id, url, title, image) VALUES (?,?,?,?)";
 
@@ -74,17 +74,58 @@ include_once '../config/config.php';
             if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
                 $query->bind_param("isss", 
-                    $artistId,
-                    $url,
-                    $title,
+                    $id,
+                    $data['url'],
+                    $data['title'],
                     $image
                 );
 
-                // Execute query
-                $query->execute();
+                $image = $data['image']['name'] ?? null;
+
+                if($image == null){
+                    $query->execute();
+                    return;
+                }
+
+                if($this->db->uploadImage($data['image']['tmp_name'], $data['image']['name'])){
+                    // Execute query
+                    $query->execute();
+                } else {
+                    throw new Exception('Could not add the song. Please try again');
+                }
             } else {
                 // If connection cannot be established, throw an error
                 throw new Exception('Could not create a new song. Please try again');
+            }
+        }
+
+        public function deleteSong(song $song)
+        {
+            $sql = "DELETE FROM songs WHERE song_id=?";
+
+            // Get connection and prepare statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param("i", 
+                    $id
+                );
+
+                $id = $song->id;
+
+                if($song->image == null){
+                    $query->execute();
+                    return;
+                }
+
+                if($this->db->deleteImage($song->image)){
+                    // Execute query
+                    $query->execute();
+                } else {
+                    throw new Exception('Could not delete the song. Please try again');
+                }
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception('Could not connect to the database. Please try again');
             }
         }
 

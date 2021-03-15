@@ -12,7 +12,7 @@
         public function getJazzArtistList() : array
         {
             try {
-                return $this->artistService->getArtistList(1); // Todo change id to correct jazz page id in database
+                return $this->artistService->getArtistList(4); // Todo change id to correct jazz page id in database
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

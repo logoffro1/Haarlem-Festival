@@ -73,8 +73,9 @@
             $query = "SELECT * FROM locations where location_id = $location_id";
 
             if ($result = $this->conn->query($query)) {
+                
                 $objectResult = $result->fetch_object();
-    
+                
                 return $this->createLocation($objectResult);
             }
         }
@@ -82,7 +83,18 @@
         public function createLocation($result) : location
         {
             return new location(
-                $result['location_id'],
+                (int)$result->location_id,
+                $result->name,
+                $result->address,
+                $result->seats,
+                $result->price
+            );
+        }
+
+        public function createLocationFromArray($result) : location
+        {
+            return new location(
+                (int)$result['location_id'],
                 $result['name'],
                 $result['address'],
                 $result['seats'],

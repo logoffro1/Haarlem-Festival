@@ -15,6 +15,20 @@ if(isset($_POST['submit']))
     $pageController->updatePage($page, 4);
 }
 
+$artistController = new artistController();
+$artisList = $artistController->getJazzArtistList();
+
+
+$artistTableArray = array();
+
+foreach ($artisList as $artist) {
+    $artistArray[] = $artist->name;
+    $artistArray[] = "<a class='align--flex-end' href='artist-detail-page.php?id=$artist->id'>edit</a>";
+
+    $artistTableArray[] = $artistArray;
+}
+
+$table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray);
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
 ?>
@@ -63,9 +77,9 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     <h3 class="card--cms__header__title">Artists</h3>
                     <button class="button button--secondary">Add artist</button>
                 </header>
-                <table class="card--cms__body table--cms">
-                    <!-- TODO: Add artist list from db -->
-                </table>
+                <?php
+                    $table->render();
+                ?>
             </div>
         </div>
 

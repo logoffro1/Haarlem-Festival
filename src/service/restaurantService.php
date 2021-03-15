@@ -98,26 +98,26 @@ class restaurantService {
     /**
      * @param data - array of post data from the form
      */
-    public function addRestaurant($data) : void // Todo add categories to insert statement
+    public function addRestaurant($data, int $page_id) : void // Todo add categories to insert statement
     {
         $sql = "INSERT INTO restaurants (
-            name,
-            address,
-            biography,
-            duration,
-            sessions,
-            start_of_session,
-            seats,
-            stars,
-            price
-        ) VALUES (?????????)";
-
+            `page_id`,
+            `name`,
+            `address`,
+            `biography`,
+            `duration`,
+            `sessions`,
+            `start_of_session`,
+            `seats`,
+            `price`,
+            `stars`
+        ) VALUES (1?????????)";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
 
             // Create bind params to prevent sql injection
-            $query->bind_param("sssdisiid", 
+            $query->bind_param("sssdisidi",
                 $data['name'],
                 $data['address'],
                 $data['biography'],
@@ -125,8 +125,8 @@ class restaurantService {
                 $data['sessions'],
                 $data['start_of_session'],
                 $data['seats'],
-                $data['stars'],
-                $data['price']
+                $data['price'],
+                $data['stars']
             );
 
             // Execute query
@@ -134,6 +134,31 @@ class restaurantService {
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the restaurant. Please try again');
+        }
+    }
+    public function addRestaurantImage(array $data)
+    {
+        $sql = "UPDATE restaurants 
+                SET image=?
+            WHERE restaurant_id = $artist->id";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $imageName = $data['name'] ?? null;
+
+            $query->bind_param("s", 
+                $imageName    
+            );
+
+            if($this->db->uploadImage($data['tmp_name'], $data['name'])){
+                // Execute query
+                $query->execute();
+            }
+            $this->helper->refresh();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not update the image. Please try again');
         }
     }
 

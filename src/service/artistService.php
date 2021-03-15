@@ -20,7 +20,7 @@ class artistService {
 
     public function getJazzArtists() : array
     {
-        return $this->getArtistList(1); // Todo change id to correct jazz page id in database
+        return $this->getArtistList(4); // Todo change id to correct jazz page id in database
     }
 
     public function getDanceArtists() : array
@@ -55,7 +55,7 @@ class artistService {
         while($row = $result->fetch_assoc()) {
             // Create page classes based on data
             $artist = new artist(
-                (int)$row["id"], 
+                (int)$row["artist_id"], 
                 $row["name"], 
                 $row["biography"], 
                 $row["image"], 

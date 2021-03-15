@@ -13,6 +13,11 @@ $artist = $artistController->getSession();
 $songController = new songController();
 $song = $songController->getSong();
 
+if(isset($_POST['delete']))    
+{
+    $songController->deleteSong($song, $artist);
+}
+
 if(isset($_POST['add']))    
 {
     $songController->addSong($artist->id);
@@ -40,15 +45,22 @@ $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
             <h3 class="card--cms__header__title">Song Details</h3>
         </header>
         <form class="card--cms__body row" method="post" enctype="multipart/form-data" action="">
-            <p class="card--cms__body__form-title col-12">Song</p>
-
+            <p class="card--cms__body__form-title col-12">
+            Song
+            
+            <?php
+                if(isset($_GET['id'])){
+                    echo '<div class="align--flex-end"><input class="button button--secondary" type="submit" name="delete" value="Delete song"></div>';
+                }
+            ?>
+            </p>
             <fieldset class="col-12 col--children-fullwidth">
                 <label class="label">Song title</label>
-                <input required placeholder="Title..." type="text" name="title" id="title" value="<?php echo $song->title ?? ''; ?>">
+                <input placeholder="Title..." type="text" name="title" id="title" value="<?php echo $song->title ?? ''; ?>">
             </fieldset>
             <fieldset class="col-12 col--children-fullwidth">
                 <label class="label">Song url</label>
-                <input required placeholder="Url..." type="text" name="url" id="url" value="<?php echo $song->url ?? ''; ?>">
+                <input placeholder="Url..." type="text" name="url" id="url" value="<?php echo $song->url ?? ''; ?>">
             </fieldset>
 
             <fieldset>

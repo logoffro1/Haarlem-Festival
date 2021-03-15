@@ -40,12 +40,20 @@
                     'price'=>$_POST['price']
                 ];
     
-                $this->restaurantService->addRestaurant($data);
+                $this->restaurantService->addRestaurant($data ,1);
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }        
         }
 
+        public function addRestaurantImage() : void
+        {
+            try {    
+                $this->restaurantService->addRestaurantImage($_FILES);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }  
+        }
         public function updateRestaurant(restaurant $restaurant) : void
         {
             try {
@@ -60,7 +68,7 @@
                     'stars'=>$_POST['stars'],
                     'price'=>$_POST['price']
                 ];
-    
+
                 $this->restaurantService->updateRestaurant($restaurant, $data);
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());

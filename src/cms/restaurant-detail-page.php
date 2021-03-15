@@ -1,6 +1,8 @@
 <?php
 include '../classes/autoloader.php';
-
+error_reporting(-1);
+ini_set('display_errors', 'On');
+set_error_handler("var_dump");
 $restaurantController = new restaurantController();
 $restaurant = $restaurantController->getRestaurant();
 
@@ -9,9 +11,14 @@ if(isset($_POST['submit']))
     $restaurantController->updateRestaurant($restaurant);
 }
 
+if(isset($_POST['add']))    
+{
+    $restaurantController->addRestaurant();
+}
+
 $breadcrumbsArray = array(
     array('text' => 'Edit Pages', 'url' => "/index.php"),
-    array('text' => 'Cuisine Event', 'url' => "/cuisine-event.php"),
+    array('text' => 'Cuisine Event', 'url' => "cuisine-event.php"),
     array('text' => 'Restaurant Details', 'url' => "#"),
 );
 $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
@@ -88,20 +95,29 @@ $navigation->render();
 
         <div class="col-4">
             <article class="card--cms">
-                <header class="card--cms__header">
+            <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Restaurant Images</h3>
                 </header>
-                <form class="card--cms__body table--cms">
-                    <img src="" alt="Artist Image">
+                <form class="card--cms__body row" method="post" enctype="multipart/form-data">
+                    <?php if(!empty($restaurant->image)) { ?>
+                        <img src="<?php echo UPLOAD_FOLDER . $restaurant->image ?>" alt="restaurant Image">
+                        <br/>
+                    <?php } else { ?>
+                        <p>No image present</p>
+                    <?php } ?>
+                    <input type="file" name="image" >
                     <br/>
-                    <button class="button">Upload Image</button>
-                    <button class="button button--secondary">Delete</button>
+                    <input class="button" type="submit" name="submit" value="Update image">
+                    <br/>
+                    <input class="button" type="submit" name="delete" value="Delete image">
                 </form>
             </article>
             
-         
+        
         </div>
-
+        <?php
+            $cmsNotification->render(); 
+        ?>
     </div>
 
 <?php 

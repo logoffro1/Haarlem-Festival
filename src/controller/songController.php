@@ -5,13 +5,26 @@
         private songService $songService;
 
         public function __construct() {
+            parent::__construct();
             $this->songService = new songService();
         }
 
-
-        public function addSong() : void
+        public function deleteSong(song $song, artist $artist)
         {
-            $this->songService->addSong();
+            $this->songService->deleteSong($song);
+            $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+        }
+
+        public function addSong(int $artistId) : void
+        {
+            $data = array(
+                'title'=>$_POST['title'],
+                'url'=>$_POST['url'],
+                'image'=>$_FILES["image"]?? ''
+            );
+
+            $this->songService->addSong($data, $artistId);
+            $this->helper->redirect("artist-detail-page.php?id=$artistId");
         }
 
         public function getSong() : ?song
@@ -35,7 +48,7 @@
                 );
     
                 $this->songService->updateSong($song->id, $data);
-                header("Refresh: 0");
+                $this->helper->refresh();
             } catch(Exception $e) {
                 echo $e;
             }

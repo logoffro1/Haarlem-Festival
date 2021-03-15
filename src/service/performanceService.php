@@ -11,6 +11,28 @@
             $this->locationService = new locationService();
         }
 
+        public function getPerformance(int $id)
+        {
+            $query = "SELECT * FROM Performances WHERE performance_id ='$id' LIMIT 1;";
+            $result = $this->conn->query($query);
+
+            if($result)
+            {
+                $performances = array();
+                while($row = $result->fetch_assoc())
+                {
+                    return new performance(
+                        $row["performance_id"],
+                        $row["date"],
+                        $row["time"],
+                        $row["duration"],
+                        (int)$row["availableTickets"],
+                        $this->locationService->getLocation((int)$row["location_id"])
+                    );
+                }
+                return null;
+            }
+        }
             
         /**
          * @param artistId - id of the selected artist
@@ -20,7 +42,7 @@
         {       
             $performances = array();
 
-            $query = "SELECT * FROM performances p JOIN locations l on p.location_id = l.location_id WHERE $artistId";
+            $query = "SELECT * FROM performances p JOIN locations l on p.location_id = l.location_id WHERE artist_id = $artistId";
 
             if ($result = $this->conn->query($query)) {
                 $performances = array();
@@ -34,7 +56,7 @@
                         $row["time"], 
                         (int)$row["duration"],
                         (int)$row["availableTickets"],
-                        $this->locationService->createLocation($row),
+                        $this->locationService->createLocationFromArray($row),
                     );
 
         
@@ -70,6 +92,29 @@
             } else {
                 // If connection cannot be established, throw an error
                 throw new Exception('Could not create a new song. Please try again');
+            }
+        }
+
+        public function updatePerformance(array $data, int $id)
+        {
+            $sql = "UPDATE performances SET location_id=?, date=?, time=?, duration=? WHERE performance_id = ?";
+
+            // Get connection and prepare statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param("issii", 
+                    $data['location'],
+                    $data['date'],
+                    $data['time'],
+                    $data['duration'],
+                    $id
+                );
+
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception('Could not update performance. Please try again');
             }
         }
     }

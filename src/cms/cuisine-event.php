@@ -24,18 +24,22 @@ if(isset($_POST['submit']))
 $restaurantController = new restaurantController();
 $restaurantList = $restaurantController->getRestaurants();
 
+$tableArray = array();
+
 foreach($restaurantList as $restaurant){
+    $restaurantArray = array();
     $restaurantArray[] = $restaurant->name;
     $restaurantArray[] = "<a class='align--flex-end' href='restaurant-detail-page.php?id=$restaurant->id'>edit</a>";
   
 
-    $restaurantList[] = $restaurantArray;
+    $tableArray[] = $restaurantArray;
 };
 
+// var_dump($tableArray);
 
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
-$table = new table('card--cms__body table--cms', ['Restaurant name', ''], $restaurantList);
+$table = new table('card--cms__body table--cms', ['Restaurant name', ''], $tableArray);
 
 ?>
     <div class="cms-container row">
@@ -82,7 +86,7 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $resta
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Restaurants</h3>
-                    <button class="button button--secondary">Add restaurant</button>
+                    <a href="restaurant-detail-page.php" class="button button--secondary">Add restaurant</a>
                 </header>
                 <?php
                     $table->render();
