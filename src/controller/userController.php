@@ -31,6 +31,19 @@
             }
         }
 
+        
+        public function deleteUser() : void
+        {
+            try {
+                $userId = $_GET['id'];
+    
+                $this->userService->deleteUser($userId);
+                $this->helper->redirect("user-page.php");
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         public function updateUser(int $id = null) : void
         {
             try {

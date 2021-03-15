@@ -99,6 +99,32 @@
         }
 
         /**
+        * deleteUser - deletes specific user from database, based on id
+        *
+        * @param int $id - current active user id
+        */
+        public function deleteUser(int $id)
+        {
+            // Build query
+            $sql = "DELETE FROM cms_users WHERE users_id=?";
+
+            // Get connection / preapre statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param(
+                    "i",
+                    $id
+                );
+                
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception("Something went wrong. We could not update the account. Please try again.");
+            }
+        }
+
+        /**
          * @param result - result of account query
          * @return array cmsUser - list of accounts without their passwords encrypted
          */

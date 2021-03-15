@@ -9,6 +9,11 @@ if(isset($_POST['submit']))
     $userController->updateUser();
 }
 
+if(isset($_GET['delete']))    
+{
+    $userController->deleteUser();
+}
+
 
 $breadcrumbsArray = array(
     array('text' => 'User Overview', 'url' => "./user-page.php"),
@@ -30,6 +35,7 @@ $navigation->render();
         <article class="card--cms col-8">
         <header class="card--cms__header">
             <h3 class="card--cms__header__title">User Detail - <?php echo $user->name; ?></h3>
+            <a class="button button--secondary" href="user-detail-page.php?id=<?php echo $user->id ?>&delete=<?php echo $user->id ?>">Delete user</a>
         </header>
         <form class="card--cms__body row" method="post" action="">
             <fieldset class="col-12 col--children-fullwidth">
