@@ -37,6 +37,26 @@
             }
         }
 
+        public function addArtist() : void {
+            try {
+                $data = [
+                    'page_id' => (int)$_GET['event'],
+                    'title' => $_POST['title'],
+                    'page_content' => $_POST['page_content']
+                ];
+
+                $this->artistService->addArtist($data);
+
+                if($data['page_id'] == 4){
+                    $this->helper->redirect("jazz-event.php");
+                } else {
+                    $this->helper->redirect("dance-event.php");
+                }
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         public function updateArtist(artist $artist) : void
         {
             try {

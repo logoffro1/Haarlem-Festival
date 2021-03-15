@@ -114,6 +114,34 @@ class artistService {
     }
 
     /**
+     * Adds artist to the database, based on url 'event' param interger
+     * 
+     * @param array $data - data from form post
+     */
+    public function addArtist(array $data) : void
+    {
+        // Build query
+        $sql = "INSERT INTO artists (page_id, name, biography) VALUES (?,?,?)";
+
+        // Get connection and preapre statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param(
+                "iss",
+                $data['page_id'],
+                $data['title'],
+                $data['page_content']
+            );
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception("Cannot add a new artist. please try again.");
+        }
+    }
+
+    /**
      * Updates the artist data, funciton used for both content and social media update.
      * 
      * @param artist $artist - active artist o page

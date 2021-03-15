@@ -22,6 +22,7 @@ $artisList = $artistController->getJazzArtistList();
 $artistTableArray = array();
 
 foreach ($artisList as $artist) {
+    $artistArray = array();
     $artistArray[] = $artist->name;
     $artistArray[] = "<a class='align--flex-end' href='artist-detail-page.php?id=$artist->id'>edit</a>";
 
@@ -75,7 +76,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artists</h3>
-                    <button class="button button--secondary">Add artist</button>
+                    <a href="artist-detail-page.php?event=4" class="button button--secondary">Add artist</a>
                 </header>
                 <?php
                     $table->render();

@@ -11,7 +11,7 @@
     
     &.js-tab-content {
         display: none;
-
+        min-height: 300px;
         &.is-active {
             display: block;
         }

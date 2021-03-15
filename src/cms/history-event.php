@@ -65,18 +65,6 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
             </article>
         </div>
 
-        <div class="col-4">
-            <article class="card--cms">
-                <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Artists</h3>
-                    <button class="button button--secondary">Add artist</button>
-                </header>
-                <table class="card--cms__body table--cms">
-                    <!-- TODO: Add artist list from db -->
-                </table>
-            </div>
-        </div>
-
         <?php
             $cmsNotification->render();
         ?>

@@ -77,11 +77,11 @@ $navigation->render();
                             echo "<option value='' disabled selected hidden>Location...</option>";
                         }
                     ?>
-                        <?php
+                    <?php
                         foreach ($location as $l) {
                             echo "<option value=" . $l->mutateToArray()['id'] . ">" . $l->mutateToArray()['name'] . "</option>";
                         }
-                        ?> 
+                    ?> 
                     </select>
                 </fieldset>
 

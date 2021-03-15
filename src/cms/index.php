@@ -6,6 +6,61 @@ $head->render();
 
 $navigation = new cmsNavigation("Events");
 $navigation->render();
+
+$jazzArtistTableList = array();
+$danceArtistTableList = array();
+$restaurantTableList = array();
+
+$artistController = new artistController();
+$restaurantController = new restaurantController();
+
+$restaurants = $restaurantController->getRestaurants();
+$jazzArtist = $artistController->getJazzArtistList();
+$danceArtist = $artistController->getDanceArtistList();
+
+
+foreach ($restaurants as $restaurant) {
+    $restaurantArray = array();
+    $restaurantArray[] = $restaurant->name;
+    $restaurantArray[] = $restaurant->address;
+    $restaurantArray[] = $restaurant->stars;
+    $restaurantArray[] = "<div class='table--cms__item__navigation'>
+    <a href='./restaurant-detail-page.php?id=$restaurant->id' class=''>Edit</a>
+    </div>";
+    
+    $restaurantTableList[] = $restaurantArray;
+}
+
+
+foreach ($jazzArtist as $artist) {
+    $artistArray = array();
+    $artistArray[] = $artist->name;
+    $artistArray[] = count(array($artist->performances));
+    $artistArray[] = count(array($artist->songs));
+    $artistArray[] = "<div class='table--cms__item__navigation'>
+    <a href='./artist-detail-page.php?id=$artist->id' class=''>Edit</a>
+    </div>";
+    
+    $jazzArtistTableList[] = $artistArray;
+}
+
+
+foreach ($danceArtist as $artist) {
+    $danceArtistArray = array();
+    $danceArtistArray[] = $artist->name;
+    $danceArtistArray[] = count(array($artist->performances));
+    $danceArtistArray[] = count(array($artist->songs));
+    $danceArtistArray[] = "<div class='table--cms__item__navigation'>
+    <a href='./artist-detail-page.php?id=$artist->id' class=''>Edit</a>
+    </div>";
+    
+    $danceArtistTableList[] = $danceArtistArray;
+}
+
+$jazzTable = new table('card--cms__body table--cms', ['Band/Name', 'Amount of performances', 'Amount of songs', ''], $jazzArtistTableList);
+$danceTable = new table('card--cms__body table--cms', ['Band/Name', 'Amount of performances', 'Amount of songs', ''], $danceArtistTableList);
+$restaurantTable = new table('card--cms__body table--cms', ['Name', 'Address', 'Stars', ''], $restaurantTableList);
+
 ?>
 
     <div class="cms-container">
@@ -25,74 +80,32 @@ $navigation->render();
                 </ul>
             </nav>
             <article data-content="jazz" class="card--cms js-tab-content is-active">
-                <button class="button button--top">Add artist</button>
-                <button class="button button--top">Add performance</button>
+                <button href="./artist-detail-page.php" class="button button--top">Add artist</button>
                 <?php
-                    $tableHeader = array('Band', 'Date', 'Time', 'Location', 'Hall');
-                    $tableBody = array(
-                        array(
-                            'Gare du Nord',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=1" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                        array(
-                            'Gare du Nord',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=2" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                    );
-
-                    $table = new table('card--cms__body table--cms', $tableHeader, $tableBody);
-                    $table->render();
+                     $jazzTable->render();
                 ?>
 
             </article>
             <article data-content="dance" class="card--cms js-tab-content">
                 <button class="button button--top">Add artist</button>
-                <button class="button button--top">Add performance</button>
                 <?php
-                    $tableHeader = array('Band', 'Date', 'Time', 'Location', 'Hall');
-                    $tableBody = array(
-                        array(
-                            'Hardwell',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=3" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                        array(
-                            'Hardwell',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=4" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                    );
-
-                    $table = new table('card--cms__body table--cms', $tableHeader, $tableBody);
-                    $table->render();
+                     $danceTable->render();
                 ?>
 
+            </article>
+            <article data-content="history" class="card--cms js-tab-content">
+                <button class="button button--top">Add artist</button>
+                
+                <div class="table table--cms card--cms__body">
+                    Edit content
+                </div>
+            </article>
+            <article data-content="cuisine" class="card--cms js-tab-content">
+                <button class="button button--top">Add restaurant</button>
+                
+                <?php
+                    $restaurantTable->render();
+                ?>
             </article>
         </div>
         

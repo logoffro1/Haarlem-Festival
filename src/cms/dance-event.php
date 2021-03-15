@@ -17,6 +17,21 @@ if(isset($_POST['submit']))
 
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
+$artistController = new artistController();
+$artisList = $artistController->getDanceArtistList();
+
+
+$artistTableArray = array();
+
+foreach ($artisList as $artist) {
+    $artistArray = array();
+    $artistArray[] = $artist->name;
+    $artistArray[] = "<a class='align--flex-end' href='artist-detail-page.php?event=2&id=$artist->id'>edit</a>";
+
+    $artistTableArray[] = $artistArray;
+}
+
+$table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray);
 ?>
     <div class="cms-container row">
         <nav class="breadcrumbs breadcrumbs--cms col-12">
@@ -93,11 +108,11 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artists</h3>
-                    <button class="button button--secondary">Add artist</button>
+                    <a href="artist-detail-page.php?event=dance" class="button button--secondary">Add artist</a>
                 </header>
-                <table class="card--cms__body table--cms">
-                    <!-- TODO: Add artist list from db -->
-                </table>
+                <?php
+                    $table->render();
+                ?>
             </div>
         </div>
 
