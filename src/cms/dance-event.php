@@ -18,12 +18,12 @@ if(isset($_POST['submit']))
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
 $artistController = new artistController();
-$artisList = $artistController->getDanceArtistList();
+$artistList = $artistController->getDanceArtistList();
 
 
 $artistTableArray = array();
 
-foreach ($artisList as $artist) {
+foreach ($artistList as $artist) {
     $artistArray = array();
     $artistArray[] = $artist->name;
     $artistArray[] = "<a class='align--flex-end' href='artist-detail-page.php?event=2&id=$artist->id'>edit</a>";
