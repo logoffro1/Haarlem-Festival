@@ -6,6 +6,7 @@
         private tourService $tourService;
 
         public function __construct() {
+            parent::__construct();
             $this->tourService = new tourService();
         }
 
