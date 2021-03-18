@@ -15,6 +15,22 @@ if(isset($_POST['submit']))
     $pageController->updatePage($page, 3);
 }
 
+$tourController = new tourController();
+$tourList = $tourController->getAllTours();
+
+$tourTableArray = array();
+
+foreach ($tourList as $tour) {
+    $tourArray = array();
+    $tourArray[] = $tour->date;
+    $tourArray[] = $tour->time;
+    $tourArray[] = "<a class='align--flex-end' href='tour-detail-page.php?id=$tour->id'>edit</a>";
+
+    $tourTableArray[] = $tourArray;
+}
+
+$table = new table('card--cms__body table--cms', ['Date', 'Time', ''], $tourTableArray);
+
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 ?>
     <div class="cms-container row">
@@ -63,6 +79,19 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     </div>
                 </form>
             </article>
+        </div>
+
+
+        <div class="col-4">
+            <article class="card--cms">
+                <header class="card--cms__header">
+                    <h3 class="card--cms__header__title">Tours</h3>
+                    <a href="tour-detail-page.php" class="button button--secondary">Add tour</a>
+                </header>
+                <?php
+                    $table->render();
+                ?>
+            </div>
         </div>
 
         <?php
