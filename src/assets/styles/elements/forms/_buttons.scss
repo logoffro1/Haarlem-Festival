@@ -25,9 +25,14 @@ button, .button {
         background-color: transparent;
     }
 
-    &:focus, &:active {
+    &:active {
         color: $color-white;
     }
+
+    &:focus {
+        color: $color-black;
+    }
+
 
     &.button--secondary {
         background-color: transparent;
