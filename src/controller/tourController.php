@@ -12,29 +12,41 @@
 
         public function getAllTours() : array
         {
-            return $this->tourService->getAllTours();
+            try {
+                return $this->tourService->getAllTours();
+            } catch(Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getTourByID(int $id) : tour
         {
-            return $this->tourService->getTourByID($id);
+            try {
+                return $this->tourService->getTourByID($id);
+            } catch(Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function addTourType(tour $tour) : void
         {
-            // Associative array for values needed in service layer
-            $data = array();
-            
-            // Language of tour type needs to be retrieved to remove multiple (now redundant) $_POST checks in the tour-detail-page.php
-            $activeLanguage = $this->getLanguage();
+            try {
+                // Associative array for values needed in service layer
+                $data = array();
+                
+                // Language of tour type needs to be retrieved to remove multiple (now redundant) $_POST checks in the tour-detail-page.php
+                $activeLanguage = $this->getLanguage();
 
-            // Get amount of seats
-            $data['seats'] = (int)$_POST['seats'];
-            
-            $data['language'] = $activeLanguage;
+                // Get amount of seats
+                $data['seats'] = (int)$_POST['seats'];
+                
+                $data['language'] = $activeLanguage;
 
-            $this->tourService->addTourType($data, $tour);
-            $this->helper->refresh();
+                $this->tourService->addTourType($data, $tour);
+                $this->helper->refresh();
+            } catch(Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         /**
