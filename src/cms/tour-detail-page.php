@@ -32,6 +32,16 @@ if(isset($_POST['add']))
     $tourController->addTour();
 }
 
+if(isset($_POST['add_english']) || isset($_POST['add_dutch']) || isset($_POST['add_chinese']))    
+{
+    $tourController->addTourType($tour);
+}
+
+if(isset($_POST['update_english']) || isset($_POST['update_dutch']) || isset($_POST['update_chinese']))    
+{
+    $tourController->updateTourType($tour);
+}
+
 $breadcrumbsArray = array(
     array('text' => 'Edit Pages', 'url' => "/index.php"),
     array('text' => 'History Event', 'url' => "history-event.php"),
@@ -129,25 +139,25 @@ $navigation->render();
                         </fieldset>
 
                         <fieldset class="col-4 col--children-fullwidth">
-                            <label class="label">Amount ('0' to delete the tour)</label>
+                            <label class="label white-space--no-wrap">Amount of tours ('0' to delete the tour)</label>
                             
                             <?php 
                                 $hasLanguage = false;
                                 foreach ($tour->tourTypes as $type) {
                                     if($type->language == $language){
                                         $hasLanguage = true;
-                                        echo '<input type="number" name="'. strtolower($language) .'_seats" value="'.$type->amountOfTours.'">';
+                                        echo '<input type="number" min="0" name="seats" value="'.$type->amountOfTours.'">';
                                         break;
                                     }
                                 }
 
                                 if(!$hasLanguage) {
-                                    echo '<input type="number" name="'. strtolower($language) .'_seats" value="">';
+                                    echo '<input type="number" min="0" name="seats" value="">';
                                 }
                             ?>
                         </fieldset>
                         <fieldset class="col-offset-1 col-2 col--children-fullwidth">
-                            <input class="button" type="submit" name="<?php echo $hasLanguage ? 'update' : 'add'; unset($hasLanguage); ?>" value="Update Tour">
+                            <input class="button" type="submit" name="<?php echo $hasLanguage ? 'update_'.strtolower($language) : 'add_'.strtolower($language); unset($hasLanguage); ?>" value="Update Tour">
                         </fieldset>
                     </form>
                 <?php } ?>

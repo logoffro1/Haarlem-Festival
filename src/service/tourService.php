@@ -95,5 +95,83 @@ class tourService {
             return $tourTypesArray;
         }
     }
+
+    public function addTourType(array $data, tour $tour) : void
+    {
+        // Build query
+        $sql = "INSERT INTO tour_types (tour_id, tour_guide_id, amount_of_tours, `language`) VALUES (?,?,?,?)";
+
+        // preapre statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $tourGuideId = 1;
+
+            $query->bind_param(
+                "iiis",
+                $tourId,
+                $tourGuideId,
+                $data['seats'],
+                $data['language']
+            );
+
+            $tourId = $tour->id;
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception("Cannot add a new tour. please try again.");
+        }
+    }
+
+    public function updateTourType(array $data) : void
+    {
+        // If seats is 0 delete the row. Else update it
+        if($data['seats'] == 0){
+            $this->deleteTourType($data);
+            return;
+        }
+
+        // Build query
+        $sql = "UPDATE tour_types 
+                    SET amount_of_tours=?
+                WHERE tour_types_id=?";
+
+        // preapre statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param(
+                "ii",
+                $data['seats'],
+                $data['tourTypeId']
+            );
+            
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception("Cannot add a new tour. please try again.");
+        }
+    }
+
+    public function deleteTourType(array $data)
+    {
+        $sql = "DELETE FROM tour_types WHERE tour_types_id=?";
+
+        // preapre statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param(
+                "i",
+                $data['tourTypeId']
+            );
+            
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception("Cannot delete the tour type. please try again.");
+        }
+    }
 }
 ?>
