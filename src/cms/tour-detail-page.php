@@ -4,7 +4,8 @@ include '../classes/autoloader.php';
 
 $tourController = new tourController();
 
-if(isset($_GET['id'])){
+$tourExists = isset($_GET['id']);
+if($tourExists){
     $tour = $tourController->getTourByID($_GET['id']);
 
     $tourTableArray = array();
@@ -71,28 +72,28 @@ $navigation->render();
                 <form class="card--cms__body row" method="post">
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Date</label>
-                        <input type="date" name="date" value="<?php echo $tour->date ?? '';?>">
+                        <input required placeholder="tets" type="date" name="date" value="<?php echo $tour->date ?? '';?>">
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Start Time</label>
-                        <input type="time" name="time" value="<?php echo $tour->time ?? '';?>">
+                        <input required placeholder="tets" type="time" name="time" value="<?php echo $tour->time ?? '';?>">
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Price</label>
-                        <input type="number" step="0.50" name="price" value="<?php echo $tour->price ?? '';?>">
+                        <input required placeholder="e.g 17.50" type="number" step="0.50" name="price" value="<?php echo $tour->price ?? '';?>">
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Family Price (4 tickets)</label>
-                        <input type="number" step="0.50" name="family_price" value="<?php echo $tour->family_price ?? '';?>">
+                        <input required placeholder="e.g 50.00" type="number" step="0.50" name="family_price" value="<?php echo $tour->family_price ?? '';?>">
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Seats per tour</label>
-                        <input type="number" name="seats" value="<?php echo $tour->seats ?? '' ?>">
+                        <input required placeholder="e.g 30" type="number" name="seats" value="<?php echo $tour->seats ?? '' ?>">
                     </fieldset>
                   
                     <br/>
                     <div class="col-12 row justify-content-end">
-                        <?php if(isset($_GET['id'])){
+                        <?php if($tourExists){
                             echo '<input class="button" type="submit" name="submit" value="Update tour">';
                         } else {
                             echo '<input class="button" type="submit" name="add" value="Create new tour">';
@@ -103,50 +104,54 @@ $navigation->render();
             </article>
         </div>
 
-        <div class="col-8">
-            <article class="card--cms">
-                <header class="card--cms__header">
-                    <h3 class="card--cms__header__title">Languages and Amount of tours</h3>
-                </header>
-
-                <?php
-                $languages = ['Dutch', 'English', 'Chinese'];
-                foreach ($languages as $language) { ?>
-                    <form class="card--cms__body row align-items-center" method="post">
-                        <fieldset class="col-3 col--children-fullwidth">
-                            <label class="label">Language</label>
-                            
-                            <p class="no-margin">
-                                <strong><?php echo $language ?></strong>
-                            </p>
-                        </fieldset>
-
-                        <fieldset class="col-4 col--children-fullwidth">
-                            <label class="label white-space--no-wrap">Amount of tours ('0' to delete the tour)</label>
-                            
-                            <?php 
-                                $hasLanguage = false;
-                                foreach ($tour->tourTypes as $type) {
-                                    if($type->language == $language){
-                                        $hasLanguage = true;
-                                        echo '<input type="number" min="0" name="seats" value="'.$type->amountOfTours.'">';
-                                        break;
-                                    }
-                                }
-
-                                if(!$hasLanguage) {
-                                    echo '<input type="number" min="0" name="seats" value="">';
-                                }
-                            ?>
-                        </fieldset>
-                        <fieldset class="col-offset-1 col-2 col--children-fullwidth">
-                            <input class="button" type="submit" name="<?php echo $hasLanguage ? 'update_'.strtolower($language) : 'add_'.strtolower($language); unset($hasLanguage); ?>" value="Update Tour">
-                        </fieldset>
-                    </form>
-                <?php } ?>
-            </article>
-        </div>
         <?php
+            if($tourExists) {
+        ?>
+            <div class="col-8">
+                <article class="card--cms">
+                    <header class="card--cms__header">
+                        <h3 class="card--cms__header__title">Languages and Amount of tours</h3>
+                    </header>
+
+                    <?php
+                    $languages = ['Dutch', 'English', 'Chinese'];
+                    foreach ($languages as $language) { ?>
+                        <form class="card--cms__body row align-items-center" method="post">
+                            <fieldset class="col-3 col--children-fullwidth">
+                                <label class="label">Language</label>
+                                
+                                <p class="no-margin">
+                                    <strong><?php echo $language ?></strong>
+                                </p>
+                            </fieldset>
+
+                            <fieldset class="col-4 col--children-fullwidth">
+                                <label class="label white-space--no-wrap">Amount of tours ('0' to delete the tour)</label>
+                                
+                                <?php 
+                                    $hasLanguage = false;
+                                    foreach ($tour->tourTypes as $type) {
+                                        if($type->language == $language){
+                                            $hasLanguage = true;
+                                            echo '<input required type="number" min="0" name="number_of_tours" value="'.$type->amountOfTours.'">';
+                                            break;
+                                        }
+                                    }
+
+                                    if(!$hasLanguage) {
+                                        echo '<input required type="number" min="0" name="number_of_tours" value="">';
+                                    }
+                                ?>
+                            </fieldset>
+                            <fieldset class="col-offset-1 col-2 col--children-fullwidth">
+                                <input class="button" type="submit" name="<?php echo $hasLanguage ? 'update_'.strtolower($language) : 'add_'.strtolower($language); unset($hasLanguage); ?>" value="Update Tour">
+                            </fieldset>
+                        </form>
+                    <?php } ?>
+                </article>
+            </div>
+        <?php
+            }
             $cmsNotification->render(); 
         ?>
     </div>

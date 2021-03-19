@@ -19,15 +19,39 @@
             }
         }
 
-        public function getTourByID(int $id) : tour
+        public function getTourByID(int $id) : ?tour
         {
             try {
-                return $this->tourService->getTourByID($id);
+                $tour = $this->tourService->getTourByID($id);
+
+                if($tour == null && strpos($_SERVER['REQUEST_URI'], "cms")){
+                    $this->helper->redirect("history-event.php");
+                }
+
+                return $tour;
             } catch(Exception $e){
                 $this->addToErrors($e->getMessage());
             }
         }
 
+        public function addTour()
+        {
+            try {
+                $data = array(
+                    'page_id' => 3,
+                    'date' => $_POST['date'],
+                    'time' => $_POST['time'],
+                    'price' => (float)$_POST['price'],
+                    'family_price' => (float)$_POST['family_price'],
+                    'seats' => (int)$_POST['seats']
+                );
+
+                $this->tourService->addTour($data);
+                // $this->helper->redirect("history-event.php");
+            } catch(Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
         public function updateTour(tour $tour)
         {
             try {
@@ -56,7 +80,7 @@
                 $activeLanguage = $this->getLanguage();
 
                 // Get amount of seats
-                $data['seats'] = (int)$_POST['seats'];
+                $data['number_of_tours'] = (int)$_POST['number_of_tours'];
                 
                 $data['language'] = $activeLanguage;
 
@@ -82,7 +106,7 @@
                 $activeLanguage = $this->getLanguage();
 
                 // Get amount of seats
-                $data['seats'] = (int)$_POST['seats'];
+                $data['number_of_tours'] = (int)$_POST['number_of_tours'];
 
                 // Get correct 'tourType' class from tourType array equal to the activeLanguage
                 foreach ($tour->tourTypes as $type) {

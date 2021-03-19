@@ -58,16 +58,42 @@ class tourService {
         }
     }
 
+    public function addTour(array $data)
+    {
+        // Build query
+        $sql = "INSERT INTO tours (page_id, date, time, price, family_price, seats_per_tour) VALUES (?,?,?,?,?,?)";
+
+        // Get connection and preapre statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param(
+                "issddi",
+                $data['page_id'],
+                $data['date'],
+                $data['time'],
+                $data['price'],
+                $data['family_price'],
+                $data['seats'],
+            );
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception("Cannot add a new tour. please try again.");
+        }
+    }
+
     public function updateTour(array $data, tour $tour)
     {
         // Build query
         $sql = "UPDATE tours 
-            SET date=?,
-                time=?,
-                price=?,
-                family_price=?,
-                seats_per_tour=?
-            WHERE tour_id=?";
+                    SET date=?,
+                        time=?,
+                        price=?,
+                        family_price=?,
+                        seats_per_tour=?
+                WHERE tour_id=?";
 
         // preapre statement
         if($query = $this->conn->prepare($sql)) {
@@ -144,7 +170,7 @@ class tourService {
                 "iiis",
                 $tourId,
                 $tourGuideId,
-                $data['seats'],
+                $data['number_of_tours'],
                 $data['language']
             );
 
@@ -161,7 +187,7 @@ class tourService {
     public function updateTourType(array $data) : void
     {
         // If seats is 0 delete the row. Else update it
-        if($data['seats'] == 0){
+        if($data['number_of_tours'] == 0){
             $this->deleteTourType($data);
             return;
         }
@@ -176,11 +202,12 @@ class tourService {
             // Create bind params to prevent sql injection
             $query->bind_param(
                 "ii",
-                $data['seats'],
+                $data['number_of_tours'],
                 $data['tourTypeId']
             );
             
             // Execute query
+            var_dump($data);
             $query->execute();
         } else {
             // If connection cannot be established, throw an error
