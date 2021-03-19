@@ -51,23 +51,6 @@ $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
 
 $cmsNotification = new cmsNotification('Error', $tourController->errors);
 
-$languageOptions = [
-    [
-        'value' => 'English',
-        'text' => 'English'
-    ],
-    [
-        'value' => 'Dutch',
-        'text' => 'Dutch'
-    ],
-    [
-        'value' => 'Chinese',
-        'text' => 'Chinese'
-    ],
-];
-
-$languageSelect = new select('language', $languageOptions);
-
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
@@ -96,11 +79,11 @@ $navigation->render();
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Price</label>
-                        <input type="number" steps="0.5" name="price" value="<?php echo $tour->price ?? '';?>">
+                        <input type="number" step="0.50" name="price" value="<?php echo $tour->price ?? '';?>">
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Family Price (4 tickets)</label>
-                        <input type="number" steps="0.5" name="family_price" value="<?php echo $tour->family_price ?? '';?>">
+                        <input type="number" step="0.50" name="family_price" value="<?php echo $tour->family_price ?? '';?>">
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Seats per tour</label>

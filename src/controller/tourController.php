@@ -28,6 +28,24 @@
             }
         }
 
+        public function updateTour(tour $tour)
+        {
+            try {
+                $data = array(
+                    'date' => $_POST['date'],
+                    'time' => $_POST['time'],
+                    'price' => $_POST['price'],
+                    'family_price' => $_POST['family_price'],
+                    'seats' => $_POST['seats']
+                );
+
+                $this->tourService->updateTour($data, $tour);
+                $this->helper->refresh();
+            } catch(Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         public function addTourType(tour $tour) : void
         {
             try {

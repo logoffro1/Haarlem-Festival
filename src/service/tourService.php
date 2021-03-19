@@ -58,6 +58,40 @@ class tourService {
         }
     }
 
+    public function updateTour(array $data, tour $tour)
+    {
+        // Build query
+        $sql = "UPDATE tours 
+            SET date=?,
+                time=?,
+                price=?,
+                family_price=?,
+                seats_per_tour=?
+            WHERE tour_id=?";
+
+        // preapre statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param(
+                "ssddii",
+                $data['date'],
+                $data['time'],
+                $data['price'],
+                $data['family_price'],
+                $data['seats'],
+                $tourId
+            );
+            
+            $tourId = $tour->id;
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception("Cannot add a new tour. please try again.");
+        }
+    }
+
     /**
      * getTourTypes - Amount of tours and the language of a specific tour
      * 
