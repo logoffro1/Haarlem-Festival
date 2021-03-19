@@ -47,11 +47,12 @@
                 );
 
                 $this->tourService->addTour($data);
-                // $this->helper->redirect("history-event.php");
+                $this->helper->redirect("history-event.php");
             } catch(Exception $e){
                 $this->addToErrors($e->getMessage());
             }
         }
+
         public function updateTour(tour $tour)
         {
             try {
@@ -70,6 +71,17 @@
             }
         }
 
+        public function deleteTour()
+        {
+            try {
+                $id = (int)$_GET['delete'];
+
+                $this->tourService->deleteTour($id);
+                $this->helper->redirect("history-event.php");
+            } catch(Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
         public function addTourType(tour $tour) : void
         {
             try {

@@ -215,6 +215,25 @@ class tourService {
         }
     }
 
+    public function deleteTour(int $id)
+    {
+        $sql = "DELETE FROM tours WHERE tour_id=?";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("i", 
+                $id
+            );
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not delete the tour. Please try again');
+        }
+    }
+
     public function deleteTourType(array $data)
     {
         $sql = "DELETE FROM tour_types WHERE tour_types_id=?";

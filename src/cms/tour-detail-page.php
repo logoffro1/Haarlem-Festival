@@ -3,24 +3,14 @@ include '../classes/autoloader.php';
 
 
 $tourController = new tourController();
-
 $tourExists = isset($_GET['id']);
+
+if(isset($_GET['delete'])){
+    $tourController->deleteTour($_GET['delete']);
+}
+
 if($tourExists){
     $tour = $tourController->getTourByID($_GET['id']);
-
-    $tourTableArray = array();
-
-    foreach ($tour->tourTypes as $tourType) {
-        $tourArray = array();
-        $tourArray[] = $tourType->amountOfTours;
-        $tourArray[] = $tourType->language;
-
-        $tourArray[] = "<a class='align--flex-end' href='tour-detail-page.php?delete_tour=$tourType->tour_type_id'>Delete</a>";
-
-        $tourTableArray[] = $tourArray;
-    }
-
-    $table = new table('card--cms__body table--cms', ['Amount', 'Language', ''], $tourTableArray);
 }
 
 if(isset($_POST['submit']))    
@@ -68,6 +58,7 @@ $navigation->render();
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Tour Details</h3>
+                    <a href="tour-detail-page.php?delete=<?php echo $tour->id; ?>&id=<?php echo $tour->id; ?>" class="button button--secondary">Delete Tour</a>
                 </header>
                 <form class="card--cms__body row" method="post">
                     <fieldset class="col-6 col--children-fullwidth">
