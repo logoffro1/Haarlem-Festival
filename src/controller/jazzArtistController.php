@@ -13,6 +13,11 @@
         {
             return $this->jazzArtistService->getAnArtistById($id);
         }
+
+        public function getAllJazzArtists()
+        {
+            return $this->jazzArtistService->getAllJazzArtists();
+        }
     }
     
 ?>

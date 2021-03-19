@@ -13,7 +13,7 @@
             $songService = new songService();
             $performanceService = new jazzPerformanceService();
 
-            $query = "SELECT * FROM Artists WHERE page_id = 3";
+            $query = "SELECT * FROM Artists WHERE page_id = 4";
             $result = $this->conn->query($query);
 
             if($result)

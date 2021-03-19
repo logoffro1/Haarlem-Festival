@@ -7,11 +7,12 @@ $navigation = new navigation("Events");
 $navigation->render();
 
 echo "<section class='container section' style='margin-top: -10px'>";
-$jazzIntro = new jazzIntro();
+$jazzIntroController = new jazzIntroController();
+$jazzIntro = $jazzIntroController->getHeaderInfo();
 $jazzIntro->render();
 
-$jazzArtistService = new jazzArtistService();
-$allJazzArtists = $jazzArtistService->getAllJazzArtists();
+$jazzArtistController = new jazzArtistController();
+$allJazzArtists = $jazzArtistController->getAllJazzArtists();
 
 $artistNames = array();
 $performanceDates = array();
@@ -92,7 +93,6 @@ function loopCards(string $input, array $arrayOfCards)
             } else if ($input == "count") {
                 $performanceCount++;
             }
-
         }
     }
     return $performanceCount;

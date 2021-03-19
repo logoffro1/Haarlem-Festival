@@ -1,0 +1,28 @@
+.performances--jazz{
+    margin-top: 300px;
+    text-align: left;
+
+    .performances--jazz__row{
+        display:inline-block;
+        width: 100%;
+    }
+
+    .performances--jazz__column{
+        float: left;
+        width: 25%;
+    }
+
+    .performances--jazz__dash
+    {
+        margin-right: 20px;
+        display: inline-block;
+        color: $color-primary-jazz;
+    }
+
+    .performances--jazz__whenText
+    {
+        display: inline-block;
+    }
+
+
+}
