@@ -71,10 +71,10 @@
             }
         }
 
-        public function deleteTour()
+        public function deleteTour(tour $tour)
         {
             try {
-                $id = (int)$_GET['delete'];
+                $id = $tour->id;
 
                 $this->tourService->deleteTour($id);
                 $this->helper->redirect("history-event.php");

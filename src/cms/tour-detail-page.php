@@ -5,12 +5,12 @@ include '../classes/autoloader.php';
 $tourController = new tourController();
 $tourExists = isset($_GET['id']);
 
-if(isset($_GET['delete'])){
-    $tourController->deleteTour($_GET['delete']);
-}
-
 if($tourExists){
     $tour = $tourController->getTourByID($_GET['id']);
+}
+
+if(isset($_GET['delete'])){
+    $tourController->deleteTour($tour);
 }
 
 if(isset($_POST['submit']))    
