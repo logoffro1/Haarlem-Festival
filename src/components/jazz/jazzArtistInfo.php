@@ -24,7 +24,7 @@ public function render()
                 <a href='#'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
                 <a href='#'><img src='../assets/images/jazz/icons/jazz-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
                 <a href='#'><img src='../assets/images/jazz/icons/jazz-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
-                <a href='#'><button class='artistinfo--jazz__ticketButton'>Get Your Tickets</button></a>
+                <a href='#performances'><button class='artistinfo--jazz__ticketButton'>Get Your Tickets</button></a>
             </section>
             </section>
         </section>

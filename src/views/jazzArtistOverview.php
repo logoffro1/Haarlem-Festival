@@ -9,8 +9,8 @@
     $navigation = new navigation("Events");
     $navigation->render();
 
-    $jazzIntro = new jazzArtistInfo();
-    $jazzIntro->render();
+    $jazzInfo = new jazzArtistInfo();
+    $jazzInfo->render();
 
     $jazzSongs = new jazzSongCard();
     $jazzSongs->render();

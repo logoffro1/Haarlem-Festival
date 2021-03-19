@@ -32,7 +32,7 @@ class jazzPerformance{
 
         return ($startTime." - ".$endTime);
     }
-    public function getLocation(){return $this->location->getName();}
+    public function getLocation(){return $this->location->__get('name');}
 }
 
 ?>

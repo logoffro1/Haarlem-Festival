@@ -8,7 +8,7 @@ class jazzArtistPerformances
     function render()
     {
         echo "
-        <section class='container section'>
+        <section class='container section' id='performances'>
             <section class='performances--jazz'>
                 <section class='performances--jazz__row'>
                     <section class='performances--jazz__column'>
@@ -22,7 +22,7 @@ class jazzArtistPerformances
                     </section>
                     <section class='performances--jazz__column'>
                     </section>
-        </section>
+                </section>
 
         <section class='performances--jazz__row'>
             <section class='performances--jazz__column'>

@@ -1,14 +1,15 @@
 .artistSongs--jazz
 {
     margin-top:40px;
-    
+        
     .artistSongs--jazz__cardSection
     {
         position: relative;
         float: left; 
-        height: 450px; 
-        width:  400px;  
+        height: 350px; 
+        width:  350px;  
         margin-right: 40px;
+
     }
 
     .artistSongs--jazz__songPic{
@@ -16,7 +17,6 @@
         margin-left: auto;
         margin-right: auto;
         width: 100%;
-        box-shadow: inset 100px 200px black;
     }
 
     .artistSongs--jazz__playIcon{

@@ -7,7 +7,7 @@ class jazzSongCard
 public function render()
 {
     echo "
-    <section class='container section'>
+    <section class='container section' id='songs'>
         <h1>Explore The Music</h2>
         <section class='artistSongs--jazz'>
 

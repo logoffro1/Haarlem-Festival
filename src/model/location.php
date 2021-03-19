@@ -14,7 +14,11 @@ class location{
         $this->price = $price;
         $this->seats = $seats;
     }
-
-    public function getName(){return $this->name;}
+    
+    public function __get($property) {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
+    }
 }
 ?>
