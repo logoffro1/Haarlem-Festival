@@ -14,6 +14,11 @@ class song{
         $this->image = $image;
         $this->url = $url;
     }
+    public function __get($property) {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
+    }
 }
 
 ?>

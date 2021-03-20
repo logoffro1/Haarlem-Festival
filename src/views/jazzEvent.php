@@ -34,28 +34,28 @@ foreach ($allJazzArtists as $jazzArtist) {
             {
                 if($performance->getDate() == $performanceDate)
                 {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
                 }
                 else if($performanceDate == "allDates")
                 {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
                 }
             }
             else if($artistName == "allArtists")
             {
                  if($performance->getDate() == $performanceDate)
                 {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
                 }
                 else if($performanceDate == "allDates")
                 {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
                 }
             }
         }
         else
         {
-            $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'));
+            $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
         }
     }}
 

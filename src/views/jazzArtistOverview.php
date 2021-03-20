@@ -1,35 +1,40 @@
 <?php
     include '../classes/autoloader.php';
 
-    $contoller = new jazzArtistController();
+    if (isset($_GET['artist']))
+    { 
+        $id = intval($_GET['artist']);
+        $controller = new jazzArtistController();
+        $artist = $controller->getAJazzArtistById($id);
 
-    $head = new head("Gare du Nord | Haarlem Festival", "");
-    $head->render();
+        $artistName = $artist->__get('artistName');
+        $head = new head("$artistName | Haarlem Festival", "");
+        $head->render();
 
-    $navigation = new navigation("Events");
-    $navigation->render();
+        $navigation = new navigation("Events");
+        $navigation->render();
 
-    $jazzInfo = new jazzArtistInfo();
-    $jazzInfo->render();
+        $jazzInfo = new jazzArtistInfo($artist);
+        $jazzInfo->render();
 
-    $jazzSongs = new jazzSongCard();
-    $jazzSongs->render();
+        $jazzSongs = new jazzSongCard($artist->__get('songs'), $artist->__get('artistName'));
+        $jazzSongs->render();
 
-    $artistPerformances = new jazzArtistPerformances();
-    $artistPerformances -> render();
+        $artistPerformances = new jazzArtistPerformances($artist->__get('performances'));
+        $artistPerformances -> render();
+        }
+        $exploreHaarlem = new jazzExploreHaarlem();
+        $exploreHaarlem->render();
 
-    $exploreHaarlem = new jazzExploreHaarlem();
-    $exploreHaarlem->render();
+        $exploreMap = new jazzExploreMap();
+        $exploreMap->render();
 
-    $exploreMap = new jazzExploreMap();
-    $exploreMap->render();
+        $danceSuggestion = new jazzDanceSuggestion();
+        $danceSuggestion->render();
 
-    $danceSuggestion = new jazzDanceSuggestion();
-    $danceSuggestion->render();
-
-    $swoosh = new jazzSwoosh();
-    $swoosh->render();
-    
-    $footer = new footer();
-    $footer->renderFooter();
+        $swoosh = new jazzSwoosh();
+        $swoosh->render();
+        
+        $footer = new footer();
+        $footer->renderFooter();
 ?>

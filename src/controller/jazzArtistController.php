@@ -9,9 +9,9 @@
             $this->jazzArtistService = new jazzArtistService();
         }
 
-        public function getAnArtistById(int $id)
+        public function getAJazzArtistById(int $id)
         {
-            return $this->jazzArtistService->getAnArtistById($id);
+            return $this->jazzArtistService->getAJazzArtistById($id);
         }
 
         public function getAllJazzArtists()

@@ -44,7 +44,7 @@
             $songService = new songService();
             $performanceService = new jazzPerformanceService();
 
-            $query = "SELECT * FROM Artists WHERE page_id = 3 AND artist_id='$id'";
+            $query = "SELECT * FROM Artists WHERE page_id = 4 AND artist_id='$id'";
             $result = $this->conn->query($query);
 
             if($result)

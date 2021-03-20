@@ -23,7 +23,8 @@ class jazzPerformance{
             return $this->$property;
         }
     }
-
+    public function getPrice(){return $this->location->__get('price');}
+    public function getDayOfWeek(){return date("l",strtotime($this->performanceDate));}
     public function getDate(){return date("d M",strtotime($this->performanceDate));}
     public function getTime()
     {

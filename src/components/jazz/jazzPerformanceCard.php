@@ -2,19 +2,21 @@
 class jazzPerformanceCard
 {
     private string $artistName;
+    private int $artistID;
     private string $performanceTime;
     private string $performanceLoc;
     private string $performanceDate;
     private string $performanceLink;
     private string $artistThumbnail;
 
-    public function __construct(jazzPerformance $performance, string $artistName, string $artistThumbnail)
+    public function __construct(jazzPerformance $performance, string $artistName, string $artistThumbnail, int $artistID)
     {
         $this->artistName = $artistName;
+        $this->artistID = $artistID;
         $this->performanceTime = $performance->getTime();
         $this->performanceLoc = $performance->getLocation();
         $this->performanceDate = $performance->getDate();
-        $this->performanceLink = "#";
+        $this->performanceLink = sprintf('jazzArtistOverview.php?artist=%s', $this->artistID);
         $this->artistThumbnail = $artistThumbnail;
     }
 
