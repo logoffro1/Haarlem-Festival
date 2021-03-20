@@ -4,7 +4,9 @@ error_reporting(-1);
 ini_set('display_errors', 'On');
 set_error_handler("var_dump");
 $restaurantController = new restaurantController();
+$restaurantType = new restaurantTypeController();
 $restaurant = $restaurantController->getRestaurant();
+$restaurantTypeList = $restaurantType->getRestaurantTypes();
 
 if(isset($_POST['submit']))    
 {
@@ -54,6 +56,34 @@ $navigation->render();
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Biography</label>
+                        <textarea placeholder="enter the content..." name="biography" value="<?php echo $restaurant->biography ?? '';?>" id="biography"></textarea>
+                    </fieldset>
+                    <fieldset class="col-6 col--children-fullwidth">
+                        <label class="label">Restaurant Type</label>
+
+                        <div class="js-dropdown dropdown--cms">
+                            <div href="#" class="js-dropdown__anchor input">
+                            <spap>
+                                Open restaurant type dropdown
+                            </spap>    
+                            </div>
+                            <ul class="js-dropdown__body">
+                                <div class="row">
+                                    <?php
+                                        foreach ($restaurantTypeList as $type) {
+                                    ?>
+                                            <li class="col-6">
+                                                <label for="<?php echo $type->id; ?>">
+                                                    <input type="checkbox" id="<?php echo $type->id; ?>" value="<?php echo $type->id; ?>" name="restaurant_type">
+                                                    <?php echo $type->name; ?>
+                                                </label>
+                                            </li>
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </ul>
+                        </div>
                         <textarea placeholder="enter the content..." name="biography" value="<?php echo $restaurant->biography ?? '';?>" id="biography"></textarea>
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">

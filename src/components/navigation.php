@@ -16,7 +16,15 @@ class navigation {
             </a>
             <ul class='navigation__links'>
                 <li><a class=" . $this->getActivePage('Home') . " href='#'>Home</a></li>
-                <li><a class=" . $this->getActivePage('Events') . " href='#'>Events</a></li>
+                <li class='js-dropdown'>
+                    <a class='" . $this->getActivePage('Events') . " js-dropdown__anchor' href='#'>Events</a>
+                    <ul class='js-dropdown__body navigation__dropdown'>
+                        <li><a href='jazzEvent.php'>Jazz</a></li>
+                        <li><a href='danceEvent.php'>Dance</a></li>
+                        <li><a href='cuisineEvent.php'>Cuisine</a></li>
+                        <li><a href='historyEvent.php'>History</a></li>
+                    </ul>
+                </li>
                 <li><a class=" . $this->getActivePage('Your Programme') . " href='#'>Your Programme</a></li>
             </ul>
             <div class='navigation__shop'>
