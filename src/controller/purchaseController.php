@@ -2,16 +2,25 @@
     include '../classes/autoloader.php';
 
     class purchaseController extends controller {
-        private pruchaseService $pruchaseService;
+        private purchaseService $purchaseService;
 
         public function __construct() {
             parent::__construct();
-            $this->pruchaseService = new pruchaseService();
+            $this->purchaseService = new purchaseService();
         }
 
-        public function getPurchaseList() : array
+        public function getPurchaseList() : ?array
         {
-            $this->pruchaseService->getPurchaseList();
+            return $this->purchaseService->getPurchaseList();
+        }
+
+        public function changePurchasePaymentStatus() : void
+        {
+            $isPayed = isset($_POST['isPayed']);
+            $id = $_POST['purchaseId'];
+
+            $this->purchaseService->changePurchasePaymentStatus($isPayed, $id);
+            $this->helper->refresh();
         }
     }
 ?>
