@@ -73,8 +73,8 @@
                 $mailData = [
                     'reciever' => "$email",
                     'subject' => 'Haarlem Festival User Activation',
-                    'content' => "Click this link to activate your account. ". ROOT_URL . "cms/activateAccount.php?email=" . $email . " <br/> or try " 
-                    . ROOT_URL_PRODUCTION . "cms/activateAccount.php?email=" . $email,
+                    'content' => "Click this link to activate your account. ". ROOT_URL . "cms/activate-account.php?email=" . $email . " <br/> or try " 
+                    . ROOT_URL_PRODUCTION . "cms/activate-account.php?email=" . $email,
                     'sender' => 'From: ' . EMAIL,
                 ];
         

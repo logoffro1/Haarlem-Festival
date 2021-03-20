@@ -43,14 +43,20 @@ include_once '../classes/helper.php';
         /**
          * checkIfLoggedIn - check if user is logged in with sessions,
          * if not redirect to login page, if user is already on the login page,
-         * or is not on the cms flow stop the check
+         * or is not on the cms flow or the stated pages, stop the check
          * to avoid infinite redirects.
          */
         protected function checkIfLoggedIn(){
             $this->helper->startSession();
             $url = $_SERVER['REQUEST_URI'];
 
-            if (strpos($url, "login.php") || !strpos($url, "cms")){
+            if (
+                strpos($url, "login.php") || 
+                strpos($url, "reset-password.php") || 
+                strpos($url, "activate-account.php") || 
+                strpos($url, "register.php") || 
+                !strpos($url, "cms")
+            ){
                 return;
             }
 
