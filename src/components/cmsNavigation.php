@@ -27,7 +27,7 @@ class cmsNavigation {
                 <ul>
                     <li><a href='./edit-pages.php' class='button button--cms " . $this->getActivePage("Edit Pages") . "''>Edit Pages</a></li>
                     <li><a href='./index.php' class='button button--cms " . $this->getActivePage("Events") . "'>Events</a></li>
-                    <li><a href='#' class='button button--cms " . $this->getActivePage("Reservations") . "'>Reservations</a></li>
+                    <li><a href='./purchases-overview.php' class='button button--cms " . $this->getActivePage("Purchases") . "'>Purchases</a></li>
                     <li><a href='#' class='button button--cms " . $this->getActivePage("Invoices") . "'>Invoices</a></li>
                     <li><a href='./user-page.php' class='button button--cms " . $this->getActivePage("Users") . "'>Users</a></li>
                     <li><a href='#' class='button button--cms " . $this->getActivePage("API") . "'>API</a></li>
