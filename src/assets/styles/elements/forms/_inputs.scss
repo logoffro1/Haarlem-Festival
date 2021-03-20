@@ -34,6 +34,10 @@ input, .input {
         width: auto;
         margin-left: 50px;
     }
+
+    &.input--small {
+        width: 100px;
+    }
 }
 
 input[type=checkbox], input[type=radio]{
