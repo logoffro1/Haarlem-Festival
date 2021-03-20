@@ -42,12 +42,8 @@ public function render()
                 </a>
                 <p>Gare du Nord - Sex'n'Jazz</p>
             </section>
-
         </section>
     </section> ";
 }
-
 }
-
-
 ?>

@@ -55,7 +55,6 @@ class jazzArtistPerformances
                 <a href src='#'><button>Get Your Tickets</button></a>
             </section>
         </section>
-        <hr style='margin: 100px auto; color: #f5f5f5; width: 1000px;'>
     </section>
 </section>";
     }

@@ -17,10 +17,13 @@
 
     $artistPerformances = new jazzArtistPerformances();
     $artistPerformances -> render();
+
+    $exploreHaarlem = new jazzExploreHaarlem();
+    $exploreHaarlem->render();
 ?>
 
-<section class='container section'>
-</section>
+
+
 
 <?php 
     $swoosh = new jazzSwoosh();
