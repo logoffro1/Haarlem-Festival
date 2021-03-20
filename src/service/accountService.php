@@ -180,7 +180,7 @@
             }
         }
 
-         /*
+        /**
         * changeUserPassword - updates password of the logged in user
         *
         * @param string $email - email of the user
