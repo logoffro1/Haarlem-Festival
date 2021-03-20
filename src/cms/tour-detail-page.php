@@ -58,7 +58,13 @@ $navigation->render();
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Tour Details</h3>
-                    <a href="tour-detail-page.php?delete=<?php echo $tour->id; ?>&id=<?php echo $tour->id; ?>" class="button button--secondary">Delete Tour</a>
+                    <?php
+                        if($tourExists) {
+                    ?>
+                            <a href="tour-detail-page.php?delete=<?php echo $tour->id; ?>&id=<?php echo $tour->id; ?>" class="button button--secondary">Delete Tour</a>
+                    <?php
+                        }
+                    ?>
                 </header>
                 <form class="card--cms__body row" method="post">
                     <fieldset class="col-6 col--children-fullwidth">

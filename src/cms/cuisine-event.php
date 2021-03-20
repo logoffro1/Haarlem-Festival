@@ -8,7 +8,7 @@ $navigation = new cmsNavigation("Edit Pages");
 $navigation->render();
 
 $breadcrumbsArray = array(
-    array('text' => 'Edit Pages', 'url' => "/index.php"),
+    array('text' => 'Edit Pages', 'url' => "index.php"),
     array('text' => 'Cuisine Event', 'url' => "#"),
 );
 $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');

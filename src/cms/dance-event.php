@@ -108,7 +108,7 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artists</h3>
-                    <a href="artist-detail-page.php?event=dance" class="button button--secondary">Add artist</a>
+                    <a href="artist-detail-page.php?event=2" class="button button--secondary">Add artist</a>
                 </header>
                 <?php
                     $table->render();

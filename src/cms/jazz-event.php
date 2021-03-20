@@ -24,7 +24,7 @@ $artistTableArray = array();
 foreach ($artisList as $artist) {
     $artistArray = array();
     $artistArray[] = $artist->name;
-    $artistArray[] = "<a class='align--flex-end' href='artist-detail-page.php?id=$artist->id'>edit</a>";
+    $artistArray[] = "<a class='align--flex-end' href='artist-detail-page.php?event=4&id=$artist->id'>edit</a>";
 
     $artistTableArray[] = $artistArray;
 }

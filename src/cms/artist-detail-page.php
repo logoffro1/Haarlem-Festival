@@ -8,7 +8,8 @@ $head->render();
 $artistController = new artistController();
 
 $artist = null;
-if(isset($_GET['id']))    
+$idExist = isset($_GET['id']);
+if($idExist)    
 {
     $artist = $artistController->getArtist();
     $artistController->createSession($artist);
@@ -47,15 +48,15 @@ if(isset($_GET['delete']))
     $artistController->deleteArtist();
 }
 
-if(isset($_GET['id']) && isset($_POST['content']) || isset($_POST['social']))    
+if($idExist && isset($_POST['content']) || isset($_POST['social']))    
 {
     $artistController->updateArtist($artist);
 }
-if(isset($_GET['id']) && isset($_POST['update_image']))    
+if($idExist && isset($_POST['update_image']))    
 {
     $artistController->updateArtistImage($artist);
 }
-if(isset($_GET['id']) && isset($_POST['delete_image']))    
+if($idExist && isset($_POST['delete_image']))    
 {
     $artistController->deleteArtistImage($artist);
 }
@@ -79,7 +80,13 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artist Name</h3>
-                    <a class="button button--secondary" href="artist-detail-page.php?id=<?php echo $artist->id ?>&delete=<?php echo $artist->id ?>">Delete artist</a>
+                    <?php
+                        if($idExist){
+                    ?>
+                        <a class="button button--secondary" href="artist-detail-page.php?id=<?php echo $artist->id ?>&delete=<?php echo $artist->id ?>">Delete artist</a>
+                    <?php
+                        }
+                    ?>
                 </header>
                 <form class="card--cms__body row" method="post">
                     <fieldset class="col-12 col--children-fullwidth">
@@ -92,7 +99,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                     </fieldset>
 
                     <fieldset class="col-12 row justify-content-end">
-                        <?php if(isset($_GET['id'])){
+                        <?php if($idExist){
                             echo '<input type="submit" name="content" value="Update content" class="button">';
                         } else {
                             echo '<input class="button" type="submit" name="add" value="Create new artist">';
@@ -108,7 +115,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Performances</h3>
-                    <?php if(isset($_GET['id'])){ ?>
+                    <?php if($idExist){ ?>
                         <a href="artist-performance-details.php" class="button button--secondary">Add performance</a>
                     <?php } ?>
                 </header>
@@ -123,7 +130,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Songs</h3>
-                    <?php if(isset($_GET['id'])){ ?>
+                    <?php if($idExist){ ?>
                             <a class="button button--secondary" href="artist-songs.php">Add song</a>
                     <?php } ?>
                 </header>
@@ -152,7 +159,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                         <input type="file" name="artist_image">
                     </fieldset>
 
-                    <?php if(isset($_GET['id'])){ ?>
+                    <?php if($idExist){ ?>
                         <input class="button" type="submit" name="update_image" value="Update image">
                         <input class="button button--secondary" type="submit" value="Delete image" name="delete_image">
                     <?php } ?>
@@ -181,7 +188,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                     </fieldset>
                                 
                     <fieldset class="col-12">
-                        <?php if(isset($_GET['id'])){ ?>
+                        <?php if($idExist){ ?>
                             <input type="submit" name="social" value="Update social media" class="button">
                         <?php } ?>
                     </fieldset>
