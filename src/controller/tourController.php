@@ -82,6 +82,7 @@
                 $this->addToErrors($e->getMessage());
             }
         }
+        
         public function addTourType(tour $tour) : void
         {
             try {
