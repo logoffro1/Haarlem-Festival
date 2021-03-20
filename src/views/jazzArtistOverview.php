@@ -20,14 +20,16 @@
 
     $exploreHaarlem = new jazzExploreHaarlem();
     $exploreHaarlem->render();
-?>
 
+    $exploreMap = new jazzExploreMap();
+    $exploreMap->render();
 
+    $danceSuggestion = new jazzDanceSuggestion();
+    $danceSuggestion->render();
 
-
-<?php 
     $swoosh = new jazzSwoosh();
     $swoosh->render();
+    
     $footer = new footer();
     $footer->renderFooter();
 ?>

@@ -11,7 +11,7 @@ public function render()
         <img src='../assets/images/jazz/artists/gare-du-nord.png' alt='' >
     </section>
     <section>
-        <p class='artistinfo--jazz__breadCrumb'>Jazz Artists > Gare Du Nord</p>
+        <p class='artistinfo--jazz__breadCrumb'><a href='jazzEvent.php'>Jazz Artists</a> > Gare Du Nord</p>
         <section class='artistinfo--jazz__textContainer'>
             <section class='artistinfo--jazz__infoText'>
                 <h1 class='title title--page jazz'> Gare du Nord </h1>
