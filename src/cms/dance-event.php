@@ -69,7 +69,7 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">First section text</label>
-                        <textarea placeholder="enter the content..." name="first_section_text" value="<?php echo $page->first_section_text ?? ''; ?>"></textarea>
+                        <textarea placeholder="enter the content..." name="first_section_text"><?php echo $page->first_section_text ?? ''; ?></textarea>
                     </fieldset>
 
                     <fieldset class="col-12 col--children-fullwidth">
@@ -94,7 +94,7 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Second section text</label>
-                        <textarea placeholder="enter the content..." name="second_section_text" value="<?php echo $page->second_section_text ?? ''; ?>"></textarea>
+                        <textarea placeholder="enter the content..." name="second_section_text"><?php echo $page->second_section_text ?? ''; ?></textarea>
                     </fieldset>
 
                     <fieldset class="col-12 row justify-content-end">

@@ -54,7 +54,7 @@ $navigation->render();
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Biography</label>
-                        <textarea placeholder="enter the content..." name="biography" value="<?php echo $restaurant->biography ?? '';?>" id="biography"></textarea>
+                        <textarea placeholder="enter the content..." name="biography" id="biography"><?php echo $restaurant->biography ?? '';?></textarea>
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Restaurant Type</label>
@@ -94,7 +94,7 @@ $navigation->render();
                                 </div>
                             </ul>
                         </div>
-                        <textarea placeholder="enter the content..." name="biography" value="<?php echo $restaurant->biography ?? '';?>" id="biography"></textarea>
+                        <textarea placeholder="enter the content..." name="biography" id="biography"><?php echo $restaurant->biography ?? '';?></textarea>
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Duration of every session (in hours)</label>
