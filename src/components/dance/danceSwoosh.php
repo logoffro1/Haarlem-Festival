@@ -11,7 +11,7 @@ class danceSwoosh
     public function render()
     {
         echo "
-        <section class='dance--swoosh'>
+        <section class='dance--swoosh' style='padding-top:0px;'>
         <img src='../assets/images/dance/dance-swoosh.png' class='dance--swoosh__img' style='margin-left:1193px; margin-top:60px;'>
         </section>
         ";

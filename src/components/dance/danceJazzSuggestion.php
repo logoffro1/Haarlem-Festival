@@ -11,10 +11,10 @@ class danceDanceSuggestion
     public function render()
     {
         echo "
-        <section class='container section'>
+        <section class='container-fluid section' style='padding-top:0px;'>
             <h2>You may also be interseted in...</h2>
             <a href='#'>
-            <img src='../assets/images/dance/youmaybeinterestedin.png' style='padding: -140px;'></a>
+            <img src='../assets/images/dance/youmaybeinterestedin.png'></a>
         </section>";
     }
 }
