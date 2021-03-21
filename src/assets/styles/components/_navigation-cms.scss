@@ -30,8 +30,21 @@
             position: relative;
             overflow: hidden;
             display: inline-block;
-            border: 2px solid $color-primary-dance;
+            background-color: $color-primary-dance;
             margin-left: auto;
+
+            &::after {
+                content: "";
+                background-image: url("#{$url-image}/profile.png");
+                background-size: contain;
+                height: 30px;
+                width: 30px;
+                position: absolute;
+                bottom: 0;
+                right: 50%;
+                top: 9px;
+                transform: translateX(50%);
+            }
         }
     }
 

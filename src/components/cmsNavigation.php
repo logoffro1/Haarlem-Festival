@@ -21,9 +21,7 @@ class cmsNavigation {
                 <a href='./index.php'>
                     <img src='/assets/images/svg/logo.svg' alt=''>
                 </a>
-                <a href='./profile-page.php' class='navigation--cms__header__profile'>
-                    <img src='' alt=''>
-                </a>
+                <a href='./profile-page.php' class='navigation--cms__header__profile'></a>
             </header>
             <nav class='navigation--cms__body'>
                 <ul>
