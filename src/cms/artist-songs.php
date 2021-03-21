@@ -18,6 +18,11 @@ if(isset($_POST['delete']))
     $songController->deleteSong($song, $artist);
 }
 
+if(isset($_POST['delete_image']))    
+{
+    $songController->deleteSongImage($song);
+}
+
 if(isset($_POST['add']))    
 {
     $songController->addSong($artist->id);
@@ -64,13 +69,14 @@ $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
             </fieldset>
 
             <fieldset>
-                <?php if($song && $song->image) { ?>
+                <?php if($song && strlen($song->image) > 0) { ?>
                     <img src="<?php echo UPLOAD_FOLDER.$song->image ?>" alt="Artist Image">
                     <br/>
+                    <input class="button button--secondary" type="submit" value="Delete image" name="delete_image">
                 <?php } else { ?>
                     <p>No image present</p>
                 <?php } ?>
-                <input type="file" name="image" >
+                <input type="file" name="image">
             </fieldset>
             <br/>
             <div class="col-12 row justify-content-end">

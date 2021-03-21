@@ -50,7 +50,23 @@
                 $this->songService->updateSong($song->id, $data);
                 $this->helper->refresh();
             } catch(Exception $e) {
-                echo $e;
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function deleteSongImage(song $song)
+        {
+            try {
+                if(strlen($song->image) == 0){
+                    throw new Exception("No image provided");
+                }
+
+                if($this->songService->deleteImage($song->image)){
+                    $this->songService->deleteSongImage($song);
+                    $this->helper->refresh();
+                }
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
             }
         }
     }

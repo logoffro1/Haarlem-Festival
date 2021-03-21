@@ -143,16 +143,47 @@ include_once '../config/config.php';
                     $songId
                 );
 
-                if($this->db->uploadImage($data['image']['tmp_name'], $data['image']['name'])){
-                    // Execute query
-                    $query->execute();
-                } else {
-                    throw new Exception('Could not update the song. Please try again');
-                }
+                $this->db->uploadImage($data['image']['tmp_name'], $data['image']['name']);
+                // Execute query
+                $query->execute();
             } else {
                 // If connection cannot be established, throw an error
                 throw new Exception('Could not connect to the database. Please try again');
             }
+        }
+
+        public function deleteSongImage(song $song) : void
+        {
+            $sql = "UPDATE songs SET image=? WHERE song_id=?";
+
+            // Get connection and prepare statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $emptyImage = '';
+                $query->bind_param("si",
+                    $emptyImage,
+                    $songIdParam
+                );
+
+                $songIdParam = $song->id;
+
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception('Could not connect to the database. Please try again');
+            }
+        }
+
+        /**
+         * Deletes the song in the upload folder
+         * 
+         * @param string $name - name of the image that needs to be delete
+         * @return bool - check if deletion was succesfull
+         */
+        public function deleteImage(string $name) : bool
+        {
+            return $this->db->deleteImage($name);
         }
     }
 ?>
