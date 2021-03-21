@@ -16,7 +16,7 @@
             $this->artistName = $artistName;
             $this->biography = $biography;
             $this->image = $image;
-            $this->thumbnail = 'fart';
+            $this->thumbnail = $thumbnail;
             $this->facebook = $facebook;
             $this->instagram = $instagram;
             $this->youtube = $youtube;

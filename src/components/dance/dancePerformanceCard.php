@@ -28,14 +28,13 @@ class dancePerformanceCard
     }
 
     public function render()
-    //fix image
     {
         echo "
         <section class='container-fluid section'>
         <article class='row align-items-left'>
             <header class='col-6' style='border-color: white;'>
                 <section class='hero text-top-left' style='position:relative;'>
-                    <img src='../assets/images/dance/".$this->artistThumbnail."' style='margin-left:50px; width:75%; height:auto;'>
+                    <img src='$this->artistThumbnail' style='margin-left:50px; width:75%; height:auto;'>
                </header>
                <header class='col-6' style='font-size:26px;'>
                 <article class='row align-items-left'>
@@ -70,7 +69,14 @@ class dancePerformanceCard
                 </article>
                 ";
 
+
                 }
+                echo"
+                <article class='row align-items-left'>
+                <header class='col-5'>
+                    <button style='border-radius: 10px; width:300px; margin-top: 50px;' type='button'>Get your tickets</button>
+                </header>
+            </article>";
                 echo "</header>";
                 echo "</section>";
     }
