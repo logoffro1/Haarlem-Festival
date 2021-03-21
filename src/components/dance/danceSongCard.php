@@ -1,5 +1,11 @@
 <?php
-
+@include '../assets/componenets/danceEvent/__danceArtistInfo.scss';
+@include '../assets/componenets/danceEvent/__danceEventComps.scss';
+@include '../assets/componenets/danceEvent/__danceArtistPerformances.scss';
+@include '../assets/componenets/danceEvent/__danceArtistSongs.scss';
+@include '../assets/componenets/danceEvent/__danceCombobox.scss';
+@include '../assets/componenets/danceEvent/__danceExploreHaarlem.scss';
+@include '../assets/componenets/danceEvent/__danceSwoosh.scss';
 class danceSongCard
 {
     private array $songs;
@@ -14,25 +20,36 @@ class danceSongCard
     public function render()
     {
         echo "
-        <section class='container section' id='songs'>
-            <h1>Explore The Music</h2>
-            <section class='artistSongs--jazz'>";
+        <section class='container-fluid section' style='padding-top: 0px; padding-left:7%; padding-right:7%;'>
+        <article class='row align-items-left'>
+            <header class='col-12'>
+                <section class='hero text-top-left' style='position:relative;''>
+                    <h1 style='margin-top: 60px; margin-left: 0px;'class='title'>Explore the Music</h1>
+                </section>
+               </header>
+           </article>
+            <article class='row align-items-left'>";
 
         foreach($this->songs as $song)
         {
             $songName = $song->__get('title');
             $url = $song->__get('url');
             $img = $song->__get('image');
-            echo "
-            <section class='artistSongs--jazz__cardSection'>
-                    <a href='$url'>
-                        <img class='artistSongs--jazz__songPic' src='$img' alt=''>
-                        <img class='artistSongs--jazz__playIcon'  src='../assets/images/jazz/icons/songs-play-button.png'>
-                    </a>
-                    <p>$this->artistName - $songName</p>
-                </section>";
+                echo"
+                <header class='col-3'>
+                <section style='position:relative;'>
+                <span>
+                <a href='$url'>
+                <img src='$img' style='margin-right :10px;'>
+                <img style='position:absolute; margin-top:-250px; margin-left: 150px;'  src='../assets/images/dance/icons/songs-play-button.png'>
+                <p style='color:grey;'>$songName</p>
+            </a>
+            </span>
+                </section>
+               </header>";
         }
-        echo "</section>
+        echo "</article>
+        </section>
         </section>";
     }
 }

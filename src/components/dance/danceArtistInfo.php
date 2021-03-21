@@ -1,5 +1,11 @@
 <?php
-
+@include '../assets/componenets/danceEvent/__danceArtistInfo.scss';
+@include '../assets/componenets/danceEvent/__danceEventComps.scss';
+@include '../assets/componenets/danceEvent/__danceArtistPerformances.scss';
+@include '../assets/componenets/danceEvent/__danceArtistSongs.scss';
+@include '../assets/componenets/danceEvent/__danceCombobox.scss';
+@include '../assets/componenets/danceEvent/__danceExploreHaarlem.scss';
+@include '../assets/componenets/danceEvent/__danceSwoosh.scss';
 class danceArtistInfo
 {
     private danceArtist $artist;
