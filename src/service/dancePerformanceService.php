@@ -1,5 +1,6 @@
 <?php
     include '../classes/autoloader.php';
+	include '../models/dancePerformance.php';
 
     class dancePerformanceService extends eventService {
 

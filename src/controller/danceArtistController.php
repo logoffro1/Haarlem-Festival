@@ -11,12 +11,12 @@
 
         public function getADanceArtistById(int $id)
         {
-            return $this->jazzArtistService->getADanceArtistById($id);
+            return $this->danceArtistService->getADanceArtistById($id);
         }
 
         public function getAllDanceArtists()
         {
-            return $this->jazzArtistService->getAllDanceArtists();
+            return $this->danceArtistService->getAllDanceArtists();
         }
     }
 ?>

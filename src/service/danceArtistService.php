@@ -1,5 +1,6 @@
 <?php
     include '../classes/autoloader.php';
+	include '../models/danceArtist.php';
 
     class danceArtistService {
 
