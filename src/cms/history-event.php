@@ -64,7 +64,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     <fieldset>
                         <label class="label">Hero Image</label>
 
-                        <?php if(!empty($page->image)) { ?>
+                        <?php if(strlen($page->image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>

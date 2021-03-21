@@ -65,7 +65,7 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $table
                     <fieldset>
                         <label class="label">Hero Image</label>
 
-                        <?php if(!empty($page->image)) { ?>
+                        <?php if(strlen($page->image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>

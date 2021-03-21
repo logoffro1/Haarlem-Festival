@@ -62,7 +62,6 @@ if($idExist && isset($_POST['delete_image']))
 }
 
 
-
 $navigation = new cmsNavigation("Events");
 $navigation->render();
 
@@ -150,7 +149,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                 </header>
                 <form class="card--cms__body table--cms" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <?php if(!empty($artist->image)) { ?>
+                        <?php if(strlen($artist->image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER.$artist->image ?? ''; ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>

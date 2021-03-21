@@ -54,7 +54,7 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
                     <fieldset>
                         <label class="label">Page Image</label>
 
-                        <?php if(!empty($page->page_image)) { ?>
+                        <?php if(strlen($page->page_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->page_image ?>" alt="Page Image">
                             <br/>
                         <?php } else { ?>
@@ -79,7 +79,7 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
                     <fieldset>
                         <label class="label">Hero Image</label>
 
-                        <?php if(!empty($page->hero_image)) { ?>
+                        <?php if(strlen($page->hero_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->hero_image ?>" alt="Hero Image">
                             <br/>
                         <?php } else { ?>

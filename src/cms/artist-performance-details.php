@@ -36,7 +36,7 @@ $navigation->render();
         <nav class="breadcrumbs breadcrumbs--cms col-12">
             <ul>
                 <li class="breadcrumbs__breadcrumb"><a href="edit-pages.php">Events</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href="#">Performance</a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="artist-detail-page.php?id=<?php echo $artist->id; ?>"><?php echo $artist->name; ?></a></li>
             </ul>
         </nav>
        
@@ -50,17 +50,17 @@ $navigation->render();
                 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Date</label>
-                    <input type="date" name="date" value="<?php echo $performance->date ?? ''; ?>">
+                    <input required type="date" name="date" value="<?php echo $performance->date ?? ''; ?>">
                 </fieldset>
 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Start time</label>
-                    <input type="time" name="start_time" id="start_time" value="<?php echo $performance->time ?? ''; ?>">
+                    <input required type="time" name="start_time" id="start_time" value="<?php echo $performance->time ?? ''; ?>">
                 </fieldset>
 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Duration (in hours)</label>
-                    <input type="number" name="duration" id="duration" value="<?php echo $performance->duration ?? ''; ?>">
+                    <input required type="number" name="duration" id="duration" value="<?php echo $performance->duration ?? ''; ?>">
                 </fieldset>
 
                 <p class="card--cms__body__form-title col-12">Location and tickets</p>
@@ -68,7 +68,7 @@ $navigation->render();
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Location</label>
 
-                    <select name="location" class="has-placeholder">
+                    <select required name="location" class="has-placeholder">
                     <?php
                         if(isset($_GET['id'])){
                             echo "<option value=".$performance->location->id ?? ''." selected>". $performance->location->name ?? '' . "</option>";
@@ -87,7 +87,7 @@ $navigation->render();
 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Available tickets*</label>
-                    <input value="<?php $performance->tickets ?? ''?>" type="number" name="tickets">
+                    <input required value="<?php $performance->tickets ?? ''?>" type="number" name="tickets">
                 </fieldset>
 
                 <p class="card--cms__body__additional">*The Seats and Price Per Ticket are based on the location.</p>

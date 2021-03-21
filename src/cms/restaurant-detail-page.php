@@ -139,7 +139,7 @@ $navigation->render();
                     <h3 class="card--cms__header__title">Restaurant Images</h3>
                 </header>
                 <form class="card--cms__body row" method="post" enctype="multipart/form-data">
-                    <?php if(!empty($restaurant->image)) { ?>
+                    <?php if(strlen($restaurant->image) > 0) { ?>
                         <img src="<?php echo UPLOAD_FOLDER . $restaurant->image ?>" alt="restaurant Image">
                         <br/>
                     <?php } else { ?>

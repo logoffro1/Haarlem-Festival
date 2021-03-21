@@ -44,7 +44,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     <fieldset>
                         <label class="label">Page Image</label>
 
-                        <?php if(!empty($page->page_image)) { ?>
+                        <?php if(strlen($page->page_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->page_image ?>" alt="Page Image">
                             <br/>
                         <?php } else { ?>
@@ -64,7 +64,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     <fieldset>
                         <label class="label">First section Image</label>
 
-                        <?php if(!empty($page->first_section_image)) { ?>
+                        <?php if(strlen($page->first_section_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->first_section_image ?>" alt="Page Image">
                             <br/>
                         <?php } else { ?>

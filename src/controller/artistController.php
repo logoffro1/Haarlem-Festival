@@ -108,7 +108,7 @@
                     'image'=>null
                 );
     
-                if(empty($artist->image)){
+                if(strlen($artist->image) == 0){
                     throw new Exception("No image provided");
                 }
 

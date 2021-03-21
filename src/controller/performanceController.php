@@ -21,6 +21,7 @@
                 ];
     
                 $this->performanceService->addPerformance($artist, $data);
+                $this->helper->redirect("artist-detail-page.php?id=$artist->id");
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
