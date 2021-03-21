@@ -29,14 +29,13 @@ class restaurantTypeService {
         return $typesList;
     }
     public function getTypeById(int $id){
+        $query = "SELECT * FROM Restaurant_Type WHERE restaurant_type_id = '$id'";
+        $result = $this->conn->query($query);
 
-            $query = "SELECT * FROM Restaurant_Type WHERE restaurant_type_id = '$id'";
-            $result = $this->conn->query($query);
-
-            if($result){
-                    $row = $result->fetch_assoc();
-                    return new restaurantType($row["restaurant_type_id"],$row["name"]);      
-            }
+        if($result){
+                $row = $result->fetch_assoc();
+                return new restaurantType($row["restaurant_type_id"],$row["name"]);      
+        }
     }
 }
 ?>

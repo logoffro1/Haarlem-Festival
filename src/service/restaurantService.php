@@ -6,6 +6,7 @@ class restaurantService {
     private database $db;
     private mysqli $conn;
     private helper $helper;
+    private restaurantTypeController $restaurantTypeController;
 
     public function __construct() {
         $this->db = database::getInstance();
@@ -13,6 +14,8 @@ class restaurantService {
         $this->conn = $this->db->getConnection();
 
         $this->helper = new helper(); 
+
+        $this->restaurantTypeController = new restaurantTypeController();
     }
 
     public function getRestaurants()
@@ -76,7 +79,7 @@ class restaurantService {
             return new restaurant(
                 (int)$objectResult->restaurant_id,
                 $objectResult->name,
-                array(), // Todo add categories to restaurant array
+                $this->getCuisinesById((int)$objectResult->restaurant_id),
                 $objectResult->address,
                 $objectResult->biography,
                 explode(",", $objectResult->images),
@@ -163,7 +166,6 @@ class restaurantService {
     }
 
     private function getCuisinesById(int $id){
-        $cuisinesController = new restaurantTypeController();
         $cuisines = array();
 
         $query = "SELECT * FROM Restaurant_Categorie WHERE restaurant_id = '$id'";
@@ -172,7 +174,7 @@ class restaurantService {
         if($result)
             while($row = $result->fetch_assoc()){
 
-                $cuisines[] = $cuisinesController->getTypeById($row["restaurant_type_id"]);
+                $cuisines[] = $this->restaurantTypeController->getTypeById($row["restaurant_type_id"]);
             }
 
         return $cuisines;
@@ -197,6 +199,14 @@ class restaurantService {
                     stars=?,
                     price=?          
                 WHERE restaurant_id = $restaurant->id";
+                
+        
+
+        foreach ($data['insert_cuisines'] as $cuisine) {
+            $this->insertNewCategories($restaurant, $cuisine);
+        }
+
+        $this->deleteCategories($restaurant, $data);
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
@@ -212,6 +222,52 @@ class restaurantService {
                 $data['seats'],
                 $data['stars'],
                 $data['price']
+            );
+
+            // Execute query
+            $query->execute();
+
+            $this->helper->refresh();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not update the restaurant. Please try again');
+        }
+    }
+
+    public function insertNewCategories(restaurant $restaurant, int $cuisine)
+    {
+        $insertCategoriesSql = "INSERT INTO restaurant_categorie (restaurant_id, restaurant_type_id) values ($restaurant->id,?)";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($insertCategoriesSql)) {
+
+            // Create bind params to prevent sql injection
+            $query->bind_param("i", 
+                $cuisine,
+            );
+
+            // Execute query
+            $query->execute();
+
+            $this->helper->refresh();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not update the restaurant. Please try again');
+        }
+    }
+
+    public function deleteCategories(restaurant $restaurant, array $data)
+    {
+        $deleteCategoriesSql = "DELETE FROM restaurant_categorie
+        WHERE restaurant_id = $restaurant->id
+        AND (restaurant_type_id IN (?))";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($deleteCategoriesSql)) {
+
+            // Create bind params to prevent sql injection
+            $query->bind_param("s", 
+                $data['delete_cuisines'],
             );
 
             // Execute query

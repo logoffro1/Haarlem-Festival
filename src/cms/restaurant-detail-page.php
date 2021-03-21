@@ -1,8 +1,6 @@
 <?php
 include '../classes/autoloader.php';
-error_reporting(-1);
-ini_set('display_errors', 'On');
-set_error_handler("var_dump");
+
 $restaurantController = new restaurantController();
 $restaurantType = new restaurantTypeController();
 $restaurant = $restaurantController->getRestaurant();
@@ -74,7 +72,19 @@ $navigation->render();
                                     ?>
                                             <li class="col-6">
                                                 <label for="<?php echo $type->id; ?>">
-                                                    <input type="checkbox" id="<?php echo $type->id; ?>" value="<?php echo $type->id; ?>" name="restaurant_type">
+                                                    <input type="checkbox" 
+                                                    id="<?php echo $type->id; ?>" 
+                                                    value="<?php echo $type->id; ?>" 
+                                                    name="restaurant_type[]"
+                                                    <?php
+                                                        // Check which categories are selected 
+                                                        foreach ($restaurant->cuisines as $cuisine) {
+                                                            if($type->id == $cuisine->id){
+                                                                echo "checked";
+                                                            }
+                                                        }
+                                                    ?>
+                                                    >
                                                     <?php echo $type->name; ?>
                                                 </label>
                                             </li>
