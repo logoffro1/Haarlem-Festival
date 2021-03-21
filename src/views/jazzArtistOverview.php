@@ -22,7 +22,7 @@
 
         $artistPerformances = new jazzArtistPerformances($artist->__get('performances'));
         $artistPerformances -> render();
-        }
+        
         $exploreHaarlem = new jazzExploreHaarlem();
         $exploreHaarlem->render();
 
@@ -37,4 +37,5 @@
         
         $footer = new footer();
         $footer->renderFooter();
+    }
 ?>

@@ -18,11 +18,15 @@ $artistNames = array();
 $performanceDates = array();
 
 $jazzCards = array();
-foreach ($allJazzArtists as $jazzArtist) {
+//Looping through each artist to get info to fill jazz performance cards and combobox
+foreach ($allJazzArtists as $jazzArtist) 
+{
+    //Those names are for combobox
     $artistNames[] = $jazzArtist->__get('artistName');
 
     foreach ($jazzArtist->__get('performances') as $performance) 
     {
+        //Those dates are for combobox
         $performanceDates[] = $performance->getDate();
 
         if (isset($_GET['artist']) || isset($_GET['date'])) 
@@ -30,51 +34,46 @@ foreach ($allJazzArtists as $jazzArtist) {
             $artistName = $_GET['artist'];
             $performanceDate = $_GET['date'];
             
-            if ($jazzArtist->__get('artistName') == $artistName) 
-            {
-                if($performance->getDate() == $performanceDate)
-                {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
-                }
-                else if($performanceDate == "allDates")
-                {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
-                }
+            //Print all
+            if($performanceDate == "allDates" && $artistName == "allArtists")
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+            //Filter artist name
+            else if($performanceDate== "allDates" && $jazzArtist->__get('artistName') == $artistName )
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+            //Filter date
+            else if($artistName == "allArtists" && $performance->getDate() == $performanceDate)
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+            //Filter both date and artist name
+            else if($performance->getDate() == $performanceDate &&  $jazzArtist->__get('artistName') == $artistName)
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
             }
-            else if($artistName == "allArtists")
-            {
-                 if($performance->getDate() == $performanceDate)
-                {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
-                }
-                else if($performanceDate == "allDates")
-                {
-                    $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
-                }
-            }
-        }
+        //If no parameter print all
         else
-        {
-            $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
-        }
+        $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
     }}
 
+//After getting names and dates, getting unique values then sorting them
 $uniqueArtistNames = array_unique($artistNames);
 $uniquePerformanceDates = array_unique($performanceDates);
 sort($uniquePerformanceDates, SORT_STRING);
 sort($uniqueArtistNames, SORT_STRING);
 
+//Creating combobox based on unique name and date values
 $cmb = new jazzComboBox($uniqueArtistNames, $uniquePerformanceDates);
 $cmb->render();
 
+//Sorting performance cards according to their date
 $arrayOfCards = array();
 foreach ($jazzCards as $card) {
     $arrayOfCards[$card->getDayOfMonth()][] = $card;
 }
 ksort($arrayOfCards);
 
+//Getting the performance count in order to display on screen
 $performanceCount = loopCards("count", $arrayOfCards);
 echo "<p style='font-size: 14px'> There are $performanceCount event(s) listed.</p>";
+
+//Rendering each card
 loopCards("card", $arrayOfCards);
 
 echo "</section>";
