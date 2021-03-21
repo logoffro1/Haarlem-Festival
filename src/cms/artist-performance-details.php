@@ -17,7 +17,19 @@ if(isset($_GET['delete'])){
 }
 
 $locationController = new locationController();
-$location = $locationController->getDanceLocations();
+
+if(isset($_GET['event'])){
+    $eventId = (int)$_GET['event'];
+
+    if($eventId == 2){
+        $location = $locationController->getDanceLocations();
+    } else {
+        $location = $locationController->getJazzLocations();
+    }
+}
+
+$performance = $performanceController->getPerformance();
+
 
 if(isset($_POST['add']))    
 {

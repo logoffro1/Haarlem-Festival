@@ -12,11 +12,15 @@
         public function getJazzLocations() : ?array
         {
             $query = "SELECT l.*
-            FROM locations l
-            JOIN jazz_locations jl
+            FROM Locations l
+            JOIN Locations_Jazz jl
                 ON l.location_id = jl.location_id";
 
-            $locations = $this->getLocations($query);
+            try {
+                return $this->getLocations($query);
+            } catch(Exception $e){
+                throw new Exception("Could not retrieve the performance locations");
+            }
         }
 
         public function getDanceLocations() : ?array
@@ -29,7 +33,7 @@
             try {
                 return $this->getLocations($query);
             } catch(Exception $e){
-                echo $e;
+                throw new Exception("Could not retrieve the performance locations");
             }
         }
 

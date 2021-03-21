@@ -48,7 +48,7 @@ foreach ($jazzArtist as $artist) {
     $artistArray[] = $artist->id;
     $artistArray[] = $artist->name;
     $artistArray[] = "<div class='table--cms__item__navigation'>
-    <a href='./artist-detail-page.php?id=$artist->id' class=''>Edit</a>
+    <a href='./artist-detail-page.php?id=$artist->id&event=4' class=''>Edit</a>
     </div>";
     
     $jazzArtistTableList[] = $artistArray;
@@ -59,7 +59,7 @@ foreach ($danceArtist as $artist) {
     $danceArtistArray[] = $artist->id;
     $danceArtistArray[] = $artist->name;
     $danceArtistArray[] = "<div class='table--cms__item__navigation'>
-    <a href='./artist-detail-page.php?id=$artist->id' class=''>Edit</a>
+    <a href='./artist-detail-page.php?id=$artist->id&event=2' class=''>Edit</a>
     </div>";
     
     $danceArtistTableList[] = $danceArtistArray;

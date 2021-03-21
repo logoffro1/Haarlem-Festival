@@ -12,5 +12,10 @@
         {
             return $this->locationService->getDanceLocations();
         }
+
+        public function getJazzLocations() : ?array
+        {
+            return $this->locationService->getJazzLocations();
+        }
     }
 ?>

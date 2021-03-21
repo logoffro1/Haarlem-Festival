@@ -38,9 +38,11 @@
         public function getPerformance()
         {
             try {
-                $id = $_GET['id'];
-
-                return $this->performanceService->getPerformance($id);
+                if(isset($_GET['id'])){
+                    $id = (int)$_GET['id'];
+    
+                    return $this->performanceService->getPerformance($id);
+                }
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

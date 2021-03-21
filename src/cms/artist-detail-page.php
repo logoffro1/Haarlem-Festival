@@ -38,6 +38,10 @@ if($idExist)
     
 }
 
+if(isset($_GET['event'])){
+    $eventId = (int)$_GET['event'];
+} 
+
 if(isset($_POST['add']))    
 {
     $artistController->addArtist();
@@ -115,7 +119,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Performances</h3>
                     <?php if($idExist){ ?>
-                        <a href="artist-performance-details.php" class="button button--secondary">Add performance</a>
+                        <a href="artist-performance-details.php?event=<?php echo $eventId; ?>" class="button button--secondary">Add performance</a>
                     <?php } ?>
                 </header>
 
