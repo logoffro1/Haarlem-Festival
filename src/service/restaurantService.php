@@ -199,9 +199,8 @@ class restaurantService {
                     stars=?,
                     price=?          
                 WHERE restaurant_id = $restaurant->id";
-                
         
-
+        // For every new categorie add it to the db
         foreach ($data['insert_cuisines'] as $cuisine) {
             $this->insertNewCategories($restaurant, $cuisine);
         }
@@ -226,15 +225,19 @@ class restaurantService {
 
             // Execute query
             $query->execute();
-
-            $this->helper->refresh();
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the restaurant. Please try again');
         }
     }
 
-    public function insertNewCategories(restaurant $restaurant, int $cuisine)
+    /**
+     * insertNewCategories - Insert new categories to the db
+     * 
+     * @param restaurant $restaurant - active restaurant class on the page
+     * @param int $cuisine - active active restaurant_categorie_id from the foreach
+     */
+    public function insertNewCategories(restaurant $restaurant, int $cuisine) : void
     {
         $insertCategoriesSql = "INSERT INTO restaurant_categorie (restaurant_id, restaurant_type_id) values ($restaurant->id,?)";
 
@@ -248,15 +251,19 @@ class restaurantService {
 
             // Execute query
             $query->execute();
-
-            $this->helper->refresh();
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the restaurant. Please try again');
         }
     }
 
-    public function deleteCategories(restaurant $restaurant, array $data)
+    /**
+     * deleteCategories - Deletes categories that are present in the database, but were unchecked on the page
+     * 
+     * @param restaurant $restaurant - active restaurant class on the page
+     * @param array $data - all post value data from the submti
+     */
+    public function deleteCategories(restaurant $restaurant, array $data) : void
     {
         $deleteCategoriesSql = "DELETE FROM restaurant_categorie
         WHERE restaurant_id = $restaurant->id
@@ -272,8 +279,6 @@ class restaurantService {
 
             // Execute query
             $query->execute();
-
-            $this->helper->refresh();
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the restaurant. Please try again');

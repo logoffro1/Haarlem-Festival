@@ -71,7 +71,7 @@
                 $data = [
                     'name'=>$_POST['name'],
                     'address'=>$_POST['address'],
-                    'delete_cuisines'=>implode(',', array_diff($originalCuisineId, $cuisinePostValues)), // Check which cuisine types got REMOVED
+                    'delete_cuisines'=>implode(',', array_diff($originalCuisineId, $cuisinePostValues)), // Check which cuisine types got REMOVED and implode it, so it can be used in the WHERE IN mysql clause
                     'insert_cuisines'=>array_map('intval', array_diff($cuisinePostValues, $originalCuisineId)), // Check which cuisine types got ADDED
                     'biography'=>$_POST['biography'],
                     'duration'=>$_POST['duration'],
@@ -83,6 +83,7 @@
                 ];
 
                 $this->restaurantService->updateRestaurant($restaurant, $data);
+                $this->helper->refresh();
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
