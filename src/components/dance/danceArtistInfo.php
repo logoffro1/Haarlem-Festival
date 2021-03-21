@@ -26,23 +26,23 @@ class danceArtistInfo
 
     public function render()
     {
-        echo "<section class='artistinfo--jazz'>
-        <section class='artistinfo--jazz__artistImg'>
+        echo "<section class='artistinfo--dance'>
+        <section class='artistinfo--dance__artistImg'>
             <img src='$this->image' alt='' >
         </section>
         <section>
-            <p class='artistinfo--jazz__breadCrumb'><a href='jazzEvent.php'>Jazz Artists</a> > $this->artistName</p>
-            <section class='artistinfo--jazz__textContainer'>
-                <section class='artistinfo--jazz__infoText'>
-                    <h1 class='title title--page jazz'> $this->artistName</h1>
+            <p class='artistinfo--dance__breadCrumb'><a href='danceEvent.php'>Dance Artists</a> > $this->artistName</p>
+            <section class='artistinfo--dance__textContainer'>
+                <section class='artistinfo--dance__infoText'>
+                    <h1 class='title title--page dance'> $this->artistName</h1>
                     <p>
                         $this->biography
                     </p>
-                    <section class='artistinfo--jazz__socialMediaContainer'>
-                    <a href='$this->instagram'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
-                    <a href='$this->facebook'><img src='../assets/images/jazz/icons/jazz-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
-                    <a href='$this->youtube'><img src='../assets/images/jazz/icons/jazz-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
-                    <a href='#performances'><button class='artistinfo--jazz__ticketButton'>Get Your Tickets</button></a>
+                    <section class='artistinfo--dance__socialMediaContainer'>
+                    <a href='$this->instagram'><img src='../assets/images/dance/icons/dance-instagram.png' alt='' class='artistinfo--dance__socialMediaIcons'></a>
+                    <a href='$this->facebook'><img src='../assets/images/dance/icons/dance-facebook.png' alt='' class='artistinfo--dance__socialMediaIcons'></a>
+                    <a href='$this->youtube'><img src='../assets/images/dance/icons/dance-youtube.png' alt='' class='artistinfo--dance__socialMediaIcons'></a>
+                    <a href='#performances'><button class='artistinfo--dance__ticketButton'>Get Your Tickets</button></a>
                 </section>
                 </section>
             </section>

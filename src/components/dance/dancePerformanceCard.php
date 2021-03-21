@@ -29,6 +29,7 @@ class dancePerformanceCard
 
     public function render()
     {
+        echo $this->performanceLink;
         echo "
         <section class='container-fluid section'>
         <article class='row align-items-left'>
@@ -72,9 +73,9 @@ class dancePerformanceCard
 
                 }
                 echo"
-                <article class='row align-items-left'>
+                <article class='row align-items-left' style='margin-top:50px;'>
                 <header class='col-5'>
-                    <button style='border-radius: 10px; width:300px; margin-top: 50px;' type='button'>Get your tickets</button>
+                    <a class='button' href='$this->performanceLink'> Get your tickets </a>
                 </header>
             </article>";
                 echo "</header>";

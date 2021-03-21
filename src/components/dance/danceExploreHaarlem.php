@@ -2,10 +2,6 @@
 
 class danceExploreHaarlem
 {
-
-
-
-
     public function render()
     {
         echo "
