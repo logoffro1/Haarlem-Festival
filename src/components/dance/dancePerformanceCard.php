@@ -3,20 +3,14 @@ class dancePerformanceCard
 {
     private string $artistName;
     private int $artistID;
-    private string $performanceTime;
-    private string $performanceLoc;
-    private string $performanceDate;
     private string $performanceLink;
     private string $artistThumbnail;
     private array $performances;
 
-    public function __construct(dancePerformance $performance, string $artistName, string $artistThumbnail, int $artistID,array $performances)
+    public function __construct(string $artistName, string $artistThumbnail, int $artistID,array $performances)
     {
         $this->artistName = $artistName;
         $this->artistID = $artistID;
-        $this->performanceTime = $performance->getTime();
-        $this->performanceLoc = $performance->getLocation();
-        $this->performanceDate = $performance->getDate();
         $this->performanceLink = sprintf('danceArtistOverview.php?artist=%s', $this->artistID);
         $this->artistThumbnail = $artistThumbnail;
         $this->performances = $performances;
@@ -34,13 +28,14 @@ class dancePerformanceCard
     }
 
     public function render()
+    //fix image
     {
         echo "
         <section class='container-fluid section'>
         <article class='row align-items-left'>
             <header class='col-6' style='border-color: white;'>
                 <section class='hero text-top-left' style='position:relative;'>
-                    <img src='../assets/images/dance/hardwell.png' style='margin-left:50px; width:75%; height:auto;'>
+                    <img src='../assets/images/dance/".$this->artistThumbnail."' style='margin-left:50px; width:75%; height:auto;'>
                </header>
                <header class='col-6' style='font-size:26px;'>
                 <article class='row align-items-left'>
