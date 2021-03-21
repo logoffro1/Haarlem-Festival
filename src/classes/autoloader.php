@@ -1,4 +1,4 @@
-<?php  
+<?php
 /*
 * Create autoloader for classes
 * @param $class_name - name of class that needs to be imported
