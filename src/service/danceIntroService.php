@@ -18,7 +18,7 @@ class danceIntroService
                 while($row = $result->fetch_assoc())
                 {
                     $info = json_decode($row["content"]);
-                    return new jazzIntro($info->title, $info->image);
+                    return new danceIntro($info->title, $info->image);
                 }
             }
     }
