@@ -1,0 +1,34 @@
+.artistSongs--dance
+{
+    margin-top:40px;
+
+    .artistSongs--dance__cardSection
+    {
+        position: relative;
+        float: left;
+        height: 350px;
+        width:  350px;
+        margin-right: 40px;
+
+    }
+
+    .artistSongs--dance__songPic{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    .artistSongs--dance__playIcon{
+        position: absolute;
+        top: 40%;
+        left: 40%;
+    }
+
+    .artistSongs--dance__playIcon:hover
+    {
+        transform: rotate(360deg);
+        transition-duration: 1.5s;
+    }
+
+}

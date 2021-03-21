@@ -1,0 +1,11 @@
+.dance--swoosh{
+    position: relative;
+
+    .dance--swoosh__img{
+        top: unset;
+        left: unset;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
