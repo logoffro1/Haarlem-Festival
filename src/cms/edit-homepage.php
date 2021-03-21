@@ -79,11 +79,11 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Second section text</label>
-                        <textarea placeholder="enter the content..." name="second_section_text" value="<?php echo $page->second_section_text ?? ''; ?>"></textarea>
+                        <textarea placeholder="enter the content..." name="second_section_text"><?php echo $page->second_section_text ?? ''; ?></textarea>
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">Second section list (Seperate with ';')</label>
-                        <textarea placeholder="enter the content..." name="second_section_list" value="<?php echo $page->second_section_list ?? ''; ?>"></textarea>
+                        <textarea placeholder="enter the content..." name="second_section_list"><?php echo $page->second_section_list ?? ''; ?></textarea>
                     </fieldset>
 
                     <fieldset class="col-12 col--children-fullwidth">
@@ -92,7 +92,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                     </fieldset>
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">third section text</label>
-                        <textarea placeholder="enter the content..." name="third_section_text" value="<?php echo $page->third_section_text ?? ''; ?>"></textarea>
+                        <textarea placeholder="enter the content..." name="third_section_text"><?php echo $page->third_section_text ?? ''; ?></textarea>
                     </fieldset>
 
 

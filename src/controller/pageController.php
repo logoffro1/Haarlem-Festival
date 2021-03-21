@@ -44,7 +44,10 @@
         {
             try {
                 $page =  $this->pageService->getPage($id);
-                return json_decode($page->content);
+                $content = utf8_encode($page->content);
+                $encodedContent = json_decode($page->content);
+
+                return $encodedContent;
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }   

@@ -20,7 +20,7 @@
         public function getPage(int $id) : ?stdClass
         {
             // Build query
-            $query = "SELECT content FROM pages WHERE page_id = ?";
+            $query = "SELECT content FROM pages WHERE page_id=?";
 
             // Get connection and prepare statement
             if($stmt = $this->conn->prepare($query)) {
