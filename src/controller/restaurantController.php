@@ -32,16 +32,19 @@
                 $data = [
                     'name'=>$_POST['name'],
                     'address'=>$_POST['address'],
+                    'insert_cuisine'=>$_POST['restaurant_type'] ?? array(),
                     'biography'=>$_POST['biography'],
-                    'duration'=>$_POST['duration'],
-                    'sessions'=>$_POST['sessions'],
+                    'duration'=>(int)$_POST['duration'],
+                    'sessions'=>(int)$_POST['sessions'],
                     'start_of_session'=>$_POST['start_of_session'],
-                    'seats'=>$_POST['seats'],
-                    'stars'=>$_POST['stars'],
-                    'price'=>$_POST['price']
+                    'seats'=>(int)$_POST['seats'],
+                    'stars'=>(int)$_POST['stars'],
+                    'price'=>floatval($_POST['price'])
                 ];
+
     
-                $this->restaurantService->addRestaurant($data ,$this->pageId);
+                $this->restaurantService->addRestaurant($data, $this->pageId);
+                $this->helper->redirect("cuisine-event.php");
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }        
@@ -84,6 +87,16 @@
 
                 $this->restaurantService->updateRestaurant($restaurant, $data);
                 $this->helper->refresh();
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function deleteRestaurant(restaurant $restaurant)
+        {
+            try {
+                $this->restaurantService->deleteRestaurant($restaurant);
+                $this->helper->redirect("cuisine-event.php");
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

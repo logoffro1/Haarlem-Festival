@@ -5,6 +5,7 @@
         private locationService $locationService;
 
         public function __construct() {
+            parent::__construct();
             $this->locationService = new locationService();
         }
 

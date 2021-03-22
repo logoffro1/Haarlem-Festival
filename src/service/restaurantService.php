@@ -101,7 +101,7 @@ class restaurantService {
     /**
      * @param data - array of post data from the form
      */
-    public function addRestaurant($data, int $page_id) : void // Todo add categories to insert statement
+    public function addRestaurant(array $data, int $page_id) : void // Todo add categories to insert statement
     {
         $sql = "INSERT INTO restaurants (
             `page_id`,
@@ -114,13 +114,13 @@ class restaurantService {
             `seats`,
             `price`,
             `stars`
-        ) VALUES (1?????????)";
+        ) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
-
             // Create bind params to prevent sql injection
-            $query->bind_param("sssdisidi",
+            $query->bind_param("isssdisidi",
+                $page_id,
                 $data['name'],
                 $data['address'],
                 $data['biography'],
@@ -134,11 +134,41 @@ class restaurantService {
 
             // Execute query
             $query->execute();
+
+            // For every new categorie add it to the db
+            foreach ($data['insert_cuisine'] as $cuisine) {
+                $this->insertNewCategories($query->insert_id, (int)$cuisine);
+            }
         } else {
-            // If connection cannot be established, throw an error
-            throw new Exception('Could not update the restaurant. Please try again');
+            throw new Exception('Could not add the restaurant. Please try again');
         }
     }
+
+    public function deleteRestaurant(restaurant $restaurant)
+    {
+        $sql = "DELETE FROM restaurants WHERE restaurant_id=?";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("i", 
+                $id
+            );
+
+            $id = $restaurant->id;
+
+            foreach ($restaurant->images as $image) {
+                $isDeleted = $this->db->deleteImage($image);
+            }
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not connect to the database. Please try again');
+        }
+    }
+
     public function addRestaurantImage(array $data)
     {
         $sql = "UPDATE restaurants 
@@ -171,12 +201,12 @@ class restaurantService {
         $query = "SELECT * FROM Restaurant_Categorie WHERE restaurant_id = '$id'";
         $result = $this->conn->query($query);
 
-        if($result)
+        if($result){
             while($row = $result->fetch_assoc()){
 
                 $cuisines[] = $this->restaurantTypeController->getTypeById($row["restaurant_type_id"]);
             }
-
+        }
         return $cuisines;
     }
 
@@ -202,7 +232,7 @@ class restaurantService {
         
         // For every new categorie add it to the db
         foreach ($data['insert_cuisines'] as $cuisine) {
-            $this->insertNewCategories($restaurant, $cuisine);
+            $this->insertNewCategories($restaurant->id, $cuisine);
         }
 
         $this->deleteCategories($restaurant, $data);
@@ -237,9 +267,9 @@ class restaurantService {
      * @param restaurant $restaurant - active restaurant class on the page
      * @param int $cuisine - active active restaurant_categorie_id from the foreach
      */
-    public function insertNewCategories(restaurant $restaurant, int $cuisine) : void
+    public function insertNewCategories(int $restaurantId, int $cuisine) : void
     {
-        $insertCategoriesSql = "INSERT INTO restaurant_categorie (restaurant_id, restaurant_type_id) values ($restaurant->id,?)";
+        $insertCategoriesSql = "INSERT INTO restaurant_categorie (restaurant_id, restaurant_type_id) values ($restaurantId,?)";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($insertCategoriesSql)) {

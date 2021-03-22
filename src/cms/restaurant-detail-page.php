@@ -16,6 +16,11 @@ if(isset($_POST['add']))
     $restaurantController->addRestaurant();
 }
 
+if(isset($_GET['delete']))    
+{
+    $restaurantController->deleteRestaurant($restaurant);
+}
+
 $breadcrumbsArray = array(
     array('text' => 'Edit Pages', 'url' => "/index.php"),
     array('text' => 'Cuisine Event', 'url' => "cuisine-event.php"),
@@ -42,6 +47,12 @@ $navigation->render();
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Restaurant name</h3>
+                                
+                    <?php
+                        if(isset($_GET['id'])){
+                            echo "<div class='align--flex-end'><a href='restaurant-detail-page.php?delete=$restaurant->id&id=$restaurant->id' class='button button--secondary'>Delete restaurant</a></div>";
+                        }
+                    ?>
                 </header>
                 <form class="card--cms__body row" method="post">
                     <fieldset class="col-12 col--children-fullwidth">
@@ -77,10 +88,12 @@ $navigation->render();
                                                     value="<?php echo $type->id; ?>" 
                                                     name="restaurant_type[]"
                                                     <?php
-                                                        // Check which categories are selected 
-                                                        foreach ($restaurant->cuisines as $cuisine) {
-                                                            if($type->id == $cuisine->id){
-                                                                echo "checked";
+                                                        if($restaurant){
+                                                            // Check which categories are selected 
+                                                            foreach ($restaurant->cuisines as $cuisine) {
+                                                                if($type->id == $cuisine->id){
+                                                                    echo "checked";
+                                                                }
                                                             }
                                                         }
                                                     ?>
@@ -139,7 +152,7 @@ $navigation->render();
                     <h3 class="card--cms__header__title">Restaurant Images</h3>
                 </header>
                 <form class="card--cms__body row" method="post" enctype="multipart/form-data">
-                    <?php if(strlen($restaurant->image) > 0) { ?>
+                    <?php if($restaurant && strlen($restaurant->image) > 0) { ?>
                         <img src="<?php echo UPLOAD_FOLDER . $restaurant->image ?>" alt="restaurant Image">
                         <br/>
                     <?php } else { ?>

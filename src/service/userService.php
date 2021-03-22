@@ -13,8 +13,8 @@
         }
 
         /**
-         * @param pageId - page id of the jazz or dance page
-         * @return array artists - list of artist without their songs, because it will not be shown in the list
+         * @param cmsUser - logged in user
+         * @return array cmsUser - list of cmsUsers expect the logged in user
          * @return null if nothing is found
          */
         public function getUsers(cmsUser $user) : array {
