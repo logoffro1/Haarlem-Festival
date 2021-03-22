@@ -54,8 +54,6 @@ class database {
      * 
      * @param tmpName - name of temporary image storage location
      * @param name - name of image to upload
-     * 
-     * @return bool - if deletion was succesfull
      */
     public function uploadImage(string $tmpName, string $name)
     {
@@ -82,6 +80,12 @@ class database {
         }
     }
 
+    /**
+     * Delete image to upload folder.
+     * 
+     * @param string $name - name of image in the upload folder
+     * @return boolean - if deletion was successfull
+     */
     public function deleteImage(string $name) : bool
     {
         $target_file = UPLOAD_PATH . basename($name);
