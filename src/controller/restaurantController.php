@@ -50,13 +50,54 @@
             }        
         }
 
-        public function addRestaurantImage() : void
+        public function addRestaurantImages(restaurant $restaurant) : void
         {
-            try {    
-                $this->restaurantService->addRestaurantImage($_FILES);
+            try {
+                // Get already present restaurant images
+                $restaurantImages = $restaurant->images;
+                // Create array to store new images
+                $imageArray = array();
+
+                // 3 images are needed for the restaurants, so we can hardloop over it
+                for ($i=0; $i < 3; $i++) {
+                    // Get image on number suffix, based on name attribute in the html
+                    $image = $_FILES['image_'.$i];
+
+                    // Check if an new image is present
+                    if(strlen($image['name']) > 0){
+                        // Add it to the array
+                        $imageArray[] = $image['name'];
+                        // Upload it to the database
+                        $this->restaurantService->uploadImage($image);
+                    // If no new image is uploaded, but a current image already exist
+                    } else if(isset($restaurantImages[$i])){
+                        // Add it to the array, no upload needed, because it is already present
+                        $imageArray[] = $restaurantImages[$i];
+                    }
+                }
+
+                // Create a string from the array, to upload to the database (database makes use of a string of images sperated by ',')
+                $imageString = implode(',', $imageArray);
+
+                // Send images and restaurant id
+                $this->restaurantService->updateRestaurantImage($imageString, $restaurant->id);
+                $this->helper->refresh();
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }  
+        }
+
+        public function deleteRestaurantImages(restaurant $restaurant)
+        {
+            try {
+                var_dump($restaurant);
+                $this->restaurantService->deleteRestaurantImages($restaurant);
+                $this->restaurantService->updateRestaurantImage(null, $restaurant->id);
+                // $this->helper->refresh();
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }  
+
         }
 
         public function updateRestaurant(restaurant $restaurant) : void

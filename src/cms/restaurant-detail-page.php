@@ -21,6 +21,16 @@ if(isset($_GET['delete']))
     $restaurantController->deleteRestaurant($restaurant);
 }
 
+if(isset($_POST['update_images']))    
+{
+    $restaurantController->addRestaurantImages($restaurant);
+}
+
+if(isset($_POST['delete_images']))    
+{
+    $restaurantController->deleteRestaurantImages($restaurant);
+}
+
 $breadcrumbsArray = array(
     array('text' => 'Edit Pages', 'url' => "/index.php"),
     array('text' => 'Cuisine Event', 'url' => "cuisine-event.php"),
@@ -146,28 +156,40 @@ $navigation->render();
             </article>
         </div>
 
+<?php
+if(isset($_GET['id'])) {
+?>
         <div class="col-4">
             <article class="card--cms">
             <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Restaurant Images</h3>
                 </header>
                 <form class="card--cms__body row" method="post" enctype="multipart/form-data">
-                    <?php if($restaurant && strlen($restaurant->image) > 0) { ?>
-                        <img src="<?php echo UPLOAD_FOLDER . $restaurant->image ?>" alt="restaurant Image">
-                        <br/>
-                    <?php } else { ?>
-                        <p>No image present</p>
+                    <?php
+                        for ($i=0; $i < 3; $i++) { ?>
+                            <fieldset>
+                                <?php 
+                                if($restaurant && isset($restaurant->images[$i]) && strlen($restaurant->images[$i]) > 0) { ?>
+                                    <img src="<?php echo UPLOAD_FOLDER . $restaurant->images[$i] ?>" alt="restaurant Image">
+                                    <br/>
+                                <?php } else { ?>
+                                    <p>No image present</p>
+                                <?php } ?>
+                                <input type="file" name="image_<?php echo $i;?>">
+                                <br/>
+                            </fieldset>
                     <?php } ?>
-                    <input type="file" name="image" >
+      
+
+                    <input class="button" type="submit" name="update_images" value="Update images">
                     <br/>
-                    <input class="button" type="submit" name="submit" value="Update image">
-                    <br/>
-                    <input class="button" type="submit" name="delete" value="Delete image">
+                    <input class="button button--secondary" type="submit" name="delete_images" value="Delete images">
                 </form>
             </article>
-            
-        
         </div>
+    <?php
+    }
+    ?>
         <?php
             $cmsNotification->render(); 
         ?>

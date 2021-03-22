@@ -169,30 +169,29 @@ class restaurantService {
         }
     }
 
-    public function addRestaurantImage(array $data)
+    public function updateRestaurantImage($images, $restaurantId)
     {
         $sql = "UPDATE restaurants 
-                SET image=?
-            WHERE restaurant_id = $artist->id";
+                SET images=?
+            WHERE restaurant_id = $restaurantId";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
             // Create bind params to prevent sql injection
-            $imageName = $data['name'] ?? null;
-
             $query->bind_param("s", 
-                $imageName    
+                $images    
             );
 
-            if($this->db->uploadImage($data['tmp_name'], $data['name'])){
-                // Execute query
-                $query->execute();
-            }
-            $this->helper->refresh();
+            $query->execute();
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the image. Please try again');
         }
+    }
+
+    public function uploadImage(array $data)
+    {
+        $this->db->uploadImage($data['tmp_name'], $data['name']);
     }
 
     private function getCuisinesById(int $id){
@@ -312,6 +311,13 @@ class restaurantService {
         } else {
             // If connection cannot be established, throw an error
             throw new Exception('Could not update the restaurant. Please try again');
+        }
+    }
+
+    public function deleteRestaurantImages(restaurant $restaurant)
+    {
+        foreach ($restaurant->images as $image) {
+            $isDeleted = $this->db->deleteImage($image);
         }
     }
 }
