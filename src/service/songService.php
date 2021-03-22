@@ -87,12 +87,9 @@ include_once '../config/config.php';
                     return;
                 }
 
-                if($this->db->uploadImage($data['image']['tmp_name'], $data['image']['name'])){
-                    // Execute query
-                    $query->execute();
-                } else {
-                    throw new Exception('Could not add the song. Please try again');
-                }
+                $this->db->uploadImage($data['image']['tmp_name'], $data['image']['name']);
+
+                $query->execute();
             } else {
                 // If connection cannot be established, throw an error
                 throw new Exception('Could not create a new song. Please try again');

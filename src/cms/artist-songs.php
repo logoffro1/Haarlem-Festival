@@ -40,6 +40,8 @@ $breadcrumbsArray = array(
     array('text' => $artist->name, 'url' => "./artist-detail-page.php?id=$artist->id")
 );
 $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
+
+$cmsNotification = new cmsNotification('Error', $songController->errors);
 ?>
  <div class="cms-container row">
     <?php $breadcrumbs->render() ?>
@@ -89,6 +91,9 @@ $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
             </div>
         </form>
     </article>
+    <?php
+        $cmsNotification->render();
+    ?>
 </div>
     
 <?php 

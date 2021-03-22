@@ -17,14 +17,18 @@
 
         public function addSong(int $artistId) : void
         {
-            $data = array(
-                'title'=>$_POST['title'],
-                'url'=>$_POST['url'],
-                'image'=>$_FILES["image"]?? ''
-            );
-
-            $this->songService->addSong($data, $artistId);
-            $this->helper->redirect("artist-detail-page.php?id=$artistId");
+            try {
+                $data = array(
+                    'title'=>$_POST['title'],
+                    'url'=>$_POST['url'],
+                    'image'=>$_FILES["image"]?? ''
+                );
+    
+                $this->songService->addSong($data, $artistId);
+                $this->helper->redirect("artist-detail-page.php?id=$artistId");
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getSong() : ?song
