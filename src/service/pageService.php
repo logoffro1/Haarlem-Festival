@@ -67,13 +67,30 @@
 
                 // Update with tmp name from $_FILES
                 foreach ($files as $file) {
-                    $isUploaded = $this->db->uploadImage($file['tmp_name'], $file['name']);
+                    $this->db->uploadImage($file['tmp_name'], $file['name']);
                 }
                 
                 $query->execute();
             } else {
                 // If connection cannot be established, throw an error
                 throw new Exception('Could not connect to the database. Please try again');
+            }
+        }
+
+        /** 
+        * updatePage - updates page content of general pages, based on id
+        *
+        * @param string (json) $data - POST value encoded to json string, minus the to be deleted image value
+        * @param string $fileName - Value of to be delete image  
+        * @param int $id - number of page id in the database 
+        */
+        public function deleteImage(string $data, string $fileName, int $pageId)
+        {
+            if($this->db->deleteImage($fileName)){
+                $this->updatePage($data, array(), $pageId);
+            } else {
+                // If image caanot be deleted, throw an error
+                throw new Exception('Could not delete the image. Please try again');
             }
         }
     }

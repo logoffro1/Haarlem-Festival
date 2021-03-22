@@ -76,7 +76,7 @@ class database {
 
         // If image cannot be uploaded abort query
         if(!move_uploaded_file($tmpName, $target_file)){
-            throw new RuntimeException('Could not upload ' . $name . '. Updating data aborted. Please try again');
+            throw new Exception('Could not upload ' . $name . '. Updating data aborted. Please try again');
         }
     }
 
@@ -94,7 +94,7 @@ class database {
             unlink($target_file);
             return true;
         } else {
-            throw new RuntimeException('Failed to delete image.');
+            throw new Exception('Failed to delete image.');
         }
     }
 

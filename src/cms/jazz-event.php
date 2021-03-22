@@ -15,6 +15,12 @@ if(isset($_POST['submit']))
     $pageController->updatePage($page, 4);
 }
 
+foreach($_POST as $key => $value) {
+    if (strpos($key, 'delete_image') === 0) {
+        $pageController->deleteImage($page, 4, $key);
+    }
+}
+
 $artistController = new artistController();
 $artisList = $artistController->getJazzArtistList();
 
@@ -57,7 +63,8 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
                         <?php if(strlen($page->image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
-                            <br/>
+                            <input class="button button--secondary" type="submit" name="delete_image-image" value="delete image">
+                            <br/><br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>

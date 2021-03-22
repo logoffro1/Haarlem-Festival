@@ -15,6 +15,12 @@ if(isset($_POST['submit']))
     $pageController->updatePage($page, 2);
 }
 
+foreach($_POST as $key => $value) {
+    if (strpos($key, 'delete_image') === 0) {
+        $pageController->deleteImage($page, 2, $key);
+    }
+}
+
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
 $artistController = new artistController();
@@ -56,7 +62,8 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
 
                         <?php if(strlen($page->page_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->page_image ?>" alt="Page Image">
-                            <br/>
+                            <input class="button button--secondary" type="submit" name="delete_image-page_image" value="delete image">
+                            <br/><br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>
@@ -81,7 +88,8 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
 
                         <?php if(strlen($page->hero_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->hero_image ?>" alt="Hero Image">
-                            <br/>
+                            <input class="button button--secondary" type="submit" name="delete_image-hero_image" value="delete image">
+                            <br/><br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>

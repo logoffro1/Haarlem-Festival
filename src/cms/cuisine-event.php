@@ -21,6 +21,12 @@ if(isset($_POST['submit']))
     $pageController->updatePage($page, 1);
 }
 
+foreach($_POST as $key => $value) {
+    if (strpos($key, 'delete_image') === 0) {
+        $pageController->deleteImage($page, 1, $key);
+    }
+}
+
 $restaurantController = new restaurantController();
 $restaurantList = $restaurantController->getRestaurants();
 
@@ -34,8 +40,6 @@ foreach($restaurantList as $restaurant){
 
     $tableArray[] = $restaurantArray;
 };
-
-// var_dump($tableArray);
 
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
@@ -67,7 +71,8 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $table
 
                         <?php if(strlen($page->image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
-                            <br/>
+                            <input class="button button--secondary" type="submit" name="delete_image-image" value="delete image">
+                            <br/><br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>

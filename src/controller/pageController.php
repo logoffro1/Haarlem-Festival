@@ -52,5 +52,27 @@
                 $this->addToErrors($e->getMessage());
             }   
         }
+
+        public function deleteImage(stdClass $page, int $id, string $name)
+        {
+            try {
+                // Remove prefix, and save the corresponding object name
+                $imagePropName = substr($name,13);
+
+                // Get the value (image name) of the object name
+                $imageValueName = $page->$imagePropName;
+
+                // Remove the value from the object
+                $page->$imagePropName = '';
+
+                // Encode to json string
+                $data = json_encode($page);
+
+                // delete the image, adn update the json string in the database
+                $this->pageService->deleteImage($data, $imageValueName, $id);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }   
+        }
     }
 ?>

@@ -15,6 +15,12 @@ if(isset($_POST['submit']))
     $pageController->updatePage($page, 5);
 }
 
+foreach($_POST as $key => $value) {
+    if (strpos($key, 'delete_image') === 0) {
+        $pageController->deleteImage($page, 5, $key);
+    }
+}
+
 $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
 ?>
@@ -46,7 +52,8 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
                         <?php if(strlen($page->page_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->page_image ?>" alt="Page Image">
-                            <br/>
+                            <input class="button button--secondary" type="submit" name="delete_image-page_image" value="delete image">
+                            <br/><br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>
@@ -66,7 +73,8 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
 
                         <?php if(strlen($page->first_section_image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER . $page->first_section_image ?>" alt="Page Image">
-                            <br/>
+                            <input class="button button--secondary" type="submit" name="delete_image-first_section_image" value="delete image">
+                            <br/><br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>
