@@ -38,10 +38,14 @@ class jazzArtistInfo
                     <p>
                         $this->biography
                     </p>
-                    <section class='artistinfo--jazz__socialMediaContainer'>
-                    <a href='$this->instagram'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
-                    <a href='$this->facebook'><img src='../assets/images/jazz/icons/jazz-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
-                    <a href='$this->youtube'><img src='../assets/images/jazz/icons/jazz-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>
+                    <section class='artistinfo--jazz__socialMediaContainer'>";
+            if($this->instagram != " "){
+                echo "<a href='$this->instagram'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";}
+            if($this->facebook != " ")                       
+                echo "<a href='$this->facebook'><img src='../assets/images/jazz/icons/jazz-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+            if($this->youtube != " ")
+                echo "<a href='$this->youtube'><img src='../assets/images/jazz/icons/jazz-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+            echo"
                     <a href='#performances'><button class='artistinfo--jazz__ticketButton'>Get Your Tickets</button></a>
                 </section>
                 </section>
