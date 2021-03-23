@@ -207,7 +207,6 @@ class tourService {
             );
             
             // Execute query
-            var_dump($data);
             $query->execute();
         } else {
             // If connection cannot be established, throw an error

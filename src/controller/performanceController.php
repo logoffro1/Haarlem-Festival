@@ -21,7 +21,7 @@
                 ];
     
                 $this->performanceService->addPerformance($artist, $data);
-                $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+                $this->helper->redirect("artist-detail-page.php?id=$artist->id&event=".$_GET['event']."");
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
@@ -33,7 +33,7 @@
                 $id = $_GET['delete'];
     
                 $this->performanceService->deletePerformance((int)$id);
-                $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+                $this->helper->redirect("artist-detail-page.php?id=$artist->id&event=".$_GET['event']."");
             } catch (Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
@@ -62,7 +62,8 @@
                     'date'=>$_POST['date'],
                     'time'=>$_POST['start_time'],
                     'duration'=>$_POST['duration'],
-                    'location'=>$_POST['location']
+                    'location'=>$_POST['location'],
+                    'tickets'=>$_POST['tickets']
                 ];
     
                 $this->performanceService->updatePerformance($data, $id);

@@ -12,8 +12,13 @@
         public function deleteSong(song $song, artist $artist)
         {
             try {
+
+                if(isset($_GET['event']))    
+                {
+                    $eventId = $_GET['event'];
+                }
                 $this->songService->deleteSong($song);
-                $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+                $this->helper->redirect("artist-detail-page.php?id=$artist->id&event=$eventId");
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
@@ -22,6 +27,10 @@
         public function addSong(int $artistId) : void
         {
             try {
+                if(isset($_GET['event']))    
+                {
+                    $eventId = $_GET['event'];
+                }
                 $data = array(
                     'title'=>$_POST['title'],
                     'url'=>$_POST['url'],
@@ -29,7 +38,7 @@
                 );
     
                 $this->songService->addSong($data, $artistId);
-                $this->helper->redirect("artist-detail-page.php?id=$artistId");
+                $this->helper->redirect("artist-detail-page.php?id=$artistId&event=$eventId");
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

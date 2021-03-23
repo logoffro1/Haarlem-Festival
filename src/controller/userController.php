@@ -52,7 +52,7 @@
                 $id = $id ?? $_GET['id'];
 
                 $this->userService->updateUser($email, $name, $id);
-                // $this->helper->refresh();
+                $this->helper->refresh();
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

@@ -120,16 +120,17 @@
 
         public function updatePerformance(array $data, int $id)
         {
-            $sql = "UPDATE performances SET location_id=?, date=?, time=?, duration=? WHERE performance_id = ?";
+            $sql = "UPDATE performances SET location_id=?, date=?, time=?, duration=?, availableTickets=? WHERE performance_id = ?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
-                $query->bind_param("issii", 
+                $query->bind_param("issiii", 
                     $data['location'],
                     $data['date'],
                     $data['time'],
                     $data['duration'],
+                    $data['tickets'],
                     $id
                 );
 

@@ -100,10 +100,9 @@
         public function deleteRestaurantImages(restaurant $restaurant)
         {
             try {
-                var_dump($restaurant);
                 $this->restaurantService->deleteRestaurantImages($restaurant);
                 $this->restaurantService->updateRestaurantImage(null, $restaurant->id);
-                // $this->helper->refresh();
+                $this->helper->refresh();
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }  

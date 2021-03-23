@@ -9,6 +9,11 @@ $artistController = new artistController();
 
 $artist = null;
 $idExist = isset($_GET['id']);
+
+if(isset($_GET['event'])){
+    $eventId = (int)$_GET['event'];
+} 
+
 if($idExist)    
 {
     $artist = $artistController->getArtist();
@@ -19,13 +24,13 @@ if($idExist)
 
     foreach($artist->songs as $song){
         $songArray = $song->mutateToArray();
-        $songArray[] = "<a href='artist-songs.php?id=$song->id'>edit</a>";
+        $songArray[] = "<a href='artist-songs.php?id=$song->id&event=$eventId'>edit</a>";
         $songs[] = $songArray;
     };
 
     foreach($artist->performances as $performance){
         $performanceArray = $performance->mutateToArray();
-        $performanceArray[] = "<a href='artist-performance-details.php?id=$performance->id'>edit</a>";
+        $performanceArray[] = "<a href='artist-performance-details.php?id=$performance->id&event=$eventId'>edit</a>";
     
         $performanceArray['location'] = $performanceArray['location']->name;
         unset($performanceArray['tickets']);
@@ -34,13 +39,9 @@ if($idExist)
     };
 
     $table = new table('card--cms__body table--cms', ['Date', 'Time', 'Location', ''], $performances);
-    $tableSongs = new table('card--cms__body table--cms', ['title', 'image', 'url', ''], $songs);
+    $tableSongs = new table('card--cms__body table--cms table--cms--small', ['title', 'image', 'url', ''], $songs);
     
 }
-
-if(isset($_GET['event'])){
-    $eventId = (int)$_GET['event'];
-} 
 
 if(isset($_POST['add']))    
 {
@@ -134,7 +135,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Songs</h3>
                     <?php if($idExist){ ?>
-                            <a class="button button--secondary" href="artist-songs.php">Add song</a>
+                            <a class="button button--secondary" href="artist-songs.php?event=<?php echo $eventId; ?>">Add song</a>
                     <?php } ?>
                 </header>
 
@@ -153,7 +154,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                 </header>
                 <form class="card--cms__body table--cms" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <?php if(strlen($artist->image) > 0) { ?>
+                        <?php if($artist && strlen($artist->image) > 0) { ?>
                             <img src="<?php echo UPLOAD_FOLDER.$artist->image ?? ''; ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>

@@ -48,14 +48,20 @@ $navigation->render();
         <nav class="breadcrumbs breadcrumbs--cms col-12">
             <ul>
                 <li class="breadcrumbs__breadcrumb"><a href="edit-pages.php">Events</a></li>
-                <li class="breadcrumbs__breadcrumb"><a href="artist-detail-page.php?id=<?php echo $artist->id; ?>"><?php echo $artist->name; ?></a></li>
+                <li class="breadcrumbs__breadcrumb"><a href="artist-detail-page.php?id=<?php echo $artist->id; ?>&event=<?php echo $eventId; ?>"><?php echo $artist->name; ?></a></li>
             </ul>
         </nav>
        
         <article class="card--cms col-8">
             <header class="card--cms__header">
                 <h3 class="card--cms__header__title">Event Details</h3>
-                <a href="artist-performance-details.php?id=<?php echo $performance->id ?>&delete=<?php echo $performance->id ?>" class="button button--secondary">Delete Performance</a>
+                <?php
+                if(isset($_GET['id'])) {
+                ?>
+                    <a href="artist-performance-details.php?id=<?php echo $performance->id ?>&delete=<?php echo $performance->id ?>" class="button button--secondary">Delete Performance</a>
+                <?php
+                }
+                ?>
             </header>
             <form class="card--cms__body row" method="post">
                 <p class="card--cms__body__form-title col-12">Date and time</p>
@@ -99,7 +105,7 @@ $navigation->render();
 
                 <fieldset class="col-6 col--children-fullwidth">
                     <label class="label">Available tickets*</label>
-                    <input required value="<?php $performance->tickets ?? ''?>" type="number" name="tickets">
+                    <input required value="<?php echo $performance->tickets ?? ''?>" type="number" name="tickets">
                 </fieldset>
 
                 <p class="card--cms__body__additional">*The Seats and Price Per Ticket are based on the location.</p>

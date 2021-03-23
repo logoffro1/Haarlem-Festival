@@ -6,6 +6,10 @@ include_once '../config/config.php';
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
+if(isset($_GET['event']))    
+{
+    $eventId = $_GET['event'];
+}
 // Get artist
 $artistController = new artistController();
 $artist = $artistController->getSession();
@@ -37,7 +41,7 @@ $navigation = new cmsNavigation("Events");
 $navigation->render();
 
 $breadcrumbsArray = array(
-    array('text' => $artist->name, 'url' => "./artist-detail-page.php?id=$artist->id")
+    array('text' => $artist->name, 'url' => "./artist-detail-page.php?id=$artist->id&event=$eventId")
 );
 $breadcrumbs = new breadcrumbs($breadcrumbsArray, 'breadcrumbs--cms');
 
