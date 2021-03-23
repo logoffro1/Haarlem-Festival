@@ -25,7 +25,7 @@ class jazzSongCard
             $img = $song->__get('image');
             echo "
             <section class='artistSongs--jazz__cardSection'>
-                    <a href='$url'>
+                    <a href='$url' target='_blank'>
                         <img class='artistSongs--jazz__songPic' src='$img' alt=''>
                         <img class='artistSongs--jazz__playIcon'  src='../assets/images/jazz/icons/songs-play-button.png'>
                     </a>

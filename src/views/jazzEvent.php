@@ -69,29 +69,28 @@ foreach ($jazzCards as $card) {
 }
 ksort($arrayOfCards);
 
-//Getting the performance count in order to display on screen
-$performanceCount = loopCards("count", $arrayOfCards);
-echo "<p style='font-size: 14px'> There are $performanceCount event(s) listed.</p>";
+//Creating the p tag so that it can be filled later with javascript
+echo "<p id ='performanceCountInfo' style='font-size: 14px'> There are 0 event(s) listed.</p>";
 
-//Rendering each card
-loopCards("card", $arrayOfCards);
+//Rendering each card and editing p tag with javascript
+$performanceCount = loopCards($arrayOfCards);
+echo sprintf("<script>document.getElementById('performanceCountInfo').innerHTML = 'There are %s event(s) listed.';</script></section>", $performanceCount);
 
-echo "</section>";
 $swoosh = new jazzSwoosh();
 $swoosh->render();
-$footer = new footer();
+$footer = new footer(); 
 $footer->renderFooter();
 
-function loopCards(string $input, array $arrayOfCards)
+# echo "<script>document.getElementsByClassName('navigation__shop__item-count')[0].innerHTML = '69'</script>";
+function loopCards(array $arrayOfCards)
 {
     $performanceCount = 0;
-    foreach ($arrayOfCards as $date => $cards) {
-        foreach ($cards as $card) {
-            if ($input == "card") {
-                $card->render();
-            } else if ($input == "count") {
-                $performanceCount++;
-            }
+    foreach ($arrayOfCards as $date => $cards) 
+    {
+        foreach ($cards as $card) 
+        {
+            $card->render();
+            $performanceCount++;
         }
     }
     return $performanceCount;

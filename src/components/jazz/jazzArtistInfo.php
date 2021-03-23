@@ -23,7 +23,6 @@ class jazzArtistInfo
         $this->youtube = $this->artist->__get('youtube');
     }
 
-
     public function render()
     {
         echo "<section class='artistinfo--jazz'>
@@ -40,11 +39,11 @@ class jazzArtistInfo
                     </p>
                     <section class='artistinfo--jazz__socialMediaContainer'>";
             if($this->instagram != " "){
-                echo "<a href='$this->instagram'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";}
+                echo "<a href='$this->instagram' target='_blank'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";}
             if($this->facebook != " ")                       
-                echo "<a href='$this->facebook'><img src='../assets/images/jazz/icons/jazz-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                echo "<a href='$this->facebook' target='_blank'><img src='../assets/images/jazz/icons/jazz-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
             if($this->youtube != " ")
-                echo "<a href='$this->youtube'><img src='../assets/images/jazz/icons/jazz-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                echo "<a href='$this->youtube' target='_blank'><img src='../assets/images/jazz/icons/jazz-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
             echo"
                     <a href='#performances'><button class='artistinfo--jazz__ticketButton'>Get Your Tickets</button></a>
                 </section>
