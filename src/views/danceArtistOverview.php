@@ -1,13 +1,5 @@
 <?php
     include '../classes/autoloader.php';
-    include '../components/dance/danceExploreMap.php';
-    include '../components/dance/danceExploreHaarlem.php';
-    include '../components/dance/danceJazzSuggestion.php';
-    include '../components/dance/danceSwoosh.php';
-    include '../components/dance/danceArtistInfo.php';
-    include '../components/dance/danceSongCard.php';
-    include '../components/dance/danceArtistPerformances.php';
-
 
     if (isset($_GET['artist']))
     {
@@ -37,7 +29,7 @@
         $exploreMap = new danceExploreMap();
         $exploreMap->render();
 
-        $jazzSuggestion = new danceDanceSuggestion();
+        $jazzSuggestion = new danceJazzSuggestion();
         $jazzSuggestion->render();
 
         $swoosh = new danceSwoosh();

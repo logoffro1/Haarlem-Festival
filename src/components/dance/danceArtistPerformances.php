@@ -1,11 +1,5 @@
 <?php
-@include '../assets/componenets/danceEvent/__danceArtistInfo.scss';
-@include '../assets/componenets/danceEvent/__danceEventComps.scss';
-@include '../assets/componenets/danceEvent/__danceArtistPerformances.scss';
-@include '../assets/componenets/danceEvent/__danceArtistSongs.scss';
-@include '../assets/componenets/danceEvent/__danceCombobox.scss';
-@include '../assets/componenets/danceEvent/__danceExploreHaarlem.scss';
-@include '../assets/componenets/danceEvent/__danceSwoosh.scss';
+include '../classes/autoloader.php';
 class danceArtistPerformances
 {
     private array $performances;
@@ -21,7 +15,7 @@ class danceArtistPerformances
         <article class='row align-items-left'>
             <header class='col-3'>
                 <section class='hero text-top-left' style='position:relative;'>
-                    <p class='ticket-list header' style='margin:0px;'>WHEN</p>
+                    <p style='margin:0px;'>WHEN</p>
                 </section>
                </header>
 

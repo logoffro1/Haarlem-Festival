@@ -1,7 +1,5 @@
 <?php
 include '../classes/autoloader.php';
-include '../components/dance/dancePerformanceCard.php';
-include '../components/dance/danceSwoosh.php';
 
 $head = new head("Dance Events | Haarlem Festival", "");
 $head->render();

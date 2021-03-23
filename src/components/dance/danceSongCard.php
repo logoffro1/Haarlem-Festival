@@ -1,11 +1,5 @@
 <?php
-@include '../assets/componenets/danceEvent/__danceArtistInfo.scss';
-@include '../assets/componenets/danceEvent/__danceEventComps.scss';
-@include '../assets/componenets/danceEvent/__danceArtistPerformances.scss';
-@include '../assets/componenets/danceEvent/__danceArtistSongs.scss';
-@include '../assets/componenets/danceEvent/__danceCombobox.scss';
-@include '../assets/componenets/danceEvent/__danceExploreHaarlem.scss';
-@include '../assets/componenets/danceEvent/__danceSwoosh.scss';
+include '../classes/autoloader.php';
 class danceSongCard
 {
     private array $songs;
@@ -28,7 +22,8 @@ class danceSongCard
                 </section>
                </header>
            </article>
-            <article class='row align-items-left'>";
+            <article class='row align-items-left'>
+            <a id='performances'></a>";
 
         foreach($this->songs as $song)
         {

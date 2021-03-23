@@ -1,6 +1,5 @@
 <?php
     include '../classes/autoloader.php';
-	include '../models/location.php';
 
     class locationService {
 

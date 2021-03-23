@@ -1,6 +1,5 @@
 <?php
 include '../classes/autoloader.php';
-include '../components/dance/danceIntro.php';
 class danceIntroService
 {
     public function __construct()

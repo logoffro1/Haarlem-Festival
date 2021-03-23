@@ -1,20 +1,18 @@
 <?php
 include './classes/autoloader.php';
-
 $head = new head("homepage", "");
 $head->render();
 ?>
-
-<?php 
+<?php
 $navigation = new navigation("Home");
 $navigation->render();
 ?>
 
-<?php 
+<?php
     $hero = new hero(
-        "hero--large", 
-        "4 days of<br/>summer & culture<br/> in Haarlem<br/>", 
-        "The Haarlem Festival is a four day festival to experience the culture of Haarlem.<br/>Enjoy different kinds of events online or offline.", 
+        "hero--large",
+        "4 days of<br/>summer & culture<br/> in Haarlem<br/>",
+        "The Haarlem Festival is a four day festival to experience the culture of Haarlem.<br/>Enjoy different kinds of events online or offline.",
         "./assets/images/hero-image.png"
     );
 

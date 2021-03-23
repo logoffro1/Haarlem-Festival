@@ -1,11 +1,5 @@
 <?php
-@include '../assets/componenets/danceEvent/__danceArtistInfo.scss';
-@include '../assets/componenets/danceEvent/__danceEventComps.scss';
-@include '../assets/componenets/danceEvent/__danceArtistPerformances.scss';
-@include '../assets/componenets/danceEvent/__danceArtistSongs.scss';
-@include '../assets/componenets/danceEvent/__danceCombobox.scss';
-@include '../assets/componenets/danceEvent/__danceExploreHaarlem.scss';
-@include '../assets/componenets/danceEvent/__danceSwoosh.scss';
+include '../classes/autoloader.php';
 class danceArtistInfo
 {
     private danceArtist $artist;
@@ -32,29 +26,30 @@ class danceArtistInfo
 
     public function render()
     {
-        echo "<section class='artistinfo--dance'>
-        <section class='artistinfo--dance__artistImg'>
-            <img src='$this->image' alt='' >
-        </section>
-        <section>
-            <p class='artistinfo--dance__breadCrumb'><a href='danceEvent.php'>Dance Artists</a> > $this->artistName</p>
-            <section class='artistinfo--dance__textContainer'>
-                <section class='artistinfo--dance__infoText'>
-                    <h1 class='title title--page dance'> $this->artistName</h1>
-                    <p>
-                        $this->biography
-                    </p>
-                    <section class='artistinfo--dance__socialMediaContainer'>
-                    <a href='$this->instagram'><img src='../assets/images/dance/icons/dance-instagram.png' alt='' class='artistinfo--dance__socialMediaIcons'></a>
-                    <a href='$this->facebook'><img src='../assets/images/dance/icons/dance-facebook.png' alt='' class='artistinfo--dance__socialMediaIcons'></a>
-                    <a href='$this->youtube'><img src='../assets/images/dance/icons/dance-youtube.png' alt='' class='artistinfo--dance__socialMediaIcons'></a>
-                    <a href='#performances'><button class='artistinfo--dance__ticketButton'>Get Your Tickets</button></a>
-                </section>
-                </section>
-            </section>
-            </section>
-        </section>
-    </section>";
+        echo "<section class='container section' style='padding: 0px; padding-top: 90px; margin: 0px;'>
+        <article class='row'>
+            <header class='col-8'>
+                <span>
+               <img src='$this->image' alt='' style='position:relative;'>
+               </span>
+               </header>
+               <header class='col-4'>
+               <span>
+               <img src='../assets/images/dance/Rectangle 112.png' alt='' style='position:relative; margin-top: 75px; margin-left: -60%; margin-bottom:30px;'>
+               <span style='position:absolute; top:250px; right:400px;'>
+               <h1 class='title title--page dance' >$this->artistName</h1>
+               <p style='position:relative; width:500px; margin-bottom:150px;'>$this->biography</p>
+               <article class='row' style='position:relative;'>
+               <a style='margin-right:35px; margin-top:7px;' href='$this->instagram'><img src='../assets/images/dance/icons/dance-instagram.png' alt=''></a>
+               <a style='margin-right:35px; margin-top:7px;' href='$this->facebook'><img src='../assets/images/dance/icons/dance-facebook.png' alt=''></a>
+               <a style='margin-right:35px; margin-top:7px;' href='$this->youtube'><img src='../assets/images/dance/icons/dance-youtube.png' alt=''></a>
+               <a class='button' href='#performances'>Get your tickets</a>
+               </span>
+           </span>
+               </header>
+           </article>
+       </section>
+       ";
     }
 }
 

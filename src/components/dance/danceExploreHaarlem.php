@@ -1,11 +1,5 @@
 <?php
-@include '../assets/componenets/danceEvent/__danceArtistInfo.scss';
-@include '../assets/componenets/danceEvent/__danceEventComps.scss';
-@include '../assets/componenets/danceEvent/__danceArtistPerformances.scss';
-@include '../assets/componenets/danceEvent/__danceArtistSongs.scss';
-@include '../assets/componenets/danceEvent/__danceCombobox.scss';
-@include '../assets/componenets/danceEvent/__danceExploreHaarlem.scss';
-@include '../assets/componenets/danceEvent/__danceSwoosh.scss';
+include '../classes/autoloader.php';
 class danceExploreHaarlem
 {
     public function render()
@@ -15,7 +9,7 @@ class danceExploreHaarlem
         <article class='row align-items-left'>
             <header class='col-12'>
                 <section class='hero text-top-left' style='position:relative;'>
-                    <h1 style='margin-top: 60px; margin-left: 0px;'class='title'><b>Explore <u>Haarlem</u> before the event!<br> and meet like-minded people</b></h1>
+                    <h1 style='margin-top: 60px; margin-left: 0px;'class='title'><b>Explore <u style='color: #A336FF'; >Haarlem</u> before the event!<br></br> and meet like-minded people</b></h1>
                 </section>
                </header>
            </article>
