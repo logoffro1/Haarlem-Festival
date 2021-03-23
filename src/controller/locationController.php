@@ -11,12 +11,22 @@
 
         public function getDanceLocations() : ?array
         {
-            return $this->locationService->getDanceLocations();
+            try {
+                return $this->locationService->getDanceLocations();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getJazzLocations() : ?array
         {
-            return $this->locationService->getJazzLocations();
+            try {
+                return $this->locationService->getJazzLocations();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
     }
 ?>

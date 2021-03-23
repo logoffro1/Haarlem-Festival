@@ -11,16 +11,26 @@
 
         public function getPurchaseList() : ?array
         {
-            return $this->purchaseService->getPurchaseList();
+            try {
+                return $this->purchaseService->getPurchaseList();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function changePurchasePaymentStatus() : void
         {
-            $isPayed = isset($_POST['isPayed']);
-            $id = $_POST['purchaseId'];
-
-            $this->purchaseService->changePurchasePaymentStatus($isPayed, $id);
-            $this->helper->refresh();
+            try {
+                $isPayed = isset($_POST['isPayed']);
+                $id = $_POST['purchaseId'];
+    
+                $this->purchaseService->changePurchasePaymentStatus($isPayed, $id);
+                $this->helper->refresh();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
     }
 ?>

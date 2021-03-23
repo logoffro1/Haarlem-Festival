@@ -47,21 +47,26 @@ include_once '../classes/helper.php';
          * to avoid infinite redirects.
          */
         protected function checkIfLoggedIn(){
-            $this->helper->startSession();
-            $url = $_SERVER['REQUEST_URI'];
-
-            if (
-                strpos($url, "login.php") || 
-                strpos($url, "reset-password.php") || 
-                strpos($url, "activate-account.php") || 
-                strpos($url, "register.php") || 
-                !strpos($url, "cms")
-            ){
-                return;
-            }
-
-            if(!isset($_SESSION['loggedInUser'])){
-                $this->helper->redirect('login.php');
+            try {
+                $this->helper->startSession();
+                $url = $_SERVER['REQUEST_URI'];
+    
+                if (
+                    strpos($url, "login.php") || 
+                    strpos($url, "reset-password.php") || 
+                    strpos($url, "activate-account.php") || 
+                    strpos($url, "register.php") || 
+                    !strpos($url, "cms")
+                ){
+                    return;
+                }
+    
+                if(!isset($_SESSION['loggedInUser'])){
+                    $this->helper->redirect('login.php');
+                }
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
             }
         }
 

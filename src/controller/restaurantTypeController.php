@@ -1,20 +1,31 @@
 <?php
     include '../classes/autoloader.php';
 
-    class restaurantTypeController
+    class restaurantTypeController extends controller
     {
         private restaurantTypeService $restaurantTypeService;
 
         public function __construct() {
+            parent::__construct();
             $this->restaurantTypeService = new restaurantTypeService();
         }
 
         public function getRestaurantTypes(){
-            return $this->restaurantTypeService->getRestaurantTypes();
+            try {
+                return $this->restaurantTypeService->getRestaurantTypes();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getTypeById(int $id){
-            return $this->restaurantTypeService->getTypeById($id);
+            try {
+                return $this->restaurantTypeService->getTypeById($id);
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
     }
     

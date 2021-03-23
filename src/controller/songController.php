@@ -11,8 +11,12 @@
 
         public function deleteSong(song $song, artist $artist)
         {
-            $this->songService->deleteSong($song);
-            $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+            try {
+                $this->songService->deleteSong($song);
+                $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function addSong(int $artistId) : void
@@ -33,13 +37,17 @@
 
         public function getSong() : ?song
         {
-            if(isset($_GET["id"])){
-                $songId = $_GET["id"];
-                
-                return $this->songService->getSong($songId);
+            try {
+                if(isset($_GET["id"])){
+                    $songId = $_GET["id"];
+                    
+                    return $this->songService->getSong($songId);
+                }
+    
+                return null;
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
             }
-
-            return null;
         }
 
         public function updateSong(song $song) : void

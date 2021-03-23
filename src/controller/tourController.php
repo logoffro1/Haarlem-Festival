@@ -138,23 +138,27 @@
 
         public function getLanguage() : string
         {
-            // Language of tour type needs to be retrieved to remove multiple (now redundant) $_POST checks in the tour-detail-page.php
-            $activeLanguage;
-            
-            // If statement needed, becuase ternary operator is left-associative,
-            // so wrong value will be returned, even though the correct check passes.
-            // Check for more info: https://stitcher.io/blog/shorthand-comparisons-in-php "Chaining ternary operators"
-            if(isset($_POST['update_english']) || isset($_POST['add_english'])){
-                $activeLanguage = "English";
-            } else if(isset($_POST['update_dutch']) || isset($_POST['add_dutch'])){
-                $activeLanguage = "Dutch";
-            } else if(isset($_POST['update_chinese']) || isset($_POST['add_chinese'])){
-                $activeLanguage = "Chinese";
-            } else {
-                throw new Exception("Cannot retrieve the correct language");
+            try {
+                // Language of tour type needs to be retrieved to remove multiple (now redundant) $_POST checks in the tour-detail-page.php
+                $activeLanguage;
+                
+                // If statement needed, becuase ternary operator is left-associative,
+                // so wrong value will be returned, even though the correct check passes.
+                // Check for more info: https://stitcher.io/blog/shorthand-comparisons-in-php "Chaining ternary operators"
+                if(isset($_POST['update_english']) || isset($_POST['add_english'])){
+                    $activeLanguage = "English";
+                } else if(isset($_POST['update_dutch']) || isset($_POST['add_dutch'])){
+                    $activeLanguage = "Dutch";
+                } else if(isset($_POST['update_chinese']) || isset($_POST['add_chinese'])){
+                    $activeLanguage = "Chinese";
+                } else {
+                    throw new Exception("Cannot retrieve the correct language");
+                }
+    
+                return $activeLanguage;
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
             }
-
-            return $activeLanguage;
         }
     }
     

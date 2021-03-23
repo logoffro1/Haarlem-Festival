@@ -14,16 +14,26 @@
 
         public function getRestaurants()
         {
-            return $this->restaurantService->getRestaurants();
+            try {
+                return $this->restaurantService->getRestaurants();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getRestaurant() : ?restaurant
         {
-            if(isset($_GET['id'])){
-                return $this->restaurantService->getRestaurant($_GET['id']);
+            try {
+                if(isset($_GET['id'])){
+                    return $this->restaurantService->getRestaurant($_GET['id']);
+                }
+    
+                return null;
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
             }
-
-            return null;
         }
 
         public function addRestaurant() : void

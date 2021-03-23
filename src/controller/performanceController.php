@@ -29,10 +29,15 @@
 
         public function deletePerformance(artist $artist)
         {
-            $id = $_GET['delete'];
-
-            $this->performanceService->deletePerformance((int)$id);
-            $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+            try {
+                $id = $_GET['delete'];
+    
+                $this->performanceService->deletePerformance((int)$id);
+                $this->helper->redirect("artist-detail-page.php?id=$artist->id");
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getPerformance()

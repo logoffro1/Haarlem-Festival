@@ -182,38 +182,58 @@
         // Create user session value
         public function createUserSession(cmsUser $loggedInUser) : void
         {
-            $this->helper->startSession();
-            $_SESSION["loggedInUser"] = serialize($loggedInUser);
+            try {
+                $this->helper->startSession();
+                $_SESSION["loggedInUser"] = serialize($loggedInUser);
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         // Update user session values
         public function updateUserSession() : void
         {
-            $this->helper->startSession();
-            $user = $this->helper->getLoggedInUser();
-
-            $email = $_POST['email'];
-            $name = $_POST['name'];
-
-            $user->setName($name);
-            $user->setEmail($email);
-
-            $_SESSION["loggedInUser"] = serialize($user);
+            try {
+                $this->helper->startSession();
+                $user = $this->helper->getLoggedInUser();
+    
+                $email = $_POST['email'];
+                $name = $_POST['name'];
+    
+                $user->setName($name);
+                $user->setEmail($email);
+    
+                $_SESSION["loggedInUser"] = serialize($user);
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getLoggedInUser() : ?cmsUser
         {
-            return $this->helper->getLoggedInUser();
+            try {
+                return $this->helper->getLoggedInUser();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
         // Logout and clear session and cookies
         public function logout() : void
         {
-            $this->helper->destroySession();
-
-            // Clear all cookies
-            $this->helper->clearCookies();
-
-            $this->helper->redirect("login.php");
+            try {
+                $this->helper->destroySession();
+    
+                // Clear all cookies
+                $this->helper->clearCookies();
+    
+                $this->helper->redirect("login.php");
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
         }
     }
 
