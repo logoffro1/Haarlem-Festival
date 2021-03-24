@@ -79,10 +79,50 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $table
                         <input type="file" name="image" >
                     </fieldset>
 
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Cooking styles title</label>
+                        <input placeholder="enter the title..." type="text" name="first_section_title" value="<?php echo $page->first_section_title ?? ''?>">
+                    </fieldset>
+
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Cooking styles content</label>
+                        <textarea placeholder="enter the content..." name="first_section_text"><?php echo $page->first_section_text ?? ''?></textarea>
+                    </fieldset>
+
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Cooking styles list (seperate with ";")</label>
+                        <textarea placeholder="enter the content..." name="first_section_list"><?php echo $page->first_section_list ?? ''?></textarea>
+                    </fieldset>
+
+                    
+                    <fieldset>
+                        <label class="label">Cooking styles Image</label>
+
+                        <?php if(isset($page->first_section_image) && strlen($page->first_section_image) > 0) { ?>
+                            <img src="<?php echo UPLOAD_FOLDER . $page->first_section_image ?>" alt="Artist Image">
+                            <input class="button button--secondary" type="submit" name="delete_image-first_section_image" value="delete image">
+                            <br/><br/>
+                        <?php } else { ?>
+                            <p>No image present</p>
+                        <?php } ?>
+                        <input type="file" name="image" >
+                    </fieldset>
+
+
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Share and win title</label>
+                        <input placeholder="enter the title..." type="text" name="second_section_title" value="<?php echo $page->second_section_title ?? ''?>">
+                    </fieldset>
+
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">Share and win contest</label>
+                        <textarea placeholder="enter the content..." name="second_section_text"><?php echo $page->second_section_text ?? ''?></textarea>
+                    </fieldset>
+
                     <br/>
-                    <div class="col-12 row justify-content-end">
+                    <fieldset class="col-12 row justify-content-end">
                         <input class="button" type="submit" name="submit" value="Update cuisine page">
-                    </div>
+                    </fieldset>
                 </form>
             </article>
         </div>
