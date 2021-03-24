@@ -29,6 +29,8 @@ class jazzArtistPerformances
 
         foreach($this->performances as $performance)
         {
+            $artist = $_GET['artist'];
+            $performanceID = $performance->__get('performanceID');
             $day = $performance -> getDayOfWeek();
             $date = $performance -> getDate(); 
             $time = $performance -> getTime();
@@ -36,8 +38,12 @@ class jazzArtistPerformances
             $price = number_format($performance->getPrice(), 2);
 
             
-            echo "<section class='performances--jazz__row'>
+            echo "  <form>
+                        <section class='performances--jazz__row'>
                         <section class='performances--jazz__column'>
+                        <input type='hidden' name='artist' value=$artist>  
+                        <input type='hidden' name='action' value='addToCart'>
+                        <input type='hidden' name='performanceID' value=$performanceID>  
                             <h2 class='performances--jazz__dash'>-</h2>
                             <h2 class='performances--jazz__whenText'>$day, $date | $time</h2>
                         </section>
@@ -48,13 +54,14 @@ class jazzArtistPerformances
                             <h2>€ $price</h2>
                         </section>
                         <section class='performances--jazz__button'>
-                            <a href src='#'><button>Get Your Tickets</button></a>
+                            <button>Get Your Tickets</button>
                         </section>
-                    </section>";
+                    </section>
+                    </form>";
         }
         
         echo "
-            </section>
+            </section> 
             </section>";
     }
 }

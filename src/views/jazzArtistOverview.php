@@ -1,5 +1,6 @@
 <?php
     include '../classes/autoloader.php';
+    include '../components/cart.php';
 
     if (isset($_GET['artist']))
     { 
@@ -37,5 +38,7 @@
         
         $footer = new footer();
         $footer->renderFooter();
+
+        $_SESSION['cart']->render();
     }
 ?>

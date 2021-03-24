@@ -81,7 +81,6 @@ $swoosh->render();
 $footer = new footer(); 
 $footer->renderFooter();
 
-# echo "<script>document.getElementsByClassName('navigation__shop__item-count')[0].innerHTML = '69'</script>";
 function loopCards(array $arrayOfCards)
 {
     $performanceCount = 0;
