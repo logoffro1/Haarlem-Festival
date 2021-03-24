@@ -26,6 +26,9 @@ class restaurantTypeService {
             }
             
         }
+        $temp = $typesList[0];
+        $typesList[0] = $typesList[count($typesList)-1];
+        $typesList[count($typesList)-1] = $temp;
         return $typesList;
     }
     public function getTypeById(int $id){
@@ -38,5 +41,5 @@ class restaurantTypeService {
                     return new restaurantType($row["restaurant_type_id"],$row["name"]);      
             }
     }
-}
+}5
 ?>

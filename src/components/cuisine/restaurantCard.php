@@ -42,13 +42,14 @@ private function getZipCode(string $address){
         $lastIndex = array_key_last($this->cuisines);
         $i = 0;
         foreach($this->cuisines as $cuisine){
+            if($cuisine->__get('name') == "All") continue;
             echo $cuisine->__get('name'); 
-            if($i++ != $lastIndex)
+            if($i++ != $lastIndex-1)
                  echo " &#8226 ";
         }
         echo"
         </h3>
-        <a href = '#'>
+        <a href = 'restaurantPage.php'>
         <section class = 'card--restaurant'>
         <img src='$this->image' class = 'card--img'>
         

@@ -40,7 +40,7 @@ public function getSessions(){
     $sessionStart = null;
 
     for($x = 0; $x<$this->sessions;$x++){
-        $sessionStart = $sessionStart == null ? date("H:i",strtotime($this->startOfSession)) : date("H:i",strtotime($sessionEnd));
+        $sessionStart = ($sessionStart == null) ? date("H:i",strtotime($this->startOfSession)) : date("H:i",strtotime($sessionEnd));
         $sessionEnd = date("H:i",strtotime($sessionStart)+$this->getDurationInSeconds());
         $sessions[$x] = ($sessionStart)."-".($sessionEnd);
     }
@@ -50,9 +50,15 @@ public function getSessions(){
 private function getDurationInSeconds(){
     return ($this->duration / 1) * 3600 + ($this->duration % 1) * 60;
 }
-
-
-
+public function hasCuisine(string $cuisinesString){
+$cuisines = explode(";",$cuisinesString);
+    foreach ($this->cuisines as $cuisine) {
+       // if($cuisine->__get('name') == $cuisineName)
+        if(in_array($cuisine->__get('name'),$cuisines))
+        return true;
+    }
+    return false;
+}
 }
 
 

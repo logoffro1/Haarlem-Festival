@@ -9,7 +9,28 @@
 
     $navigation = new navigation("");
     $navigation->render();
+
+    if(!isset($_GET['filter']))
+        $_GET['filter'] = "All";
+
     
+    if(isset($_POST['submit'])){
+        if(!empty($_POST['cuisines'])){
+           $location = getLocation();
+            header("Location: $location");
+        }      
+    }
+     function getLocation(){
+        $location = '?filter=';
+        $count = 0;
+        foreach ($_POST['cuisines'] as $selected) {
+            if ($count != 0)
+                $location .= ";";
+            $location .= $selected;
+            $count++;
+        }
+        return $location;
+    }
 ?>
 <section class="container section" style="margin-top:-50px;">
     <pre style="letter-spacing:1px"><a href = "#">Events </a> > <a href = "#"> Haarlem Cuisine</a> </pre>
@@ -26,33 +47,70 @@
     <?php
         $cuisines = $restaurantTypeController->getRestaurantTypes();
 echo "<fieldset class='checkboxes--wrapper' style='text-align:center;'>";
-$checkbox = new checkbox("All","All","All",true);
-$checkbox->render();
+echo "<form method = 'post'>";
+
+if(isset($_GET['filter']))
+    $location = $_GET['filter'];
+
 foreach($cuisines as $cuisine){
-    $checkbox = new checkbox($cuisine->__get('name'),$cuisine->__get('name'),$cuisine->__get('name'));
+
+    if((strpos($location,$cuisine->__get('name'))!== FALSE))
+    {
+        $checkbox = new checkbox($cuisine->__get('name'),"cuisines[]",$cuisine->__get('name'),$cuisine->__get('name'),true);
+    }
+    else
+        $checkbox = new checkbox($cuisine->__get('name'),"cuisines[]",$cuisine->__get('name'),$cuisine->__get('name'));
+
     $checkbox->render();
 }
-echo "</fieldset>";
+echo "<button type = 'submit' name = 'submit'>Filter</button>";
+echo "</form></fieldset>";
 ?>
     <hr class="hLine">
     <article class="vLine"></article>
+    
     <article class="row">
+    
         <?php
-
-
-foreach($restaurants as $r){
-    $card = new restaurantCard($r->__get('name'),
-    "..".$r->__get('images')[0],
-    $r->__get('address'),
-    $r->__get('seats'),
-    $r->__get('stars'),
-    $r->__get('duration'),
-    $r->__get('cuisines'),
-    $r->getSessions());
-
-    $card->render();
+function loopRestaurants(array $restaurants){
+    $count = 0;
+  
+    foreach($restaurants as $r){
+        if(isset($_GET['filter'])){
+            if($r->hasCuisine($_GET['filter'])){
+                $card = new restaurantCard($r->__get('name'),
+                "..".$r->__get('images')[0],
+                $r->__get('address'),
+                $r->__get('seats'),
+                $r->__get('stars'),
+                $r->__get('duration'),
+                $r->__get('cuisines'),
+                $r->getSessions());
+                $card->render();
+                $count++;
+            }
+        } else{
+           
+            $card = new restaurantCard($r->__get('name'),
+                "..".$r->__get('images')[0],
+                $r->__get('address'),
+                $r->__get('seats'),
+                $r->__get('stars'),
+                $r->__get('duration'),
+                $r->__get('cuisines'),
+                $r->getSessions());      
+                $card->render();
+                $count++;
+        }
+       
+        
+    }
+    return $count;
 }
+$restaurantCount = loopRestaurants($restaurants);
+
 ?>
+<h2 style="position:absolute;margin-left:190px;margin-top:30px"> Results shown: <?php echo $restaurantCount;?> </h2>
     </article>
     <section class="cookbook-outer-area">
         <section class="cookbook-inner-area">
