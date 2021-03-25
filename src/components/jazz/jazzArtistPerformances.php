@@ -42,7 +42,7 @@ class jazzArtistPerformances
                         <section class='performances--jazz__row'>
                         <section class='performances--jazz__column'>
                         <input type='hidden' name='artist' value=$artist>  
-                        <input type='hidden' name='action' value='addToCart'>
+                        <input type='hidden' name='type' value='jazz'>
                         <input type='hidden' name='performanceID' value=$performanceID>  
                             <h2 class='performances--jazz__dash'>-</h2>
                             <h2 class='performances--jazz__whenText'>$day, $date | $time</h2>

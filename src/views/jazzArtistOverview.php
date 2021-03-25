@@ -2,6 +2,7 @@
     include '../classes/autoloader.php';
     include '../components/cart.php';
 
+    
     if (isset($_GET['artist']))
     { 
         $id = intval($_GET['artist']);
@@ -18,12 +19,15 @@
         $jazzInfo = new jazzArtistInfo($artist);
         $jazzInfo->render();
 
+        $jazzNotification = new jazzNotification();
+        $jazzNotification->render();
+
         $jazzSongs = new jazzSongCard($artist->__get('songs'), $artist->__get('artistName'));
         $jazzSongs->render();
 
         $artistPerformances = new jazzArtistPerformances($artist->__get('performances'));
         $artistPerformances -> render();
-        
+
         $exploreHaarlem = new jazzExploreHaarlem();
         $exploreHaarlem->render();
 
@@ -39,6 +43,15 @@
         $footer = new footer();
         $footer->renderFooter();
 
+        
         $_SESSION['cart']->render();
+        if(isset($_GET['performanceID']))
+            $jazzNotification->displayNotification("Item has been added to your cart succesfully!");
+        
+
+        # $jazzNotification->displayNotification("Item has been added to your cart succesfully!");
+
+        
     }
-?>
+    ?>
+    

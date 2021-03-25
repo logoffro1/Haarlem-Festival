@@ -1,5 +1,6 @@
 <?php
 include '../classes/autoloader.php';
+include '../components/cart.php';
 
 $head = new head("Jazz Events | Haarlem Festival", "");
 $head->render();
@@ -70,7 +71,7 @@ foreach ($jazzCards as $card) {
 ksort($arrayOfCards);
 
 //Creating the p tag so that it can be filled later with javascript
-echo "<p id ='performanceCountInfo' style='font-size: 14px'> There are 0 event(s) listed.</p>";
+echo "<p id ='performanceCountInfo' style='font-size: 14px'></p>";
 
 //Rendering each card and editing p tag with javascript
 $performanceCount = loopCards($arrayOfCards);
@@ -94,4 +95,6 @@ function loopCards(array $arrayOfCards)
     }
     return $performanceCount;
 }
+
+$_SESSION['cart']->render();
 ?>

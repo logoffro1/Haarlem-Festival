@@ -1,40 +1,40 @@
 <?php
 
- session_start();
- if(!$_SESSION['cart'])
+if (session_status() === PHP_SESSION_NONE) 
+    session_start();
+
+ if(empty($_SESSION['cart'])) 
  {
      $cart = new cart();
      $cart->render();
      $_SESSION['cart'] = $cart;
      echo "<script>alert('New cart created.')</script>";
  }
- else
- {
 
-}
 if(!empty($_GET['performanceID']))
 {
     $id = $_GET['performanceID'];
-    echo "<script>alert($id);</script>";
-    $_SESSION['cart']->addItemToCart();
+
+    if($_GET['type'] == 'jazz')
+       $_SESSION['cart']->addItemToCart($id, "jazz");
 }
 
 class cart
 {
-    private $jazzPerformances = array();
-    private $dancePerformances = array();
-    private $historyPerformances = array();
-    private $cuisinePerformances = array();
-
-
+    private $cartItems = array();
+    
     public function returnCount()
     {
-        return (count($this->jazzPerformances) + count($this->dancePerformances) + count($this->historyPerformances) + count($this->cuisinePerformances));
+        $count = 0;
+        foreach($this->carItems as $item)
+            $count += $item->__get('count');
+
+        return $count;
     }
 
     public function render()
     {
-        $totalCount = count($this->jazzPerformances) + count($this->dancePerformances) + count($this->historyPerformances) + count($this->cuisinePerformances);
+        $totalCount = $this->getCountFromCart();
         $totalCountStr = strval($totalCount);
 
         if ($totalCount == 0)
@@ -46,9 +46,39 @@ class cart
         }
     }
 
-    public function addItemToCart()
+    public function getCountFromCart()
     {
-        $this -> jazzPerformances[] = array("test" => "test");
+        $count = 0;
+        foreach($this->cartItems as $item)
+            $count += $item->__get('count');
+        return $count;
+    }
+
+    public function addItemToCart(int $performanceID, string $type)
+    {
+        if($type == "jazz")
+        {
+            $jazzPerformanceController = new jazzPerformanceController();
+            $jazzArtistController = new jazzArtistController();
+
+            $jazzPerformance = $jazzPerformanceController->getAJazzPerformanceById($performanceID);
+            $jazzArtist = $jazzArtistController->getAJazzArtistById($jazzPerformance->__get("artistID"));
+
+            $title = $jazzArtist->__get('artistName');
+            $type = cartItemType::Jazz;
+            $address = $jazzPerformance->getLocation();
+            $day = $jazzPerformance->getDayOfWeek();
+            $date = $jazzPerformance->getDate();
+            $time = $jazzPerformance->getTime();
+            $count = 1;
+            $price = $jazzPerformance->getPrice();
+    
+            $cartItem = new cartItem($title, $type, $address, $day, $date, $time, $count, $price, "");
+            $this->cartItems[] = $cartItem;
+
+                
+            
+        }
     }
 }
 ?>

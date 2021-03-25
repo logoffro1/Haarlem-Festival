@@ -7,8 +7,9 @@ class jazzPerformance{
     private string $performanceTime;
     private int $duration;
     private int $availableTickets;
+    private int $artistID;
 
-    public function __construct(int $performanceID, location $location, string $performanceDate, string $performanceTime, int $duration, int $availableTickets)
+    public function __construct(int $performanceID, location $location, string $performanceDate, string $performanceTime, int $duration, int $availableTickets, int $artistID)
     {
         $this->performanceID = $performanceID;
         $this->location = $location;
@@ -16,6 +17,7 @@ class jazzPerformance{
         $this->performanceTime = $performanceTime;
         $this->duration = $duration;
         $this->availableTickets = $availableTickets;
+        $this->artistID = $artistID;
     }
 
     public function __get($property) {

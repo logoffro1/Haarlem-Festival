@@ -29,7 +29,8 @@
                         $row["date"],
                         $row["time"],
                         $row["duration"],
-                        $row["availableTickets"]
+                        $row["availableTickets"],
+                        $row["artist_id"]
                     );
                     $performances[]=$performance;
                 }
@@ -55,11 +56,39 @@
                         $row["date"],
                         $row["time"],
                         $row["duration"],
-                        $row["availableTickets"]
+                        $row["availableTickets"],
+                        $row["artist_id"]
                     );
                     $performances[]=$performance;
                 }
                 return $performances;
+            }
+        }
+
+        public function getAJazzPerformanceById(int $id)
+        {
+            $locationService = new locationService();
+
+            $query = "SELECT * FROM Performances WHERE performance_id ='$id' ;";
+            $result = $this->conn->query($query);
+
+            if($result)
+            {
+                $performances = array();
+                while($row = $result->fetch_assoc())
+                {
+                    $performance = new jazzPerformance(
+                        $row["performance_id"],
+                        $locationService->getLocationByID((int)$row["location_id"]),
+                        $row["date"],
+                        $row["time"],
+                        $row["duration"],
+                        $row["availableTickets"],
+                        $row["artist_id"]
+                    );
+                    $performances[]=$performance;
+                }
+                return $performances[0];
             }
         }
     }

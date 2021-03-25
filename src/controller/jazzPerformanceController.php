@@ -13,6 +13,11 @@
         {
             return $this->jazzPerformanceService->getAllJazzPerformances();
         }
+
+        public function getAJazzPerformanceById(int $id)
+        {
+            return $this->jazzPerformanceService->getAJazzPerformanceById($id);
+        }
     }
     
 ?>
