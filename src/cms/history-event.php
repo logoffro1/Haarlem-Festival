@@ -59,6 +59,19 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                         <input placeholder="enter the title..." type="text" name="page_title" value="<?php echo $page->page_title ?? ''?>">
                     </fieldset>
 
+                    <fieldset>
+                        <label class="label">Hero Image</label>
+
+                        <?php if(isset($page->image) && strlen($page->image) > 0) { ?>
+                            <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
+                            <input class="button button--secondary" type="submit" name="delete_image-image" value="delete image">
+                            <br/><br/>
+                        <?php } else { ?>
+                            <p>No image present</p>
+                        <?php } ?>
+                        <input type="file" name="image" >
+                    </fieldset>
+
                     <fieldset class="col-12 col--children-fullwidth">
                         <label class="label">First section title</label>
                         <input placeholder="enter the title..." type="text" name="first_section_title" value="<?php echo $page->first_section_title ?? ''?>">
@@ -67,18 +80,22 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                         <label class="label">First section text</label>
                         <textarea placeholder="enter the content..." name="first_section_text"><?php echo $page->first_section_text ?? ''; ?></textarea>
                     </fieldset>
+                    <fieldset class="col-12 col--children-fullwidth">
+                        <label class="label">First section list (seperate with ";")</label>
+                        <textarea placeholder="enter the content..." name="first_section_list"><?php echo $page->first_section_list ?? ''; ?></textarea>
+                    </fieldset>
 
                     <fieldset>
-                        <label class="label">Hero Image</label>
+                        <label class="label">First Section Image</label>
 
-                        <?php if(strlen($page->image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
-                            <input class="button button--secondary" type="submit" name="delete_image-image" value="delete image">
+                        <?php if(isset($page->first_section_image) && strlen($page->first_section_image) > 0) { ?>
+                            <img src="<?php echo UPLOAD_FOLDER . $page->first_section_image ?>" alt="Artist Image">
+                            <input class="button button--secondary" type="submit" name="delete_image-first_section_image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>
-                        <input type="file" name="image" >
+                        <input type="file" name="first_section_image">
                     </fieldset>
 
                     <br/>
