@@ -6,9 +6,7 @@ if (session_status() === PHP_SESSION_NONE)
  if(empty($_SESSION['cart'])) 
  {
      $cart = new cart();
-     $cart->render();
      $_SESSION['cart'] = $cart;
-     echo "<script>alert('New cart created.')</script>";
  }
 
 if(!empty($_GET['performanceID']))
@@ -19,19 +17,22 @@ if(!empty($_GET['performanceID']))
        $_SESSION['cart']->addItemToCart($id, "jazz");
 }
 
+
 class cart
 {
-    private $cartItems = array();
-    
-    public function returnCount()
-    {
-        $count = 0;
-        foreach($this->carItems as $item)
-            $count += $item->__get('count');
+    private $cartItems;
 
-        return $count;
+    public function __construct()
+    {
+        $this->cartItems = array();
     }
 
+    public function __get($property) {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
+    }
+ 
     public function render()
     {
         $totalCount = $this->getCountFromCart();
@@ -46,6 +47,24 @@ class cart
         }
     }
 
+    public function getTotalPrice()
+    {
+        $totalPrice = 0;
+        foreach($this->cartItems as $item)
+            $totalPrice += ($item->__get('count') * $item->__get('price'));
+
+        return number_format($totalPrice,2);
+    }
+
+    public function getDiscount()
+    {
+        return number_format($this->getTotalPrice() / 10, 2);
+    }
+
+    public function getPriceAfterDiscount()
+    {
+        return number_format($this->getTotalPrice() - $this->getDiscount(), 2);
+    }
     public function getCountFromCart()
     {
         $count = 0;
@@ -67,6 +86,15 @@ class cart
             $title = $jazzArtist->__get('artistName');
             $type = cartItemType::Jazz;
             $address = $jazzPerformance->getLocation();
+
+            foreach($this->cartItems as $cartItem)
+            {
+                if($title == $cartItem->__get('title') && $type == $cartItem->__get('itemType') && $address == $cartItem->__get('address'))
+                {
+                    $cartItem->increaseCount();
+                    return;
+                }
+            }
             $day = $jazzPerformance->getDayOfWeek();
             $date = $jazzPerformance->getDate();
             $time = $jazzPerformance->getTime();

@@ -1,0 +1,85 @@
+.page--cart
+{
+    
+    .page--cart__title{
+        display:inline-block; 
+        margin-right: 250px;
+    }
+
+    .page--cart__progressBar{
+        display:inline-block; 
+    }
+
+    .page--cart__itemContainer{
+        display: inline-block;
+        width: 50%;        
+    }
+
+    .page--cart__jazzLine
+    {
+        border-left: 6px solid $color-primary-jazz;
+        margin-bottom: 20px;
+    }
+    .page--cart__danceLine
+    {
+        border-left: 6px solid $color-primary-dance;
+        margin-bottom: 20px;
+    }
+
+    .page--cart__cuisineLine
+    {
+        border-left: 6px solid $color-primary-cuisine;
+        margin-bottom: 20px;
+    }
+
+    .page--cart__historyLine
+    {
+        border-left: 6px solid $color-primary-history;
+        margin-bottom: 20px;
+    }
+
+    .page--cart__itemInfoContainer{
+        display: inline-block;
+        width: 50%;
+        margin: 20px 30px 20px 30px;
+    }
+
+    .page--cart__itemQuantityContainer{
+        display: inline-block;
+        text-align: center;
+        width: 10%;
+        margin: 20px 30px 20px 30px;
+    }
+
+    .page--cart__totalPrice
+    {
+        width: 50%;
+        display:inline-block; 
+        position:absolute;
+    }
+
+    .page--cart__totalPriceColumn
+    {
+        width: 45%;
+        display: inline-block;
+    }
+    .page--cart__totalPriceColumnText
+    {
+        font-size: 24px;
+        font-weight: 200;;
+    }
+    .page--cart__totalPriceHr
+    {
+        background-color: $color-slated-blue;
+        height: 2px;
+        border-color: $color-slated-blue;
+        text-align: left;
+        width: 60%;;
+    }
+    .page--cart__button
+    {
+        margin-right: 100px;
+        margin-top: 130px;
+        width: 25%;
+    }
+}

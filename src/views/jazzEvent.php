@@ -1,11 +1,13 @@
 <?php
 include '../classes/autoloader.php';
-include '../components/cart.php';
+include '../components/cart/cart.php';
+
 
 $head = new head("Jazz Events | Haarlem Festival", "");
 $head->render();
 $navigation = new navigation("Events");
 $navigation->render();
+$_SESSION['cart']->render();
 
 echo "<section class='container section' style='margin-top: -10px'>";
 $jazzIntroController = new jazzIntroController();
@@ -96,5 +98,4 @@ function loopCards(array $arrayOfCards)
     return $performanceCount;
 }
 
-$_SESSION['cart']->render();
 ?>

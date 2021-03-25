@@ -32,7 +32,7 @@ class cartItem
     }
 
     public function increaseCount(){$this->count += 1;}
-    public function getTotalPrice(){return ($this->count * $this->price);}
+    public function getTotalPrice(){return number_format(($this->count * $this->price),2);}
 
 }
 ?>
