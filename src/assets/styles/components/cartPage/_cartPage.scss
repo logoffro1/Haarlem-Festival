@@ -82,4 +82,41 @@
         margin-top: 130px;
         width: 25%;
     }
+    .page--cart__quantityField
+    {
+        text-align: right;
+        width:60px;
+    }
+
+    .page--cart__editButton
+    {
+        padding: 0;
+        margin-top: 15px;
+        border:none;
+        font-size: 17px;
+        background:none;
+        color: $color-slated-blue;
+    }
+
+    .page--cart__editButton:hover
+    {
+        text-decoration: underline;
+        border: 0px;
+    }
+    .page--cart__removeButton
+    {
+        margin-top: 15px;
+        padding: 0;
+        color: $color-error;
+        border:none;
+        font-size: 17px;
+        background:none;
+    }
+
+    .page--cart__removeButton:hover
+    {
+        text-decoration: underline;
+        border: 0px;
+    }
+
 }

@@ -33,26 +33,27 @@ class cartDisplay
             {
                 case cartItemType::Jazz:
                     echo "
-                    <section class='page--cart__jazzLine'>;";
+                    <section class='page--cart__jazzLine'>";
                     break;
 
                 case cartItemType::Dance:
                     echo "
-                    <section class='page--cart__danceLine'>;";
+                    <section class='page--cart__danceLine'>";
                     break;
 
                 case cartItemType::History:
                     echo "
-                    <section class='page--cart__historyLine'>;";
+                    <section class='page--cart__historyLine'>";
                     break;
 
                 case cartItemType::Cuisine:
                     echo "
-                    <section class='page--cart__cuisineLine'>;";
+                    <section class='page--cart__cuisineLine'>";
                     break;
             }
-            
+            $cartItemIndex = array_search($cartItem, $this->cart->__get('cartItems'));
             echo "
+            <form method='GET'>
                 <section class='page--cart__itemInfoContainer'>
                     <h1 class='title title--tetriary'>€ $ticketPrice</h1>
                     <h1 class='title title--tetriary'>$title</h1>
@@ -61,11 +62,13 @@ class cartDisplay
                 </section>
                 <section class='page--cart__itemQuantityContainer'>
                     <p>Quantity</p>
-                    <p class='title title--tetriary'>$count</p>
-                    <p><a href=''>Add</a></p>
-                    <p><a href=''>Remove</a></p>
+                    <input type='hidden' name='cartItemId' value='$cartItemIndex'>
+                    <input class='title title--tetriary page--cart__quantityField' action='submit' name='quantity' value=$count>
+                    <button class='page--cart__editButton' type='Submit' name='action' value='edit'>Edit</button>
+                    <button class='page--cart__removeButton' type='Submit' name='action' value='remove'>Remove</button>
                 </section>
             </section>
+            </form>
         ";
     }
 
