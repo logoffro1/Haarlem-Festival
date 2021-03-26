@@ -6,17 +6,38 @@
         private jazzArtistService $jazzArtistService;
 
         public function __construct() {
-            $this->jazzArtistService = new jazzArtistService();
+            try
+            {
+               $this->jazzArtistService = new jazzArtistService();
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            } 
         }
 
         public function getAJazzArtistById(int $id)
         {
-            return $this->jazzArtistService->getAJazzArtistById($id);
+            try
+            {
+                return $this->jazzArtistService->getAJazzArtistById($id);
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }
         }
 
         public function getAllJazzArtists()
         {
-            return $this->jazzArtistService->getAllJazzArtists();
+            try
+            {
+                return $this->jazzArtistService->getAllJazzArtists();
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }    
         }
     }
     

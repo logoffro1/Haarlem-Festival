@@ -5,18 +5,40 @@
     {
         private jazzPerformanceService $jazzPerformanceService;
 
-        public function __construct() {
-            $this->jazzPerformanceService = new jazzPerformanceService();
+        public function __construct() 
+        {
+            try
+            {
+                $this->jazzPerformanceService = new jazzPerformanceService();
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }
         }
 
         public function getAllJazzPerformances()
         {
-            return $this->jazzPerformanceService->getAllJazzPerformances();
+            try
+            {
+                return $this->jazzPerformanceService->getAllJazzPerformances();
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }
         }
 
         public function getAJazzPerformanceById(int $id)
         {
-            return $this->jazzPerformanceService->getAJazzPerformanceById($id);
+            try
+            {
+                return $this->jazzPerformanceService->getAJazzPerformanceById($id);
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }
         }
     }
     

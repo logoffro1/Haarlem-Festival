@@ -5,13 +5,28 @@
     {
         private songService $songService;
 
-        public function __construct() {
-            $this->songService = new songService();
+        public function __construct() 
+        {
+            try
+            {
+                $this->songService = new songService();
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }
         }
 
         public function getSongsByArtistId(int $id)
         {
-            return $this->songService->getSongsByArtistId($id);
+            try
+            {
+                return $this->songService->getSongsByArtistId($id);
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }
         }
     }
     
