@@ -32,7 +32,7 @@
         return $location;
     }
 ?>
-<section class="container section" style="margin-top:-50px;">
+<section class="container section" style="margin-top:-30px;">
     <pre style="letter-spacing:1px"><a href = "#">Events </a> > <a href = "#"> Haarlem Cuisine</a> </pre>
     <h1 class="title title--page cuisine"> The Haarlem Cuisine </h1>
     <img src="../assets/images/cuisine/cuisineBanner.png" class="banner" alt="The Haarlem Festival"
@@ -78,7 +78,8 @@ function loopRestaurants(array $restaurants){
     foreach($restaurants as $r){
         if(isset($_GET['filter'])){
             if($r->hasCuisine($_GET['filter'])){
-                $card = new restaurantCard($r->__get('name'),
+                $card = new restaurantCard($r->__get('id'),
+                $r->__get('name'),
                 "..".$r->__get('images')[0],
                 $r->__get('address'),
                 $r->__get('seats'),
@@ -91,7 +92,8 @@ function loopRestaurants(array $restaurants){
             }
         } else{
            
-            $card = new restaurantCard($r->__get('name'),
+            $card = new restaurantCard($r->__get('id'),
+                $r->__get('name'),
                 "..".$r->__get('images')[0],
                 $r->__get('address'),
                 $r->__get('seats'),

@@ -12,6 +12,9 @@
         {
             return $this->restaurantService->getRestaurants();
         }
+        public function getRestaurantById(int $id){
+            return $this->restaurantService->getRestaurantById($id);
+        }
     }
     
 ?>

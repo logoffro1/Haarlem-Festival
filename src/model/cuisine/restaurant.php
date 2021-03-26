@@ -14,7 +14,7 @@ private int $seats;
 private int $stars;
 private float $price;
 
-public function __construct(int $id, string $name, array $cuisines, string $address, string $biography = NULL, array $images = array(), float $duration, int $sessions, string $startOfSession, int $seats, int $stars, float $price){
+public function __construct(int $id, string $name, array $cuisines, string $address, string $biography, array $images = array(), float $duration, int $sessions, string $startOfSession, int $seats, int $stars, float $price){
     $this->id = $id;
     $this->name = $name;
     $this->cuisines = $cuisines;

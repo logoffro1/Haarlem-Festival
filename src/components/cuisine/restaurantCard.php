@@ -2,6 +2,7 @@
 
 class restaurantCard
 {
+    private int $restaurantId;
     private string $name;
     private string $image;
     private string $street;
@@ -12,7 +13,7 @@ class restaurantCard
     private array $cuisines;
     private array $sessions;
 
-    public function __construct(string $name, string $image, string $address, int $seats, int $stars, float $duration, array $cuisines, array $sessions)
+    public function __construct(int $restaurantId,string $name, string $image, string $address, int $seats, int $stars, float $duration, array $cuisines, array $sessions)
     {
       $this->name = $name;
       $this->image = $image;
@@ -23,6 +24,7 @@ class restaurantCard
       $this->duration = $duration;
       $this->cuisines =  $cuisines;
       $this->sessions = $sessions;
+      $this->restaurantId = $restaurantId;
     }
 private function getStreet(string $address)
 {
@@ -47,9 +49,10 @@ private function getZipCode(string $address){
             if($i++ != $lastIndex-1)
                  echo " &#8226 ";
         }
+        $id = $this->restaurantId;
         echo"
         </h3>
-        <a href = 'restaurantPage.php'>
+        <a href = 'restaurantPage.php?id=$id'>
         <section class = 'card--restaurant'>
         <img src='$this->image' class = 'card--img'>
         

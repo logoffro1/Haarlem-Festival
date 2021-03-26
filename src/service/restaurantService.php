@@ -43,6 +43,28 @@ class restaurantService {
         }
         return $restaurants;
     }
+    public function getRestaurantById(int $id){
+        $query = "SELECT * FROM Restaurants WHERE restaurant_id = '$id'";
+        $result = $this->conn->query($query);
+
+        if($result){
+            $row = $result->fetch_assoc();
+            return new restaurant(
+                $row["restaurant_id"],
+                $row["name"],
+                $this->getCuisinesById($row["restaurant_id"]),
+                $row["address"],
+                $row["biography"],
+                explode(",",$row["images"]),
+                (double)$row["duration"],
+                $row["sessions"],
+                $row["start_of_session"],
+                $row["seats"],
+                $row["stars"],
+                $row["price"]
+            );
+        }
+    }
     private function getCuisinesById(int $id){
         $cuisinesController = new restaurantTypeController();
         $cuisines = array();
