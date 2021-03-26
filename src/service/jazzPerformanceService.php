@@ -86,9 +86,8 @@
                         $row["availableTickets"],
                         $row["artist_id"]
                     );
-                    $performances[]=$performance;
+                    return $performance;
                 }
-                return $performances[0];
             }
         }
     }

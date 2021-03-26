@@ -1,6 +1,6 @@
 <?php
     include '../classes/autoloader.php';
-    include '../components/cart/cart.php';
+    include '../components/cart/cartSession.php';
 
     
     if (isset($_GET['artist']))
@@ -46,7 +46,7 @@
         
         $_SESSION['cart']->render();
         if(isset($_GET['performanceID']))
-            $jazzNotification->displayNotification("Item has been added to your cart succesfully!");
+            $jazzNotification->displayNotification("A ticket for $artistName has been added to your cart succesfully!" );
     }
     ?>
     

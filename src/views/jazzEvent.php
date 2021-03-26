@@ -1,6 +1,6 @@
 <?php
 include '../classes/autoloader.php';
-include '../components/cart/cart.php';
+include '../components/cart/cartSession.php';
 
 
 $head = new head("Jazz Events | Haarlem Festival", "");

@@ -64,7 +64,7 @@ class cartDisplay
                     <p>Quantity</p>
                     <input type='hidden' name='cartItemId' value='$cartItemIndex'>
                     <input class='title title--tetriary page--cart__quantityField' action='submit' name='quantity' value=$count>
-                    <button class='page--cart__editButton' type='Submit' name='action' value='edit'>Edit</button>
+                    <button class='page--cart__editButton' type='Submit' name='action' value='edit'>Change</button>
                     <button class='page--cart__removeButton' type='Submit' name='action' value='remove'>Remove</button>
                 </section>
             </section>
