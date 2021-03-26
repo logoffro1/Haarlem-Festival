@@ -83,7 +83,10 @@ class cart
 
     public function getDiscount()
     {
-        return number_format($this->getTotalPrice() / 10, 2);
+        if($this->getCountFromCart() > 1)
+            return number_format($this->getTotalPrice() / 10, 2);
+        else
+            return 0;
     }
 
     public function getPriceAfterDiscount()
