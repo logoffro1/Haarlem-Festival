@@ -9,6 +9,12 @@
 
 	$personaldetails = new personaldetails();
 	$personaldetails->render();
+
+	session_start();
+	$_SESSION["reciever"] = 'email';
+	$_SESSION["subject"] = 'fname';
+	$_SESSION["content"] = 'lname';
+	$_SESSION["sender"] = 'localhost';
 ?>
 
 <?php
