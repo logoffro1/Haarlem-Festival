@@ -1,5 +1,7 @@
 <?php
     include '../classes/autoloader.php';
+
+    //init controllers
     $contoller = new cuisineEventController();
     $restaurantTypeController = new restaurantTypeController();
     $restaurantController = new restaurantController();
@@ -10,16 +12,18 @@
     $navigation = new navigation("");
     $navigation->render();
 
+    //if there is no filter, filter defaults to All
     if(!isset($_GET['filter']))
         $_GET['filter'] = "All";
 
-    
+    //when the "filter' button is pressed
     if(isset($_POST['submit'])){
         if(!empty($_POST['cuisines'])){
            $location = getLocation();
             header("Location: $location");
         }      
     }
+    //create the ?filter URL based on the filter
      function getLocation(){
         $location = '?filter=';
         $count = 0;
@@ -49,11 +53,14 @@
 echo "<fieldset class='checkboxes--wrapper' style='text-align:center;'>";
 echo "<form method = 'post'>";
 
+
 if(isset($_GET['filter']))
     $location = $_GET['filter'];
 
+    //loop through all cuisines and add them as checkbokes
 foreach($cuisines as $cuisine){
 
+    //if the filter contains a checkbox, make the checkbok selected
     if((strpos($location,$cuisine->__get('name'))!== FALSE))
     {
         $checkbox = new checkbox($cuisine->__get('name'),"cuisines[]",$cuisine->__get('name'),$cuisine->__get('name'),true);
@@ -72,6 +79,7 @@ echo "</form></fieldset>";
     <article class="row">
     
         <?php
+        //loop through all the restaurants and display them as needed
 function loopRestaurants(array $restaurants){
     $count = 0;
   
@@ -109,6 +117,7 @@ function loopRestaurants(array $restaurants){
     }
     return $count;
 }
+//store how many restaurants are displayed
 $restaurantCount = loopRestaurants($restaurants);
 
 ?>

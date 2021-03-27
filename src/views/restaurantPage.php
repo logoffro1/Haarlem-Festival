@@ -7,7 +7,6 @@
     $navigation = new navigation("");
     $navigation->render();
     if(isset($_GET['id'])){
-   
 $restaurant = $restaurantController->getRestaurantById(intval($_GET['id']));
 $restaurantName = $restaurant->__get('name');
 $restaurantAddress = $restaurant->__get('address');
@@ -24,6 +23,7 @@ echo "
     <h1 class='title title--page cuisine'> $restaurantName </h1>
     <fieldset class = 'restaurant stars'>
  ";
+ //print the stars
  for($x = 0; $x < 5; $x++){
     if($x<$restaurantStars){
         echo "<img src='../assets/images/cuisine/starFilled.png'>";
@@ -35,6 +35,7 @@ echo "
 </fieldset>
 </article>
 <h1 style = 'margin-top:30px'>"; 
+//print the cuisines (except All)
 $lastIndex = array_key_last($restaurant->__get('cuisines'));
         $i = 0;
         foreach($restaurant->__get('cuisines') as $cuisine){
@@ -111,6 +112,7 @@ the restaurant.
 </section>
 ";
 $count = 1;
+//display the images
 foreach($restaurantImages as $image){
     echo "<img class = 'images' id = 'img$count' src = '$image'>";
     $count++;

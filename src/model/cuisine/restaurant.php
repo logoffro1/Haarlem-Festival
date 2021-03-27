@@ -47,13 +47,14 @@ public function getSessions(){
     
     return $sessions;
 }
+//convert hours (decimal) to seconds
 private function getDurationInSeconds(){
     return ($this->duration / 1) * 3600 + ($this->duration % 1) * 60;
 }
+//check if the restaurant contains the cuisine
 public function hasCuisine(string $cuisinesString){
 $cuisines = explode(";",$cuisinesString);
     foreach ($this->cuisines as $cuisine) {
-       // if($cuisine->__get('name') == $cuisineName)
         if(in_array($cuisine->__get('name'),$cuisines))
         return true;
     }
