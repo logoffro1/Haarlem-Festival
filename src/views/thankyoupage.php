@@ -1,7 +1,5 @@
 <?php
     include '../classes/autoloader.php';
-	@include '../controller/thankyoupagecontroller.php';
-	@include '../service/thankyoupageservice.php';
 
 
     $head = new head("homepage", "");
@@ -11,7 +9,8 @@
     $navigation->render();
 
 	$controller = new thankyoupagecontroller();
-	$controller->sendMail($_SESSION);
+	$controller->sendMail();
+
 	$thankyoupage = new thankyoupage();
 	$thankyoupage->render();
 ?>
