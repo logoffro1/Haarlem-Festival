@@ -145,6 +145,7 @@ class personaldetails
 
 		</article>
 		</section>
+
 		</form> ";
 	}
 }
