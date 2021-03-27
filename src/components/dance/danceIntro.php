@@ -73,7 +73,9 @@
                <header class='col-6' style='border-color: white;'>
                    <section class='hero text-top-left' style='position:relative;'>
                        <span style='margin-left: 60px;'><h1 style='color: black;'class='title title--page dance'>$this->bookMoreSaveMoreTitle</h1>
+                       <a href='../views/bookmoresavemore.php'>
                        <button style='border-radius: 10px; width:300px;' type='button'>Find out more</button></span>
+                       </a>
                    </section>
                   </header>
                   <header class='col-4'>
