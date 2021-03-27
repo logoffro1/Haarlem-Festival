@@ -11,7 +11,7 @@ class cartItem
     private int $count;
     private float $price;
 
-
+    //Additional info is needed for cuisine only, thus its null
     public function __construct(string $title, int $itemType, string $address, string $day, string $date, string $time, int $count, float $price, string $additionalInfo = null)
     {
         $this->title = $title;

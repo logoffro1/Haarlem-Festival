@@ -31,6 +31,7 @@ class cartDisplay
 
             switch ($itemType)
             {
+                //If the item is from different events, color of the cart item line changes accordingly
                 case cartItemType::Jazz:
                     echo "
                     <section class='page--cart__jazzLine'>";

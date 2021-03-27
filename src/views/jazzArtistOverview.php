@@ -2,9 +2,10 @@
     include '../classes/autoloader.php';
     include '../components/cart/cartSession.php';
 
-    
+    //Checking if artist is selected
     if (isset($_GET['artist']))
     { 
+        //Getting the selected artist ID so that relevenat information can be printed
         $id = intval($_GET['artist']);
         $controller = new jazzArtistController();
         $artist = $controller->getAJazzArtistById($id);
@@ -19,6 +20,7 @@
         $jazzInfo = new jazzArtistInfo($artist);
         $jazzInfo->render();
 
+        //Notification component has been added, will be activated when necessary
         $jazzNotification = new jazzNotification();
         $jazzNotification->render();
 
@@ -45,6 +47,7 @@
 
         
         $_SESSION['cart']->render();
+        //If performanceID is set, it means a new item has been added to cart, so a notification is being displayed here
         if(isset($_GET['performanceID']))
             $jazzNotification->displayNotification("A ticket for $artistName has been added to your cart succesfully!" );
     }

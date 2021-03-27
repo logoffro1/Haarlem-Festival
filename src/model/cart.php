@@ -23,7 +23,7 @@ class cart
     {
         $totalCount = $this->getCountFromCart();
         $totalCountStr = strval($totalCount);
-
+        //Cart visual has been rendered according to the cart item count, since it is a part of the navigation I use javascript to edit the component
         if ($totalCount == 0)
             echo "<script>document.getElementsByClassName('navigation__shop__item-count')[0].style.visibility = 'hidden'</script>";
         else
@@ -44,6 +44,7 @@ class cart
 
     public function getDiscount()
     {
+        //If there is only 1 item, there is no discount. I check it here
         if($this->getCountFromCart() > 1)
             return number_format($this->getTotalPrice() / 10, 2);
         else
@@ -68,7 +69,8 @@ class cart
         {
             $jazzPerformanceController = new jazzPerformanceController();
             $jazzArtistController = new jazzArtistController();
-
+            
+            //cart item needs both artist name and performance info, thus i get both objects
             $jazzPerformance = $jazzPerformanceController->getAJazzPerformanceById($performanceID);
             $jazzArtist = $jazzArtistController->getAJazzArtistById($jazzPerformance->__get("artistID"));
 
@@ -78,6 +80,7 @@ class cart
 
             foreach($this->cartItems as $cartItem)
             {
+                //If the same performance on  the same day from the same artist has already been added to the cart, i increase count instead of adding a new object
                 if($title == $cartItem->__get('title') && $type == $cartItem->__get('itemType') && $address == $cartItem->__get('address'))
                 {
                     $cartItem->increaseCount();

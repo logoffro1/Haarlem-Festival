@@ -1,4 +1,5 @@
 <?php
+//Since PHP doesnt support Enumerations, this is my way of implemetation to assign a variable to cart item types
 abstract class cartItemType
 {
     const  Jazz = 0;

@@ -38,6 +38,7 @@ class jazzArtistInfo
                         $this->biography
                     </p>
                     <section class='artistinfo--jazz__socialMediaContainer'>";
+            //If the artist has no social media on a specific platform, its logo is not being displayed
             if($this->instagram != " "){
                 echo "<a href='$this->instagram' target='_blank'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";}
             if($this->facebook != " ")                       

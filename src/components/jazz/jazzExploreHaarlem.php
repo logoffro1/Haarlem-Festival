@@ -1,11 +1,6 @@
 <?php
-
 class jazzExploreHaarlem
 {
-
-
-
-
     public function render()
     {
         echo "
@@ -51,12 +46,6 @@ class jazzExploreHaarlem
                 </section>
             </section>
         </section>";
-
     }
-
-
 }
-
-
-
 ?>

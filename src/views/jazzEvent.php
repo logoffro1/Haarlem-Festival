@@ -7,6 +7,7 @@ $head = new head("Jazz Events | Haarlem Festival", "");
 $head->render();
 $navigation = new navigation("Events");
 $navigation->render();
+//Getting cart info rendered
 $_SESSION['cart']->render();
 
 echo "<section class='container section' style='margin-top: -10px'>";
@@ -14,6 +15,7 @@ $jazzIntroController = new jazzIntroController();
 $jazzIntro = $jazzIntroController->getHeaderInfo();
 $jazzIntro->render();
 
+//Getting every artist to list their performances
 $jazzArtistController = new jazzArtistController();
 $allJazzArtists = $jazzArtistController->getAllJazzArtists();
 
