@@ -34,7 +34,7 @@ class dancePerformanceCard
         <section class='container-fluid section'>
         <article class='row align-items-left'>
             <header class='col-6' style='border-color: white;'>
-                <section class='hero text-top-left' style='position:relative;'>
+                <section class='hero text-top-left' style='position:relative;' id='artists'>
                     <img src='$this->artistThumbnail' style='margin-left:50px; width:75%; height:auto;'>
                </header>
                <header class='col-6' style='font-size:26px;'>

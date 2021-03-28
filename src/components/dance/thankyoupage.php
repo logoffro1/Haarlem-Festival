@@ -27,7 +27,9 @@ class thankyoupage
 	   </article>
 	   <article class='row'>
 	   <header class='col-12'>
+	   <a href='../index.php'>
 	   <button style='margin-top:25px;margin-bottom:25px;'>Return to home</button>
+	   </a>
 	   </header>
 	   </article>
 	   <article class='row'>

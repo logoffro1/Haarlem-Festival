@@ -4,6 +4,28 @@ class personaldetails
 {
 	public function render()
     {
+		session_start();
+		if(isset($_POST['fname']))
+		{
+			$_SESSION['fname'] = $_POST['fname'];
+		}
+		if(isset($_POST['lname']))
+		{
+			$_SESSION['lname'] = $_POST['lname'];
+		}
+		if(isset($_POST['email']))
+		{
+			$_SESSION['email'] = $_POST['email'];
+		}
+		if(isset($_POST['phoneno']))
+		{
+			$_SESSION['phoneno'] = $_POST['phoneno'];
+		}
+		if(isset($_POST['dob']))
+		{
+			$_SESSION['dob'] = $_POST['dob'];
+		}
+
 		echo "
 		<style>
 		.vl {
@@ -22,7 +44,7 @@ class personaldetails
 			</article>
 			</section>
 
-		<form>
+		<form action='../views/thankyoupage.php' method='post'>
 
 
 		<section class='container-fluid section' style='padding-top:0px; padding-bottom:0px;'>
@@ -121,8 +143,8 @@ class personaldetails
 					<header class='col-5' >
 					<button style='width:150px; height:80px;'>Go back</button>
 					</header>
-					<header class='col-5' >
-					<button style='width:200px;'>Fill in payment details</button>
+					<header class='col-5'>
+					<input type='submit' class='button' value='Fill in payment details' style='width:200px;' id='fillindetailsbtn' />
 					</header>
 					</article>
 

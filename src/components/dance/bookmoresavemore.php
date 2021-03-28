@@ -7,7 +7,12 @@ class bookmoresavemore
 		echo "<section class='container section'>
 		<article class='row align-items-left'>
 			<header class='col-6'>
-					   <p>Artist overview > Discounts</p>
+			<nav class='breadcrumbs'>
+            <ul>
+                <li class='breadcrumbs__breadcrumb'><a href='../views/danceEvent.php'>Artist Overview</a></li>
+                <li class='breadcrumbs__breadcrumb'><a href='#'>Book more, Save more!</a></li>
+            </ul>
+        </nav>
 			<h1 class='title title--page dance'>Book more, Save more!</h1>
 			<p>We have an <b>offer avaliable for all events</b> that can be <b>mix and<br>matched</b> with any other event. For example, you can pair Jazz<br>event tickets with Dance event tickets ands ave on both. These are<br> listed as the '<b>Discount</b>' section on your bill. The more tickets you<br>book, the larger the discount!</p>
 			   </header>

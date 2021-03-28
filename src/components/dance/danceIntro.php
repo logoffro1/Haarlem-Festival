@@ -44,7 +44,7 @@
                <header class='col-6' style='border-color: white;'>
                    <section class='hero text-top-left' style='position:relative;'>
                        <span style='margin-left: 60px;'><h1 style='color: black;'class='title title--page dance'>$this->subtitle</h1>
-                       <button style='border-radius: 10px; width:300px;' type='button'>Check out the artists</button></span>
+                       <a class='button' href='#artists' style='border-radius: 10px; width:300px;'>Check out the artists</a></span>
                    </section>
                   </header>
                   <header class='col-4' style='border-color: white; border-top-right-radius: 50%;'>

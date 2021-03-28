@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class navigation {
     private string $activePage;
@@ -15,7 +15,7 @@ class navigation {
                 <img class='navigation__brand' src='/assets/images/svg/logo.svg'/>
             </a>
             <ul class='navigation__links'>
-                <li><a class=" . $this->getActivePage('Home') . " href='#'>Home</a></li>
+                <li><a class=" . $this->getActivePage('Home') . " href='../index.php'>Home</a></li>
                 <li><a class=" . $this->getActivePage('Events') . " href='#'>Events</a></li>
                 <li><a class=" . $this->getActivePage('Your Programme') . " href='#'>Your Programme</a></li>
             </ul>
