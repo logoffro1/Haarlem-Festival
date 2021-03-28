@@ -86,11 +86,12 @@
             }
         }
 
-        public function updateArtistImage(artist $artist) : void
+        public function updateArtistImage(artist $artist, string $imageType) : void
         {
             try {
                 $data = array(
-                    'image'=>$_FILES["artist_image"]
+                    'image'=>$_FILES["artist_image"],
+                    'type'=>$imageType
                 );
     
                 $this->artistService->uploadImage($data);
@@ -101,18 +102,19 @@
             }
         }
 
-        public function deleteArtistImage(artist $artist) : void
+        public function deleteArtistImage(artist $artist, string $imageType) : void
         {
             try {
                 $data = array(
-                    'image'=>null
+                    'image'=>null,
+                    'type'=>$imageType
                 );
     
-                if(strlen($artist->image) == 0){
+                if(strlen($artist->$imageType) == 0){
                     throw new Exception("No image provided");
                 }
 
-                if($this->artistService->deleteImage($artist->image)){
+                if($this->artistService->deleteImage($artist->$imageType)){
                     $this->artistService->updateArtistImage($artist, $data);
                     $this->helper->refresh();
                 }

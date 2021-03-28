@@ -59,11 +59,19 @@ if($idExist && isset($_POST['content']) || isset($_POST['social']))
 }
 if($idExist && isset($_POST['update_image']))    
 {
-    $artistController->updateArtistImage($artist);
+    $artistController->updateArtistImage($artist, "image");
+}
+if($idExist && isset($_POST['update_image_thumbnail']))    
+{
+    $artistController->updateArtistImage($artist, "thumbnail");
 }
 if($idExist && isset($_POST['delete_image']))    
 {
-    $artistController->deleteArtistImage($artist);
+    $artistController->deleteArtistImage($artist, "image");
+}
+if($idExist && isset($_POST['delete_image_thumbnail']))    
+{
+    $artistController->deleteArtistImage($artist, "thumbnail");
 }
 
 
@@ -148,6 +156,28 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
         </div>
 
         <div class="col-4">
+            <article class="card--cms">
+                <header class="card--cms__header">
+                    <h3 class="card--cms__header__title">Artists Image</h3>
+                </header>
+                <form class="card--cms__body table--cms" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <?php if($artist && strlen($artist->thumbnail) > 0) { ?>
+                            <img src="<?php echo UPLOAD_FOLDER.$artist->thumbnail ?? ''; ?>" alt="Artist Image">
+                            <br/>
+                        <?php } else { ?>
+                            <p>No image present</p>
+                        <?php } ?>
+                        <input type="file" name="artist_image">
+                    </fieldset>
+
+                    <?php if($idExist){ ?>
+                        <input class="button" type="submit" name="update_image_thumbnail" value="Update image">
+                        <input class="button button--secondary" type="submit" value="Delete image" name="delete_image_thumbnail">
+                    <?php } ?>
+
+                </form>
+            </article>
             <article class="card--cms">
                 <header class="card--cms__header">
                     <h3 class="card--cms__header__title">Artists Image</h3>

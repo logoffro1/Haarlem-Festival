@@ -58,7 +58,8 @@ class artistService {
                 (int)$row["artist_id"], 
                 $row["name"], 
                 $row["biography"], 
-                $row["image"], 
+                $row["image"],
+                $row["thumbnail"],
                 $row["facebook"], 
                 $row["instagram"], 
                 $row["youtube"], 
@@ -105,6 +106,7 @@ class artistService {
             $result->name, 
             $result->biography, 
             $result->image, 
+            $result->thumbnail, 
             $result->facebook, 
             $result->instagram, 
             $result->youtube,
@@ -213,8 +215,10 @@ class artistService {
      */
     public function updateArtistImage(artist $artist, array $data)
     {
+        $columnName = $data['type'];
+
         $sql = "UPDATE artists 
-                    SET image=?
+                    SET $columnName=?
                 WHERE artist_id = $artist->id";
 
         // Get connection and prepare statement
@@ -222,7 +226,7 @@ class artistService {
             // Create bind params to prevent sql injection
             $imageName = $data['image']['name'] ?? null;
 
-            $query->bind_param("s", 
+            $query->bind_param("s",
                 $imageName    
             );
 
