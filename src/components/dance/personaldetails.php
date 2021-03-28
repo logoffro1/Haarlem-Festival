@@ -5,6 +5,7 @@ class personaldetails
 	public function render()
     {
 		session_start();
+
 		if(isset($_POST['fname']))
 		{
 			$_SESSION['fname'] = $_POST['fname'];
