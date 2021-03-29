@@ -80,7 +80,7 @@ class cart
 
             foreach($this->cartItems as $cartItem)
             {
-                //If the same performance on  the same day from the same artist has already been added to the cart, i increase count instead of adding a new object
+                //If the same performance on  the same day from the same artist has already been added to the cart, it increases count instead of adding a new object
                 if($title == $cartItem->__get('title') && $type == $cartItem->__get('itemType') && $address == $cartItem->__get('address'))
                 {
                     $cartItem->increaseCount();
