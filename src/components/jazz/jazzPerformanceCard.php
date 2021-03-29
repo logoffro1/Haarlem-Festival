@@ -41,8 +41,13 @@ class jazzPerformanceCard
             </section>
             <section class='card-jazz_rightcontainer'>
                 <p class='card--jazz__artist'>$this->artistName</p>
-                <p class='card--jazz__time'>$this->performanceTime</p>
-                <p class='card--jazz__loc'><img src='../assets/images/svg/icons/location-icon.svg' style='margin-right:15px; opacity:0.5;'>$this->performanceLoc</p>
+                <p class='card--jazz__time'>$this->performanceTime</p>";
+            //All events that are in Grote Markt are free
+            if($this->performanceLoc == "Grote Markt")
+                echo "<p class='card--jazz__loc'><img src='../assets/images/svg/icons/location-icon.svg' style='margin-right:15px; opacity:0.5;'>$this->performanceLoc - Free Event</p>";
+            else    
+            echo "<p class='card--jazz__loc'><img src='../assets/images/svg/icons/location-icon.svg' style='margin-right:15px; opacity:0.5;'>$this->performanceLoc</p>";
+                echo "
                 <img class='card--jazz__arrow' src='../assets/images/jazz/icons/jazz-card-arrow.png' alt='' srcset=''>
                 <p class='card--jazz__date'>$this->performanceDate</p>  
             </section>   
