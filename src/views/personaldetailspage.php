@@ -35,7 +35,7 @@
         header("location:../views/thankyoupage.php");
         exit();
     }
-
+    $steps = new steps(2);
     echo "
     <style>
     .vl {
@@ -55,8 +55,10 @@
      </nav>
          <h1 class='title title--page dance' style='margin-left:10px;'>Payment</h1>
             </header>
-            <img src='../assets/images/dance/paymentprogress1.png' style='width:50%; height:50%;'>
-        </article>
+            ";
+            $steps->render();
+
+        echo"</article>
         </section>
 
     <form action='' method='post'>

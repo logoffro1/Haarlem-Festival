@@ -30,7 +30,7 @@
         <article class='row align-items-left'>
             <header class='col-12'>
                 <span>
-               <img class='section--background' src='../assets/images/dance/header.png' alt='' style='position:absolute; width: 100%; height:350px;'>
+               <img class='section--background' src='../assets/images/dance/header.png' alt='' style='position:absolute; width: 100%; height:350px; margin-left:-10px;'>
                 <section class='hero text-top-left' style='position:relative;'>
                     <h1 style='color: white; margin-top: 60px; margin-left: 60px;'class='title title--page dance'>$this->title</h1>
                 </section>
@@ -59,7 +59,7 @@
            <article class='row align-items-left'>
                <header class='col-12'>
                    <span>
-                  <img class='section--background' src='../assets/images/dance/Below_header_2.jpg' alt='' style='position:absolute; width: 100%; height:350px;'>
+                  <img class='section--background' src='../assets/images/dance/Below_header_2.jpg' alt='' style='position:absolute; width: 100%; height:350px; margin-left:-10px;'>
                    <section class='hero text-top-left' style='position:relative;'>
                        <h1 style='color: white; margin-top: 60px; margin-left: 60px;'class='title title--page dance'>$this->artistSectionTitle</h1>
                    </section>

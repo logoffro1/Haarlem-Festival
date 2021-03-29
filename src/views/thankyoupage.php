@@ -9,17 +9,17 @@
     $navigation->render();
 
 	$controller = new thankyoupagecontroller();
+    $steps = new steps(4);
 	$controller->sendMail($_SESSION['email'],"Thank you for your purchase!","We look forward to seeing you at our festival ".$_SESSION['fname']." ".$_SESSION['lname'],$_SESSION['fname']);
-	//$thankyoupage = new thankyoupage();
-	//$thankyoupage->render();
     echo "		<section class='container-fluid section' style='padding:0px;'>
 		<article class='row align-items-left'>
 			<header class='col-6'>
 					   <p>Payment Information > Thank you</p>
 			<h1 class='title title--page dance'>Payment</h1>
-			   </header>
-			   <img src='../assets/images/dance/paymentprogress2.png' style='width:50%; height:50%;'>
-		   </article>
+			   </header>";
+               $steps->render();
+
+		   echo"</article>
 		   </section>
 		   <h1 class='title title--page dance' style='margin-left:510px;'>Thank you for your purchase!</h1>
 	   <section class='container section' style='padding:0px; margin-left:auto; margin-right:auto; width:100em; text-align:center;'>
