@@ -12,9 +12,10 @@ class cartDisplay
     {
         echo "<section class='container section page--cart' >
         <section>
-            <h1 class='title title--page page--cart__title'>Your Cart</h1>
-            <img src='../assets/images/cart/cartProgressImg.png' class='page--cart__progressBar'>    
-        </section>
+            <h1 class='title title--page page--cart__title'>Your Cart</h1>"; 
+            $steps = new steps(1);
+            $steps->render();    
+            echo "</section>
         <section class='page--cart__itemContainer'>
             <h2>Tickets</h2>";
 
