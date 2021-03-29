@@ -20,10 +20,11 @@ if(isset($_GET['action']))
 {
     if ($_GET['action'] == 'remove')
     {
-        $cartItems = $_SESSION['cart']->__get('cartItems');
+        #$cartItems = $_SESSION['cart']->__get('cartItems');
         $selectedIndex = intval($_GET['cartItemId']);  
-        unset($cartItems[$selectedIndex]);
-        $_SESSION['cart']->setCartItems($cartItems);
+        $_SESSION['cart']->removeAnItemByIndex($selectedIndex);
+        #unset($cartItems[$selectedIndex]);
+        #$_SESSION['cart']->setCartItems($cartItems);
         
     }
     else if ($_GET['action'] == 'edit')

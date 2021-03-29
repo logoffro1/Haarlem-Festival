@@ -33,6 +33,11 @@ class cart
         }
     }
 
+    public function removeAnItemByIndex(int $index)
+    {
+        unset($this->cartItems[$index]);
+    }
+
     public function getTotalPrice()
     {
         $totalPrice = 0;
