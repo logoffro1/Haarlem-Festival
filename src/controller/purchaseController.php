@@ -32,5 +32,23 @@
                 $this->addToErrors($e->getMessage());
             }
         }
+
+        public function createPayment(string $email, float $price, array $cartItems)
+        {
+            try {
+                // createPaymentInDB
+                // return the inserted id
+
+                $name = isset($_POST['name']);
+                $email = isset($_POST['email']);
+
+                $id = $this->purchaseService->createPurchase($name, $email, $cartItems, $price);
+    
+                $this->purchaseService->createPayment($isPayed, $id);
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
+        }
     }
 ?>

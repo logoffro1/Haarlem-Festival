@@ -15,4 +15,7 @@ define ('ROOT_URL_PRODUCTION', ''); // Todo add production url if we need to hos
 
 // Email used for sending emails
 define ('EMAIL', 'graphicabstract@gmail.com');
+
+// Payment
+define ('MOLLIE_API', 'test_V6rDKQhKUa5SN8mJkum2sdugqRJxBy');
 ?>
