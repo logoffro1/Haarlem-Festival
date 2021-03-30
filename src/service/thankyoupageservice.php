@@ -40,8 +40,9 @@ class thankyoupageservice  {
 		echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 		};
 	}
-	public function sendDataToDB($fname, $lname, $dob,$phoneno,$email){
-		$query = "SELECT * FROM Pages WHERE page_id = 2"; //change to insert
+	public function sendDataToDB($fname, $lname, $email){
+		$query = "INSERT INTO purchases (name , email)
+		VALUES ('$fname $lname', '$email')";
         $result = $this->conn->query($query);
 	}
 }

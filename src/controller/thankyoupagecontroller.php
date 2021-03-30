@@ -32,6 +32,9 @@
                 echo $e;
             }
         }
+        public function sendDataToDB($fname, $lname,$email){
+            $this->thankyoupageService->sendDataToDB($fname,$lname,$email);
+        }
     }
 
 ?>

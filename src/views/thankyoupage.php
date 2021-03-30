@@ -60,6 +60,7 @@
 	   </article>
 	   </section>
 	   ";
+	$controller->sendDataToDB($_SESSION['fname'],$_SESSION['lname'],$_SESSION['email']);
 	//unset session so if the page is refreshed it doesnt spam emails
     unset($_SESSION['email']);
     unset($_SESSION['fname']);
