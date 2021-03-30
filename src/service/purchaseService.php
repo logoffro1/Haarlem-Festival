@@ -86,7 +86,7 @@ use Mollie\Api\MollieApiClient;
             }
         }
 
-        public function createPurchase(string $name, string $email, array $cartItems, float $price)
+        public function createPurchase(string $name, string $email, array $cartItems, float $totalPrice)
         {
             $sql = "INSERT INTO purchases (
                 `name`,
@@ -100,17 +100,20 @@ use Mollie\Api\MollieApiClient;
             if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
                 $query->bind_param("ssddi",
-                    $name,
-                    $email,
-                    $price,
-                    $discount,
+                    $nameParam,
+                    $emailParam,
+                    $totalPriceParam,
+                    $discountParam,
                     false,
                 );
     
+                $nameParam = $name;
+                $emailParam = $email;
+                $totalPriceParam = $totalPrice;
+                $discountParam = $discount;
                 // Execute query
                 $query->execute();
     
-                // For every new categorie add it to the db
                 foreach ($cartItems as $cartItem) {
                     if($cartItem instanceof performanceReservation){
                         $this->insertReservations($query->insert_id, $cartItem);
@@ -149,26 +152,53 @@ use Mollie\Api\MollieApiClient;
                 // Execute query
                 $query->execute();
             } else {
-                throw new Exception('Could not create a payment. Please try again');
+                throw new Exception('Could not create a reservation for performances. Please try again');
             }
         }
 
         public function insertCuisineReservations(int $purchaseId, $cartItem)
         {
-            # code...
+            $sql = "INSERT INTO reservation_performance (
+	            restaurant_id,
+                purchase_id,
+                seats,
+                sessionNr,
+                extra_info	
+            ) VALUES (?,?,?,?,?)";
+    
+            // Get connection and prepare statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param("iiiis",
+                    $restaurantId,
+                    $purchaseIdParam,
+                    $seats,
+                    $sessionNr,
+                    $extraInfo,
+                );
+
+                $purchaseIdParam = $purchaseId;
+                $restaurantId = $cartItem->restaurant->id;
+                $seats = $cartItem->seats;
+                $sessionNr = $cartItem->sessionNr;
+                $extraInfo = $cartItem->extra_info;
+    
+                // Execute query
+                $query->execute();
+            } else {
+                throw new Exception('Could not create a reservation for performances. Please try again');
+            }
         }
 
         public function createPayment(string $email, int $orderId, float $amount)
-        {
-            $orderId = time();
-    
+        {    
             $payment = $this->mollie->payments->create([
                 "amount" => [
                   "currency" => "EUR",
                   "value" => "$amount"
                 ],
-                "description" => "payment",
-                "redirectUrl" => ROOT_URL_PRODUCTION."/views/payment/index.php?order_id=$orderId",
+                "description" => "Payment for the Haarlem Festival",
+                "redirectUrl" => ROOT_URL_PRODUCTION."/views/thankyoupage.php?order_id=$orderId",
                 "webhookUrl"  => ROOT_URL_PRODUCTION."/views/payment/webhook.php",
                 "metadata" => [
                   "order_id" => $orderId,

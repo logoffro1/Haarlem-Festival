@@ -33,20 +33,39 @@
             }
         }
 
-        public function createPayment(string $email, float $price, array $cartItems)
+        public function createPayment(string $email, array $cartItems)
         {
             try {
-                // createPaymentInDB
-                // return the inserted id
-
                 $name = isset($_POST['name']);
                 $email = isset($_POST['email']);
+                $totalPrice = $this->getTotalPrice($cartItems);
 
-                $id = $this->purchaseService->createPurchase($name, $email, $cartItems, $price);
+                $id = $this->purchaseService->createPurchase($name, $email, $cartItems, $totalPrice);
     
-                $this->purchaseService->createPayment($isPayed, $id);
+                $this->purchaseService->createPayment($email, $id, $totalPrice);
             } catch (Exception $e){
                 // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function getTotalPrice($cartItems) : float
+        {
+            try {
+                $totalPrice = 0;
+
+                foreach ($cartItems as $cartItem) {
+                    if($cartItem instanceof performanceReservation){
+                        $totalPrice += $cartItem->location->price;
+                    } else if($cartItem instanceof restaurantReservation){
+                        $totalPrice += $cartItem->price;
+                    } else {
+                        throw new Exception("Something went wrong calculating the total price");
+                    }
+                }
+
+                return $totalPrice;
+            } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
         }
