@@ -69,5 +69,23 @@
                 $this->addToErrors($e->getMessage());
             }
         }
+
+        public function getPayment()
+        {
+            try {
+                $id = $_POST['id'];
+                $data = $this->purchaseService->getPayment($id);
+
+                if($data['id'] == 0){
+                    throw new Exception("Payment error. Payment not found");
+                }
+
+                if($data['isPayed']){
+                    $this->purchaseService->changePurchasePaymentStatus(true, $id);
+                }
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
     }
 ?>

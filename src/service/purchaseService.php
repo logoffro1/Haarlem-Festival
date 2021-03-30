@@ -15,7 +15,6 @@ use Mollie\Api\MollieApiClient;
             
             $this->mollie = new MollieApiClient();
             $this->mollie->setApiKey(MOLLIE_API);
-
         }
 
         /**
@@ -199,7 +198,7 @@ use Mollie\Api\MollieApiClient;
                 ],
                 "description" => "Payment for the Haarlem Festival",
                 "redirectUrl" => ROOT_URL_PRODUCTION."/views/thankyoupage.php?order_id=$orderId",
-                "webhookUrl"  => ROOT_URL_PRODUCTION."/views/payment/webhook.php",
+                "webhookUrl"  => ROOT_URL_PRODUCTION."/views/webhook.php",
                 "metadata" => [
                   "order_id" => $orderId,
                   "email" => $email
@@ -208,6 +207,19 @@ use Mollie\Api\MollieApiClient;
         
             header("Location: " . $payment->getCheckoutUrl(), true, 303);
             exit();
+        }
+
+        public function getPayment(int $id)
+        {
+            $payment = $this->mollie->payments->get($id);
+
+            $isPayed = $payment->status == 'Paid';
+            $order_id = $payment->metadata->order_id;
+
+            return array (
+                'isPayed'=>$isPayed,
+                'orderId'=>$order_id
+            );
         }
     }
 ?>
