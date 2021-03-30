@@ -9,60 +9,82 @@
 
     session_start();
     $errors = array();
-    //validating input
-    if(isset($_POST['submit'])){
+    $fnameErr = $lnameErr = $emailErr = $phonenoErr = $dobErr = "";
+    $fname = $lname = $email = $phoneno = $dob = "";
+    function test_input($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 
-        echo "very first if passed";
-        if(isset($_POST['fname']))
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        if (empty($_POST["fname"]))
         {
+            $fnameErr = "First Name is required";
+            $errors[] = $fnameErr;
+        }
+        else
+        {
+            $fname = test_input($_POST["fname"]);
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$fname))
+            {
+                $fnameErr = "Only letters and white space allowed";
+                $errors[] = $fnameErr;
+            }
             $_SESSION['fname'] = $_POST['fname'];
-            echo "work";
         }
-        else{
-            echo "first if failed";
-            $errors[] ="Invalid first name input, make sure it is not empty and does not contain illegal characters";
-        }
-        if(isset($_POST['lname']) && ctype_alpha($_POST['lname']) && !empty($_POST['lname']))
+        if (empty($_POST["lname"]))
         {
+            $lnameErr = "Last Name is required";
+            $errors[] = $lnameErr;
+        }
+        else
+        {
+            $lname = test_input($_POST["lname"]);
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$lname))
+            {
+                $lnameErr = "Only letters and white space allowed";
+                $errors[] = $lnameErr;
+            }
             $_SESSION['lname'] = $_POST['lname'];
         }
-        else{
-            array_push($errors,"Invalid last name input, make sure it is not empty and does not contain illegal characters");
-        }
-        if(isset($_POST['email']) && !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+
+        if (empty($_POST["email"]))
         {
+            $emailErr = "Email is required";
+            $errors[] = $emailErr;
+        }
+        else
+        {
+            $email = test_input($_POST["email"]);
+            // check if e-mail address is well-formed
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+                $emailErr = "Invalid email format";
+                $errors[] = $emailErr;
+            }
             $_SESSION['email'] = $_POST['email'];
         }
-        else{
-            array_push($errors,"Invalid email input, make sure it is not empty and does not contain illegal characters");
-        }
-        if(isset($_POST['phoneno']) && ctype_digit($_POST['phoneno']) && !empty($_POST['phoneno']))
-        {
-            $_SESSION['phoneno'] = $_POST['phoneno'];
-        }
-        else{
-            array_push($errors,"Invalid phone numer input, make sure it is not empty and does not contain illegal characters");
-        }
-        if(isset($_POST['dob']))
-        {
-            $_SESSION['dob'] = $_POST['dob'];
-        }
-        if(empty($errors)){
+        if (empty($errors)){
             header("location:../views/thankyoupage.php");
         }
-        else{
-            header("location:../views/personaldetailspage.php");
-            echo "something went wrong";
-        }
-        exit();
     }
+
+?>
+<?php
     $steps = new steps(2);
-    echo "
+?>
     <style>
     .vl {
       border-left: 1px solid #1C294D;
-      height: 500px;
+      height: 630px;
     }
+    .error {color: #FF0000;}
     </style>
 
     <section class='container-fluid section' style='padding-top:0px; padding-bottom:50px; margin-top:100px !important;'>
@@ -76,16 +98,12 @@
      </nav>
          <h1 class='title title--page dance' style='margin-left:10px;'>Payment</h1>
             </header>
-            ";
-            $steps->render();
+            <?php $steps->render(); ?>
 
-        echo"</article>
-        </section>";
-        if(!empty($errors)){
-            print_r($errors);
-        }
+        </article>
+        </section>
 
-    echo"<form action='' method='post'>
+    <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
 
 
     <section class='container-fluid section' style='padding-top:0px; padding-bottom:0px;'>
@@ -97,16 +115,20 @@
          <header class='col-5' >
     <p style='font-size:26px'><b>Personal Details</b></p>
     </header>
+    <p>Fields marked with an asterisk (*) indicate mandatory fields</p>
     </article>
 
     <article class='row'>
     <header class='col-5'>
-    <label for='fname' style='margin-bottom:-25px;'>First name:</label><br>
+    <label for='fname' style='margin-bottom:-25px;'>First name*:</label><br>
     <input type='text' id='fname' name='fname' placeholder='e.g. John...'><br>
+    <span class="error"><?php echo $fnameErr;?></span>
+    <br><br>
     </header>
     <header class='col-6'>
-    <label for='lname' style='margin-bottom:-25px;'>Last name:</label><br>
-    <input type='text' id='lname' name='lname' placeholder='e.g. Doe...'>
+    <label for='lname' style='margin-bottom:-25px;'>Last name*:</label><br>
+    <input type='text' id='lname' name='lname' placeholder='e.g. Doe...'><br>
+    <span class="error"><?php echo $lnameErr;?></span>
     </header>
     </article>
 
@@ -114,21 +136,27 @@
     <article class='row'>
     <header class='col-5'>
     <label for='dob' style='margin-bottom:-25px;'>Date of Birth:</label><br>
-    <input type='text' id='dob' name='dob' placeholder='DD/MM/YYYY'>
+    <input type='text' id='dob' name='dob' placeholder='DD/MM/YYYY'><br>
+    <span class="error"><?php echo $dobErr;?></span>
+    <br><br>
     </header>
     </article>
 
     <article class='row'>
     <header class='col-5'>
-    <label for='email' style='margin-bottom:-25px;'>Email address:</label><br>
-    <input type='text' id='email' name='email' style='width:475px;' placeholder='e.g. example@test.com'>
+    <label for='email' style='margin-bottom:-25px;'>Email address*:</label><br>
+    <input type='text' id='email' name='email' style='width:475px;' placeholder='e.g. example@test.com'><br>
+    <span class="error"><?php echo $emailErr;?></span>
+    <br><br>
     </header>
     </article>
 
     <article class='row'>
     <header class='col-5'>
-      <label for='phoneno' style='margin-bottom:-25px;'>Phone number (optional):</label><br>
-      <input type='text' id='phoneno' name='phoneno' placeholder='e.g. 00 123 456789'>
+      <label for='phoneno' style='margin-bottom:-25px;'>Phone number:</label><br>
+      <input type='text' id='phoneno' name='phoneno' placeholder='e.g. 00 123 456789'><br>
+      <span class="error"><?php echo $phonenoErr;?></span>
+      <br><br>
     </header>
     </article>
 
@@ -185,7 +213,7 @@
                 <button style='width:150px; height:80px;'>Go back</button>
                 </header>
                 <header class='col-5'>
-                <input type='submit' name='submit' class='button' value='Fill in payment details' style='width:150px; height:80px; padding:0px; white-space:normal;' id='fillindetailsbtn' />
+                <input type='submit' name='submit' value='Fill in payment details' style='width:150px; height:80px; padding:0px; white-space:normal; background-color:#1C294D; color:white;' id='fillindetailsbtn' />
                 </header>
                 </article>
 
@@ -209,8 +237,7 @@
     </article>
     </section>
 
-    </form> ";
-?>
+    </form>
 
 <?php
     $footer = new footer();
