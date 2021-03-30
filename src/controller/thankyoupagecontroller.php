@@ -24,14 +24,12 @@
                     'subject'=>$subject,
                     'content'=>$content,
                     'name'=>$name,
-                    'sender'=>"from:".EMAIL,// EMAIL is a global variable in the config file
+                    'sender'=>"from:".EMAIL,
                 );
 
-                // Will give a warning when commented out, because their is no email in the reciever
-                // Also crash.txt can be made in the project root, please do not commit them.
                 $this->thankyoupageService->sendMail($data);
             } catch(Exception $e){
-                echo $e; // Error will just get shown on the page, error handling is for later
+                echo $e;
             }
         }
     }

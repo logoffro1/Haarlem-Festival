@@ -8,31 +8,52 @@
     $navigation->render();
 
     session_start();
-
+    $errors = array();
+    //validating input
     if(isset($_POST['submit'])){
 
+        echo "very first if passed";
         if(isset($_POST['fname']))
         {
             $_SESSION['fname'] = $_POST['fname'];
+            echo "work";
         }
-        if(isset($_POST['lname']))
+        else{
+            echo "first if failed";
+            $errors[] ="Invalid first name input, make sure it is not empty and does not contain illegal characters";
+        }
+        if(isset($_POST['lname']) && ctype_alpha($_POST['lname']) && !empty($_POST['lname']))
         {
             $_SESSION['lname'] = $_POST['lname'];
         }
-        if(isset($_POST['email']))
+        else{
+            array_push($errors,"Invalid last name input, make sure it is not empty and does not contain illegal characters");
+        }
+        if(isset($_POST['email']) && !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
         {
             $_SESSION['email'] = $_POST['email'];
         }
-        if(isset($_POST['phoneno']))
+        else{
+            array_push($errors,"Invalid email input, make sure it is not empty and does not contain illegal characters");
+        }
+        if(isset($_POST['phoneno']) && ctype_digit($_POST['phoneno']) && !empty($_POST['phoneno']))
         {
             $_SESSION['phoneno'] = $_POST['phoneno'];
+        }
+        else{
+            array_push($errors,"Invalid phone numer input, make sure it is not empty and does not contain illegal characters");
         }
         if(isset($_POST['dob']))
         {
             $_SESSION['dob'] = $_POST['dob'];
         }
-
-        header("location:../views/thankyoupage.php");
+        if(empty($errors)){
+            header("location:../views/thankyoupage.php");
+        }
+        else{
+            header("location:../views/personaldetailspage.php");
+            echo "something went wrong";
+        }
         exit();
     }
     $steps = new steps(2);
@@ -59,9 +80,12 @@
             $steps->render();
 
         echo"</article>
-        </section>
+        </section>";
+        if(!empty($errors)){
+            print_r($errors);
+        }
 
-    <form action='' method='post'>
+    echo"<form action='' method='post'>
 
 
     <section class='container-fluid section' style='padding-top:0px; padding-bottom:0px;'>
@@ -186,8 +210,6 @@
     </section>
 
     </form> ";
-	//$personaldetails = new personaldetails();
-	//$personaldetails->render();
 ?>
 
 <?php

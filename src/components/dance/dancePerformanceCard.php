@@ -28,6 +28,7 @@ class dancePerformanceCard
         return intval(explode(' ',$this->__get('performanceDate'))[0]);
     }
 
+    //create artist card + event times on artist overview page
     public function render()
     {
         echo "

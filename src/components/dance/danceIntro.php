@@ -23,6 +23,7 @@
                 return $this->$property;
             }
         }
+    //artist overview header
     public function render()
     {
         echo "

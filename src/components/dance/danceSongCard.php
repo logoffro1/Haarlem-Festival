@@ -11,6 +11,7 @@ class danceSongCard
         $this->artistName = $artistName;
     }
 
+    //create song card on individual artist page
     public function render()
     {
         echo "

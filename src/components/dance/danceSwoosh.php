@@ -8,6 +8,7 @@
 @include '../assets/componenets/danceEvent/__danceSwoosh.scss';
 class danceSwoosh
 {
+    //little swoosh on dance event pages
     public function render()
     {
         echo "

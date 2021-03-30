@@ -9,7 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 class thankyoupageservice  {
 
 	public function __construct() {
-
+		$this->db = database::getInstance();
+		$this->conn = $this->db->getConnection();
 	}
 
 
@@ -38,6 +39,10 @@ class thankyoupageservice  {
 		{
 		echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 		};
+	}
+	public function sendDataToDB($fname, $lname, $dob,$phoneno,$email){
+		$query = "SELECT * FROM Pages WHERE page_id = 2"; //change to insert
+        $result = $this->conn->query($query);
 	}
 }
 

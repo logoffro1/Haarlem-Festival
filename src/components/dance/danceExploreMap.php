@@ -4,6 +4,7 @@ class danceExploreMap
 {
     function render()
     {
+        //create explore haarlem map
         echo "
         <section class='container-fluid section exploreHaarlem--dance' style='padding-top:0px;'>
             <h2 style='margin-right:250px;'>Arrive Early, Enjoy More!</h2>

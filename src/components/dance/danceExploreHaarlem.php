@@ -2,6 +2,7 @@
 include '../classes/autoloader.php';
 class danceExploreHaarlem
 {
+    //create explore haarlem text block + images
     public function render()
     {
         echo "

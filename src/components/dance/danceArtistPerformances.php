@@ -8,6 +8,7 @@ class danceArtistPerformances
         $this->performances = $performances;
     }
 
+    //create tickets list on the individual artist overview page
     function render()
     {
         echo "

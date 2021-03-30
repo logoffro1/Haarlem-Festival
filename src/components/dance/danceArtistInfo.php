@@ -23,7 +23,7 @@ class danceArtistInfo
         $this->youtube = $this->artist->__get('youtube');
     }
 
-
+    //creating the artist intro panel on the individual artist page using data fetched from the db
     public function render()
     {
         echo "<section class='container section' style='padding: 0px; padding-top: 90px; margin: 0px;'>
@@ -34,6 +34,12 @@ class danceArtistInfo
                </span>
                </header>
                <header class='col-4'>
+               <nav class='breadcrumbs'>
+               <ul>
+                   <li class='breadcrumbs__breadcrumb'><a href='../views/danceEvent.php'>Artist Overview</a></li>
+                   <li class='breadcrumbs__breadcrumb'><a href='#'>$this->artistName</a></li>
+               </ul>
+           </nav>
                <span>
                <img src='../assets/images/dance/Rectangle 112.png' alt='' style='position:relative; margin-top: 75px; margin-left: -60%; margin-bottom:30px;'>
                <span style='position:absolute; top:250px; right:400px;'>

@@ -60,6 +60,7 @@
 	   </article>
 	   </section>
 	   ";
+	//unset session so if the page is refreshed it doesnt spam emails
     unset($_SESSION['email']);
     unset($_SESSION['fname']);
     unset($_SESSION['lname']);
