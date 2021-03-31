@@ -1,7 +1,7 @@
 <?php
 include '../classes/autoloader.php';
 
-$head = new head("homepage", "");
+$head = new head("homepage", "homepage");
 $head->render();
 
 $pageController = new pageController();
@@ -15,10 +15,11 @@ $navigation->render();
 
 <?php 
     $hero = new hero(
-        "hero--large", 
+        "hero--large container", 
         $page->page_title, 
         $page->page_text, 
-        UPLOAD_FOLDER.$page->page_image
+        UPLOAD_FOLDER.$page->page_image,
+        true
     );
 
     $hero->render();

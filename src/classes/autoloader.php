@@ -58,8 +58,8 @@ spl_autoload_register(function ($class_name) {
         include $component_class3;
     } else if(file_exists($component_class4)){
         include $component_class4;
-    } else if(file_exists($models)){ // @TODO remove
-        include $models;
+    } else if(file_exists($models_class)){ // @TODO remove
+        include $models_class;
     }
 
 });

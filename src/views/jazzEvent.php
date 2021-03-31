@@ -14,12 +14,14 @@ $page = $pageController->getPage(4);
 //Getting cart info rendered
 $_SESSION['cart']->render();
 
-echo "<section class='container section' style='margin-top: -10px'>";
 ?>
 
-<h1 class='title title--page jazz'><?php echo $page->page_title; ?></h1>
-<img class='hero' src='<?php echo $page->image; ?>'>
+<section class='section no-padding-bottom'>
+    <h1 class='title title--page jazz container'><?php echo $page->page_title; ?></h1>
+    <img class='hero is-full-width' src='<?php echo $page->image; ?>'>
+</section>
 
+<section class='container section no-padding-top' style='margin-top: -10px'>
 <?php
 //Getting every artist to list their performances
 $jazzArtistController = new jazzArtistController();

@@ -34,7 +34,4 @@
 
         $swoosh = new danceSwoosh();
         $swoosh->render();
-
-        $footer = new footer();
-        $footer->renderFooter();
 ?>

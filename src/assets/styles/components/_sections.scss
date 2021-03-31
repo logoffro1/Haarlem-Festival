@@ -7,4 +7,12 @@
     &.section--background {
         background-color: $color-background-section;
     }
+
+    &.no-padding-bottom {
+        padding-bottom: 0;
+    }
+
+    &.no-padding-top {
+        padding-top: 0;
+    }
 }

@@ -1,0 +1,12 @@
+.homepage {
+    .hero {
+        $hero-max-body-width: 990px;
+        $hero-body-padding: 42px 35px;
+
+        .hero__body {
+            padding: $hero-body-padding;
+            background-color: $color-slated-blue;
+            max-width: $hero-max-body-width;
+        }
+    }
+}

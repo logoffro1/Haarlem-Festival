@@ -6,10 +6,75 @@ $head->render();
 $navigation = new navigation("Events");
 $navigation->render();
 
-$danceIntroController = new danceIntroController();
-$danceIntro = $danceIntroController->getHeaderInfo();
-$danceIntro->render();
+$pageController = new pageController();
+$page = $pageController->getPage(2);
 
+$pageHero = new hero("hero--medium hero--overlay dance container", $page->page_title, "", $page->page_image);
+$artistPrimotionHero = new hero("hero--small hero--overlay dance container", $page->hero_title, "", $page->hero_image);
+
+$pageHero->render(); // ../assets/images/dance/header.png
+?>
+
+
+
+<section class='container section'>
+    <article class='row align-items-left'>
+        <header class='col-5'>
+            <section class='hero text-top-left'>
+                <span>
+                    <h1 class='title title--page dance'>
+                        <?php
+                            echo $page->first_section_title; 
+                        ?>
+                    </h1>
+                    <a class='button' href='#artists'>Check out the artists</a>
+                </span>
+            </section>
+        </header>
+        <header class='col-5' style='border-color: white; border-top-right-radius: 50%;'>
+            <section class='hero text-top-left' style='position:relative;'>
+                <p>
+                    <?php
+                        echo $page->first_section_text; 
+                    ?>
+                </p>
+            </section>
+        </header>
+    </article>
+</section>
+
+<?php
+    $artistPrimotionHero->render(); // ../assets/images/dance/Below_header_2.jpg
+?>
+
+
+<section class='container section'>
+    <article class='row align-items-left'>
+        <header class='col-5'>
+            <section class='hero text-top-left'>
+                <span>
+                    <h1 class='title title--page dance'>
+                        <?php
+                            echo $page->second_section_title; 
+                        ?>
+                    </h1>
+                    <a class='button' href='/views/bookmoresavemore.php'>Find out more</a>
+                </span>
+            </section>
+        </header>
+        <header class='col-5' style='border-color: white; border-top-right-radius: 50%;'>
+            <section class='hero text-top-left' style='position:relative;'>
+                <p>
+                    <?php
+                        echo $page->second_section_text; 
+                    ?>
+                </p>
+            </section>
+        </header>
+    </article>
+</section>
+
+<?php
 $danceArtistController = new danceArtistController();
 $allDanceArtists = $danceArtistController->getAllDanceArtists();
 
@@ -52,9 +117,6 @@ ksort($arrayOfCards);
 $performanceCount = loopCards("count", $arrayOfCards);
 loopCards("card", $arrayOfCards);
 
-$footer = new footer();
-$footer->renderFooter();
-
 function loopCards(string $input, array $arrayOfCards)
 {
     $performanceCount = 0;
@@ -69,4 +131,9 @@ function loopCards(string $input, array $arrayOfCards)
     }
     return $performanceCount;
 }
+?>
+
+<?php
+    $footer = new footer();
+    $footer->renderFooter();
 ?>
