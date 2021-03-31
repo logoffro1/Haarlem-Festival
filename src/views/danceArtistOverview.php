@@ -14,10 +14,10 @@
         $navigation = new navigation("Events");
         $navigation->render();
 
-        $danceInfo = new jazzArtistInfo($artist, 'dance');
+        $danceInfo = new artistInfo($artist, 'dance');
         $danceInfo->render();
 
-        $danceSongs = new jazzSongCard($artist->__get('songs'), $artist->__get('name'));
+        $danceSongs = new songCard($artist->__get('songs'), $artist->__get('name'));
         $danceSongs->render();
 
         $artistPerformances = new artistPerformances($artist->__get('performances'), 'dance');
@@ -27,13 +27,13 @@
     $exploreHaarlem = new danceExploreHaarlem();
     $exploreHaarlem->render();
 
-    $exploreMap = new jazzExploreMap('dance');
+    $exploreMap = new exploreMap('dance');
     $exploreMap->render();
 
     $jazzSuggestion = new danceJazzSuggestion();
     $jazzSuggestion->render();
 
-    $swoosh = new jazzSwoosh('dance');
+    $swoosh = new swoosh('dance');
     $swoosh->render();
 
     $footer = new footer();

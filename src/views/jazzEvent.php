@@ -95,7 +95,7 @@ echo "<p id ='performanceCountInfo' style='font-size: 14px'></p>";
 $performanceCount = loopCards($arrayOfCards);
 echo sprintf("<script>document.getElementById('performanceCountInfo').innerHTML = 'There are %s event(s) listed.';</script></section>", $performanceCount);
 
-$swoosh = new jazzSwoosh();
+$swoosh = new swoosh('jazz');
 $swoosh->render();
 $footer = new footer(); 
 $footer->renderFooter();

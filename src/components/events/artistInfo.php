@@ -1,6 +1,6 @@
 <?php
 
-class jazzArtistInfo
+class artistInfo
 {
     private artist $artist;
     private string $type;

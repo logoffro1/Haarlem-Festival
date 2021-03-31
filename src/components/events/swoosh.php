@@ -1,6 +1,6 @@
 <?php 
 
-class jazzSwoosh
+class swoosh
 {
     private string $type;
 

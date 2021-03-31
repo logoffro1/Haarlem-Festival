@@ -17,14 +17,14 @@
         $navigation = new navigation("Events");
         $navigation->render();
 
-        $jazzInfo = new jazzArtistInfo($artist, 'jazz');
+        $jazzInfo = new artistInfo($artist, 'jazz');
         $jazzInfo->render();
 
         //Notification component has been added, will be activated when necessary
-        $jazzNotification = new jazzNotification();
-        $jazzNotification->render();
+        $notification = new notification();
+        $notification->render();
 
-        $jazzSongs = new jazzSongCard($artist->__get('songs'), $artist->__get('name'));
+        $jazzSongs = new songCard($artist->__get('songs'), $artist->__get('name'));
         $jazzSongs->render();
 
         $artistPerformances = new artistPerformances($artist->__get('performances'), 'jazz');
@@ -33,13 +33,13 @@
         $exploreHaarlem = new jazzExploreHaarlem();
         $exploreHaarlem->render();
 
-        $exploreMap = new jazzExploreMap('jazz');
+        $exploreMap = new exploreMap('jazz');
         $exploreMap->render();
 
         $danceSuggestion = new jazzDanceSuggestion();
         $danceSuggestion->render();
 
-        $swoosh = new jazzSwoosh('jazz');
+        $swoosh = new swoosh('jazz');
         $swoosh->render();
         
         $footer = new footer();
@@ -49,7 +49,7 @@
         $_SESSION['cart']->render();
         //If performanceID is set, it means a new item has been added to cart, so a notification is being displayed here
         if(isset($_GET['performanceID']))
-            $jazzNotification->displayNotification("A ticket for $artistName has been added to your cart succesfully!" );
+            $notification->displayNotification("A ticket for $artistName has been added to your cart succesfully!" );
     }
     ?>
     

@@ -1,6 +1,6 @@
 <?php
 
-class jazzSongCard
+class songCard
 {
     private array $songs;
     private string $artistName;

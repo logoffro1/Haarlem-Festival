@@ -1,6 +1,6 @@
 <?php 
 
-class jazzNotification
+class notification
 {
 
     public function render()

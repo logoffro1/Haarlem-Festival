@@ -1,6 +1,6 @@
 <?php
 include '../classes/autoloader.php';
-class jazzExploreMap
+class exploreMap
 {
     private string $type;
     

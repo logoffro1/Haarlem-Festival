@@ -24,6 +24,7 @@ spl_autoload_register(function ($class_name) {
     $view_class = dirname(__DIR__)."/view/$class_name.php";
     $util_class = dirname(__DIR__)."/util/$class_name.php";
     $cuisine_class = dirname(__DIR__)."/components/cuisine/$class_name.php";
+    $events_class = dirname(__DIR__)."/components/events/$class_name.php";
     
     // Check if files exist
     if(file_exists($component_class)){
@@ -58,6 +59,8 @@ spl_autoload_register(function ($class_name) {
         include $component_class3;
     } else if(file_exists($component_class4)){
         include $component_class4;
+    } else if(file_exists($events_class)){
+        include $events_class;
     }
 
 });
