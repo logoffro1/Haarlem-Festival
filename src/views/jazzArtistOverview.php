@@ -49,7 +49,7 @@
         $_SESSION['cart']->render();
         //If performanceID is set, it means a new item has been added to cart, so a notification is being displayed here
         if(isset($_GET['performanceID']))
-            $notification->displayNotification("A ticket for $artistName has been added to your cart succesfully!" );
+            $notification->displayNotification("A ticket for $artistName has been added to your cart succesfully!", "jazz" );
     }
     ?>
     

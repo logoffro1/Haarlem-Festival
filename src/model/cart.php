@@ -68,9 +68,9 @@ class cart
         return $count;
     }
 
-    public function addItemToCart(int $performanceID, int $artistID, string $type)
+    public function addItemToCart(int $performanceID, int $artistID, string $eventType)
     {
-        if($type == "jazz")
+        if($eventType == "jazz" || $eventType =="dance")
         {
             $performanceController = new performanceController();
             $artistController = new artistController();
@@ -80,7 +80,11 @@ class cart
             $artist = $artistController->getArtistById($artistID);
 
             $title = $artist->__get('name');
-            $type = cartItemType::Jazz;
+            if($eventType == "jazz")
+                $type = cartItemType::Jazz;
+            else if($eventType == "dance")
+                $type = cartItemType::Dance;
+            
             $address = $performance->getLocation();
 
             foreach($this->cartItems as $cartItem)

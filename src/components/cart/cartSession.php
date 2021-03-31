@@ -16,7 +16,9 @@ if(isset($_GET['performanceID']))
     $artistId = $_GET['artist'];
     
     if($_GET['type'] == 'jazz')
-       $_SESSION['cart']->addItemToCart($id, $artistId,"jazz");
+        $_SESSION['cart']->addItemToCart($id, $artistId,"jazz");
+    else if($_GET['type'] == 'dance')
+        $_SESSION['cart']->addItemToCart($id, $artistId,"dance");
 }
 
 if(isset($_GET['action']))

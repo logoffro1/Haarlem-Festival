@@ -1,5 +1,6 @@
 <?php
     include '../classes/autoloader.php';
+    include '../components/cart/cartSession.php';
 
     if (isset($_GET['artist']))
     {
@@ -17,11 +18,17 @@
         $danceInfo = new artistInfo($artist, 'dance');
         $danceInfo->render();
 
+        $notification = new notification();
+        $notification->render();
+
         $danceSongs = new songCard($artist->__get('songs'), $artist->__get('name'));
         $danceSongs->render();
 
         $artistPerformances = new artistPerformances($artist->__get('performances'), 'dance');
         $artistPerformances -> render();
+
+        //Notification component has been added, will be activated when necessary
+        
     }
 
     $exploreHaarlem = new danceExploreHaarlem();
@@ -38,4 +45,9 @@
 
     $footer = new footer();
     $footer->renderFooter();
+
+    $_SESSION['cart']->render();
+    //If performanceID is set, it means a new item has been added to cart, so a notification is being displayed here
+    if(isset($_GET['performanceID']))
+        $notification->displayNotification("A ticket for $artistName has been added to your cart succesfully!", "dance" );
 ?>

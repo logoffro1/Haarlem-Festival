@@ -1,5 +1,6 @@
 <?php
 include '../classes/autoloader.php';
+include '../components/cart/cartSession.php';
 
 $head = new head("Dance Events | Haarlem Festival", "");
 $head->render();
@@ -135,6 +136,7 @@ function loopCards(string $input, array $arrayOfCards)
 ?>
 
 <?php
+    $_SESSION['cart']->render();
     $footer = new footer();
     $footer->renderFooter();
 ?>
