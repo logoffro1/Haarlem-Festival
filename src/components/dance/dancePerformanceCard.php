@@ -36,7 +36,7 @@ class dancePerformanceCard
         <article class='row align-items-left'>
             <header class='col-6' style='border-color: white;'>
                 <section class='hero text-top-left' style='position:relative;' id='artists'>
-                    <img src='$this->artistThumbnail' style='margin-left:50px; width:75%; height:auto;'>
+                    <img src='$this->artistThumbnail' style='margin-left:150px; width:40%; height:auto; border-radius:12px;'>
                </header>
                <header class='col-6' style='font-size:26px;'>
                 <article class='row align-items-left'>

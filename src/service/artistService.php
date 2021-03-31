@@ -91,6 +91,33 @@ class artistService {
         return array();
     }
 
+    public function getARandomDanceArtist()
+    {
+        $query = "SELECT * FROM Artists WHERE page_id=2 ORDER BY RAND() LIMIT 1";
+
+        if ($result = $this->conn->query($query)) {
+            $objectResult = $result->fetch_object();
+
+            return $this->createArtist($objectResult);
+        }
+
+        return array();
+    }
+
+    public function getARandomJazzArtist()
+    {
+        $query = "SELECT * FROM Artists WHERE page_id=4 ORDER BY RAND() LIMIT 1";
+
+        if ($result = $this->conn->query($query)) {
+            $objectResult = $result->fetch_object();
+
+            return $this->createArtist($objectResult);
+        }
+
+        return array();
+    }
+
+
     public function getAllDataArtists(int $pageId)
     {
         $query = "SELECT * FROM Artists WHERE page_id = $pageId";

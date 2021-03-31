@@ -36,8 +36,9 @@
         $exploreMap = new exploreMap('jazz');
         $exploreMap->render();
 
-        $danceSuggestion = new jazzDanceSuggestion();
-        $danceSuggestion->render();
+        $danceArtist = $controller->getARandomDanceArtist();
+        $danceCard = new danceJazzSuggestion($danceArtist->__get('name'), $danceArtist->__get('thumbnail'), $danceArtist->__get('id'), $danceArtist->__get('performances'),"jazz");
+        $danceCard->render();
 
         $swoosh = new swoosh('jazz');
         $swoosh->render();

@@ -45,6 +45,22 @@
             }
         }
 
+        public function getARandomDanceArtist() : artist {
+            try {    
+                return $this->artistService->getARandomDanceArtist();
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function getARandomJazzArtist() : artist {
+            try {    
+                return $this->artistService->getARandomJazzArtist();
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         public function getArtist() : artist {
             try {
                 $artistId = $_GET["id"];
