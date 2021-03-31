@@ -1,0 +1,9 @@
+{
+    "name": "haarlemfestival/website",
+    "description": "Inholland PHP2 Exam website",
+    
+    "require": {
+        "mollie/mollie-api-php": "^2.30",
+        "phpmailer/phpmailer": "^6.3"
+    }
+}

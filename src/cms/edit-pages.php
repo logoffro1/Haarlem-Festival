@@ -1,11 +1,14 @@
 <?php
 include '../classes/autoloader.php';
 
+$editPagesController = new editPagesController();
+
 $head = new head("CMS - Dashboard", "page--cms");
 $head->render();
 
 $navigation = new cmsNavigation("Edit Pages");
 $navigation->render();
+
 ?>
 
     <div class="cms-container row">
@@ -18,22 +21,38 @@ $navigation->render();
         <article class="card--cms col-8">
             <header class="card--cms__header">
                 <h3 class="card--cms__header__title">Pages</h3>
-                <button class="button">Add page</button>
             </header>
+
             <table class="card--cms__body table--cms">
                 <tbody>
                     <tr>
                         <td>Homepage</td>
                         <td class="table--cms__item__navigation">
-                            <a href="#" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
+                            <a href="edit-homepage.php" class="">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dance event page</td>
+                        <td class="table--cms__item__navigation">
+                            <a href="dance-event.php" class="">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cuisine event page</td>
+                        <td class="table--cms__item__navigation">
+                            <a href="cuisine-event.php" class="">Edit</a>
                         </td>
                     </tr>
                     <tr>
                         <td>Jazz event page</td>
                         <td class="table--cms__item__navigation">
-                            <a href="cms/detail-pages.php" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
+                            <a href="jazz-event.php" class="">Edit</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>History event page</td>
+                        <td class="table--cms__item__navigation">
+                            <a href="history-event.php" class="">Edit</a>
                         </td>
                     </tr>
                 </tbody>
@@ -41,12 +60,7 @@ $navigation->render();
         </article>
     </div>
 
-    <div class="notification--cms js-notification">
-        <div class="notification--cms__title">Test title</div>
-        <div class="notification--cms__body">
-            test content <span class="notification--cms__body__important">Bold</span>
-        </div>
-    </div>
-    <script src="/assets/scripts/index.js"></script>
-</body>
-</html>
+<?php 
+    $footer = new footer();
+    $footer->renderEndTag();
+?>

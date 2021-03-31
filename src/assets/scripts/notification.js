@@ -4,26 +4,34 @@ export class notification extends base {
     constructor(){
         super();
         this.config = {
-            selector: '.js-notification'
+            selectors: '.js-notification'
         };
         this.init();
     }
 
     init(){
-        const element = document.querySelector(this.config.selector);
+        const elements = document.querySelectorAll(this.config.selectors);
 
-        if(!this._exist(element)) return;
+        if(!this._exist(elements)) return;
         
-        this.config.selector = element;
+        this.config.selectors = elements;
 
         this.createEventListeners();
     }
 
     createEventListeners(){
-        const { selector } = this.config;
+        const { selectors } = this.config;
+        const animationDuration = 500; // Should be the same value as in the _notification.scss
 
-        selector.addEventListener('click', () => {
-            selector.classList.add('notification--cms--fade-out');
+        selectors.forEach(selector => {
+            selector.addEventListener('click', () => {
+                selector.classList.add('notification--cms--fade-out');
+                
+                setTimeout(() => {
+                    selector.classList.remove('notification--cms--is-visible');
+                    selector.classList.remove('notification--cms--fade-out');
+                }, animationDuration);
+            });
         });
     }
 }

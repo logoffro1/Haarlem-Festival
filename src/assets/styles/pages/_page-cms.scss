@@ -1,4 +1,59 @@
 .page--cms {
     background-color: $color-background-section;
     display: flex;
+
+    textarea {
+        height: 200px;
+    }
+
+    img {
+        max-width: 1000px;
+    }
+}
+
+.section--login-wrapper {
+    height: 90vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.section--login {
+    padding: 70px 0px;
+    background-color: $color-white;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+
+    &::before {
+        content: '';
+        height: 5px;
+        width: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        background: $color-primary-gradient;
+    }
+
+    form, h1, > p {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 15px;
+
+        &.anchor {
+            width: auto;
+            height: 100%;
+        }
+    }
+
+    .button {
+        width: auto;
+        display: block;
+    }
 }

@@ -20,4 +20,14 @@
             margin-right: 20px;
         }
     }
+
+    &.table--cms--small {
+        td {
+            max-width: 120px;
+        }
+
+        tbody td:last-child {
+            text-align: right;
+        }
+    }
 }

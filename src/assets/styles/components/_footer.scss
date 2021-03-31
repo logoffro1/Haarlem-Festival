@@ -25,7 +25,8 @@
     a {
         color: $color-white;
         display: inline-block;
-
+        text-decoration: none;
+        
         &:hover {
             text-decoration: underline;
         }

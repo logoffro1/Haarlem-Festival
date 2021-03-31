@@ -1,0 +1,28 @@
+/**
+* Javascript dropdown visibility
+*/
+.js-dropdown {
+    .js-dropdown__body {
+        display: none;
+        &.is-active {
+            display: block;
+        }
+    }
+}
+
+.dropdown--cms {
+    margin-bottom: 15px;
+    .js-dropdown__anchor {
+        display: flex;
+        align-items: center;
+    }
+    .js-dropdown__body {
+        padding: 10px;
+        margin-top: 0;
+        background-color: $color-background-section;
+
+        li {
+            margin-bottom: 5px;
+        }
+    }
+}

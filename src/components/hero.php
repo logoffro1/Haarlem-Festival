@@ -15,8 +15,8 @@ class hero
 
     public function render()
     {
-        echo "
-        <div class='hero $this->class' style='background-image: url($this->image);'>
+        echo sprintf("
+        <div class='hero $this->class' style='background-image: url(".'"%s"'.");'>
             <div class='hero__body hero__body--background'>
                 <h1 class='hero__body__title--page'>
                     $this->heading
@@ -26,7 +26,7 @@ class hero
                 </p>
             </div>
         </div>
-        ";
+        ", $this->image);
     }
 }
 

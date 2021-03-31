@@ -26,6 +26,18 @@ input, .input {
     &.error {
         border-color: $color-error;
     }
+
+    &.anchor {
+        background: transparent;
+        padding: 0;
+        border: 0;
+        width: auto;
+        margin-left: 50px;
+    }
+
+    &.input--small {
+        width: 100px;
+    }
 }
 
 input[type=checkbox], input[type=radio]{
@@ -37,6 +49,11 @@ input[type=checkbox], input[type=radio]{
     &:checked {
         background-color: $color-slated-blue;
     }
+}
+
+input[type=file] {
+    border: none;
+    padding-left: 0;
 }
 
 label, .label {

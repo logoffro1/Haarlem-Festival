@@ -7,6 +7,17 @@
     flex-direction: column;
     position: fixed;
     
+    
+    &::before {
+        left: 0;
+        content: '';
+        height: 4px;
+        width: 100%;
+        position: absolute;
+        background: $color-primary-gradient;
+    }
+   
+
     .navigation--cms__header {
         display: flex;
         padding-top: 40px;
@@ -19,8 +30,21 @@
             position: relative;
             overflow: hidden;
             display: inline-block;
-            border: 2px solid $color-primary-dance;
+            background-color: $color-primary-dance;
             margin-left: auto;
+
+            &::after {
+                content: "";
+                background-image: url("#{$url-image}/profile.png");
+                background-size: contain;
+                height: 30px;
+                width: 30px;
+                position: absolute;
+                bottom: 0;
+                right: 50%;
+                top: 9px;
+                transform: translateX(50%);
+            }
         }
     }
 
@@ -37,6 +61,7 @@
         a {
             display: flex;
             font-weight: $font-weight-normal;
+            text-decoration: none;
         }
     }
 
@@ -49,6 +74,7 @@
         .button {
             display: block;
             text-align: center;
+            width: 100%;
         }
     }
 }

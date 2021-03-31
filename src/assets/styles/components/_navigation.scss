@@ -56,16 +56,26 @@
                 text-transform: uppercase;
                 color: $color-grey-1;
                 font-weight: $font-weight-semibold;
+                text-decoration: none;
 
                 &:hover, &.active {
                     background-color: $color-grey-5;
-                    text-decoration: none;
                 }
 
                 &.active {
                     font-weight: $font-weight-bold;
                 }
             }
+        }
+    }
+
+    .navigation__dropdown {
+        position: absolute;
+        width: 250px;
+        background-color: $color-grey-7;
+
+        li {
+            width: 100%;
         }
     }
 

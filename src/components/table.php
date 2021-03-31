@@ -5,7 +5,7 @@
         private array $tableHeader;
         private array $tableBody;
 
-        public function __construct(string $class, array $tableHeader, array $tableBody) {
+        public function __construct(string $class, array $tableHeader, ?array $tableBody) {
             $this->class = $class;
             $this->tableHeader = $tableHeader;
             $this->tableBody = $tableBody;
@@ -14,23 +14,33 @@
         public function render()
         {
             echo "<table class='table $this->class'>";
-                echo "<thead>";
-                    echo "<tr>";
-                    foreach ($this->tableHeader as $item) {
-                        echo "<th>$item</th>";
-                    }
-                    echo "</tr>";
-                echo "</thead>";
+
+                if ($this->tableHeader) {                
+                    echo "<thead>";
+                        echo "<tr>";
+                        foreach ($this->tableHeader as $item) {
+                            echo "<th>$item</th>";
+                        }
+                        echo "</tr>";
+                    echo "</thead>";
+                }
 
                 echo "<tbody>";
-                foreach ($this->tableBody as $item) {
-                    echo "<tr>";
-                    foreach ($item as $value) {
-                        echo "<td>$value</td>";
+                    if ($this->tableBody) {                
+                        foreach ($this->tableBody as $item) {
+                            echo "<tr>";
+                            foreach ($item as $key => $value) {
+                                if(strpos($key, 'id') === false){
+                                    echo "<td>$value</td>";
+                                }
+                            }
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td>No information present</td></tr>";
                     }
-                    echo "</tr>";
-                }
                 echo "</tbody>";
+
             echo "</table>";
         }
     }

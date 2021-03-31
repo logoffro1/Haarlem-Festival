@@ -16,17 +16,23 @@ button, .button {
     border-width: 1px;
     border-style: solid;
     border-color: transparent;
+    text-decoration: none;
     
     &:hover {
+        text-decoration: none;
         border-color: $color-slated-blue;
         color: $color-slated-blue;
         background-color: transparent;
-        text-decoration: none;
     }
 
-    &:focus, &:active {
+    &:active {
         color: $color-white;
     }
+
+    &:focus {
+        color: $color-black;
+    }
+
 
     &.button--secondary {
         background-color: transparent;

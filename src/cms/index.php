@@ -6,6 +6,70 @@ $head->render();
 
 $navigation = new cmsNavigation("Events");
 $navigation->render();
+
+$jazzArtistTableList = array();
+$danceArtistTableList = array();
+$restaurantTableList = array();
+$tourTableArray = array();
+
+$artistController = new artistController();
+$restaurantController = new restaurantController();
+$tourController = new tourController();
+
+$restaurants = $restaurantController->getRestaurants();
+$jazzArtist = $artistController->getJazzArtistList();
+$danceArtist = $artistController->getDanceArtistList();
+$tourList = $tourController->getAllTours();
+
+
+foreach ($tourList as $tour) {
+    $tourArray = array();
+    $tourArray[] = $tour->date;
+    $tourArray[] = $tour->time;
+    $tourArray[] = "<a class='align--flex-end' href='tour-detail-page.php?id=$tour->id'>Edit</a>";
+
+    $tourTableArray[] = $tourArray;
+}
+
+foreach ($restaurants as $restaurant) {
+    $restaurantArray = array();
+    $restaurantArray[] = $restaurant->name;
+    $restaurantArray[] = $restaurant->address;
+    $restaurantArray[] = $restaurant->stars;
+    $restaurantArray[] = "<div class='table--cms__item__navigation'>
+    <a href='./restaurant-detail-page.php?id=$restaurant->id' class=''>Edit</a>
+    </div>";
+    
+    $restaurantTableList[] = $restaurantArray;
+}
+
+foreach ($jazzArtist as $artist) {
+    $artistArray = array();
+    $artistArray[] = $artist->id;
+    $artistArray[] = $artist->name;
+    $artistArray[] = "<div class='table--cms__item__navigation'>
+    <a href='./artist-detail-page.php?id=$artist->id&event=4' class=''>Edit</a>
+    </div>";
+    
+    $jazzArtistTableList[] = $artistArray;
+}
+
+foreach ($danceArtist as $artist) {
+    $danceArtistArray = array();
+    $danceArtistArray[] = $artist->id;
+    $danceArtistArray[] = $artist->name;
+    $danceArtistArray[] = "<div class='table--cms__item__navigation'>
+    <a href='./artist-detail-page.php?id=$artist->id&event=2' class=''>Edit</a>
+    </div>";
+    
+    $danceArtistTableList[] = $danceArtistArray;
+}
+
+$historyTable = new table('card--cms__body table--cms', ['Date', 'Time', ''], $tourTableArray);
+$jazzTable = new table('card--cms__body table--cms', ['ID', 'Band/Name', ''], $jazzArtistTableList);
+$danceTable = new table('card--cms__body table--cms', ['ID', 'Band/Name', ''], $danceArtistTableList);
+$restaurantTable = new table('card--cms__body table--cms', ['Name', 'Address', 'Stars', ''], $restaurantTableList);
+
 ?>
 
     <div class="cms-container">
@@ -25,85 +89,37 @@ $navigation->render();
                 </ul>
             </nav>
             <article data-content="jazz" class="card--cms js-tab-content is-active">
-                <button class="button button--top">Add artist</button>
-                <button class="button button--top">Add performance</button>
+                <a href="./artist-detail-page.php?event=4" class="button button--top">Add artist</a>
                 <?php
-                    $tableHeader = array('Band', 'Date', 'Time', 'Location', 'Hall');
-                    $tableBody = array(
-                        array(
-                            'Gare du Nord',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=1" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                        array(
-                            'Gare du Nord',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=2" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                    );
-
-                    $table = new table('card--cms__body table--cms', $tableHeader, $tableBody);
-                    $table->render();
+                     $jazzTable->render();
                 ?>
 
             </article>
             <article data-content="dance" class="card--cms js-tab-content">
-                <button class="button button--top">Add artist</button>
-                <button class="button button--top">Add performance</button>
+                <a href="./artist-detail-page.php?event=2" class="button button--top">Add artist</a>
                 <?php
-                    $tableHeader = array('Band', 'Date', 'Time', 'Location', 'Hall');
-                    $tableBody = array(
-                        array(
-                            'Hardwell',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=3" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                        array(
-                            'Hardwell',
-                            'Saturday 28 July',
-                            '21.00-22.00',
-                            'Patronaat',
-                            'Main Hall',
-                            '<div class="table--cms__item__navigation">
-                            <a href="./artist-detail-page.php?id=4" class="">Edit</a>
-                            <a href="#" class="">Remove</a>
-                            </div>'
-                        ),
-                    );
-
-                    $table = new table('card--cms__body table--cms', $tableHeader, $tableBody);
-                    $table->render();
+                     $danceTable->render();
                 ?>
 
+            </article>
+            <article data-content="history" class="card--cms js-tab-content">
+                <a href="./tour-detail-page.php" class="button button--top">Add tour</a>       
+                <?php
+                    $historyTable->render();
+                ?>
+            </article>
+            <article data-content="cuisine" class="card--cms js-tab-content">
+                <a href="./restaurant-detail-page.php" class="button button--top">Add restaurant</a>
+                
+                <?php
+                    $restaurantTable->render();
+                ?>
             </article>
         </div>
         
     </div>
 
-    <div class="notification--cms js-notification">
-        <div class="notification--cms__title">Test title</div>
-        <div class="notification--cms__body">
-            test content <span class="notification--cms__body__important">Bold</span>
-        </div>
-    </div>
-    <script src="/assets/scripts/index.js"></script>
-</body>
-</html>
+<?php 
+    $footer = new footer();
+    $footer->renderEndTag();
+?>

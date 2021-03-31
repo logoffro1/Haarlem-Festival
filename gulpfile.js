@@ -29,7 +29,7 @@ const filePath = {
 
 // Clean dist folder
 gulp.task('clean', () => {
-    return del(['dist/**', '!dist']);
+    return del(['dist/**', '!dist', '!dist/uploads', '!dist/uploads/*']);
 });
 
 // Images

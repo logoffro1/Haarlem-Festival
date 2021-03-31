@@ -16,3 +16,20 @@
 .has-font-weight-semibold {
     font-weight: $font-weight-semibold;
 }
+
+.align--flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.text-align--right {
+    text-align: right;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.white-space--no-wrap {
+    white-space: nowrap;
+}
