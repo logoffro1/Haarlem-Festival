@@ -10,12 +10,12 @@
 
         public function __construct(string $title, string $subtitle, string $body, string $artistSectionTitle, string $bookMoreSaveMoreTitle, string $bookMoreSaveMoreContent)
         {
-            $this->title = $title;
-            $this->subtitle = $subtitle;
-            $this->body = $body;
-            $this->artistSectionTitle = $artistSectionTitle;
-            $this->bookMoreSaveMoreTitle = $bookMoreSaveMoreTitle;
-            $this->bookMoreSaveMoreContent = $bookMoreSaveMoreContent;
+            $this->title = $title ?? '';
+            $this->subtitle = $subtitle ?? '';
+            $this->body = $body ?? '';
+            $this->artistSectionTitle = $artistSectionTitle ?? '';
+            $this->bookMoreSaveMoreTitle = $bookMoreSaveMoreTitle ?? '';
+            $this->bookMoreSaveMoreContent = $bookMoreSaveMoreContent ?? '';
         }
 
         public function __get($property) {

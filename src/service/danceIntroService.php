@@ -20,6 +20,7 @@ class danceIntroService
 			$this->addToErrors($e->getMessage());
 		}
 	}
+    
     public function getHeaderInfo()
     {
         $query = "SELECT * FROM Pages WHERE page_id = 2";

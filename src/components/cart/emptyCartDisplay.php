@@ -1,4 +1,6 @@
 <?php
+include __DIR__.'/../../classes/autoloader.php';
+
 class emptyCartDisplay
 {
     public function render()

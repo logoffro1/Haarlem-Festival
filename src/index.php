@@ -3,7 +3,7 @@
 require_once "router.php";
 
 route('/', function () {
-    header("Location: views/homepage.php");
+    header("Location: /views/homepage.php");
 });
 
 route('/about', function () {

@@ -1,4 +1,5 @@
-<?php 
+<?php
+include __DIR__.'/../../classes/autoloader.php';
 class cartDisplay
 {
     private cart $cart;

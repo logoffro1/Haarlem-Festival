@@ -15,11 +15,11 @@
             $this->id = $id;
             $this->artistName = $artistName;
             $this->biography = $biography;
-            $this->image = $image;
-            $this->thumbnail = $thumbnail;
-            $this->facebook = $facebook;
-            $this->instagram = $instagram;
-            $this->youtube = $youtube;
+            $this->image = $image ?? '';
+            $this->thumbnail = $thumbnail ?? '';
+            $this->facebook = $facebook ?? '';
+            $this->instagram = $instagram ?? '';
+            $this->youtube = $youtube ?? '';
             $this->songs = $songs;
             $this->performances = $performances;
         }

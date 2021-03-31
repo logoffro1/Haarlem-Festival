@@ -1,4 +1,6 @@
 <?php
+include __DIR__.'/../../classes/autoloader.php';
+
 if (session_status() === PHP_SESSION_NONE) 
     session_start();
 
