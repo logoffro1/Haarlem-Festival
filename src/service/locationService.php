@@ -84,6 +84,27 @@
             }
         }
 
+        public function getLocationByID(int $id)
+        {
+            $query = "SELECT * FROM Locations WHERE location_id = '$id'";
+            $result = $this->conn->query($query);
+    
+            if($result)
+            {
+                while($row = $result->fetch_assoc())
+                    {
+                        $location = new location(
+                            $row["location_id"],
+                            $row["name"],
+                            $row["address"],
+                            $row["price"],
+                            $row["seats"]
+                        );       
+                    }
+             return $location;   
+            }
+        }
+
         public function createLocation($result) : location
         {
             return new location(

@@ -1,0 +1,22 @@
+.page--emptyCart
+{
+    padding: 42px;
+    height: 600px;;
+
+    .page--emptyCart__title
+    {
+        margin-top: 1%;
+        margin-bottom: 200px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 35px;
+        font-weight: 500;
+    }
+
+    .page--emptyCart__cardContainer
+    {
+        margin-left: 380px;
+        margin-bottom: 200px;
+    }
+
+}

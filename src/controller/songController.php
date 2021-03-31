@@ -90,5 +90,18 @@
                 $this->addToErrors($e->getMessage());
             }
         }
+
+        public function getSongsByArtistId(int $id)
+        {
+            try
+            {
+                return $this->songService->getSongsByArtistId($id);
+            }
+            catch(Exception $e)
+            {
+                throw ($e->getMessage());
+            }
+        }
     }
+    
 ?>

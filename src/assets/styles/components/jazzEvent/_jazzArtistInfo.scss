@@ -1,0 +1,41 @@
+.artistinfo--jazz{
+    display:inline-flex; 
+    height: 713px; 
+    width: 100%;
+
+    .artistinfo--jazz__artistImg{
+        height: 100%; 
+        width:45%;
+
+    }
+    .artistinfo--jazz__breadCrumb{
+        margin-bottom: 60px; 
+        margin-left: 250px;
+    }
+  
+.artistinfo--jazz__textContainer{
+    width: 60%; 
+    height:70%; 
+    padding-top: 80px;
+    padding-left: 80px;
+    background-color:white;
+    transform: rotate(5deg);
+}
+
+.artistinfo--jazz__infoText{
+    transform: rotate(-5deg); 
+    width:76%;
+}
+
+.artistinfo--jazz__socialMediaContainer{
+    margin-top: 120px;
+
+}
+.artistinfo--jazz__socialMediaIcons{
+    margin-right:30px
+}
+
+.artistinfo--jazz__ticketButton{
+    float: right;
+}
+}

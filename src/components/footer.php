@@ -26,7 +26,7 @@ class footer
                 <ul class='footer__list col-2'>
                     <span class='footer__list__title'>Pages</span>
                     <li><a href='#'>Your programme</a></li>
-                    <li><a href='#'>Shopping Cart</a></li>
+                    <li><a href='cart.php'>Shopping Cart</a></li>
                     <li><a href='#'>Discount</a></li>
                 </ul>
                 <ul class='footer__list col-2'></ul>

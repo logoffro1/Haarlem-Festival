@@ -1,0 +1,44 @@
+.notification--jazz
+{
+    background-color: $color-white;
+    padding: 5px 10px 5px 40px;
+    color: $color-primary-jazz;
+    font-size: 20px;
+    font-weight: 500;
+    width: 400px;
+    position: relative;
+    left: 0px;
+    top:10px;
+    border: 1px solid $color-primary-jazz;
+    border-radius: 9px;
+    border-right: 8px solid $color-primary-jazz; 
+    z-index: 1;
+}
+
+.notification--jazz.show
+{
+    animation: show_slide 1s ease forwards;
+}
+
+@keyframes show_slide {
+    0% {transform: translateX(-100%);}
+    40% {transform: translateX(10%);}
+    80% {transform: translateX(0%);}
+    100% {transform: translateX(10px);}
+}
+
+.notification--jazz.hide
+{
+    animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+    0% {transform: translateX(10px);}
+    40% {transform: translateX(0%);}
+    80% {transform: translateX(10%);}
+    100% {transform: translateX(-100%);}
+}
+
+.notification--jazz.hidden
+{
+    visibility: hidden;
+}

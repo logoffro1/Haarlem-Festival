@@ -66,6 +66,29 @@ include_once '../config/config.php';
             );
         }
 
+        public function getSongsByArtistId(int $id)
+        {
+            $query = "SELECT * FROM Songs WHERE artist_id = '$id'";
+            $result = $this->conn->query($query);
+
+            if($result)
+            {
+                $songs = array();
+                while($row = $result->fetch_assoc())
+                {
+                    $song = new song(
+                        $row["song_id"],
+                        $row["artist_id"],
+                        $row["title"],
+                        $row["image"],
+                        $row["url"]
+                    );
+                    $songs[]=$song;
+                }
+                return $songs;
+            }
+        }
+
         public function addSong(array $data, int $id) : void
         {
             $sql = "INSERT INTO songs (artist_id, url, title, image) VALUES (?,?,?,?)";

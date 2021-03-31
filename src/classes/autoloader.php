@@ -6,6 +6,8 @@
 spl_autoload_register(function ($class_name) {
     // create path to files
     $component_class = dirname(__DIR__)."/components/$class_name.php";
+    $jazz_class = dirname(__DIR__)."/components/jazz/$class_name.php";
+    $cart_class = dirname(__DIR__)."/components/cart/$class_name.php";
     $controller_class = dirname(__DIR__)."/controller/$class_name.php";
     $classes_class = dirname(__DIR__)."/classes/$class_name.php";
     $model_class = dirname(__DIR__)."/model/$class_name.php";
@@ -39,6 +41,10 @@ spl_autoload_register(function ($class_name) {
         include $cuisine_class;
     } else if(file_exists($model_cuisine_class)){
         include $model_cuisine_class;
+    }else if(file_exists($jazz_class)){
+        include $jazz_class;
+    }else if(file_exists($cart_class)){
+        include $cart_class;
     }
 });
 
