@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class navigation {
     private string $activePage;
@@ -15,7 +15,7 @@ class navigation {
                 <img class='navigation__brand' src='/assets/images/svg/logo.svg'/>
             </a>
             <ul class='navigation__links'>
-                <li><a class=" . $this->getActivePage('Home') . " href='#'>Home</a></li>
+                <li><a class=" . $this->getActivePage('Home') . " href='../index.php'>Home</a></li>
                 <li class='js-dropdown'>
                     <a class='" . $this->getActivePage('Events') . " js-dropdown__anchor' href='#'>Events</a>
                     <ul class='js-dropdown__body navigation__dropdown'>

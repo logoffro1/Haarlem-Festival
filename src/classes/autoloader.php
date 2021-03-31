@@ -1,4 +1,4 @@
-<?php  
+<?php
 /*
 * Create autoloader for classes
 * @param $class_name - name of class that needs to be imported
@@ -14,6 +14,13 @@ spl_autoload_register(function ($class_name) {
     $model_artist_class = dirname(__DIR__)."/model/artist/$class_name.php";
     $model_cuisine_class = dirname(__DIR__)."/model/cuisine/$class_name.php";
     $model_history_class = dirname(__DIR__)."/model/history/$class_name.php";
+    $component_class = dirname(__DIR__)."/assets/components/$class_name.php";
+    $component_class2 = "../components/$class_name.php";
+    $component_class3 = "../components/dance/$class_name.php";
+    $component_class4 = "./components/$class_name.php";
+    $controller_class = dirname(__DIR__)."/controller/$class_name.php";
+    $classes_class = dirname(__DIR__)."/classes/$class_name.php";
+    $model_class = dirname(__DIR__)."/models/$class_name.php";
     $service_class = dirname(__DIR__)."/service/$class_name.php";
     $view_class = dirname(__DIR__)."/view/$class_name.php";
     $util_class = dirname(__DIR__)."/util/$class_name.php";
@@ -45,7 +52,14 @@ spl_autoload_register(function ($class_name) {
         include $jazz_class;
     }else if(file_exists($cart_class)){
         include $cart_class;
+    } else if(file_exists($component_class2)){
+        include $component_class2;
+    } else if(file_exists($component_class3)){
+        include $component_class3;
+    } else if(file_exists($component_class4)){
+        include $component_class4;
     }
+
 });
 
 ?>

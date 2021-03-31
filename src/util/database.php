@@ -9,10 +9,10 @@ class database {
         $this->conn = $this->dbConnect();
     }
 
-    /** 
-     * Static method to create an object instance once. 
+    /**
+     * Static method to create an object instance once.
      * After that it will reuse it for all other requests.
-     * 
+     *
      * @return database
     */
     public static function getInstance() : database
@@ -36,7 +36,7 @@ class database {
 
     /**
      * Create connection to the database, throw error if connection cannot be made
-     * 
+     *
      * @return mysqli
     */
     private function dbConnect() : mysqli {
@@ -100,7 +100,7 @@ class database {
 
     /**
      * Disable the cloning of this singleton class.
-     * 
+     *
      * @return void
      */
     final public function __clone()
@@ -108,5 +108,4 @@ class database {
         throw new Exception('Cannot clone a singleton.');
     }
 }
-
 ?>

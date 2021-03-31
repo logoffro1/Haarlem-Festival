@@ -9,7 +9,7 @@ class footer
                     <a href='#'>
                         <img src='/assets/images/svg/logo-white.svg'/>
                     </a>
-                    
+
                     <ul class='footer__nav__list'>
                         <li><a href='#'><img src='/assets/images/svg/instagram.svg' alt=''></a></li>
                         <li><a href='#'><img src='/assets/images/svg/facebook.svg' alt=''></a></li>
@@ -19,15 +19,15 @@ class footer
                 <ul class='footer__list col-2'>
                     <span class='footer__list__title'>Events</span>
                     <li><a href='#'>Jazz</a></li>
-                    <li><a href='#'>Dance</a></li>
+                    <li><a href='../views/danceEvent.php'>Dance</a></li>
                     <li><a href='#'>History</a></li>
                     <li><a href='#'>Cuisine</a></li>
                 </ul>
                 <ul class='footer__list col-2'>
                     <span class='footer__list__title'>Pages</span>
                     <li><a href='#'>Your programme</a></li>
-                    <li><a href='cart.php'>Shopping Cart</a></li>
-                    <li><a href='#'>Discount</a></li>
+                    <li><a href='/views/cart.php'>Shopping Cart</a></li>
+                    <li><a href='/views/bookmoresavemore.php'>Discount</a></li>
                 </ul>
                 <ul class='footer__list col-2'></ul>
                 <ul class='footer__list col-2'>

@@ -1,0 +1,34 @@
+.performances--dance{
+    margin-top: 300px;
+    text-align: left;
+
+    .performances--dance__row{
+        display:inline-block;
+        width: 100%;
+    }
+
+    .performances--dance__column{
+        float: left;
+        width: 27%;
+        margin-right: 21px;
+    }
+
+    .performances--dance__button{
+        float: left;
+        width: 15%;
+    }
+
+    .performances--dance__dash
+    {
+        margin-right: 20px;
+        display: inline-block;
+        color: $color-primary-dance;
+    }
+
+    .performances--dance__whenText
+    {
+        display: inline-block;
+    }
+
+
+}
