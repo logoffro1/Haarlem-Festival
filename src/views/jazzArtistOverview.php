@@ -17,7 +17,7 @@
         $navigation = new navigation("Events");
         $navigation->render();
 
-        $jazzInfo = new jazzArtistInfo($artist);
+        $jazzInfo = new jazzArtistInfo($artist, 'jazz');
         $jazzInfo->render();
 
         //Notification component has been added, will be activated when necessary
@@ -33,13 +33,13 @@
         $exploreHaarlem = new jazzExploreHaarlem();
         $exploreHaarlem->render();
 
-        $exploreMap = new jazzExploreMap();
+        $exploreMap = new jazzExploreMap('jazz');
         $exploreMap->render();
 
         $danceSuggestion = new jazzDanceSuggestion();
         $danceSuggestion->render();
 
-        $swoosh = new jazzSwoosh();
+        $swoosh = new jazzSwoosh('jazz');
         $swoosh->render();
         
         $footer = new footer();

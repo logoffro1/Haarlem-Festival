@@ -2,11 +2,16 @@
 
 class jazzSwoosh
 {
+    private string $type;
+
+    public function __construct(string $type) {
+        $this->type = $type;
+    }
     public function render()
     {
         echo "
         <section class='jazz--swoosh'>
-        <img src='../assets/images/jazz/jazz-swoosh.png' class='jazz--swoosh__img'>
+        <img src='../assets/images/$this->type/$this->type-swoosh.png' class='jazz--swoosh__img'>
         </section>
         ";
     }

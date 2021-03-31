@@ -1,29 +1,35 @@
-.exploreHaarlem--jazz{
+.exploreHaarlem {
     margin-top: -70px;
 
-    .exploreHaarlem--jazz__textBox
+    .exploreHaarlem__textBox
     {
         line-height: 35px;
         width: 600px;
     }
 
-    .exploreHaarlem--jazz__container
+    .exploreHaarlem__container
     {
         position: relative;
     }
-    .exploreHaarlem--jazz__haarlem
+    .exploreHaarlem__haarlem
     {
-        color: $color-primary-jazz;
         text-decoration: underline;
+        
+        &--jazz {
+            color: $color-primary-jazz;
+        }
+        &--dance {
+            color: $color-primary-dance;
+        }
     }
 
-    .exploreHaarlem--jazz__img
+    .exploreHaarlem__img
     {
         margin-top: 50px;
         display: inline-block;
     }
 
-    .exploreHaarlem--jazz__imgRight
+    .exploreHaarlem__imgRight
     {   
         display: inline-flex;
         float: right;
@@ -31,7 +37,7 @@
     }
 
 
-    .exploreHaarlem--jazz__text
+    .exploreHaarlem__text
     {
         position: absolute;
         margin: 50px 50px 0 50px;
@@ -40,7 +46,7 @@
         width: 800px;
     }
 
-    .exploreHaarlem--jazz__textLeft
+    .exploreHaarlem__textLeft
     {
         margin: 50px 50px 0 0px;
         display: inline-block;
@@ -48,7 +54,7 @@
         width: 800px;
     }
   
-    .exploreHaarlem--jazz__icon
+    .exploreHaarlem__icon
     {
         margin-right:5px;
     }
