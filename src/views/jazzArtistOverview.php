@@ -27,7 +27,7 @@
         $jazzSongs = new jazzSongCard($artist->__get('songs'), $artist->__get('name'));
         $jazzSongs->render();
 
-        $artistPerformances = new jazzArtistPerformances($artist->__get('performances'));
+        $artistPerformances = new artistPerformances($artist->__get('performances'), 'jazz');
         $artistPerformances -> render();
 
         $exploreHaarlem = new jazzExploreHaarlem();

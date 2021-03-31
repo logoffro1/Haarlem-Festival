@@ -75,33 +75,34 @@ $pageHero->render(); // ../assets/images/dance/header.png
 </section>
 
 <?php
-$danceArtistController = new danceArtistController();
-$allDanceArtists = $danceArtistController->getAllDanceArtists();
+$artistController = new artistController();
+$allDanceArtists = $artistController->getAllDataDanceArtistList();
 
 $artistNames = array();
 $performanceDates = array();
 
 $danceCards = array();
 foreach ($allDanceArtists as $danceArtist) {
-    $artistNames[] = $danceArtist->__get('artistName');
-	$performance = $danceArtist->__get('performances') ;
-        if (isset($_GET['artist']))
+    $artistNames[] = $danceArtist->__get('name');
+	$performance = $danceArtist->__get('performances');
+    
+    if (isset($_GET['artist']))
+    {
+        $artistName = $_GET['artist'];
+        if ($danceArtist->__get('name') == $artistName)
         {
-            $artistName = $_GET['artist'];
-            if ($danceArtist->__get('artistName') == $artistName)
-            {
-				$danceCards[] = new dancePerformanceCard($danceArtist->__get('artistName'), $danceArtist->__get('thumbnail'), $danceArtist->__get('id'), $danceArtist->__get('performances'));
-			}
-            else if($artistName == "allArtists")
-            {
-			$danceCards[] = new dancePerformanceCard($danceArtist->__get('artistName'), $danceArtist->__get('thumbnail'), $danceArtist->__get('id'),$danceArtist->__get('performances'));
-            }
+            $danceCards[] = new dancePerformanceCard($danceArtist->__get('name'), $danceArtist->__get('thumbnail'), $danceArtist->__get('id'), $danceArtist->__get('performances'));
         }
-        else
+        else if($artistName == "allArtists")
         {
-            $danceCards[] = new dancePerformanceCard($danceArtist->__get('artistName'), $danceArtist->__get('thumbnail'), $danceArtist->__get('id'), $danceArtist->__get('performances'));
+        $danceCards[] = new dancePerformanceCard($danceArtist->__get('name'), $danceArtist->__get('thumbnail'), $danceArtist->__get('id'),$danceArtist->__get('performances'));
         }
     }
+    else
+    {
+        $danceCards[] = new dancePerformanceCard($danceArtist->__get('name'), $danceArtist->__get('thumbnail'), $danceArtist->__get('id'), $danceArtist->__get('performances'));
+    }
+}
 
 $uniqueArtistNames = array_unique($artistNames);
 $uniquePerformanceDates = array_unique($performanceDates);

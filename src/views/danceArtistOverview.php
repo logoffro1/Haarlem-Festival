@@ -4,10 +4,10 @@
     if (isset($_GET['artist']))
     {
         $id = intval($_GET['artist']);
-        $controller = new danceArtistController();
-        $artist = $controller->getADanceArtistById($id);
+        $controller = new artistController();
+        $artist = $controller->getArtistById($id);
 
-        $artistName = $artist->__get('artistName');
+        $artistName = $artist->__get('name');
         $head = new head("$artistName | Haarlem Festival", "");
         $head->render();
 
@@ -17,12 +17,12 @@
         $danceInfo = new danceArtistInfo($artist);
         $danceInfo->render();
 
-        $danceSongs = new danceSongCard($artist->__get('songs'), $artist->__get('artistName'));
+        $danceSongs = new danceSongCard($artist->__get('songs'), $artist->__get('name'));
         $danceSongs->render();
 
-        $artistPerformances = new jazzArtistPerformances($artist->__get('performances'));
+        $artistPerformances = new artistPerformances($artist->__get('performances'), 'dance');
         $artistPerformances -> render();
-        }
+    }
         $exploreHaarlem = new danceExploreHaarlem();
         $exploreHaarlem->render();
 
@@ -37,6 +37,4 @@
 
         $footer = new footer();
         $footer->renderFooter();
-        $_SESSION['cart']->render();
-        //If performanceID is set, it means a new item has been added to cart, so a notification is being displayed here
 ?>

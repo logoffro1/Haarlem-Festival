@@ -1,29 +1,32 @@
 <?php
 
-class jazzArtistPerformances
+class artistPerformances
 {
     private array $performances;
-    public function __construct(array $performances)
+    private string $performanceType;
+
+    public function __construct(array $performances, string $performanceType)
     {
         $this->performances = $performances;
+        $this->performanceType = $performanceType;
     }
 
     function render()
     {
         echo "
         <section class='container section' id='performances'>
-            <section class='performances--jazz'>
-                <section class='performances--jazz__row'>
-                    <section class='performances--jazz__column'>
+            <section class='performances'>
+                <section class='performances__row'>
+                    <section class='performances__column performance__table-title'>
                         <h4>When</h4>
                     </section>
-                    <section class='performances--jazz__column'>
+                    <section class='performances__column performance__table-title'>
                         <h4>Where</h4>
                     </section>
-                    <section class='performances--jazz__column'>
+                    <section class='performances__column performance__table-title'>
                         <h4>Price</h4>
                     </section>
-                    <section class='performances--jazz__column'>
+                    <section class='performances__column performance__table-title'>
                     </section>
                 </section>";
 
@@ -39,21 +42,21 @@ class jazzArtistPerformances
 
             
             echo "  <form>
-                        <section class='performances--jazz__row'>
-                        <section class='performances--jazz__column'>
+                        <section class='performances__row'>
+                        <section class='performances__column'>
                         <input type='hidden' name='artist' value=$artist>  
-                        <input type='hidden' name='type' value='jazz'>
+                        <input type='hidden' name='type' value='$this->performanceType'>
                         <input type='hidden' name='performanceID' value=$performanceID>  
-                            <h2 class='performances--jazz__dash'>-</h2>
-                            <h2 class='performances--jazz__whenText'>$day, $date | $time</h2>
+                            <span class='performances__dash $this->performanceType'></span>
+                            <h2 class='performances__whenText'>$day, $date | $time</h2>
                         </section>
-                        <section class='performances--jazz__column'>
+                        <section class='performances__column'>
                             <h2>$location</h2>
                         </section>
-                        <section class='performances--jazz__column'>
+                        <section class='performances__column'>
                             <h2>€ $price</h2>
                         </section>
-                        <section class='performances--jazz__button'>
+                        <section class='performances__button'>
                             <button>Get Your Tickets</button>
                         </section>
                     </section>

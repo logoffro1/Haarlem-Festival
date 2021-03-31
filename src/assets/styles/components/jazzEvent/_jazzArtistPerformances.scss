@@ -1,33 +1,53 @@
-.performances--jazz{
+.performances {
     margin-top: 300px;
     text-align: left;
 
-    .performances--jazz__row{
+    .performances__row {
         display:inline-block;
         width: 100%;
         margin-bottom: 15px;
     }
 
-    .performances--jazz__column{
+    .performances__column {
         float: left;
         width: 27%;
         margin-right: 21px;
+
+        * {
+            font-weight: $font-weight-semibold;
+        }
     }
 
-    .performances--jazz__button{
+    .performance__table-title {
+        * {
+            margin: 0;
+            font-family: $font-primary;
+            font-weight: $font-weight-normal;
+            font-size: $font-size-body;
+        }
+    }
+
+    .performances__button {
         float: left;
         width: 15%;
     }
 
-    .performances--jazz__dash
-    {
+    .performances__dash {
+        width: 15px;
+        height: 5px;
         margin-right: 20px;
         display: inline-block;
-        color: $color-primary-jazz;
+        top: -5px;
+        position: relative;
+        &.jazz {
+            background-color: $color-primary-jazz;
+        }
+        &.dance {
+            background-color: $color-primary-dance;
+        }
     }
 
-    .performances--jazz__whenText
-    {
+    .performances__whenText {
         display: inline-block;
     }
 

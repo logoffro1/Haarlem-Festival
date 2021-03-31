@@ -2,7 +2,7 @@
 include '../classes/autoloader.php';
 class danceArtistInfo
 {
-    private danceArtist $artist;
+    private artist $artist;
 
     private string $artistName;
     private string $image;
@@ -11,11 +11,11 @@ class danceArtistInfo
     private string $facebook;
     private string $youtube;
 
-    public function __construct(danceArtist $artist)
+    public function __construct(artist $artist)
     {
         $this->artist = $artist;
 
-        $this->artistName = $this->artist->__get('artistName');
+        $this->artistName = $this->artist->__get('name');
         $this->image = $this->artist->__get('image');
         $this->biography = $this->artist->__get('biography');
         $this->instagram = $this->artist->__get('instagram');

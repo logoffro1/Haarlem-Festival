@@ -27,7 +27,8 @@ include_once '../config/config.php';
                     // Create page classes based on data
 
                     $song = new song(
-                        (int)$row["song_id"], 
+                        (int)$row["song_id"],
+                        $artistId,
                         $row["image"], 
                         $row["title"], 
                         $row["url"]
@@ -59,7 +60,8 @@ include_once '../config/config.php';
             $objectResult = $result->fetch_object();
 
             return new song(
-                (int)$objectResult->song_id, 
+                (int)$objectResult->song_id,
+                0,
                 $objectResult->image, 
                 $objectResult->title, 
                 $objectResult->url
