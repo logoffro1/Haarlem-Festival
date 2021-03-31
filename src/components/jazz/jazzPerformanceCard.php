@@ -9,7 +9,7 @@ class jazzPerformanceCard
     private string $performanceLink;
     private string $artistThumbnail;
 
-    public function __construct(jazzPerformance $performance, string $artistName, string $artistThumbnail, int $artistID)
+    public function __construct(performance $performance, string $artistName, string $artistThumbnail, int $artistID)
     {
         $this->artistName = $artistName;
         $this->artistID = $artistID;

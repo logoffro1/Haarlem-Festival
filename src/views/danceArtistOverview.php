@@ -20,7 +20,7 @@
         $danceSongs = new danceSongCard($artist->__get('songs'), $artist->__get('artistName'));
         $danceSongs->render();
 
-        $artistPerformances = new danceArtistPerformances($artist->__get('performances'));
+        $artistPerformances = new jazzArtistPerformances($artist->__get('performances'));
         $artistPerformances -> render();
         }
         $exploreHaarlem = new danceExploreHaarlem();
@@ -34,4 +34,9 @@
 
         $swoosh = new danceSwoosh();
         $swoosh->render();
+
+        $footer = new footer();
+        $footer->renderFooter();
+        $_SESSION['cart']->render();
+        //If performanceID is set, it means a new item has been added to cart, so a notification is being displayed here
 ?>

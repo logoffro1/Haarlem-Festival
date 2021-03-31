@@ -27,7 +27,8 @@
                         $row["time"],
                         $row["duration"],
                         (int)$row["availableTickets"],
-                        $this->locationService->getLocation((int)$row["location_id"])
+                        $this->locationService->getLocation((int)$row["location_id"]),
+                        $id
                     );
                 }
                 return null;
@@ -57,6 +58,7 @@
                         (int)$row["duration"],
                         (int)$row["availableTickets"],
                         $this->locationService->createLocationFromArray($row),
+                        $artistId
                     );
 
         

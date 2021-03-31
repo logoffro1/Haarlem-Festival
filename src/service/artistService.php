@@ -91,6 +91,34 @@ class artistService {
         return array();
     }
 
+    public function getAllDataArtists(int $pageId)
+    {
+        $query = "SELECT * FROM Artists WHERE page_id = $pageId";
+        $result = $this->conn->query($query);
+
+        if($result)
+        {
+            $artists = array();
+            while($row = $result->fetch_assoc())
+            {
+                $artist = new artist(
+                    $row["artist_id"],
+                    $row["name"],
+                    $row["biography"],
+                    $row["image"],
+                    $row["thumbnail"],
+                    $row["facebook"],
+                    $row["instagram"],
+                    $row["youtube"],
+                    $this->songService->getSongsByArtistId((int)$row["artist_id"]),
+                    $this->performanceService->createPerformances((int)$row["artist_id"])
+                );
+                $artists[] = $artist;
+            }
+            return $artists;
+        }
+    }
+
     /**
      * @param result - result of artist query limited to one
      * @return artist - all details of the artist

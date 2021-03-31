@@ -87,7 +87,7 @@
     .error {color: #FF0000;}
     </style>
 
-    <section class='container-fluid section' style='padding-top:0px; padding-bottom:50px; margin-top:100px !important;'>
+    <section class='container section' style='padding-top:0px; padding-bottom:50px; margin-top:100px !important;'>
      <article class='row align-items-left'>
          <header class='col-6' style='margin-left:0px; padding-left:0px;'>
          <nav class='breadcrumbs' style='margin-left:10px;'>
@@ -106,7 +106,7 @@
     <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
 
 
-    <section class='container-fluid section' style='padding-top:0px; padding-bottom:0px;'>
+    <section class='container section' style='padding-top:0px; padding-bottom:0px;'>
     <!--FIRST HEADER-->
     <article class='row'>
          <header class='col-4' style='padding:0px !important; margin-right:10px !important;'>

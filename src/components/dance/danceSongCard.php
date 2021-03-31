@@ -15,7 +15,7 @@ class danceSongCard
     public function render()
     {
         echo "
-        <section class='container-fluid section' style='padding-top: 0px; padding-left:7%; padding-right:7%;'>
+        <section class='container section' style='padding-top: 0px; padding-left:7%; padding-right:7%;'>
         <article class='row align-items-left'>
             <header class='col-12'>
                 <section class='hero text-top-left' style='position:relative;''>

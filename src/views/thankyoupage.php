@@ -11,7 +11,7 @@
 	$controller = new thankyoupagecontroller();
     $steps = new steps(4);
 	$controller->sendMail($_SESSION['email'],"Thank you for your purchase!","We look forward to seeing you at our festival ".$_SESSION['fname']." ".$_SESSION['lname'],$_SESSION['fname']);
-    echo "		<section class='container-fluid section' style='padding:0px;'>
+    echo "		<section class='container section' style='padding:0px;'>
 		<article class='row align-items-left'>
 			<header class='col-6'>
 					   <p>Payment Information > Thank you</p>

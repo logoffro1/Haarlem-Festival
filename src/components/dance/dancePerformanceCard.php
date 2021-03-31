@@ -32,7 +32,7 @@ class dancePerformanceCard
     public function render()
     {
         echo "
-        <section class='container-fluid section'>
+        <section class='container section'>
         <article class='row align-items-left'>
             <header class='col-6' style='border-color: white;'>
                 <section class='hero text-top-left' style='position:relative;' id='artists'>

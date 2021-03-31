@@ -22,7 +22,7 @@
             $this->name = $name;
             $this->biography = $biography;
             $this->image = $image;
-            $this->thumbnail = $thumbnail;
+            $this->thumbnail = $thumbnail ?? '';
             $this->facebook = $facebook;
             $this->instagram = $instagram;
             $this->youtube = $youtube;

@@ -72,16 +72,16 @@ class cart
     {
         if($type == "jazz")
         {
-            $jazzPerformanceController = new jazzPerformanceController();
-            $jazzArtistController = new jazzArtistController();
+            $performanceController = new performanceController();
+            $artistController = new artistController();
             
             //cart item needs both artist name and performance info, thus i get both objects
-            $jazzPerformance = $jazzPerformanceController->getAJazzPerformanceById($performanceID);
-            $jazzArtist = $jazzArtistController->getAJazzArtistById($jazzPerformance->__get("artistID"));
+            $performance = $performanceController->getPerformance($performanceID);
+            $artist = $artistController->getArtistById($performance->__get("artistID"));
 
-            $title = $jazzArtist->__get('artistName');
+            $title = $artist->__get('name');
             $type = cartItemType::Jazz;
-            $address = $jazzPerformance->getLocation();
+            $address = $performance->getLocation();
 
             foreach($this->cartItems as $cartItem)
             {
@@ -92,11 +92,11 @@ class cart
                     return;
                 }
             }
-            $day = $jazzPerformance->getDayOfWeek();
-            $date = $jazzPerformance->getDate();
-            $time = $jazzPerformance->getTime();
+            $day = $performance->getDayOfWeek();
+            $date = $performance->getDate();
+            $time = $performance->getTime();
             $count = 1;
-            $price = $jazzPerformance->getPrice();
+            $price = $performance->getPrice();
     
             $cartItem = new cartItem($title, $type, $address, $day, $date, $time, $count, $price, "");
             $this->cartItems[] = $cartItem;

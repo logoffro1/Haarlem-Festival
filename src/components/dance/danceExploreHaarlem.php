@@ -6,56 +6,44 @@ class danceExploreHaarlem
     public function render()
     {
         echo "
-        <section class='container-fluid section' style='padding-top: 0px; padding-left:7%; padding-right:7%;'>
-        <article class='row align-items-left'>
-            <header class='col-12'>
-                <section class='hero text-top-left' style='position:relative;'>
-                    <h1 style='margin-top: 60px; margin-left: 0px;'class='title'><b>Explore <u style='color: #A336FF'; >Haarlem</u> before the event!<br></br> and meet like-minded people</b></h1>
-                </section>
-               </header>
-           </article>
-           <article class='row align-items-left'>
-            <header class='col-6'>
-                <section class='hero text-top-left' style='position:relative;'>
-                    <p>Did you know that in Haarlem there are many dance clubs for dance lovers such as yourself? We have found the closest two for you to check out if you want, meet up with people that have same interests as you!</p>
-                </section>
-               </header>
-           </article>
-           <article class='row align-items-left'>
-            <header class='col-6'>
-                <section class='hero text-top-left' style='position:relative;'>
-                    <img src='../assets/images/dance/exploreHaarlem/letz party.png' style='z-index:2;'>
-                </section>
-               </header>
-               <header class='col-6'>
-                <section class='hero text-top-left' style='position:relative;'>
-                    <p><b>Letz Party</b><br> Letz Party is a club for all, open from 8:30PM - 1:30AM on the Weekends.
-                        This is perfect stay for you to relax before or after one of our crazy dance events. <br><b>Address: Gasthuisstraat 36, 2011 XP Haarlem, Netherlands</b> </p>
-                </section>
-               </header>
-           </article>
-
-           <article class='row align-items-left'>
-            <header class='col-12'>
-                <section class='hero text-top-left' style='position:absolute;'>
-                    <img src='../assets/images/dance/Pin-to-Pin-purple.png' style='margin-left: 110px; margin-top:-550px; width:75%;'>
-                </section>
-               </header>
-           </article>
-
-           <article class='row align-items-left' style='margin-top: 100px;'>
-            <header class='col-6'>
-                <section class='hero text-top-left' style='position:relative;'>
-                        <p><b>Bugsy's</b><br> Bugsy's is a nightclub in Haarlem that is open Thursday - Sunday from 11PM- 5AM everyday.
-                            There are different themes at this night club occasionally, most recently a Jazz theme. <br><b>Address: Smedestraat 19, 2011 RE Haarlem, Netherlands</b> </p>
-                </section>
-                </header>
-            <header class='col-6'>
-                <section class='hero text-top-left' style='position:relative;'>
-                    <img src='../assets/images/dance/exploreHaarlem/bugsys.png' style='margin-left: 300px;'>
-                </section>
-            </header>
-           </article>";
+           <section class='container section exploreHaarlem--jazz'>
+               <article class='exploreHaarlem--jazz__textBox'>
+                   <h1>Explore <span class='exploreHaarlem--jazz__haarlem'>Haarlem</span> before the event! And meet like-minded people</h1>
+                   <p>Did you know that in Haarlem there are many Jazz-cafes for a Jazz lover like you? 
+                       We have found the closest two for you to check out and if you want, meet up with people
+                       that have the same interests as you!</p>
+               </article>
+   
+               <article class='exploreHaarlem--jazz__container'>
+                   <section class='exploreHaarlem--jazz__img'>
+                       <img src='../assets/images/dance/exploreHaarlem/letz party.png' alt=''>
+                   </section>
+   
+                   <section class='exploreHaarlem--jazz__text'>
+                       <h2>Letz Party</h2>
+                       <p>Letz Party is a club for all, open from 8:30PM - 1:30AM on the Weekends.
+                       This is perfect stay for you to relax before or after one of our crazy dance events. <br><b>Address: Gasthuisstraat 36, 2011 XP Haarlem, Netherlands</b> </p>
+             
+                       <b>
+                           Address: Koningstraat 58 Haarlem, Netherlands
+                       </b>
+                   </section>
+               </article>
+   
+               <article class='exploreHaarlem--jazz__container'>
+                   <section class='exploreHaarlem--jazz__textLeft'>
+                       <h2>Bugsy's</h2>
+                       <p>Bugsy's is a nightclub in Haarlem that is open Thursday - Sunday from 11PM- 5AM everyday.
+                       There are different themes at this night club occasionally, most recently a Jazz theme.</p>
+                       <br>
+                       <b>Address: Smedestraat 19, 2011 RE Haarlem, Netherlands</b>
+                       <br>
+                   </section>
+                   <section class='exploreHaarlem--jazz__imgRight'>
+                       <img src='../assets/images/dance/exploreHaarlem/bugsys.png' alt=''>
+                   </section>
+               </article>
+           </section>";
 
     }
 

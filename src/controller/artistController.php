@@ -27,11 +27,37 @@
             }
         }
 
+        public function getAllDataJazzArtistList() : array
+        {
+            try {
+                return $this->artistService->getAllDataArtists(4); // Todo change id to correct jazz page id in database
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+    
+        public function getAllDataDanceArtistList() : array
+        {
+            try {
+                return $this->artistService->getAllDataArtists(2); // Todo change id to correct jazz page id in database
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         public function getArtist() : artist {
             try {
                 $artistId = $_GET["id"];
     
                 return $this->artistService->getArtist($artistId);
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function getArtistById(int $id) : artist {
+            try {    
+                return $this->artistService->getArtist($id);
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

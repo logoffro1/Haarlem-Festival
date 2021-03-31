@@ -24,38 +24,40 @@ class danceArtistInfo
     }
 
     //creating the artist intro panel on the individual artist page using data fetched from the db
+    // src="/assets/images/dance/hardwell_2.png"
     public function render()
     {
-        echo "<section class='container section' style='padding: 0px; padding-top: 90px; margin: 0px;'>
-        <article class='row'>
-            <header class='col-8'>
-                <span>
-               <img src='$this->image' alt='' style='position:relative;'>
-               </span>
-               </header>
-               <header class='col-4'>
-               <nav class='breadcrumbs'>
-               <ul>
-                   <li class='breadcrumbs__breadcrumb'><a href='../views/danceEvent.php'>Artist Overview</a></li>
-                   <li class='breadcrumbs__breadcrumb'><a href='#'>$this->artistName</a></li>
-               </ul>
-           </nav>
-               <span>
-               <img src='../assets/images/dance/Rectangle 112.png' alt='' style='position:relative; margin-top: 75px; margin-left: -60%; margin-bottom:30px;'>
-               <span style='position:absolute; top:250px; right:400px;'>
-               <h1 class='title title--page dance' >$this->artistName</h1>
-               <p style='position:relative; width:500px; margin-bottom:150px;'>$this->biography</p>
-               <article class='row' style='position:relative;'>
-               <a style='margin-right:35px; margin-top:7px;' href='$this->instagram'><img src='../assets/images/dance/icons/dance-instagram.png' alt=''></a>
-               <a style='margin-right:35px; margin-top:7px;' href='$this->facebook'><img src='../assets/images/dance/icons/dance-facebook.png' alt=''></a>
-               <a style='margin-right:35px; margin-top:7px;' href='$this->youtube'><img src='../assets/images/dance/icons/dance-youtube.png' alt=''></a>
-               <a class='button' href='#performances'>Get your tickets</a>
-               </span>
-           </span>
-               </header>
-           </article>
-       </section>
-       ";
+        echo "
+        <section class='artistinfo--jazz'>
+            <section class='artistinfo--jazz__artistImg'>
+                <img src='$this->image' alt='' >
+            </section>
+            <section>
+                <p class='artistinfo--jazz__breadCrumb'><a href='jazzEvent.php'>Jazz Artists</a> > $this->artistName</p>
+                <section class='artistinfo--jazz__textContainer'>
+                    <section class='artistinfo--jazz__infoText'>
+                        <h1 class='title title--page jazz'> $this->artistName</h1>
+                        <p>
+                            $this->biography
+                        </p>
+                        <section class='artistinfo--jazz__socialMediaContainer'>";
+                            //If the artist has no social media on a specific platform, its logo is not being displayed
+                            if($this->instagram != ""){
+                                echo "<a href='$this->instagram' target='_blank'><img src='../assets/images/jazz/icons/jazz-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                            }
+                            if($this->facebook != ""){                   
+                                echo "<a href='$this->facebook' target='_blank'><img src='../assets/images/jazz/icons/jazz-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                            }
+                            if($this->youtube != ""){
+                                echo "<a href='$this->youtube' target='_blank'><img src='../assets/images/jazz/icons/jazz-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                            }
+                            echo"
+                            <a href='#performances'><button class='artistinfo--jazz__ticketButton'>Get Your Tickets</button></a>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>";
     }
 }
 

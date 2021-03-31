@@ -24,8 +24,8 @@ $_SESSION['cart']->render();
 <section class='container section no-padding-top' style='margin-top: -10px'>
 <?php
 //Getting every artist to list their performances
-$jazzArtistController = new jazzArtistController();
-$allJazzArtists = $jazzArtistController->getAllJazzArtists();
+$artistController = new artistController();
+$allJazzArtists = $artistController->getAllDataJazzArtistList();
 
 $artistNames = array();
 $performanceDates = array();
@@ -35,9 +35,14 @@ $jazzCards = array();
 foreach ($allJazzArtists as $jazzArtist) 
 {
     //Those names are for combobox
-    $artistNames[] = $jazzArtist->__get('artistName');
+    $artistNames[] = $jazzArtist->__get('name');
 
-    foreach ($jazzArtist->__get('performances') as $performance) 
+
+    if(isset($jazzArtist->performances) && count($jazzArtist->performances) == 0){
+        return;
+    }
+
+    foreach ($jazzArtist->performances as $performance) 
     {
         //Those dates are for combobox
         $performanceDates[] = $performance->getDate();
@@ -49,21 +54,22 @@ foreach ($allJazzArtists as $jazzArtist)
             
             //Print all
             if($performanceDate == "allDates" && $artistName == "allArtists")
-                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('name'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
             //Filter artist name
-            else if($performanceDate== "allDates" && $jazzArtist->__get('artistName') == $artistName )
-                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+            else if($performanceDate== "allDates" && $jazzArtist->__get('name') == $name )
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('name'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
             //Filter date
             else if($artistName == "allArtists" && $performance->getDate() == $performanceDate)
-                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('name'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
             //Filter both date and artist name
-            else if($performance->getDate() == $performanceDate &&  $jazzArtist->__get('artistName') == $artistName)
-                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+            else if($performance->getDate() == $performanceDate &&  $jazzArtist->__get('name') == $artistName)
+                $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('name'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
             }
         //If no parameter print all
         else
-        $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('artistName'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
-    }}
+        $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('name'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
+    }
+}
 
 //After getting names and dates, getting unique values then sorting them
 $uniqueArtistNames = array_unique($artistNames);

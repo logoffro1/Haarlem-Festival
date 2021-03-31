@@ -7,10 +7,10 @@
     { 
         //Getting the selected artist ID so that relevenat information can be printed
         $id = intval($_GET['artist']);
-        $controller = new jazzArtistController();
-        $artist = $controller->getAJazzArtistById($id);
+        $controller = new artistController();
+        $artist = $controller->getArtistById($id);
 
-        $artistName = $artist->__get('artistName');
+        $artistName = $artist->name;
         $head = new head("$artistName | Haarlem Festival", "");
         $head->render();
 
@@ -24,7 +24,7 @@
         $jazzNotification = new jazzNotification();
         $jazzNotification->render();
 
-        $jazzSongs = new jazzSongCard($artist->__get('songs'), $artist->__get('artistName'));
+        $jazzSongs = new jazzSongCard($artist->__get('songs'), $artist->__get('name'));
         $jazzSongs->render();
 
         $artistPerformances = new jazzArtistPerformances($artist->__get('performances'));
