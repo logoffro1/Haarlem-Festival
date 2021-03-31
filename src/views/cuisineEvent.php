@@ -1,6 +1,6 @@
 <?php
     include '../classes/autoloader.php';
-
+    include ('../model/pdfInvoice.php');
     //init controllers
     $contoller = new cuisineEventController();
     $restaurantTypeController = new restaurantTypeController();
@@ -12,6 +12,15 @@
     $navigation = new navigation("");
     $navigation->render();
 
+    /*
+    $cartCuisine = new cartItem("Cuisine Event",3,"This is an address","Thursday","27 July","17:00",2,13.20,"I am allergic to shellfish");
+    $cartjazz = new cartItem("Jazz Event",0,"This is another address","Friday","28 July","18:00",1,10.00,"");
+    $cart = new cart();
+    $cart->setCartItems(array($cartCuisine,$cartjazz));
+    $mail = new pdfInvoice($cart,"k3nnt_u_99@yahoo.com");
+*/
+
+
     //if there is no filter, filter defaults to All
     if(!isset($_GET['filter']))
         $_GET['filter'] = "All";
@@ -22,6 +31,7 @@
            $location = getLocation();
             header("Location: $location");
         }      
+        
     }
     //create the ?filter URL based on the filter
      function getLocation(){
@@ -35,6 +45,11 @@
         }
         return $location;
     }
+
+
+
+
+
 ?>
 <section class="container section" style="margin-top:-30px;">
     <pre style="letter-spacing:1px"><a href = "#">Events </a> > <a href = "#"> Haarlem Cuisine</a> </pre>
@@ -132,8 +147,9 @@ something new? Try out our new cookbook!
 Checkout a wide array of diverse recipes, made by the chefs
 of the Haarlem Festival.
             </pre>
+            <a href = "pdfCookbook.php" target = "_blank">
             <button>Download the cookbook</button>
-                
+</a>
             </article>
             <article class="rightContainer">
                 <h2>Cooking Styles</h2>
