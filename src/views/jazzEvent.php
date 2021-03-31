@@ -23,6 +23,7 @@ $_SESSION['cart']->render();
 
 <section class='container section no-padding-top' style='margin-top: -10px'>
 <?php
+
 //Getting every artist to list their performances
 $artistController = new artistController();
 $allJazzArtists = $artistController->getAllDataJazzArtistList();
@@ -37,11 +38,10 @@ foreach ($allJazzArtists as $jazzArtist)
     //Those names are for combobox
     $artistNames[] = $jazzArtist->__get('name');
 
-
     if(isset($jazzArtist->performances) && count($jazzArtist->performances) == 0){
         return;
     }
-
+    
     foreach ($jazzArtist->performances as $performance) 
     {
         //Those dates are for combobox

@@ -43,7 +43,7 @@
         {       
             $performances = array();
 
-            $query = "SELECT * FROM Performances p JOIN locations l on p.location_id = l.location_id WHERE artist_id = $artistId";
+            $query = "SELECT * FROM Performances p JOIN Locations l on p.location_id = l.location_id WHERE artist_id = $artistId";
 
             if ($result = $this->conn->query($query)) {
                 $performances = array();

@@ -31,12 +31,12 @@
         }
 
         public function getPrice(){return $this->location->__get('price');}
-        public function getDayOfWeek(){return date("l",strtotime($this->performanceDate));}
-        public function getDate(){return date("d M",strtotime($this->performanceDate));}
+        public function getDayOfWeek(){return date("l",strtotime($this->date));}
+        public function getDate(){return date("d M",strtotime($this->date));}
         public function getTime()
         {
-            $startTime = date("H:i",strtotime($this->performanceTime));
-            $endTime = date("H:i",strtotime($this->performanceTime) + $this->duration * 3600);
+            $startTime = date("H:i",strtotime($this->time));
+            $endTime = date("H:i",strtotime($this->time) + $this->duration * 3600);
     
             return ($startTime." - ".$endTime);
         }

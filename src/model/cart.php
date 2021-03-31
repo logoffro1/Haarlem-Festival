@@ -68,7 +68,7 @@ class cart
         return $count;
     }
 
-    public function addItemToCart(int $performanceID, string $type)
+    public function addItemToCart(int $performanceID, int $artistID, string $type)
     {
         if($type == "jazz")
         {
@@ -77,7 +77,7 @@ class cart
             
             //cart item needs both artist name and performance info, thus i get both objects
             $performance = $performanceController->getPerformance($performanceID);
-            $artist = $artistController->getArtistById($performance->__get("artistID"));
+            $artist = $artistController->getArtistById($artistID);
 
             $title = $artist->__get('name');
             $type = cartItemType::Jazz;

@@ -45,7 +45,10 @@
             try {
                 if(isset($_GET['id'])){
                     $id = (int)$_GET['id'];
-    
+                    return $this->performanceService->getPerformance($id);
+                }
+                else if(isset($_GET['performanceID'])){
+                    $id = (int)$_GET['performanceID'];
                     return $this->performanceService->getPerformance($id);
                 }
             } catch (Exception $e){

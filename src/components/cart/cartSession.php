@@ -13,9 +13,10 @@ if (session_status() === PHP_SESSION_NONE)
 if(isset($_GET['performanceID']))
 {
     $id = $_GET['performanceID'];
-
+    $artistId = $_GET['artist'];
+    
     if($_GET['type'] == 'jazz')
-       $_SESSION['cart']->addItemToCart($id, "jazz");
+       $_SESSION['cart']->addItemToCart($id, $artistId,"jazz");
 }
 
 if(isset($_GET['action']))

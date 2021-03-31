@@ -33,7 +33,7 @@ class artistPerformances
         foreach($this->performances as $performance)
         {
             $artist = $_GET['artist'];
-            $performanceID = $performance->__get('performanceID');
+            $performanceID = $performance->__get('id');
             $day = $performance -> getDayOfWeek();
             $date = $performance -> getDate(); 
             $time = $performance -> getTime();
