@@ -41,7 +41,7 @@ class thankyoupageservice  {
 		};
 	}
 	public function sendDataToDB($fname, $lname, $email){
-		$query = "INSERT INTO purchases (name , email)
+		$query = "INSERT INTO Purchases (name , email)
 		VALUES ('$fname $lname', '$email')";
         $result = $this->conn->query($query);
 	}

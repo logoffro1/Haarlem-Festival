@@ -25,7 +25,7 @@ use Mollie\Api\MollieApiClient;
         public function getPurchaseList() : array
         {
             // Build query
-            $query = "SELECT * FROM purchases";
+            $query = "SELECT * FROM Purchases";
 
             // Get connection and results
             if ($result = $this->conn->query($query)) {
@@ -67,7 +67,7 @@ use Mollie\Api\MollieApiClient;
         public function changePurchasePaymentStatus(int $isPayed, int $purchaseId)
         {
             // Build query
-            $sql = "UPDATE purchases SET is_payed=? WHERE purchase_id=?";
+            $sql = "UPDATE Purchases SET is_payed=? WHERE purchase_id=?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
@@ -87,7 +87,7 @@ use Mollie\Api\MollieApiClient;
 
         public function createPurchase(string $name, string $email, array $cartItems, float $totalPrice)
         {
-            $sql = "INSERT INTO purchases (
+            $sql = "INSERT INTO Purchases (
                 `name`,
                 `email`,
                 `price`,
@@ -129,7 +129,7 @@ use Mollie\Api\MollieApiClient;
 
         public function insertPerformanceReservations(int $purchaseId, $cartItem)
         {
-            $sql = "INSERT INTO reservation_performance (
+            $sql = "INSERT INTO Reservation_Performance (
                 `performance_id`,
                 `purchase_id`,
                 `seats`,
@@ -157,7 +157,7 @@ use Mollie\Api\MollieApiClient;
 
         public function insertCuisineReservations(int $purchaseId, $cartItem)
         {
-            $sql = "INSERT INTO reservation_performance (
+            $sql = "INSERT INTO Reservation_Performance (
 	            restaurant_id,
                 purchase_id,
                 seats,

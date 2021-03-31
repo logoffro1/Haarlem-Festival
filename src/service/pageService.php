@@ -20,7 +20,7 @@
         public function getPage(int $id) : ?stdClass
         {
             // Build query
-            $query = "SELECT content FROM pages WHERE page_id=?";
+            $query = "SELECT content FROM Pages WHERE page_id=?";
 
             // Get connection and prepare statement
             if($stmt = $this->conn->prepare($query)) {
@@ -55,7 +55,7 @@
         */
         public function updatePage(string $data, array $files, int $page_id) : void
         {
-            $sql = "UPDATE pages SET content=? WHERE page_id=?";
+            $sql = "UPDATE Pages SET content=? WHERE page_id=?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {

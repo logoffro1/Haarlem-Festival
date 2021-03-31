@@ -43,7 +43,7 @@
         {       
             $performances = array();
 
-            $query = "SELECT * FROM performances p JOIN locations l on p.location_id = l.location_id WHERE artist_id = $artistId";
+            $query = "SELECT * FROM Performances p JOIN locations l on p.location_id = l.location_id WHERE artist_id = $artistId";
 
             if ($result = $this->conn->query($query)) {
                 $performances = array();
@@ -75,7 +75,7 @@
 
         public function addPerformance(artist $artist, array $data) : void
         {
-            $sql = "INSERT INTO performances (location_id, artist_id, date, time, duration, availableTickets) VALUES (?,?,?,?,?,?)";
+            $sql = "INSERT INTO Performances (location_id, artist_id, date, time, duration, availableTickets) VALUES (?,?,?,?,?,?)";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
@@ -101,7 +101,7 @@
 
         public function deletePerformance(int $idParam)
         {
-            $sql = "DELETE FROM performances WHERE performance_id=?";
+            $sql = "DELETE FROM Performances WHERE performance_id=?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
@@ -122,7 +122,7 @@
 
         public function updatePerformance(array $data, int $id)
         {
-            $sql = "UPDATE performances SET location_id=?, date=?, time=?, duration=?, availableTickets=? WHERE performance_id = ?";
+            $sql = "UPDATE Performances SET location_id=?, date=?, time=?, duration=?, availableTickets=? WHERE performance_id = ?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {

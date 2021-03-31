@@ -56,7 +56,7 @@ class restaurantService {
      * @return restaurant || null - restaurant class with the data from the query, or null if error/nothing is found
      */
     public function getRestaurant(int $restaurantId) : ?restaurant {
-        $query = "SELECT * FROM restaurants WHERE restaurant_id=? LIMIT 1";
+        $query = "SELECT * FROM Restaurants WHERE restaurant_id=? LIMIT 1";
 
 
         if($stmt = $this->conn->prepare($query)) {
@@ -103,7 +103,7 @@ class restaurantService {
      */
     public function addRestaurant(array $data, int $page_id) : void // Todo add categories to insert statement
     {
-        $sql = "INSERT INTO restaurants (
+        $sql = "INSERT INTO Restaurants (
             `page_id`,
             `name`,
             `address`,
@@ -146,7 +146,7 @@ class restaurantService {
 
     public function deleteRestaurant(restaurant $restaurant)
     {
-        $sql = "DELETE FROM restaurants WHERE restaurant_id=?";
+        $sql = "DELETE FROM Restaurants WHERE restaurant_id=?";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
@@ -171,7 +171,7 @@ class restaurantService {
 
     public function updateRestaurantImage($images, $restaurantId)
     {
-        $sql = "UPDATE restaurants 
+        $sql = "UPDATE Restaurants 
                 SET images=?
             WHERE restaurant_id = $restaurantId";
 
@@ -217,7 +217,7 @@ class restaurantService {
      */
     public function updateRestaurant(restaurant $restaurant, array $data) : void
     {
-        $sql = "UPDATE restaurants SET  
+        $sql = "UPDATE Restaurants SET  
                     name=?,
                     address=?,
                     biography=?,
@@ -268,7 +268,7 @@ class restaurantService {
      */
     public function insertNewCategories(int $restaurantId, int $cuisine) : void
     {
-        $insertCategoriesSql = "INSERT INTO restaurant_categorie (restaurant_id, restaurant_type_id) values ($restaurantId,?)";
+        $insertCategoriesSql = "INSERT INTO Restaurant_Categorie (restaurant_id, restaurant_type_id) values ($restaurantId,?)";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($insertCategoriesSql)) {
@@ -294,7 +294,7 @@ class restaurantService {
      */
     public function deleteCategories(restaurant $restaurant, array $data) : void
     {
-        $deleteCategoriesSql = "DELETE FROM restaurant_categorie
+        $deleteCategoriesSql = "DELETE FROM Restaurant_Categorie
         WHERE restaurant_id = $restaurant->id
         AND (restaurant_type_id IN (?))";
 

@@ -18,7 +18,7 @@
         public function getPagesList() : ?array
         {
             // Build query
-            $query = "SELECT id, title FROM pages";
+            $query = "SELECT id, title FROM Pages";
 
             // Get connection and results
             // If there are results create a list of users, otherwise return null
@@ -32,7 +32,7 @@
         public function getPageDetails(int $pageId)
         {
             // Build query
-            $query = "SELECT * FROM pages WHERE id = ?";
+            $query = "SELECT * FROM Pages WHERE id = ?";
 
 
             if($stmt =  $this->conn->prepare($query)) {

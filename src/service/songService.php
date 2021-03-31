@@ -17,7 +17,7 @@ include_once '../config/config.php';
          */
         public function getSongs(int $artistId) : array
         {       
-            $query = "SELECT * FROM songs where artist_id = $artistId";
+            $query = "SELECT * FROM Songs where artist_id = $artistId";
 
             if ($result = $this->conn->query($query)) {
                 $songList = array();
@@ -45,7 +45,7 @@ include_once '../config/config.php';
 
         public function getSong(int $songId) : ?song
         {       
-            $query = "SELECT * FROM songs WHERE song_id=? LIMIT 1";
+            $query = "SELECT * FROM Songs WHERE song_id=? LIMIT 1";
 
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("i", $songId);
@@ -93,7 +93,7 @@ include_once '../config/config.php';
 
         public function addSong(array $data, int $id) : void
         {
-            $sql = "INSERT INTO songs (artist_id, url, title, image) VALUES (?,?,?,?)";
+            $sql = "INSERT INTO Songs (artist_id, url, title, image) VALUES (?,?,?,?)";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
@@ -123,7 +123,7 @@ include_once '../config/config.php';
 
         public function deleteSong(song $song)
         {
-            $sql = "DELETE FROM songs WHERE song_id=?";
+            $sql = "DELETE FROM Songs WHERE song_id=?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
@@ -153,7 +153,7 @@ include_once '../config/config.php';
 
         public function updateSong(int $songId, array $data) : void
         {
-            $sql = "UPDATE songs SET url=?, title=?, image=? WHERE song_id=?";
+            $sql = "UPDATE Songs SET url=?, title=?, image=? WHERE song_id=?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
@@ -176,7 +176,7 @@ include_once '../config/config.php';
 
         public function deleteSongImage(song $song) : void
         {
-            $sql = "UPDATE songs SET image=? WHERE song_id=?";
+            $sql = "UPDATE Songs SET image=? WHERE song_id=?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {

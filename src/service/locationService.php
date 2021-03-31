@@ -74,7 +74,7 @@
 
         public function getLocation(int $location_id) : location
         {
-            $query = "SELECT * FROM locations where location_id = $location_id";
+            $query = "SELECT * FROM Locations where location_id = $location_id";
 
             if ($result = $this->conn->query($query)) {
                 

@@ -61,7 +61,7 @@ class tourService {
     public function addTour(array $data)
     {
         // Build query
-        $sql = "INSERT INTO tours (page_id, date, time, price, family_price, seats_per_tour) VALUES (?,?,?,?,?,?)";
+        $sql = "INSERT INTO Tours (page_id, date, time, price, family_price, seats_per_tour) VALUES (?,?,?,?,?,?)";
 
         // Get connection and preapre statement
         if($query = $this->conn->prepare($sql)) {
@@ -87,7 +87,7 @@ class tourService {
     public function updateTour(array $data, tour $tour)
     {
         // Build query
-        $sql = "UPDATE tours 
+        $sql = "UPDATE Tours 
                     SET date=?,
                         time=?,
                         price=?,
@@ -159,7 +159,7 @@ class tourService {
     public function addTourType(array $data, tour $tour) : void
     {
         // Build query
-        $sql = "INSERT INTO tour_types (tour_id, tour_guide_id, amount_of_tours, `language`) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO Tour_Types (tour_id, tour_guide_id, amount_of_tours, `language`) VALUES (?,?,?,?)";
 
         // preapre statement
         if($query = $this->conn->prepare($sql)) {
@@ -193,7 +193,7 @@ class tourService {
         }
 
         // Build query
-        $sql = "UPDATE tour_types 
+        $sql = "UPDATE Tour_Types 
                     SET amount_of_tours=?
                 WHERE tour_types_id=?";
 
@@ -216,7 +216,7 @@ class tourService {
 
     public function deleteTour(int $id)
     {
-        $sql = "DELETE FROM tours WHERE tour_id=?";
+        $sql = "DELETE FROM Tours WHERE tour_id=?";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
@@ -235,7 +235,7 @@ class tourService {
 
     public function deleteTourType(array $data)
     {
-        $sql = "DELETE FROM tour_types WHERE tour_types_id=?";
+        $sql = "DELETE FROM Tour_Types WHERE tour_types_id=?";
 
         // preapre statement
         if($query = $this->conn->prepare($sql)) {

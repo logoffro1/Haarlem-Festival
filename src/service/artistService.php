@@ -33,7 +33,7 @@ class artistService {
      * @return array artists - list of artist without their songs, because it will not be shown in the list
      */
     public function getArtistList(int $pageId) : array {
-        $query = "SELECT * FROM artists where page_id = $pageId"; // No user input, so binding would be redundant
+        $query = "SELECT * FROM Artists where page_id = $pageId"; // No user input, so binding would be redundant
 
 
         if ($result = $this->conn->query($query)) {
@@ -79,7 +79,7 @@ class artistService {
      */
     public function getArtist(int $artistId)
     {
-        $query = "SELECT * FROM artists where artist_id = $artistId"; // Todo: Create subselect and group songs and performances
+        $query = "SELECT * FROM Artists where artist_id = $artistId"; // Todo: Create subselect and group songs and performances
 
 
         if ($result = $this->conn->query($query)) {
@@ -151,7 +151,7 @@ class artistService {
     public function addArtist(array $data) : void
     {
         // Build query
-        $sql = "INSERT INTO artists (page_id, name, biography) VALUES (?,?,?)";
+        $sql = "INSERT INTO Artists (page_id, name, biography) VALUES (?,?,?)";
 
         // Get connection and preapre statement
         if($query = $this->conn->prepare($sql)) {
@@ -173,7 +173,7 @@ class artistService {
 
     public function deleteArtist(int $artistId)
     {
-        $sql = "DELETE FROM artists WHERE artist_id=?";
+        $sql = "DELETE FROM Artists WHERE artist_id=?";
 
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
@@ -199,7 +199,7 @@ class artistService {
      */
     public function updateArtist(artist $artist, array $data) : void
     {
-        $sql = "UPDATE artists 
+        $sql = "UPDATE Artists 
                     SET name=?, 
                         biography=?, 
                         facebook=?,
@@ -245,7 +245,7 @@ class artistService {
     {
         $columnName = $data['type'];
 
-        $sql = "UPDATE artists 
+        $sql = "UPDATE Artists 
                     SET $columnName=?
                 WHERE artist_id = $artist->id";
 

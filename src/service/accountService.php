@@ -24,7 +24,7 @@
         public function getAccountByCredentials(string $email, string $password) : ?cmsUser
         {
             // Build query
-            $query = "SELECT * FROM cms_users WHERE email=? AND isActive=1 LIMIT 1";
+            $query = "SELECT * FROM CMS_Users WHERE email=? AND isActive=1 LIMIT 1";
 
             // Escpage email data
             $emailEscaped = htmlspecialchars($email);
@@ -93,7 +93,7 @@
         public function addUser(cmsUser $user) : void
         {
             // Build query
-            $sql = "INSERT INTO cms_users (name, email, password) VALUES (?,?,?)";
+            $sql = "INSERT INTO CMS_Users (name, email, password) VALUES (?,?,?)";
 
             // Get connection
             $connection =  $this->conn;
@@ -130,7 +130,7 @@
         public function getUsersCountByEmail(string $userEmail) : int
         {
             // Build query
-            $query = "SELECT * FROM cms_users WHERE email = ?";
+            $query = "SELECT * FROM CMS_Users WHERE email = ?";
 
             // Get connection and prepare statement
             if($stmt = $this->conn->prepare($query)) {
@@ -159,7 +159,7 @@
         public function activateAccount(string $email) : void
         {
             // Build query
-            $sql = "UPDATE cms_users SET isActive=1 WHERE email=?";
+            $sql = "UPDATE CMS_Users SET isActive=1 WHERE email=?";
 
             // Get connection / preapre statement
             if($query = $this->conn->prepare($sql)) {
@@ -189,7 +189,7 @@
         public function changeUserPassword(string $email, string $password) : void
         {
             // Build query
-            $sql = "UPDATE cms_users SET password=? WHERE email=?";
+            $sql = "UPDATE CMS_Users SET password=? WHERE email=?";
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
