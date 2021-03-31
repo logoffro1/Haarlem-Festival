@@ -18,7 +18,7 @@
          * @return null if nothing is found
          */
         public function getUsers(cmsUser $user) : array {
-            $query = "SELECT * FROM cms_users WHERE users_id <> $user->id"; // No user input, so binding would be redundant
+            $query = "SELECT * FROM CMS_Users WHERE users_id <> $user->id"; // No user input, so binding would be redundant
 
             if ($result = $this->conn->query($query)) {
                 return $this->createAccountList($result);
@@ -35,7 +35,7 @@
          * @return array artists - list of artist without their songs, because it will not be shown in the list
          */
         public function getUser(int $cmsUserId) : ?cmsUser {
-            $query = "SELECT * FROM cms_users WHERE users_id=? LIMIT 1";
+            $query = "SELECT * FROM CMS_Users WHERE users_id=? LIMIT 1";
 
 
             if($stmt =  $this->conn->prepare($query)) {
@@ -74,7 +74,7 @@
         public function updateUser(string $email, string $name, int $id) : void
         {
             // Build query
-            $sql = "UPDATE cms_users SET name=?, email=? WHERE users_id=?";
+            $sql = "UPDATE CMS_Users SET name=?, email=? WHERE users_id=?";
 
             // Get connection / preapre statement
             if($query = $this->conn->prepare($sql)) {
@@ -106,7 +106,7 @@
         public function deleteUser(int $id)
         {
             // Build query
-            $sql = "DELETE FROM cms_users WHERE users_id=?";
+            $sql = "DELETE FROM CMS_Users WHERE users_id=?";
 
             // Get connection / preapre statement
             if($query = $this->conn->prepare($sql)) {
