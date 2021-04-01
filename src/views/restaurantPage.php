@@ -54,8 +54,7 @@ $lastIndex = array_key_last($restaurant->__get('cuisines'));
             if($i++ != $lastIndex-1)
                  echo " &#8226 ";
         }
-$notification = new notification();
-$notification->render();
+
 echo "</h1>
 <fieldset class = 'restaurant--address restaurant--text'>
 <img src='../assets/images/cuisine/homeIcon.svg'>
@@ -66,6 +65,10 @@ echo "</h1>
 <h1>$restaurantSeats seats</h1>
 </fieldset>
 <a href='#reservation'><button class = 'restaurant--text'>Book now</button></a>
+";
+$notification = new notification();
+$notification->render();
+echo"
 <article class = 'restaurant--description restaurant--text'>
 <hr>
 <p>$restaurantBiography</p>

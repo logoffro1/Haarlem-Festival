@@ -92,10 +92,10 @@ class cart
 
         foreach($this->cartItems as $cartItem)
         {
-            //If the same performance on  the same day from the same artist has already been added to the cart, it increases count instead of adding a new object
-            if($title == $cartItem->__get('title') && $type == $cartItem->__get('itemType') && $address == $cartItem->__get('address'))
+            //If its the same performance, it increases count instead of adding a new object
+            if($performanceID == $cartItem->__get('id') && ($eventType == cartItemType::Jazz || $eventType == cartItemType::Dance))
             {
-                $cartItem->increaseCount();
+                $cartItem->increaseCount(1);
                 return;
             }
         }
@@ -120,6 +120,16 @@ class cart
         $restaurantAddress = $restaurant->__get('address');
         $reservationDay = date("l",strtotime($date));
         $reservatioDate = date("d M",strtotime($date));
+
+        //Checks if there are more than one reservation
+        foreach($this->cartItems as $cartItem)
+        {
+            if($cartItem->__get('itemType') == cartItemType::Cuisine && $cartItem->__get('title') == $restaurantName && $cartItem->__get('date') == $reservatioDate && $cartItem->__get('time') == $session)
+                {
+                    $cartItem->increaseCount(intval($seats));
+                    return;
+            }
+        }
 
         $cartItem = new cartItem($restaurantName, cartItemType::Cuisine, $restaurantAddress, $reservationDay, $reservatioDate, $session, $seats, 10, $info, $restaurantID);
         $this->cartItems[] = $cartItem;
