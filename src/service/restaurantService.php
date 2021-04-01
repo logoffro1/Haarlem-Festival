@@ -320,5 +320,40 @@ class restaurantService {
             $isDeleted = $this->db->deleteImage($image);
         }
     }
+
+    /**
+     * Gets the bought reservation seats of a specfic restaurant based on restaurantId param
+     * 
+     * @param int restaurantId - id of a a specific restaurant
+     * 
+     * @return int amount of bought reservation seats
+     */
+    public function getBoughtTickets(int $restaurantId) : int
+    {
+        $query = "SELECT seats from Reservation_Cuisine WHERE restaurant_id = ?";
+        $totalBoughtTickets = 0;
+
+        if($stmt =  $this->conn->prepare($query)) {
+            // Create bind params to prevent sql injection
+            $stmt->bind_param("i", 
+                $idParam
+            );
+
+            $idParam = $restaurantId;
+
+            // Execute query
+            $stmt->execute();
+
+            // Get the result
+            $result = $stmt->get_result();
+
+            while($row = $result->fetch_assoc()) {
+                // return user class
+                $totalBoughtTickets += (int)$row["seats"];
+            }
+        }
+
+        return $totalBoughtTickets;
+    }
 }
 ?>

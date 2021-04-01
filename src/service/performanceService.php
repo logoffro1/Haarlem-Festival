@@ -143,5 +143,41 @@
                 throw new Exception('Could not update performance. Please try again');
             }
         }
+
+        /**
+         * Gets the bought tickets of a specfic performance based on performanceId param
+         * 
+         * @param int performanceId - id of a a specific performance
+         * 
+         * @return int amount of bought tickets
+         */
+        public function getBoughtTickets(int $performanceId) : int
+        {
+            $query = "SELECT seats from Reservation_Performance WHERE performance_id = ?";
+            $totalBoughtTickets = 0;
+
+            if($stmt =  $this->conn->prepare($query)) {
+                // Create bind params to prevent sql injection
+                $stmt->bind_param("i", 
+                    $idParam
+                );
+
+                $idParam = $performanceId;
+    
+                // Execute query
+                $stmt->execute();
+    
+                // Get the result
+                $result = $stmt->get_result();
+    
+                while($row = $result->fetch_assoc()) {
+                    // return user class
+                    $totalBoughtTickets += (int)$row["seats"];
+                }
+
+            }
+
+            return $totalBoughtTickets;
+        }
     }
 ?>
