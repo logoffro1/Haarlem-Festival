@@ -213,7 +213,7 @@ use Mollie\Api\MollieApiClient;
         {
             $payment = $this->mollie->payments->get($id);
 
-            $isPayed = $payment->status == 'Paid';
+            $isPayed = $payment->isPaid();
             $order_id = $payment->metadata->order_id;
 
             return array (
