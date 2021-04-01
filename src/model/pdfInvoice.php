@@ -5,7 +5,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-    use YECHNICKOM\TCPDF;
+    use YECHNICKOM\TCPDF\TCPDF;
 
     //Made by Cosmin Ilie
     // This class generates an PDF invoice and emails it to the customer

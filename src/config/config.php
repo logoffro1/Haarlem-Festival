@@ -1,9 +1,17 @@
 <?php
 // Database credentials
-define ( "DB_HOST", "s648539.infhaarlem.nl" );
-define ( "DB_USER", "s648539_guido" );
-define ( "DB_PASSWORD", "qnyMdI6dZR" );
-define ( "DB_DB", "s648539_php" );
+$useLocalhost = true;
+if($useLocalhost) {
+    define ( "DB_HOST", "localhost" );
+    define ( "DB_USER", "root" );
+    define ( "DB_PASSWORD", "" );
+    define ( "DB_DB", "test" );
+} else {
+    define ( "DB_HOST", "s648539.infhaarlem.nl" );
+    define ( "DB_USER", "s648539_guido" );
+    define ( "DB_PASSWORD", "qnyMdI6dZR" );
+    define ( "DB_DB", "s648539_php" );
+}
 
 // Upload folder
 define ( "UPLOAD_FOLDER", "/uploads/" );
