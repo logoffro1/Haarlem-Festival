@@ -49,26 +49,22 @@
         }
         return $location;
     }
-
-
-
-
-
 ?>
+
 <section class="container section" style="margin-top:-30px;">
     <pre style="letter-spacing:1px"><a href = "#">Events </a> > <a href = "#"> Haarlem Cuisine</a> </pre>
     <h1 class="title title--page cuisine">
         <?php
-            echo $content->page_title;
+            echo $content->page_title ?? '';
         ?>    
     </h1>
-    <img src="../assets/images/cuisine/cuisineBanner.png" class="banner" alt="The Haarlem Festival"
+    <img src="<?php echo $content->image ?? ''; ?>" class="banner" alt="The Haarlem Festival"
         title="The Haarlem Cuisine">
 
     <hr class="hLine">
     <h2 style="width:55%;margin:auto;text-align:center">
         <?php
-            echo $content->page_content;
+            echo $content->page_content ?? '';
         ?>
     </h2>
     <hr class="hLine">
@@ -153,12 +149,12 @@ $restaurantCount = loopRestaurants($restaurants);
         <article class="col-5">
             <h1 class="title title--page cuisine">
                 <?php
-                    echo $content->first_section_title;
+                    echo $content->first_section_title ?? '';
                 ?>    
             </h1>
             <p class="cookbook--description">
                 <?php
-                    echo $content->first_section_text;
+                    echo $content->first_section_text ?? '';
                 ?>    
             </p>
             <a href="pdfCookbook.php" class="button button--secondary" target="_blank">Download the cookbook</a>
@@ -175,7 +171,7 @@ $restaurantCount = loopRestaurants($restaurants);
                 <li class="col-12"><span style = "font-weight:600;">And many more!</span></li>
             </ul>
         </article>
-        <img src="<?php echo $content->first_section_image; ?>" class="col-3 cookbook--image">
+        <img src="<?php echo $content->first_section_image ?? ''; ?>" class="col-3 cookbook--image">
     </section>
 </section>
 
@@ -183,12 +179,12 @@ $restaurantCount = loopRestaurants($restaurants);
     <article class="text-align--center col-6 col-offset-3">
         <h3 class="title title--page cuisine">
             <?php 
-                echo $content->second_section_title;
+                echo $content->second_section_title ?? '';
             ?>
         </h3>
         <p>
             <?php 
-                echo $content->second_section_text;
+                echo $content->second_section_text ?? '';
             ?>
         </p>
 
