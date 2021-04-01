@@ -62,7 +62,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                         <label class="label">Hero Image</label>
 
                         <?php if(strlen($page->image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
+                            <img src="<?php echo $page->image ?>" alt="Artist Image">
                             <input class="button button--secondary" type="submit" name="delete_image-image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>

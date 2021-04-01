@@ -61,7 +61,7 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
                         <label class="label">Page Image</label>
 
                         <?php if(strlen($page->page_image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->page_image ?>" alt="Page Image">
+                            <img src="<?php echo $page->page_image ?>" alt="Page Image">
                             <input class="button button--secondary" type="submit" name="delete_image-page_image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>
@@ -87,7 +87,7 @@ $table = new table('card--cms__body table--cms', ['name', ''], $artistTableArray
                         <label class="label">Hero Image</label>
 
                         <?php if(strlen($page->hero_image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->hero_image ?>" alt="Hero Image">
+                            <img src="<?php echo $page->hero_image ?>" alt="Hero Image">
                             <input class="button button--secondary" type="submit" name="delete_image-hero_image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>

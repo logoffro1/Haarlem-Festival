@@ -76,7 +76,7 @@ $cmsNotification = new cmsNotification('Error', $songController->errors);
 
             <fieldset>
                 <?php if($song && strlen($song->image) > 0) { ?>
-                    <img src="<?php echo UPLOAD_FOLDER.$song->image ?>" alt="Artist Image">
+                    <img src="<?php echo$song->image ?>" alt="Artist Image">
                     <br/>
                     <input class="button button--secondary" type="submit" value="Delete image" name="delete_image">
                 <?php } else { ?>

@@ -170,7 +170,7 @@ if(isset($_GET['id'])) {
                             <fieldset>
                                 <?php 
                                 if($restaurant && isset($restaurant->images[$i]) && strlen($restaurant->images[$i]) > 0) { ?>
-                                    <img src="<?php echo UPLOAD_FOLDER . $restaurant->images[$i] ?>" alt="restaurant Image">
+                                    <img src="<?php echo $restaurant->images[$i] ?>" alt="restaurant Image">
                                     <br/>
                                 <?php } else { ?>
                                     <p>No image present</p>

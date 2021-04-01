@@ -163,7 +163,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                 <form class="card--cms__body table--cms" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <?php if($artist && strlen($artist->thumbnail) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER.$artist->thumbnail ?? ''; ?>" alt="Artist Image">
+                            <img src="<?php echo$artist->thumbnail ?? ''; ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>
                             <p>No image present</p>
@@ -185,7 +185,7 @@ $cmsNotification = new cmsNotification('Error', $artistController->errors);
                 <form class="card--cms__body table--cms" method="post" enctype="multipart/form-data">
                     <fieldset>
                         <?php if($artist && strlen($artist->image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER.$artist->image ?? ''; ?>" alt="Artist Image">
+                            <img src="<?php echo$artist->image ?? ''; ?>" alt="Artist Image">
                             <br/>
                         <?php } else { ?>
                             <p>No image present</p>

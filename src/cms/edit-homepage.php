@@ -51,7 +51,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                         <label class="label">Page Image</label>
 
                         <?php if(strlen($page->page_image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->page_image ?>" alt="Page Image">
+                            <img src="<?php echo $page->page_image ?>" alt="Page Image">
                             <input class="button button--secondary" type="submit" name="delete_image-page_image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>
@@ -72,7 +72,7 @@ $cmsNotification = new cmsNotification('Error', $pageController->errors);
                         <label class="label">First section Image</label>
 
                         <?php if(strlen($page->first_section_image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->first_section_image ?>" alt="Page Image">
+                            <img src="<?php echo $page->first_section_image ?>" alt="Page Image">
                             <input class="button button--secondary" type="submit" name="delete_image-first_section_image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>

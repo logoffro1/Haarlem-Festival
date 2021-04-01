@@ -70,7 +70,7 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $table
                         <label class="label">Hero Image</label>
 
                         <?php if(strlen($page->image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->image ?>" alt="Artist Image">
+                            <img src="<?php echo $page->image ?>" alt="Artist Image">
                             <input class="button button--secondary" type="submit" name="delete_image-image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>
@@ -99,7 +99,7 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $table
                         <label class="label">Cooking styles Image</label>
 
                         <?php if(isset($page->first_section_image) && strlen($page->first_section_image) > 0) { ?>
-                            <img src="<?php echo UPLOAD_FOLDER . $page->first_section_image ?>" alt="Artist Image">
+                            <img src="<?php echo $page->first_section_image ?>" alt="Artist Image">
                             <input class="button button--secondary" type="submit" name="delete_image-first_section_image" value="delete image">
                             <br/><br/>
                         <?php } else { ?>

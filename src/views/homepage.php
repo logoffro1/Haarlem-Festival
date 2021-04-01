@@ -31,7 +31,7 @@ $navigation->render();
             <h1 class="title title--page dance"><?php echo $page->first_section_title; ?></h1>
             <p><?php echo $page->first_section_text; ?></p>
         </header>
-        <img class="col-5 col-offset-1" src="<?php echo UPLOAD_FOLDER . $page->first_section_image; ?>" alt="">
+        <img class="col-5 col-offset-1" src="<?php echo $page->first_section_image; ?>" alt="">
     </article>
 </section>
 
