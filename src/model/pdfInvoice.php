@@ -7,8 +7,6 @@
     use PHPMailer\PHPMailer\Exception;
     use YECHNICKOM\TCPDF;
 
-    require_once ('../../tcpdf/tcpdf.php');
-
     //Made by Cosmin Ilie
     // This class generates an PDF invoice and emails it to the customer
     class pdfInvoice {
