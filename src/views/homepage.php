@@ -1,5 +1,6 @@
 <?php
 include '../classes/autoloader.php';
+include '../components/cart/cartSession.php';
 
 $head = new head("homepage", "homepage");
 $head->render();
@@ -11,6 +12,8 @@ $page = $pageController->getPage(5);
 <?php 
 $navigation = new navigation("Home");
 $navigation->render();
+
+$_SESSION['cart']->render();
 ?>
 
 <?php 

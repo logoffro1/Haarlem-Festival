@@ -21,6 +21,19 @@ if(isset($_GET['performanceID']))
         $_SESSION['cart']->addItemToCart($id, $artistId,"dance");
 }
 
+if(isset($_GET['restaurantID']))
+{
+    $restaurantID = $_GET['restaurantID'];
+    $customerName = $_GET['name'];
+    $date = $_GET['date'];
+    $session = $_GET['interval'];
+    $seats = $_GET['seats'];
+    $info = $_GET['additionalInfo'];
+
+    $_SESSION['cart']->addCuisineItemToCart($restaurantID, $customerName, $date, $session, $seats, $info);
+    
+}
+
 if(isset($_GET['action']))
 {
     if ($_GET['action'] == 'remove')

@@ -32,7 +32,23 @@ class notification
                         notification.classList.add('notification--dance');
                         notification.classList.add('show');
                         setTimeout(() => {notification.classList.remove('show');
-                            notification.classList.add('hide');}, 2000)</script>";
+                            notification.classList.add('hide');}, 2000)
+                            </script>";
+                            
+        }
+        else if($type == "cuisine")
+        {
+            echo "<script>
+                        document.getElementById('notification--text').innerHTML = '$msg';
+                        var notification = document.getElementsByClassName('notification--jazz hidden')[0]; 
+                        notification.classList.remove('hidden');
+                        notification.classList.remove('notification--jazz');
+                        notification.classList.add('notification--cuisine');
+                        notification.classList.add('show');
+                        setTimeout(() => {notification.classList.remove('show');
+                            notification.classList.add('hide');}, 2000)
+                            </script>";
+                            
         }
 }}
 

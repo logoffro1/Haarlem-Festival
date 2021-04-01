@@ -1,5 +1,6 @@
 <?php
     include '../classes/autoloader.php';
+    include '../components/cart/cartSession.php';
 
     //init controllers
     $head = new head("Cuisine Event", "");
@@ -14,6 +15,8 @@
 
     $navigation = new navigation("");
     $navigation->render();
+
+    $_SESSION['cart']->render();
 
     /*
     $cartCuisine = new cartItem("Cuisine Event",3,"This is an address","Thursday","27 July","17:00",2,13.20,"I am allergic to shellfish");

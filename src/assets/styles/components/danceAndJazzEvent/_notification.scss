@@ -87,3 +87,48 @@
 {
     visibility: hidden;
 }
+
+.notification--cuisine
+{
+    background-color: $color-white;
+    padding: 5px 10px 5px 40px;
+    color: $color-primary-cuisine;
+    font-size: 20px;
+    font-weight: 500;
+    width: 400px;
+    position: relative;
+    left: 0px;
+    top:10px;
+    border: 1px solid $color-primary-cuisine;
+    border-radius: 9px;
+    border-right: 8px solid $color-primary-cuisine; 
+    z-index: 1;
+}
+
+.notification--cuisine.show
+{
+    animation: show_slide 1s ease forwards;
+}
+
+@keyframes show_slide {
+    0% {transform: translateX(-100%);}
+    40% {transform: translateX(10%);}
+    80% {transform: translateX(0%);}
+    100% {transform: translateX(10px);}
+}
+
+.notification--cuisine.hide
+{
+    animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+    0% {transform: translateX(10px);}
+    40% {transform: translateX(0%);}
+    80% {transform: translateX(10%);}
+    100% {transform: translateX(-200%);}
+}
+
+.notification--cuisine.hidden
+{
+    visibility: hidden;
+}

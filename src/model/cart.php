@@ -41,8 +41,12 @@ class cart
     public function getTotalPrice()
     {
         $totalPrice = 0;
-        foreach($this->cartItems as $item)
-            $totalPrice += ($item->__get('count') * $item->__get('price'));
+        foreach($this->cartItems as $item){
+            if($item->__get('itemType') != cartItemType::Cuisine)
+                $totalPrice += ($item->__get('count') * $item->__get('price'));
+            else
+                $totalPrice += $item->__get('price');
+        }
 
         return number_format($totalPrice,2);
     }
@@ -68,43 +72,57 @@ class cart
         return $count;
     }
 
+    //For JAZZ and DANCE
     public function addItemToCart(int $performanceID, int $artistID, string $eventType)
     {
-        if($eventType == "jazz" || $eventType =="dance")
+        $performanceController = new performanceController();
+        $artistController = new artistController();
+        
+        //cart item needs both artist name and performance info, thus i get both objects
+        $performance = $performanceController->getPerformance($performanceID);
+        $artist = $artistController->getArtistById($artistID);
+
+        $title = $artist->__get('name');
+        if($eventType == "jazz")
+            $type = cartItemType::Jazz;
+        else if($eventType == "dance")
+            $type = cartItemType::Dance;
+        
+        $address = $performance->getLocation();
+
+        foreach($this->cartItems as $cartItem)
         {
-            $performanceController = new performanceController();
-            $artistController = new artistController();
-            
-            //cart item needs both artist name and performance info, thus i get both objects
-            $performance = $performanceController->getPerformance($performanceID);
-            $artist = $artistController->getArtistById($artistID);
-
-            $title = $artist->__get('name');
-            if($eventType == "jazz")
-                $type = cartItemType::Jazz;
-            else if($eventType == "dance")
-                $type = cartItemType::Dance;
-            
-            $address = $performance->getLocation();
-
-            foreach($this->cartItems as $cartItem)
+            //If the same performance on  the same day from the same artist has already been added to the cart, it increases count instead of adding a new object
+            if($title == $cartItem->__get('title') && $type == $cartItem->__get('itemType') && $address == $cartItem->__get('address'))
             {
-                //If the same performance on  the same day from the same artist has already been added to the cart, it increases count instead of adding a new object
-                if($title == $cartItem->__get('title') && $type == $cartItem->__get('itemType') && $address == $cartItem->__get('address'))
-                {
-                    $cartItem->increaseCount();
-                    return;
-                }
+                $cartItem->increaseCount();
+                return;
             }
-            $day = $performance->getDayOfWeek();
-            $date = $performance->getDate();
-            $time = $performance->getTime();
-            $count = 1;
-            $price = $performance->getPrice();
-    
-            $cartItem = new cartItem($title, $type, $address, $day, $date, $time, $count, $price, "");
-            $this->cartItems[] = $cartItem;
         }
+        $day = $performance->getDayOfWeek();
+        $date = $performance->getDate();
+        $time = $performance->getTime();
+        $count = 1;
+        $price = $performance->getPrice();
+
+        $cartItem = new cartItem($title, $type, $address, $day, $date, $time, $count, $price, "",$performanceID);
+        $this->cartItems[] = $cartItem;
+        
+    }
+
+    //FOR CUISINE
+    public function addCuisineItemToCart($restaurantID, $customerName, $date, $session, $seats, $info)
+    {
+        $restaurantController = new restaurantController();
+        $restaurant = $restaurantController->getRestaurant(8);
+
+        $restaurantName = $restaurant->__get('name');
+        $restaurantAddress = $restaurant->__get('address');
+        $reservationDay = date("l",strtotime($date));
+        $reservatioDate = date("d M",strtotime($date));
+
+        $cartItem = new cartItem($restaurantName, cartItemType::Cuisine, $restaurantAddress, $reservationDay, $reservatioDate, $session, $seats, 10, $info, $restaurantID);
+        $this->cartItems[] = $cartItem;
     }
 }
 ?>
