@@ -1,111 +1,134 @@
-.card--container{
-    width: 670px;
+.card--container {
     height: 350px;
     margin-top: 100px;
-    margin-left:190px;
-margin-right: 0px;
 }
-html{
-    zoom:70%;
+
+.restaurant-card-wrapper {
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        border-left: 3px solid #dddddd;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+    }
 }
-.card--restaurant{
+
+.card--restaurant {
     width: 100%;
     height: 270px;
     box-shadow: 3px 3px 6px $color-grey-8;
     position: relative;
-    &:hover{
-        background: rgba($color-primary-cuisine,.07);
-        .card--arrow{  
-           
+
+    &:hover {
+        background: rgba($color-primary-cuisine, .07);
+
+        .card--arrow {
+
             transform: translateX(-30px);
         }
     }
-   
+
 }
-.right--container{
+
+.right--container {
     float: right;
-    background: rgba($color-primary-cuisine,0);
+    background: rgba($color-primary-cuisine, 0);
     width: 60%;
     height: 270px;
     margin-top: 1px;
 }
-.card--img{
-    float:left;
-    width:40%;
+
+.card--img {
+    float: left;
+    width: 40%;
     height: 270px;
 }
-.card--address{
-    margin-top:11px;
+
+.card--address {
+    margin-top: 11px;
     font-weight: $font-weight-bold;
     font-family: $font-primary;
     margin-left: 40px;
     font-size: 18px;
     line-height: 30%;
 }
-.card--homeicon{
+
+.card--homeicon {
     width: 32px;
     height: 32px;
     margin-top: 25px;
     margin-left: 5px;
     position: absolute;
 }
-.card--sessions{
+
+.card--sessions {
     margin-left: 40px;
     font-family: $font-primary;
     font-size: 20px;
 }
-.card--stars{
-display: inline;
-position: absolute;
-top: 20px;
-right: 10px;
-    img{
+
+.card--stars {
+    display: inline;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+
+    img {
         width: 25px;
         height: 25px;
     }
 }
-.card--duration{
-font-weight: $font-weight-bold;
-font-family: $font-primary;
-font-size: $font-size-body;
-position: absolute;
-top: 90px;
-right: 45px;
+
+.card--duration {
+    font-weight: $font-weight-bold;
+    font-family: $font-primary;
+    font-size: $font-size-body;
+    position: absolute;
+    top: 90px;
+    right: 45px;
+
     img {
         width: 30px;
         height: 30px;
-        position:absolute;
+        position: absolute;
         margin-left: 4px;
         margin-top: -1px;
     }
 }
-.card--foodicon{
+
+.card--foodicon {
     width: 16px;
     height: 16px;
 }
-.card--seats{
+
+.card--seats {
     font-weight: $font-weight-bold;
     font-family: $font-primary;
     font-size: $font-size-body;
     position: absolute;
     top: 140px;
     right: 45px;
-        img {
-            width: 32px;
-            height: 32px;
-            position:absolute;
-            margin-left: 4px;
-            margin-top: -2px;
-        }
+
+    img {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        margin-left: 4px;
+        margin-top: -2px;
+    }
 }
-.card--arrow{
-    position:absolute;
+
+.card--arrow {
+    position: absolute;
     bottom: 30px;
-    right:15px;
+    right: 15px;
     width: 40px;
     transition: all 0.3s;
 }
-.card--swoosh{
+
+.card--swoosh {
     position: absolute;
     right: -1px;
     bottom: -1px;

@@ -1,0 +1,28 @@
+.cuisine-promo {
+    article {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+        p {
+            width: 500px;
+        }
+    }
+
+    .cuisine-promo__steps {
+        width: 100%;
+        justify-content: center;
+        
+        img {
+            height: 73px;
+            width: auto;
+            display: block;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        li {
+            width: 100%;
+        }
+    }
+}

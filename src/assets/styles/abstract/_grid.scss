@@ -75,6 +75,9 @@
     &.justify-content-end {
         justify-content: flex-end;
     }
+    &.justify-content-between {
+        justify-content: space-between;
+    }
 
     // Horizontal alignment
     &.align-items-start {

@@ -1,58 +1,65 @@
-.cookbook-outer-area{
+.cookbook-outer-area {
     width: 100%;
-    height: 480px;
-    background: rgba($color-grey-8,.2);
-    margin-top:150px;
+    height: 100%;
+    background: rgba($color-grey-8, .2);
+    margin-top: 150px;
     border-radius: $border-radius;
+    padding: $container-padding 0;
 }
-.cookbook-inner-area{
+
+.cookbook-inner-area {
     position: relative;
     width: 80%;
     height: 100%;
-    margin:auto;
-    display:flex;
+    margin: auto;
+    display: flex;
     align-items: center;
 }
-.cookbook--description{
+
+.cookbook--description {
     font-family: $font-primary;
     font-size: $font-size-body;
+    width: 75%;
+    margin-bottom: 50px;
 }
-.leftContainer{
-    float:left;
+
+.leftContainer {
+    float: left;
     height: 60%;
     width: 40%;
 }
-.rightContainer{
-    float:right;
+
+.rightContainer {
     height: 60%;
-    width: 40%;
-    margin-top:150px;
-    margin-left:50px;
     font-family: $font-primary;
-    pre{
+
+    li {
         font-size: $font-size-body;
-        line-height: 30px;
+        line-height: 40px;
+        display: inline-block;
     }
-    .bullet{
-        color:$color-primary-cuisine;
+
+    .bullet {
+        color: $color-primary-cuisine;
         font-size: 20px;
     }
 
 }
-.cookbook--image{
- 
-position:absolute;
-right:-35px;
+
+.cookbook--image {
+    width: 100%;
 }
-.shareandwin{
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
-    width:50%;
-    margin-top:150px
+
+.shareandwin {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 150px
 }
-.bigswoosh{
+
+.bigswoosh {
     position: absolute;
     height: 600px;
-    left:0px;
+    left: 0px;
 }

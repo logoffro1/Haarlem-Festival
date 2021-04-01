@@ -15,29 +15,40 @@ class restaurantCard
 
     public function __construct(int $restaurantId,string $name, string $image, string $address, int $seats, int $stars, float $duration, array $cuisines, array $sessions)
     {
-      $this->name = $name;
-      $this->image = $image;
-      $this->street = $this->getStreet($address);
-      $this->zipCode = $this->getZipCode($address);
-      $this->seats = $seats;
-      $this->stars = $stars;
-      $this->duration = $duration;
-      $this->cuisines =  $cuisines;
-      $this->sessions = $sessions;
+      $this->name = $name ?? '';
+      $this->image = $image ?? '';
+      $this->street = $this->getStreet($address) ?? '';
+      $this->zipCode = $this->getZipCode($address) ?? '';
+      $this->seats = $seats ?? 0;
+      $this->stars = $stars ?? 0;
+      $this->duration = $duration ?? 0;
+      $this->cuisines =  $cuisines ?? array();
+      $this->sessions = $sessions ?? 0;
       $this->restaurantId = $restaurantId;
     }
-private function getStreet(string $address)
-{
-    return explode(",",$address)[0].",";
-}
-private function getZipCode(string $address){
-    return explode(",",$address)[1];
-}
+
+    private function getStreet(string $address)
+    {
+        if(strlen($address) > 0) { 
+            return explode(",",$address)[0].",";
+        }
+
+        return '';
+    }
+
+    private function getZipCode(string $address){
+        if(strlen($address) > 0) { 
+            return explode(",",$address)[1] ?? '';
+        }
+
+        return '';
+    }
+
     public function render()
     {
-        echo "<section class = 'card--container'>
+        echo "
+        <section class = 'card--container col-5'>
 
-        <h1 style='margin-bottom:0px'>$this->name</h1>
         
         <h3 style='margin-bottom:0px;margin-top:3px;'>
         <img src='../assets/images/cuisine/foodIcon.svg' class = 'card--foodicon'> ";

@@ -18,7 +18,7 @@
                 return $this->restaurantService->getRestaurants();
             } catch (Exception $e){
                 // If error occured, show it in the website
-                $this->addToErrors($e->getMessage());
+                echo ($e->getMessage());
             }
         }
 
