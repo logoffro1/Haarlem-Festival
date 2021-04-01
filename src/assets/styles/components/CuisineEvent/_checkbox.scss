@@ -1,0 +1,11 @@
+.checkboxes--wrapper{
+
+    label{
+        display: inline;
+        margin-right: 10px;
+        font-weight: $font-weight-semibold;
+        :last-child{
+            margin-right:0px;
+        }
+    }
+}

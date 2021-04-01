@@ -151,6 +151,10 @@
                 $this->addToErrors($e->getMessage());
             }
         }
+        
+        public function getRestaurantById(int $id){
+            return $this->restaurantService->getRestaurantById($id);
+        }
     }
     
 ?>

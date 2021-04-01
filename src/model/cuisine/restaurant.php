@@ -52,6 +52,17 @@ class restaurant {
         return ($this->duration / 1) * 3600 + ($this->duration % 1) * 60;
     }
 
+    //check if the restaurant contains the cuisine
+    public function hasCuisine(string $cuisinesString){
+        $cuisines = explode(";",$cuisinesString);
+
+        foreach ($this->cuisines as $cuisine) {
+            if(in_array($cuisine->__get('name'),$cuisines))
+            return true;
+        }
+        return false;
+    }
+
     public function mutateToArray()
     {
         return get_object_vars($this);

@@ -26,7 +26,8 @@
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
             }
-        }
+            $this->restaurantTypeService = new restaurantTypeService();
+        }    
     }
     
 ?>
