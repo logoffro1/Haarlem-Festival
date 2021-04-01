@@ -105,7 +105,7 @@ $table = new table('card--cms__body table--cms', ['Restaurant name', ''], $table
                         <?php } else { ?>
                             <p>No image present</p>
                         <?php } ?>
-                        <input type="file" name="image" >
+                        <input type="file" name="first_section_image" >
                     </fieldset>
 
 

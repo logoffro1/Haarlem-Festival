@@ -1,5 +1,6 @@
 <?php
-    require_once ('../../tcpdf/tcpdf.php');
+    require __DIR__ . '/../../vendor/autoload.php';
+
     $pdf = new TCPDF('p','mm','A4');
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);

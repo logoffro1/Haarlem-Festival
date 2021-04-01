@@ -1,5 +1,6 @@
 <?php
     include '../classes/autoloader.php';
+    include_once '../config/config.php';
 
     class pageController extends controller {
         private pageService $pageService;
@@ -25,7 +26,7 @@
                 // Or use existing string from $page object if no new image is used
                 foreach ($_FILES as $file => $value) {
                     if(strlen($value['name']) > 1){
-                        $_POST[$file] = $value['name'];
+                        $_POST[$file] = UPLOAD_FOLDER.'/'.$value['name'];
                     } else {
                         $_POST[$file] = $page->$file ?? '';
                     }

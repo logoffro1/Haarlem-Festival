@@ -5,6 +5,8 @@
     $head = new head("Cuisine Event", "");
     $head->render();
 
+    $page = new pageController();
+    $content = $page->getPage(1);
     $contoller = new cuisineEventController();
     $restaurantTypeController = new restaurantTypeController();
     $restaurantController = new restaurantController();
@@ -23,8 +25,9 @@
 
 
     //if there is no filter, filter defaults to All
-    if(!isset($_GET['filter']))
+    if(!isset($_GET['filter'])){
         $_GET['filter'] = "All";
+    }
 
     //when the "filter' button is pressed
     if(isset($_POST['submit'])){
@@ -54,41 +57,47 @@
 ?>
 <section class="container section" style="margin-top:-30px;">
     <pre style="letter-spacing:1px"><a href = "#">Events </a> > <a href = "#"> Haarlem Cuisine</a> </pre>
-    <h1 class="title title--page cuisine"> The Haarlem Cuisine </h1>
+    <h1 class="title title--page cuisine">
+        <?php
+            echo $content->page_title;
+        ?>    
+    </h1>
     <img src="../assets/images/cuisine/cuisineBanner.png" class="banner" alt="The Haarlem Festival"
         title="The Haarlem Cuisine">
 
     <hr class="hLine">
-    <h2 style="width:55%;margin:auto;text-align:center">Pay a visit to Haarlem this year and enjoy the art of good food
-        an drinks in one of our many special restaurants,
-        or be surprised at one of the gastronomic events that the city has to offer.
+    <h2 style="width:55%;margin:auto;text-align:center">
+        <?php
+            echo $content->page_content;
+        ?>
     </h2>
     <hr class="hLine">
     <?php
         $cuisines = $restaurantTypeController->getRestaurantTypes();
-echo "<fieldset class='checkboxes--wrapper' style='text-align:center;'>";
-echo "<form method = 'post'>";
+        echo "<fieldset class='checkboxes--wrapper' style='text-align:center;'>";
+        echo "<form method = 'post'>";
 
 
-if(isset($_GET['filter']))
-    $location = $_GET['filter'];
+        if(isset($_GET['filter']))
+            $location = $_GET['filter'];
 
-    //loop through all cuisines and add them as checkbokes
-foreach($cuisines as $cuisine){
+            //loop through all cuisines and add them as checkbokes
+        foreach($cuisines as $cuisine){
 
-    //if the filter contains a checkbox, make the checkbok selected
-    if((strpos($location,$cuisine->__get('name'))!== FALSE))
-    {
-        $checkbox = new checkbox($cuisine->__get('name'),"cuisines[]",$cuisine->__get('name'),$cuisine->__get('name'),true);
-    }
-    else
-        $checkbox = new checkbox($cuisine->__get('name'),"cuisines[]",$cuisine->__get('name'),$cuisine->__get('name'));
+            //if the filter contains a checkbox, make the checkbok selected
+            if((strpos($location,$cuisine->__get('name'))!== FALSE))
+            {
+                $checkbox = new checkbox($cuisine->__get('name'),"cuisines[]",$cuisine->__get('name'),$cuisine->__get('name'),true);
+            }
+            else
+                $checkbox = new checkbox($cuisine->__get('name'),"cuisines[]",$cuisine->__get('name'),$cuisine->__get('name'));
 
-    $checkbox->render();
-}
-echo "<button type = 'submit' name = 'submit'>Filter</button>";
-echo "</form></fieldset>";
-?>
+            $checkbox->render();
+        }
+        echo "<button type = 'submit' name = 'submit'>Filter</button>";
+        echo "</form></fieldset>";
+    ?>
+
     <hr class="hLine">
 
     <article class="row justify-content-between restaurant-card-wrapper">
@@ -142,40 +151,45 @@ $restaurantCount = loopRestaurants($restaurants);
 <section class="cookbook-outer-area">
     <section class="container row align-items-end">
         <article class="col-5">
-            <h1 class="title title--page cuisine">Cook like a Chef</h1>
+            <h1 class="title title--page cuisine">
+                <?php
+                    echo $content->first_section_title;
+                ?>    
+            </h1>
             <p class="cookbook--description">
-                Want to become a chef yourself, or are you ready for
-                something new? Try out our new cookbook!
-                Checkout a wide array of diverse recipes, made by the chefs
-                of the Haarlem Festival.
+                <?php
+                    echo $content->first_section_text;
+                ?>    
             </p>
             <a href="pdfCookbook.php" class="button button--secondary" target="_blank">Download the cookbook</a>
         </article>
         <article class="rightContainer col-4">
             <h2>Cooking Styles</h2>
             <ul class="row">
-                <li class="col-6"><span class = "bullet">&#8226</span> French</li>
-                <li class="col-6"><span class = "bullet">&#8226</span> Fish and Seafood</li>
-                <li class="col-6"><span class = "bullet">&#8226</span> Vegan</li>
-                <li class="col-6"><span class = "bullet">&#8226</span> Favorites of the Chefs</li>
-                <li class="col-6"><span class = "bullet">&#8226</span> European</li>
-                <li class="col-6"><span class = "bullet">&#8226</span> Modern</li>
-                <li class="col-6"><span style = "font-weight:600;">And many more!</span></li>
+                <?php
+                    foreach (explode(';', $content->first_section_list) as $item) {
+                        echo "<li class='col-6'><span class='bullet'>&#8226</span> $item</li>";
+                    }
+                ?>
+
+                <li class="col-12"><span style = "font-weight:600;">And many more!</span></li>
             </ul>
         </article>
-        <img src="../assets/images/cuisine/cookbookImg.png" class="col-3 cookbook--image">
+        <img src="<?php echo $content->first_section_image; ?>" class="col-3 cookbook--image">
     </section>
-    <!-- <img src="../assets/images/cuisine/shareandwin.png" class="shareandwin"> -->
 </section>
+
 <section class="container cuisine-promo section">
     <article class="text-align--center col-6 col-offset-3">
         <h3 class="title title--page cuisine">
-            Share and Win
+            <?php 
+                echo $content->second_section_title;
+            ?>
         </h3>
-        <p class="">
-            Want to win back your spendings of your restaurant bill?
-            Make a photo of your food and/or dinner experience
-            and win back your spendings!
+        <p>
+            <?php 
+                echo $content->second_section_text;
+            ?>
         </p>
 
         <ul class="cuisine-promo__steps row">
