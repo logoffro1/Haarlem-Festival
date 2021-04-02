@@ -11,10 +11,10 @@ class emptyCartDisplay
                 
                 <section class='row col-8 col-offset-1 page--emptyCart__cardContainer'>";
 
-                    $cuisineEvent = new eventCards("cuisine", "get inspired by", "The haarlem cuisine", "/views/cuisineEvent.php");
+                    $cuisineEvent = new eventCards("cuisine", "get inspired by", "The haarlem cuisine", "../views/cuisineEvent.php");
                     $historyEvent = new eventCards("history", "Discover", "The haarlem history", "#");
-                    $danceEvent = new eventCards("dance", "Get wild during", "The haarlem dance", "/views/danceEvent.php");
-                    $jazzEvent = new eventCards("jazz", "Check out", "The haarlem jazz", "/views/jazzEvent.php");
+                    $danceEvent = new eventCards("dance", "Get wild during", "The haarlem dance", "../views/danceEvent.php");
+                    $jazzEvent = new eventCards("jazz", "Check out", "The haarlem jazz", "../views/jazzEvent.php");
 
                     $cuisineEvent->render();
                     $historyEvent->render();
