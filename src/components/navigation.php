@@ -15,17 +15,16 @@ class navigation {
                 <img class='navigation__brand' src='/assets/images/svg/logo.svg'/>
             </a>
             <ul class='navigation__links'>
-                <li><a class=" . $this->getActivePage('Home') . " href='../index.php'>Home</a></li>
+                <li><a class='" . $this->getActivePage('Home') . "' href='/views/homepage.php'>Home</a></li>
                 <li class='js-dropdown'>
                     <a class='" . $this->getActivePage('Events') . " js-dropdown__anchor' href='#'>Events</a>
                     <ul class='js-dropdown__body navigation__dropdown'>
-                        <li><a href='jazzEvent.php'>Jazz</a></li>
-                        <li><a href='danceEvent.php'>Dance</a></li>
-                        <li><a href='cuisineEvent.php'>Cuisine</a></li>
-                        <li><a href='historyEvent.php'>History</a></li>
+                        <li><a href='/views/jazzEvent.php'>Jazz</a></li>
+                        <li><a href='/views/danceEvent.php'>Dance</a></li>
+                        <li><a href='/views/cuisineEvent.php'>Cuisine</a></li>
+                        <li><a href='/views/historyEvent.php'>History</a></li>
                     </ul>
                 </li>
-                <li><a class=" . $this->getActivePage('Your Programme') . " href='#'>Your Programme</a></li>
             </ul>
             <div class='navigation__shop'>
                 <a class='icon icon--small icon--background icon--rounded' href='cart.php'>
