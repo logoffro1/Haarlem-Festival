@@ -3,12 +3,19 @@
 
     $head = new head("homepage", "");
     $head->render();
+    
+	$helper = new helper();
 
     $navigation = new navigation("Home");
     $navigation->render();
 
 	$steps = new steps(4);
 
+	// Checking the count so that it can display empty cart information on the screen when no item is in cart
+	if($_SESSION['cart']->getCountFromCart() == 0)
+	{
+		$helper->redirect("/views/cart.php");
+	} 
 ?>
     <section class='container section' style='padding:0px;'>
     	<article class='row align-items-left'>
@@ -62,6 +69,14 @@
     </section>
 
 <?php
+	//unset session so if the page is refreshed it doesnt spam emails
+    unset($_SESSION['email']);
+    unset($_SESSION['fname']);
+    unset($_SESSION['lname']);
+    unset($_SESSION['dob']);
+    unset($_SESSION['phoneno']);
+    unset($_SESSION['cart']);
+
     $footer = new footer();
     $footer->renderFooter();
 ?>
