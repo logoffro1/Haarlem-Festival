@@ -16,6 +16,7 @@ const filePath = {
     js: "src/assets/scripts/**/*.js",
     html: "src/**/*.html",
     php: "src/**/*.php",
+    vendor: "vendor/**/*.*",
     scss: "src/assets/styles/**/*.scss",
     images: "src/assets/images/**/*",
     dist: {
@@ -88,10 +89,16 @@ gulp.task('nunjucks', function(){
         .pipe(gulp.dest(filePath.baseDir));
 });
 
+// Process Nunjucks
+gulp.task('vendor', function(){
+    gulp.src([filePath.vendor])
+        .pipe(gulp.dest(filePath.baseDir+'/vendor'));
+});
+
 
 // Build dist folder
 gulp.task('build', function(){
-    const tasks = ['js', 'css', 'images', 'nunjucks'];
+    const tasks = ['js', 'css', 'images', 'vendor', 'nunjucks'];
 
     runSequence(tasks);
 });
