@@ -6,7 +6,7 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    //Made by Cosmin Ilie
+    //  Made by Cosmin Ilie
     // This class generates an PDF invoice and emails it to the customer
     class pdfInvoice {
         private string $sendToMail;

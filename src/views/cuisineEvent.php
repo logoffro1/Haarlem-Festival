@@ -19,8 +19,8 @@
     $_SESSION['cart']->render();
 
     /*
-    $cartCuisine = new cartItem("Cuisine Event",3,"This is an address","Thursday","27 July","17:00",2,13.20,"I am allergic to shellfish");
-    $cartjazz = new cartItem("Jazz Event",0,"This is another address","Friday","28 July","18:00",1,10.00,"");
+    $cartCuisine = new cartItem("Cuisine Event",3,"This is an address","Thursday","27 July","17:00",2,13.20,"I am allergic to shellfish",3);
+    $cartjazz = new cartItem("Jazz Event",0,"This is another address","Friday","28 July","18:00",1,10.00,"",4);
     $cart = new cart();
     $cart->setCartItems(array($cartCuisine,$cartjazz));
     $mail = new pdfInvoice($cart,"k3nnt_u_99@yahoo.com");
@@ -160,7 +160,7 @@ $restaurantCount = loopRestaurants($restaurants);
                     echo $content->first_section_text ?? '';
                 ?>    
             </p>
-            <a href="pdfCookbook.php" class="button button--secondary" target="_blank">Download the cookbook</a>
+            <a href="pdfCookbook.php" class="button button--primary" target="_blank">Download the cookbook</a>
         </article>
         <article class="rightContainer col-4">
             <h2>Cooking Styles</h2>
