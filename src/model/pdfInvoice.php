@@ -20,8 +20,6 @@
             $this->sendFromMail = "thehaarlemfestival@gmail.com";
             $this->cartItems = $cart->__get('cartItems');
             $this->customerName = $customerName;
-
-            $this->sendInvoiceByMail();
         }
 
         public function __get($property) {
@@ -30,7 +28,7 @@
             }
         }
 
-        private function generateInvoice(){
+        public function generateInvoice(){
             //content
             $html = '
             <style>
@@ -125,35 +123,7 @@
             $pdf->setFontSubsetting(true);
             $pdf->AddPage();
             $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 0, 0, true, '', true);
-            return $pdf->Output('invoice.pdf','S');
-        }
-
-        private function sendInvoiceByMail(){
-            $pdf  = $this->generateInvoice();
-            try{
-                $mail = new PHPMailer();
-                $mail->IsSMTP();  // telling the class to use SMTP
-                $mail->SMTPSecure = 'tls';  
-                $mail->Mailer = "smtp";
-                $mail->Host = "smtp.gmail.com";
-                $mail->Port = 587;
-                $mail->SMTPAuth = true; // turn on SMTP authentication
-                $mail->Username = $this->sendFromMail; // SMTP username
-                $mail->Password = "Thehaarlemfestival123"; // SMTP password
-                $Mail->Priority = 1;  
-                $mail->AddAddress($this->sendToMail,"Customer");
-                $mail->SetFrom($this->sendFromMail, "The Haarlem Festival");
-                $mail->Subject  = "Thank you for your purchase!";
-                $mail->AddStringAttachment($pdf,'invoice.pdf','base64','application/pdf');
-                $mail->Body     = "This is your generated invoice. ";
-                $mail->WordWrap = 50;
-        
-                if(!$mail->Send()){
-                    echo "<script> alert('Error sending the email');</script>";
-                }
-            } catch(Exception $e){
-                echo $e->getMessage();
-            }
+            return $pdf->Output('Haarlem_Festival_Invoice.pdf','S');
         }
 
         //returns the specified cuisine color

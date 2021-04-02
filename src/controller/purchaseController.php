@@ -33,16 +33,11 @@
             }
         }
 
-        public function createPayment(string $email, array $cartItems)
+        public function createPayment(string $email, float $price, string $fullname)
         {
             try {
-                $name = isset($_POST['name']);
-                $email = isset($_POST['email']);
-                $totalPrice = $this->getTotalPrice($cartItems);
-
-                $id = $this->purchaseService->createPurchase($name, $email, $cartItems, $totalPrice);
-    
-                $this->purchaseService->createPayment($email, $id, $totalPrice);
+                $id = uniqid();
+                $this->purchaseService->createPayment($email, $id, $totalPrice, $fullname);
             } catch (Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
@@ -76,13 +71,7 @@
                 $id = $_POST['id'];
                 $data = $this->purchaseService->getPayment($id);
 
-                if($data['id'] == 0){
-                    throw new Exception("Payment error. Payment not found");
-                }
-
-                if($data['isPayed']){
-                    $this->purchaseService->changePurchasePaymentStatus(true, $id);
-                }
+                return $data;
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

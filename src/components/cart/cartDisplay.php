@@ -13,7 +13,7 @@ class cartDisplay
     {
         echo "<section class='container section page--cart' >
         <section>
-            <h1 class='title title--page page--cart__title'>Your Cart</h1>"; 
+            <h1 class='title title--page page--cart__title dance'>Your Cart</h1>"; 
             $steps = new steps(1);
             $steps->render();    
             echo "</section>
@@ -110,7 +110,7 @@ class cartDisplay
                 <h1 class='page--cart__totalPriceColumnText'>€ $priceAfterDiscount</h1>
             </section>
             <a href='/views/jazzEvent.php'><button class='page--cart__button'>Continue Shopping</button></a>
-                <button class='page--cart__button'>Go to Payment</button>
+            <a href='/views/personaldetailspage.php' class='button page--cart__button'>Go to Payment</a>
         </section>
     </section>
         ";

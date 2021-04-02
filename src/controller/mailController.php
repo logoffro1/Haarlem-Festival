@@ -7,15 +7,15 @@
     use PHPMailer\PHPMailer\Exception;
 
 
-    class thankyoupagecontroller
+    class mailController
     {
-        private thankyoupageservice $thankyoupageService;
+        private mailService $mailService;
 
         public function __construct() {
-            $this->thankyoupageService = new thankyoupageservice();
+            $this->mailService = new mailService();
         }
 
-        public function sendMail($reciever,$subject,$content,$name)
+        public function sendMail($reciever,$subject,$content,$name, $pdf)
         {
 
             try {
@@ -27,7 +27,7 @@
                     'sender'=>"from:".EMAIL,
                 );
 
-                $this->thankyoupageService->sendMail($data);
+                $this->thankyoupageService->sendMail($data, $pdf);
             } catch(Exception $e){
                 echo $e;
             }

@@ -38,6 +38,10 @@ input, .input {
     &.input--small {
         width: 100px;
     }
+
+    &.button {
+        height: 54px;
+    }
 }
 
 input[type=checkbox], input[type=radio]{

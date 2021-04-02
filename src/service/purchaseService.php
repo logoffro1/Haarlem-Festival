@@ -190,7 +190,7 @@ use Mollie\Api\MollieApiClient;
             }
         }
 
-        public function createPayment(string $email, int $orderId, float $amount)
+        public function createPayment(string $email, int $orderId, float $amount, $fullname)
         {    
             $payment = $this->mollie->payments->create([
                 "amount" => [
@@ -202,7 +202,8 @@ use Mollie\Api\MollieApiClient;
                 "webhookUrl"  => ROOT_URL_PRODUCTION."/views/webhook.php",
                 "metadata" => [
                   "order_id" => $orderId,
-                  "email" => $email
+                  "email" => $email,
+                  "fullname" => $fullname
                 ]
             ]);
         
@@ -217,10 +218,14 @@ use Mollie\Api\MollieApiClient;
             $isPayed = $payment->isPaid();
             $order_id = $payment->metadata->order_id;
 
-            return array (
-                'isPayed'=>$isPayed,
-                'orderId'=>$order_id
+            $data = array(
+                'isPaid' => $payment->isPaid(),
+                'email' => $payment->metadata->email,
+                'order_id' => $payment->metadata->order_id,
+                'fullname' => $payment->metadata->fullname
             );
+
+            return $data;
         }
     }
 ?>
