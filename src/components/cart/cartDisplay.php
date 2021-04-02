@@ -30,6 +30,7 @@ class cartDisplay
             $date = $cartItem->__get('date');
             $time = $cartItem->__get('time');
             $count = $cartItem->__get('count');
+            $info = $cartItem->__get('additionalInfo');
 
             switch ($itemType)
             {
@@ -58,13 +59,23 @@ class cartDisplay
             echo "
             <form method='GET'>
                 <section class='page--cart__itemInfoContainer'>
-                    <h1 class='title title--tetriary'>€ $ticketPrice</h1>
-                    <h1 class='title title--tetriary'>$title</h1>
-                    <p>$place</p>
-                    <p>$day, $date $time</p>
-                </section>
-                <section class='page--cart__itemQuantityContainer'>
-                    <p>Quantity</p>
+                <h1 class='title title--tetriary'>€ $ticketPrice</h1>
+                <h1 class='title title--tetriary'>$title</h1>
+                <p>$place</p>
+                <p>$day, $date $time</p>";
+                if($info != null)
+                    echo "<p style='font-style: italic;'>Additional Info: $info</p>";
+                
+                    echo "
+                    </section>
+                <section class='page--cart__itemQuantityContainer'>";
+                
+                if($itemType == cartItemType::Cuisine)
+                    echo "<p>Seats</p>";
+                else
+                    echo "<p>Quantity</p>";
+
+                echo "
                     <input type='hidden' name='cartItemId' value='$cartItemIndex'>
                     <input class='title title--tetriary page--cart__quantityField' action='submit' name='quantity' value=$count>
                     <button class='page--cart__editButton' type='Submit' name='action' value='edit'>Change</button>

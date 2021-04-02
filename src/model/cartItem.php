@@ -1,6 +1,7 @@
 <?php 
 class cartItem
 {
+    private int $id;
     private string $title;
     private int $itemType;
     private string $address;
@@ -12,8 +13,9 @@ class cartItem
     private float $price;
 
     //Additional info is needed for cuisine only, thus its null
-    public function __construct(string $title, int $itemType, string $address, string $day, string $date, string $time, int $count, float $price, string $additionalInfo = null)
+    public function __construct(string $title, int $itemType, string $address, string $day, string $date, string $time, int $count, float $price, string $additionalInfo = null, int $id)
     {
+        $this->id=$id;
         $this->title = $title;
         $this->itemType = $itemType;
         $this->address = $address;
@@ -32,8 +34,12 @@ class cartItem
     }
 
     public function setCount(int $count){ $this->count = $count;}
-    public function increaseCount(){$this->count += 1;}
-    public function getTotalPrice(){return number_format(($this->count * $this->price),2);}
+    public function increaseCount(int $amount){$this->count += $amount;}
+    public function getTotalPrice(){
+        if($this->itemType == cartItemType::Cuisine)
+            return number_format(($this->price),2);
+        else
+        return number_format(($this->count * $this->price),2);}
 
 }
 ?>

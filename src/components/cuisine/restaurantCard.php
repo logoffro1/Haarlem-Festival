@@ -49,7 +49,7 @@ class restaurantCard
         echo "
         <section class = 'card--container col-5'>
 
-        
+        <h1 style='margin-bottom:0px'>$this->name</h1>
         <h3 style='margin-bottom:0px;margin-top:3px;'>
         <img src='../assets/images/cuisine/foodIcon.svg' class = 'card--foodicon'> ";
         $lastIndex = array_key_last($this->cuisines);

@@ -1,20 +1,30 @@
 <?php
     include '../classes/autoloader.php';
+    include '../components/cart/cartSession.php';
+
     $restaurantController = new restaurantController();
     $head = new head("Cuisine Event", "");
     $head->render();
 
     $navigation = new navigation("");
     $navigation->render();
-    if(isset($_GET['id'])){
-$restaurant = $restaurantController->getRestaurantById(intval($_GET['id']));
-$restaurantName = $restaurant->__get('name');
-$restaurantAddress = $restaurant->__get('address');
-$restaurantSeats = $restaurant->__get('seats');
-$restaurantBiography = $restaurant->__get('biography');
-$restaurantStars = $restaurant->__get('stars');
-$restaurantSessions = $restaurant->getSessions();
-$restaurantImages = $restaurant->__get('images');
+    $_SESSION['cart']->render();
+
+    if(isset($_GET['id']) || isset($_GET['restaurantID'])){
+        if(isset($_GET['id']))
+            $restaurantID = $_GET['id'];
+        else if(isset($_GET['restaurantID']))
+            $restaurantID = $_GET['restaurantID'];
+        
+        
+        $restaurant = $restaurantController->getRestaurant(intval($restaurantID));
+        $restaurantName = $restaurant->__get('name');
+        $restaurantAddress = $restaurant->__get('address');
+        $restaurantSeats = $restaurant->__get('seats');
+        $restaurantBiography = $restaurant->__get('biography');
+        $restaurantStars = $restaurant->__get('stars');
+        $restaurantSessions = $restaurant->getSessions();
+        $restaurantImages = $restaurant->__get('images');
 echo "
 <section class='container section' style='margin-top:-30px;'>
     <pre style='letter-spacing:1px'><a href = 'cuisineEvent.php'>Haarlem Cuisine </a> > <a href = '#'> $restaurantName</a> </pre>
@@ -44,6 +54,7 @@ $lastIndex = array_key_last($restaurant->__get('cuisines'));
             if($i++ != $lastIndex-1)
                  echo " &#8226 ";
         }
+
 echo "</h1>
 <fieldset class = 'restaurant--address restaurant--text'>
 <img src='../assets/images/cuisine/homeIcon.svg'>
@@ -54,7 +65,10 @@ echo "</h1>
 <h1>$restaurantSeats seats</h1>
 </fieldset>
 <a href='#reservation'><button class = 'restaurant--text'>Book now</button></a>
-
+";
+$notification = new notification();
+$notification->render();
+echo"
 <article class = 'restaurant--description restaurant--text'>
 <hr>
 <p>$restaurantBiography</p>
@@ -63,16 +77,18 @@ echo "</h1>
 <article class = 'restaurant reservation'> 
 <h1 id = 'reservation'>Make a Reservation</h1>
 <hr>
-<form action='' method = 'POST'>
+
+<form>
+<input type='hidden' name='restaurantID' value=$restaurantID>  
     <label for='name'>Fullname</label>
 <input placeholder = 'Fullname' type='text' id = 'name' name = 'name'>
 <label for='date'>Date</label>
 <select name='date' id='date' >
 
-<option value='26'>26-07-2021</option>
-<option value='27'>27-07-2021</option>
-<option value='28'>28-07-2021</option>
-<option value='29'>29-07-2021</option>
+<option value='26-07-2021'>26-07-2021</option>
+<option value='27-07-2021'>27-07-2021</option>
+<option value='28-07-2021'>28-07-2021</option>
+<option value='29-07-2021'>29-07-2021</option>
 
 </select>
 <label for='interval'>Interval</label>
@@ -82,26 +98,26 @@ foreach($restaurantSessions as $session){
 }
 echo "
 </select>
+
 <label for='seats'>Seats</label>
 <select name='seats' id='seats'>
-<option value='2'>2 seats</option>
-<option value='4'>4 seats</option>
-<option value='6'>6 seats</option>
-<option value='8'>8 seats</option>
-<option value='10'>10 seats</option>
+<option name= 'seats' value='2'>2 seats</option>
+<option name='seats' value='4'>4 seats</option>
+<option name='seats' value='6'>6 seats</option>
+<option name='seats' value='8'>8 seats</option>
+<option name='seats'  value='10'>10 seats</option>
 
 </select>
 <article class = 'textarea'>
 <label for='additiona'>Additional Information</label>
-<textarea placeholder = 'Special requests, allergies, etc...' name='additional' id='additional' cols='35' rows='7'></textarea>
+<textarea name='additionalInfo' placeholder = 'Special requests, allergies, etc...' name='additional' id='additional' cols='35' rows='7'></textarea>
 </article>
 <fieldset class = 'buttons'>
 <button>Add to your programme</button>
 <button type ='submit' name = 'submit'>Book now</button>
-</fieldset>
-
-
+</fieldset> 
 </form>
+
 <pre class = 'reservation disclaimer'>*A reservation fee of &#8364;10 per person will be
 charged when a reservation is made on the
 Haarlem Festival site. This fee wil be
@@ -121,6 +137,9 @@ echo "
 </section>
 ";
     }
+    if(isset($_GET['restaurantID']))
+            $notification->displayNotification("Your reservation for $restaurantName has been succesfully added to your cart!", "cuisine" );
+
     $footer = new footer();
     $footer->renderFooter();
 ?>

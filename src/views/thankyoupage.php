@@ -7,10 +7,14 @@
 
     $navigation = new navigation("Home");
     $navigation->render();
-
 	$controller = new thankyoupagecontroller();
     $steps = new steps(4);
-	$controller->sendMail($_SESSION['email'],"Thank you for your purchase!","We look forward to seeing you at our festival ".$_SESSION['fname']." ".$_SESSION['lname'],$_SESSION['fname']);
+
+	//create and send the pdf invoice by mail
+	if(isset($_SESSION['cart']) && isset($_SESSION['email']) && isset($_SESSION['fname']) && isset($_SESSION['lname']))
+		$pdfInvoice = new pdfInvoice($_SESSION['cart'],$_SESSION['email'],$_SESSION['fname']." ".$_SESSION['lname']);
+	//$controller->sendMail($pdfInvoice->generateInvoice(),$_SESSION['email'],"Thank you for your purchase!","We look forward to seeing you at our festival ".$_SESSION['fname']." ".$_SESSION['lname'],$_SESSION['fname']);
+
 ?>
     <section class='container section' style='padding:0px;'>
     	<article class='row align-items-left'>

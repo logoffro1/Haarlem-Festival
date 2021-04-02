@@ -28,6 +28,9 @@
                 if(isset($_GET['id'])){
                     return $this->restaurantService->getRestaurant($_GET['id']);
                 }
+                else if (isset($_GET['restaurantID']))
+                    return $this->restaurantService->getRestaurant($_GET['restaurantID']);
+               
     
                 return null;
             } catch (Exception $e){

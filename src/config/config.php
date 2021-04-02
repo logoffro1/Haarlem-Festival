@@ -1,6 +1,6 @@
 <?php
 // Database credentials
-$useLocalhost = true;
+$useLocalhost = false;
 if($useLocalhost) {
     define ( "DB_HOST", "localhost" );
     define ( "DB_USER", "root" );
