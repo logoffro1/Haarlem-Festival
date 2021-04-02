@@ -10,7 +10,9 @@
     $navigation = new navigation("Home");
     $navigation->render();
 
-    session_start();
+
+    $helper->startSession();
+
     $errors = array();
     $fnameErr = $lnameErr = $emailErr = $phonenoErr = $dobErr = "";
     $fname = $lname = $email = $phoneno = $dob = "";
@@ -85,7 +87,6 @@
         }
         if (empty($errors)){
             $purchaseController->createPayment($_POST['email'], $cart->getPriceAfterDiscount(), $_POST['fname']." ".$_POST["lname"]);
-            header("location:../views/thankyoupage.php");
         }
     }
 

@@ -190,12 +190,12 @@ use Mollie\Api\MollieApiClient;
             }
         }
 
-        public function createPayment(string $email, int $orderId, float $amount, $fullname)
+        public function createPayment(string $email, int $orderId, string $amount, string $fullname)
         {    
             $payment = $this->mollie->payments->create([
                 "amount" => [
                   "currency" => "EUR",
-                  "value" => "$amount"
+                  "value" => $amount
                 ],
                 "description" => "Payment for the Haarlem Festival",
                 "redirectUrl" => ROOT_URL_PRODUCTION."/views/thankyoupage.php?order_id=$orderId",

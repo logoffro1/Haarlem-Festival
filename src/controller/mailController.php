@@ -27,7 +27,7 @@
                     'sender'=>"from:".EMAIL,
                 );
 
-                $this->thankyoupageService->sendMail($data, $pdf);
+                $this->mailService->sendMail($data, $pdf);
             } catch(Exception $e){
                 echo $e;
             }

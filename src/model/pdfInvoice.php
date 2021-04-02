@@ -2,22 +2,16 @@
     include '../classes/autoloader.php';
     require __DIR__ . '/../vendor/autoload.php';
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
-
     //  Made by Cosmin Ilie
-    // This class generates an PDF invoice and emails it to the customer
+    // This class generates an PDF invoice for the customer
     class pdfInvoice {
-        private string $sendToMail;
-        private string $sendFromMail;
+        private string $id;
         private array $cartItems;
         private string $customerName;
 
-        public function __construct(cart $cart = null, string $sendToMail,string $customerName)
+        public function __construct(string $id, cart $cart = null, string $customerName)
         {
-            $this->sendToMail = $sendToMail;
-            $this->sendFromMail = "thehaarlemfestival@gmail.com";
+            $this->id = $id;
             $this->cartItems = $cart->__get('cartItems');
             $this->customerName = $customerName;
         }
@@ -39,7 +33,7 @@
             <table style="background-color: #222222; color: #fff">
                 <tbody>
                     <tr>
-                        <td><h1>INVOICE<strong> #'.rand().'</strong></h1></td>
+                        <td><h1>INVOICE<strong> #'.$this->id.'</strong></h1></td>
                         <td align="right"><img src="../assets/images/svg/logo-white.svg" height="50px"/><br/>
 
                         Netherlands, Haarlem	<br/>

@@ -33,15 +33,20 @@
             }
         }
 
-        public function createPayment(string $email, float $price, string $fullname)
+        public function createPayment(string $email, string $price, string $fullname)
         {
             try {
-                $id = uniqid();
-                $this->purchaseService->createPayment($email, $id, $totalPrice, $fullname);
+                $id = hexdec(uniqid());
+                $this->purchaseService->createPayment($email, $id, $price, $fullname);
             } catch (Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
             }
+        }
+
+        public function createReservations(cart $cart)
+        {
+            # code...
         }
 
         public function getTotalPrice($cartItems) : float

@@ -2,16 +2,18 @@
     include '../classes/autoloader.php';
 
     class pdfController extends controller {
-        private pdfInvoice $pdfInvoice;
-
-        public function __construct(pdfInvoice $pdfInvoice) {
+        public function __construct() {
             parent::__construct();
-            $this->pdfInvoice = $pdfInvoice;
         }
 
-        public function createPdf(string $id, string $email, $name)
+        public function createPdf(string $id, string $name)
         {
-            new pdfInvoice($id, $_SESSION['cart'],$email, $name);
+            try {
+                $pdfInvoice = new pdfInvoice($id, $_SESSION['cart'], $name);
+                return $pdfInvoice->generateInvoice();
+            } catch(Exception $e){
+                echo $e->getMessage();
+            }
         }
     }
 ?>
