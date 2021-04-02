@@ -1,5 +1,6 @@
 <?php
 include_once '../config/config.php';
+include '../classes/autoloader.php';
 require_once __DIR__ . "/../vendor/autoload.php";
 use Mollie\Api\MollieApiClient;
 

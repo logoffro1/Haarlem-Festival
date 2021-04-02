@@ -1,4 +1,6 @@
 <?php
+    include '../classes/autoloader.php';
+
     class performanceService {
         private database $db;
         private mysqli $conn;
