@@ -1,19 +1,13 @@
 <?php
     include '../classes/autoloader.php';
-    session_start();
 
     $head = new head("homepage", "");
     $head->render();
 
     $navigation = new navigation("Home");
     $navigation->render();
-	$controller = new thankyoupagecontroller();
-    $steps = new steps(4);
 
-	//create and send the pdf invoice by mail
-	if(isset($_SESSION['cart']) && isset($_SESSION['email']) && isset($_SESSION['fname']) && isset($_SESSION['lname']))
-		$pdfInvoice = new pdfInvoice($_SESSION['cart'],$_SESSION['email'],$_SESSION['fname']." ".$_SESSION['lname']);
-	//$controller->sendMail($pdfInvoice->generateInvoice(),$_SESSION['email'],"Thank you for your purchase!","We look forward to seeing you at our festival ".$_SESSION['fname']." ".$_SESSION['lname'],$_SESSION['fname']);
+	$steps = new steps(4);
 
 ?>
     <section class='container section' style='padding:0px;'>
@@ -68,14 +62,6 @@
     </section>
 
 <?php
-	$controller->sendDataToDB($_SESSION['fname'],$_SESSION['lname'],$_SESSION['email']);
-	//unset session so if the page is refreshed it doesnt spam emails
-    unset($_SESSION['email']);
-    unset($_SESSION['fname']);
-    unset($_SESSION['lname']);
-    unset($_SESSION['dob']);
-    unset($_SESSION['phoneno']);
-
     $footer = new footer();
     $footer->renderFooter();
 ?>
