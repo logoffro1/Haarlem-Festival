@@ -2,7 +2,7 @@
     include '../classes/autoloader.php';
     // Include once, because otherwise their will be an error, bcs the database.php also uses it and u get multiple defined variables.
     include_once '../config/config.php';
-    require __DIR__ . '/../../vendor/autoload.php';
+    require __DIR__ . '/../vendor/autoload.php';
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
