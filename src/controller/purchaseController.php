@@ -44,9 +44,31 @@
             }
         }
 
-        public function createReservations(cart $cart)
+        public function createReservations(string $fullname, string $email, cart $cart)
         {
-            # code...
+            try {
+                $cartItems = $cart->cartItems;
+                $totalPrice = $cart->getTotalPrice();
+                $discount = $cart->getDiscount();
+
+                $purchaseId = $this->purchaseService->createPurchase($fullname, $email, $totalPrice, $discount);
+
+                foreach ($cartItems as $cartItem) {
+                    $cartItemType = $cartItem->itemType;
+                    $cartItemId = $cartItem->id; // performacne id
+                    $cartItemCount = $cartItem->count; // bought tickets
+
+                    if ($cartItemType == cartItemType::Jazz || $cartItemType == cartItemType::Dance){
+                        $this->purchaseService->insertPerformanceReservations($purchaseId, $cartItemId, $cartItemCount);
+                    } elseif ($cartItemType == cartItemType::Cuisine) {
+                        $this->purchaseService->insertCuisineReservations($purchaseId, $cartItem);
+                    } else {
+                        throw new Exception("Cart item type not supported");
+                    }
+                }
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
         }
 
         public function getTotalPrice($cartItems) : float

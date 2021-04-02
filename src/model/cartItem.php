@@ -34,12 +34,17 @@ class cartItem
     }
 
     public function setCount(int $count){ $this->count = $count;}
+
     public function increaseCount(int $amount){$this->count += $amount;}
+
     public function getTotalPrice(){
-        if($this->itemType == cartItemType::Cuisine)
+        if($this->itemType == cartItemType::Cuisine){
             return number_format(($this->price),2);
-        else
-        return number_format(($this->count * $this->price),2);}
+        }
+        else {
+            return number_format(($this->count * $this->price),2);
+        }
+    }
 
 }
 ?>

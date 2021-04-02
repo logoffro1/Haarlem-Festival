@@ -15,7 +15,7 @@
             $cart = $_SESSION['cart'];
             
             // Add the reservation to the database 
-            $purchaseController->createReservations($cart);
+            $purchaseController->createReservations( $metaData['fullname'], $metaData['email'], $cart);
             
             // Create invoice based on bought tickets from session
             $pdf = $pdfController->createPdf($_POST['id'], $metaData['fullname']);

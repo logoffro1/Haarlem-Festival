@@ -11,7 +11,7 @@
 
 	$steps = new steps(4);
 
-	// Checking the count so that it can display empty cart information on the screen when no item is in cart
+	// Check the amount of items in cart, if it is 0, redirect back to the cart page
 	if($_SESSION['cart']->getCountFromCart() == 0)
 	{
 		$helper->redirect("/views/cart.php");

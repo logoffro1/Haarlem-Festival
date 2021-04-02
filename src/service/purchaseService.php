@@ -86,14 +86,14 @@ use Mollie\Api\MollieApiClient;
             }
         }
 
-        public function createPurchase(string $name, string $email, array $cartItems, float $totalPrice)
+        public function createPurchase(string $name, string $email, float $totalPrice, float $discount)
         {
             $sql = "INSERT INTO Purchases (
                 `name`,
                 `email`,
                 `price`,
                 `discount`,
-                `is_payed`,
+                `is_payed`
             ) VALUES (?,?,?,?,?)";
     
             // Get connection and prepare statement
@@ -104,50 +104,44 @@ use Mollie\Api\MollieApiClient;
                     $emailParam,
                     $totalPriceParam,
                     $discountParam,
-                    false,
+                    $isPayedParam,
                 );
     
                 $nameParam = $name;
                 $emailParam = $email;
                 $totalPriceParam = $totalPrice;
                 $discountParam = $discount;
+                $isPayedParam = true;
+
                 // Execute query
                 $query->execute();
     
-                foreach ($cartItems as $cartItem) {
-                    if($cartItem instanceof performanceReservation){
-                        $this->insertReservations($query->insert_id, $cartItem);
-                    } else if($cartItem instanceof restaurantReservation){
-                        $this->insertReservations($query->insert_id, $cartItem);
-                    } else {
-                        throw new Exception('cart item type not supported.');
-                    }
-                }
+                return $query->insert_id;
             } else {
                 throw new Exception('Could not create a payment. Please try again');
             }
         }
 
-        public function insertPerformanceReservations(int $purchaseId, $cartItem)
+        public function insertPerformanceReservations(int $purchaseId, $performanceId, $seats)
         {
             $sql = "INSERT INTO Reservation_Performance (
                 `performance_id`,
                 `purchase_id`,
-                `seats`,
+                `seats`
             ) VALUES (?,?,?)";
     
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
                 $query->bind_param("iii",
-                    $performanceId,
+                    $performanceIdParam,
                     $purchaseIdParam,
-                    $seats,
+                    $seatsParam,
                 );
 
                 $purchaseIdParam = $purchaseId;
-                $performanceId = $cartItem->performance->id;
-                $seats = $cartItem->seats;
+                $performanceIdParam = $performanceId;
+                $seatsParam = $seats;
     
                 // Execute query
                 $query->execute();
@@ -158,30 +152,30 @@ use Mollie\Api\MollieApiClient;
 
         public function insertCuisineReservations(int $purchaseId, $cartItem)
         {
-            $sql = "INSERT INTO Reservation_Performance (
+            $sql = "INSERT INTO Reservation_Cuisine (
 	            restaurant_id,
                 purchase_id,
                 seats,
-                sessionNr,
+                `time`,
                 extra_info	
             ) VALUES (?,?,?,?,?)";
     
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
                 // Create bind params to prevent sql injection
-                $query->bind_param("iiiis",
+                $query->bind_param("iiiss",
                     $restaurantId,
                     $purchaseIdParam,
                     $seats,
-                    $sessionNr,
+                    $time,
                     $extraInfo,
                 );
 
                 $purchaseIdParam = $purchaseId;
-                $restaurantId = $cartItem->restaurant->id;
-                $seats = $cartItem->seats;
-                $sessionNr = $cartItem->sessionNr;
-                $extraInfo = $cartItem->extra_info;
+                $restaurantId = $cartItem->id;
+                $seats = $cartItem->count;
+                $time = $cartItem->time;
+                $extraInfo = $cartItem->additionalInfo;
     
                 // Execute query
                 $query->execute();
