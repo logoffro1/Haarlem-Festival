@@ -21,7 +21,7 @@
                 <link
                     href='https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap'
                     rel='stylesheet'>
-                <link rel='stylesheet' href='/assets/styles/main.css'>
+                <link rel='stylesheet' href='../assets/styles/main.css'>
                 <title>$this->title</title>
             </head>
 
