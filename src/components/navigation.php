@@ -11,7 +11,7 @@ class navigation {
     {
         echo "
         <nav class='navigation'>
-            <a href='#'>
+            <a href='/views/homepage.php'>
                 <img class='navigation__brand' src='/assets/images/svg/logo.svg'/>
             </a>
             <ul class='navigation__links'>
@@ -22,7 +22,7 @@ class navigation {
                         <li><a href='/views/jazzEvent.php'>Jazz</a></li>
                         <li><a href='/views/danceEvent.php'>Dance</a></li>
                         <li><a href='/views/cuisineEvent.php'>Cuisine</a></li>
-                        <li><a href='/views/historyEvent.php'>History</a></li>
+                        <li><a href='#'>History</a></li>
                     </ul>
                 </li>
             </ul>

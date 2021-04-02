@@ -6,21 +6,23 @@ class emptyCartDisplay
     public function render()
     {
         echo "
-                    <section class='container section page--emptyCart'>
-                        <h1 class='page--emptyCart__title'>Your cart is empty.</h1>
-                        <section class='row col-8 col-offset-1 page--emptyCart__cardContainer'>";
+            <section class='container section page--emptyCart'>
+                <h1 class='page--emptyCart__title'>Your cart is empty.</h1>
+                
+                <section class='row col-8 col-offset-1 page--emptyCart__cardContainer'>";
 
-                    $cuisineEvent = new eventCards("cuisine", "get inspired by", "The haarlem cuisine", "#");
+                    $cuisineEvent = new eventCards("cuisine", "get inspired by", "The haarlem cuisine", "/views/cuisineEvent.php");
                     $historyEvent = new eventCards("history", "Discover", "The haarlem history", "#");
-                    $danceEvent = new eventCards("dance", "Get wild during", "The haarlem dance", "#");
-                    $jazzEvent = new eventCards("jazz", "Check out", "The haarlem jazz", "#");
-    
+                    $danceEvent = new eventCards("dance", "Get wild during", "The haarlem dance", "/views/danceEvent.php");
+                    $jazzEvent = new eventCards("jazz", "Check out", "The haarlem jazz", "/views/jazzEvent.php");
+
                     $cuisineEvent->render();
                     $historyEvent->render();
                     $danceEvent->render();
                     $jazzEvent->render();
 
-        echo "</section></section>";
+        echo "  </section>
+            </section>";
     }
 }
 ?>

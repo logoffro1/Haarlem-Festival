@@ -18,14 +18,13 @@ class footer
                 </nav>
                 <ul class='footer__list col-2'>
                     <span class='footer__list__title'>Events</span>
-                    <li><a href='#'>Jazz</a></li>
-                    <li><a href='../views/danceEvent.php'>Dance</a></li>
+                    <li><a href='/views/jazzEvent.php'>Jazz</a></li>
+                    <li><a href='/views/danceEvent.php'>Dance</a></li>
+                    <li><a href='/views/cuisineEvent.php'>Cuisine</a></li>
                     <li><a href='#'>History</a></li>
-                    <li><a href='#'>Cuisine</a></li>
                 </ul>
                 <ul class='footer__list col-2'>
                     <span class='footer__list__title'>Pages</span>
-                    <li><a href='#'>Your programme</a></li>
                     <li><a href='/views/cart.php'>Shopping Cart</a></li>
                     <li><a href='/views/bookmoresavemore.php'>Discount</a></li>
                 </ul>

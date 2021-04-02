@@ -62,14 +62,13 @@ $_SESSION['cart']->render();
             <p>
                 <?php echo $page->third_section_text; ?>
             </p>
-            <a href="#" class="button">Create your programme</a>
         </header>
         <section class="row col-7 col-offset-1">
             <?php
-                $cuisineEvent = new eventCards("cuisine", "get inspired by", "The haarlem cuisine", "#");
+                $cuisineEvent = new eventCards("cuisine", "get inspired by", "The haarlem cuisine", "/views/cuisineEvent.php");
                 $historyEvent = new eventCards("history", "Discover", "The haarlem history", "#");
-                $danceEvent = new eventCards("dance", "Get wild during", "The haarlem dance", "#");
-                $jazzEvent = new eventCards("jazz", "Check out", "The haarlem jazz", "#");
+                $danceEvent = new eventCards("dance", "Get wild during", "The haarlem dance", "/views/danceEvent.php");
+                $jazzEvent = new eventCards("jazz", "Check out", "The haarlem jazz", "/views/jazzEvent.php");
 
                 $cuisineEvent->render();
                 $historyEvent->render();
