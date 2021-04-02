@@ -12,12 +12,14 @@
         private string $sendToMail;
         private string $sendFromMail;
         private array $cartItems;
+        private string $customerName;
 
-        public function __construct(cart $cart = null, string $sendToMail)
+        public function __construct(cart $cart = null, string $sendToMail,string $customerName)
         {
             $this->sendToMail = $sendToMail;
             $this->sendFromMail = "thehaarlemfestival@gmail.com";
             $this->cartItems = $cart->__get('cartItems');
+            $this->customerName = $customerName;
 
             $this->sendInvoiceByMail();
         }
@@ -54,9 +56,8 @@
                 <tbody>
                     <tr>
                         <td>Invoice to<br/>
-                        <strong>'.$customer.'</strong>
+                        <strong>'.$this->customerName.'</strong>
                         <br/>
-                        '.$address.'
                         </td>
                         <td align="right"> 
                         Invoice Date: '.date('d-m-Y').'
@@ -142,9 +143,9 @@
                 $Mail->Priority = 1;  
                 $mail->AddAddress($this->sendToMail,"Customer");
                 $mail->SetFrom($this->sendFromMail, "The Haarlem Festival");
-                $mail->Subject  = "Your Haarlem Festival Invoice";
+                $mail->Subject  = "Thank you for your purchase!";
                 $mail->AddStringAttachment($pdf,'invoice.pdf','base64','application/pdf');
-                $mail->Body     = "This is your generated invoice.";
+                $mail->Body     = "This is your generated invoice. ";
                 $mail->WordWrap = 50;
         
                 if(!$mail->Send()){
