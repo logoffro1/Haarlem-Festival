@@ -107,7 +107,7 @@
             <header class='col-4' style='margin-left:0px; padding-left:0px;'>
                 <nav class='breadcrumbs' style='margin-left:10px;'>
                     <ul>
-                        <li class='breadcrumbs__breadcrumb'><a href='#'>Cart overview</a></li>
+                        <li class='breadcrumbs__breadcrumb'><a href='/views/cart.php'>Cart overview</a></li>
                         <li class='breadcrumbs__breadcrumb'><a href='#'>Personal details</a></li>
                     </ul>
                 </nav>

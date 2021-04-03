@@ -13,7 +13,7 @@
             <section>
                 <ul class='steps'>
                     <li class='step " . $this->getActiveStep(1) . "'>
-                        <a href='#'><span>Your Cart</span></a>
+                        <a href='/views/cart.php'><span>Your Cart</span></a>
                     </li>
                     <li class='step " . $this->getActiveStep(2) . "'>
                         <a href='#'><span>Personal Details</span></a>
