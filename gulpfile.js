@@ -7,9 +7,12 @@ const runSequence = require('run-sequence').use(gulp);
 const imagemin = require("gulp-imagemin");
 const htmlmin = require("gulp-htmlmin");
 const autoprefixer = require('gulp-autoprefixer');
-const webpack = require('webpack-stream');
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
 const cache = require('gulp-cache');
 const del = require('del');
+
+const webpackConfig = require('./webpack.config.js');
 
 const filePath = {
     baseDir: "./dist",
@@ -44,25 +47,7 @@ gulp.task('images', function(){
 // Scripts
 gulp.task('js', function(){
    return gulp.src(filePath.js)
-        .pipe(webpack({
-            mode: 'development',
-            watch: true,
-            output: { 
-                filename: 'index.js'
-            },
-            module: {
-                rules: [{
-                    test: /\.js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env']
-                        }
-                    }
-                }]
-            }
-        }))
+        .pipe(webpackStream(webpackConfig), webpack)
         .pipe(gulp.dest(filePath.dist.js));   
 });
 
