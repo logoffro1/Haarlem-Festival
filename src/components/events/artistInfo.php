@@ -63,7 +63,7 @@ class artistInfo
 
     private function getUrl()
     {
-        return strtolower($this->type) == 'jazz' ? '/views/jazzEvent.php' : '/views/danceEvent.php';
+        return strtolower($this->type) == 'jazz' ? '../views/jazzEvent.php' : '../views/danceEvent.php';
     }
 }
 

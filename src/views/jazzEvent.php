@@ -56,7 +56,7 @@ foreach ($allJazzArtists as $jazzArtist)
             if($performanceDate == "allDates" && $artistName == "allArtists")
                 $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('name'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
             //Filter artist name
-            else if($performanceDate== "allDates" && $jazzArtist->__get('name') == $name )
+            else if($performanceDate== "allDates" && $jazzArtist->__get('name') == $artistName )
                 $jazzCards[] = new jazzPerformanceCard($performance, $jazzArtist->__get('name'), $jazzArtist->__get('thumbnail'), $jazzArtist->__get('id'));
             //Filter date
             else if($artistName == "allArtists" && $performance->getDate() == $performanceDate)

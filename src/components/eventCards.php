@@ -24,7 +24,7 @@ class eventCards
                 $this->title
             </h4>
             <a href='$this->url' class='card--events__arrow' >
-                <img src='/assets/images/svg/icons/arrow_forward-24px.svg' alt='' srcset=''>
+                <img src='../assets/images/svg/icons/arrow_forward-24px.svg' alt='' srcset=''>
             </a>
         </article>
         ";

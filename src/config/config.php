@@ -1,6 +1,6 @@
 <?php
 // Database credentials
-$useLocalhost = true;
+$useLocalhost = false;
 if($useLocalhost) {
     define ( "DB_HOST", "localhost" );
     define ( "DB_USER", "root" );
@@ -19,7 +19,7 @@ define ( "UPLOAD_PATH", $_SERVER['DOCUMENT_ROOT'].UPLOAD_FOLDER );
 
 // Urls for website
 define ('ROOT_URL', 'http://localhost:3000/');
-define ('ROOT_URL_PRODUCTION', ''); // Todo add production url if we need to host it.
+define ('ROOT_URL_PRODUCTION', 'https://emkutuk.com/haarlem-festival/'); // Todo add production url if we need to host it.
 
 // Email used for sending emails
 define ('EMAIL', 'graphicabstract@gmail.com');
