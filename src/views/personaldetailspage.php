@@ -31,7 +31,7 @@
     } 
     else
     {
-        $helper->redirect("/views/cart.php");
+        $helper->redirect("../views/cart.php");
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
