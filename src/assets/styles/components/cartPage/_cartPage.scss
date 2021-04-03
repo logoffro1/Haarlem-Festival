@@ -1,13 +1,9 @@
 .page--cart
 {
-    
-    .page--cart__title{
-        display:inline-block; 
-        margin-right: 250px;
-    }
+    padding-top: 25px;
 
-    .page--cart__progressBar{
-        display:inline-block; 
+    .page--cart__header {
+        margin-bottom: 50px;
     }
 
     .page--cart__itemContainer{

@@ -12,8 +12,8 @@ class cartDisplay
     public function render()
     {
         echo "<section class='container section page--cart' >
-        <section>
-            <h1 class='title title--page page--cart__title dance'>Your Cart</h1>"; 
+        <section class='row align-items-end page--cart__header'>
+            <h1 style='margin-left:0px; padding-left:0px;' class='col-4 title title--page page--cart__title dance'>Your Cart</h1>"; 
             $steps = new steps(1);
             $steps->render();    
             echo "</section>
