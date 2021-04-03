@@ -184,11 +184,13 @@ use Mollie\Api\MollieApiClient;
             }
         }
 
-        public function createPayment(string $email, int $orderId, string $amount, string $fullname)
+        public function createPayment(string $email, int $orderId, string $amount, string $fullname, $cart)
         {    
             $protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
             $hostname = $_SERVER['HTTP_HOST'];
             $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
+            
+            $serializedCart = serialize($cart);
 
             $payment = $this->mollie->payments->create([
                 "amount" => [
@@ -201,7 +203,8 @@ use Mollie\Api\MollieApiClient;
                 "metadata" => [
                   "order_id" => $orderId,
                   "email" => $email,
-                  "fullname" => $fullname
+                  "fullname" => $fullname,
+                  "cart"=>$serializedCart
                 ]
             ]);
         
@@ -220,7 +223,8 @@ use Mollie\Api\MollieApiClient;
                 'isPaid' => $payment->isPaid(),
                 'email' => $payment->metadata->email,
                 'order_id' => $payment->metadata->order_id,
-                'fullname' => $payment->metadata->fullname
+                'fullname' => $payment->metadata->fullname,
+                'cart' => $payment->metadata->cart
             );
 
             return $data;

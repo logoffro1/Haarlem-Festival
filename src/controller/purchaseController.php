@@ -33,11 +33,11 @@
             }
         }
 
-        public function createPayment(string $email, string $price, string $fullname)
+        public function createPayment(string $email, string $price, string $fullname, $cart)
         {
             try {
                 $id = time();
-                $this->purchaseService->createPayment($email, $id, $price, $fullname);
+                $this->purchaseService->createPayment($email, $id, $price, $fullname, $cart);
             } catch (Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());

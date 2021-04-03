@@ -86,7 +86,7 @@
             $_SESSION['email'] = $_POST['email'];
         }
         if (empty($errors)){
-            $purchaseController->createPayment($_POST['email'], strval($cart->getPriceAfterDiscount()), $_POST['fname']." ".$_POST["lname"]);
+            $purchaseController->createPayment($_POST['email'], strval($cart->getPriceAfterDiscount()), $_POST['fname']." ".$_POST["lname"], $cart);
         }
     }
 
