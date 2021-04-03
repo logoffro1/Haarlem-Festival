@@ -4,6 +4,9 @@
     $purchaseController = new purchaseController();
     $pdfController = new pdfController();
     $mailController = new mailController();
+    
+    $helper = new helper();
+    $helper->startSession();
 
     try {
         // Get payment meta data and isPaid boolean
