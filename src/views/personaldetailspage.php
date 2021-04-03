@@ -34,7 +34,7 @@
         $helper->redirect("../views/cart.php");
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    if (isset($_POST["submit"]))
     {
         if (empty($_POST["fname"]))
         {
@@ -86,7 +86,7 @@
             $_SESSION['email'] = $_POST['email'];
         }
         if (empty($errors)){
-            $purchaseController->createPayment($_POST['email'], $cart->getPriceAfterDiscount(), $_POST['fname']." ".$_POST["lname"]);
+            $purchaseController->createPayment($_POST['email'], strval($cart->getPriceAfterDiscount()), $_POST['fname']." ".$_POST["lname"]);
         }
     }
 
@@ -118,7 +118,7 @@
         </article>
     </section>
 
-    <form method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
+    <form method='post'>
 
         <section class='container section' style='padding-top:0px; padding-bottom:0px;'>
             <!--FIRST HEADER-->

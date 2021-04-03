@@ -36,7 +36,7 @@
         public function createPayment(string $email, string $price, string $fullname)
         {
             try {
-                $id = hexdec(uniqid());
+                $id = time();
                 $this->purchaseService->createPayment($email, $id, $price, $fullname);
             } catch (Exception $e){
                 // If error occured, show it in the website
