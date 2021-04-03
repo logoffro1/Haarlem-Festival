@@ -7,15 +7,16 @@
     use PHPMailer\PHPMailer\Exception;
 
 
-    class mailController
+    class mailController extends controller
     {
         private mailService $mailService;
 
         public function __construct() {
+            parent::__construct();
             $this->mailService = new mailService();
         }
 
-        public function sendMail($reciever,$subject,$content,$name, $pdf)
+        public function sendMail($reciever,$subject,$content,$name, $pdf = false)
         {
 
             try {
@@ -23,13 +24,12 @@
                     'reciever'=>$reciever,
                     'subject'=>$subject,
                     'content'=>$content,
-                    'name'=>$name,
-                    'sender'=>"from:".EMAIL,
+                    'name'=>$name
                 );
 
                 $this->mailService->sendMail($data, $pdf);
-            } catch(Exception $e){
-                echo $e;
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
             }
         }
     }

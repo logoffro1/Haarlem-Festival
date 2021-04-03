@@ -14,26 +14,39 @@ class mailService  {
 	}
 
 
-	public function sendMail($emailData, $pdf) : void
+	public function sendMail($emailData, $pdf = false) : void
 	{
-		$mail = new PHPMailer(true);
+		$mail = new PHPMailer();
 		try
 		{
+			/* Mail settings for sending mail */
+			$mail->IsSMTP();  // telling the class to use SMTP
+			$mail->SMTPSecure = 'tls';  
+			$mail->Mailer = "smtp";
+			$mail->Host = "smtp.gmail.com";
+			$mail->Port = 587;
+			$mail->SMTPAuth = true; // turn on SMTP authentication
+			$mail->Username = "thehaarlemfestival@gmail.com"; // SMTP username
+			$mail->Password = "Thehaarlemfestival123"; // SMTP password
+			$Mail->Priority = 1; 
+
+			/* Mail content */
 			//Recipients
-			$mail->SetFrom(EMAIL, 'The Haarlem Festival');
+			$mail->SetFrom("thehaarlemfestival@gmail.com", 'The Haarlem Festival');
 			// Add a recipient
 			$mail->AddAddress($emailData['reciever'], $emailData['name']);
 
-			$mail->Subject  = "Thank you for your purchase!";
+			$mail->Subject  = $emailData['subject'];
+			
 			//Attachments
-			$mail->AddStringAttachment($pdf,'Haarlem_Festival_Invoice.pdf','base64','application/pdf');
+			if($pdf){
+				$mail->AddStringAttachment($pdf,'Haarlem_Festival_Invoice.pdf','base64','application/pdf');
+			}
 
-			$mail->Body = "This is your generated invoice for the Haarlem Festival events.";
+			$mail->Body = $emailData['content'];
 
 			//Content
 			$mail->isHTML(true);
-			$mail->Subject = 
-			$mail->Body    = $emailData['content'];
 			$mail->send();
 		}
 		catch (Exception $e)

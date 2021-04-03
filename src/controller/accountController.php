@@ -4,10 +4,12 @@
     class accountController extends controller
     {
         private accountService $accountService;
+        private mailController $mailController;
 
         public function __construct() {
             parent::__construct();
             $this->accountService = new accountService();
+            $this->mailController = new mailController();
         }
 
         public function login()
@@ -69,20 +71,16 @@
                 // Add user to the database via the model layer
                 $this->accountService->addUser($user);
 
-                // Create email template
-                $mailData = [
-                    'reciever' => "$email",
-                    'subject' => 'Haarlem Festival User Activation',
-                    'content' => "Click this link to activate your account. ". ROOT_URL . "cms/activate-account.php?email=" . $email . " <br/> or try " 
+                $this->mailController->sendMail(
+                    $email, 
+                    'Haarlem Festival User Activation',
+                    "Click this link to activate your account. ". ROOT_URL . "cms/activate-account.php?email=" . $email . " <br/> or try " 
                     . ROOT_URL_PRODUCTION . "cms/activate-account.php?email=" . $email,
-                    'sender' => 'From: ' . EMAIL,
-                ];
-        
-                // Sent email
-                $this->sentMail($mailData);
+                    $name
+                );
 
                 // Redirect to login
-                // $this->helper->redirect("login.php");
+                $this->helper->redirect("login.php");
             } catch(Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
@@ -125,17 +123,14 @@
                 // Get user email input
                 $email = htmlspecialchars($_POST["email"]);
     
-                // Create email data
-                $emailData = [
-                    'reciever' => $email,
-                    'sender' => "From: " . EMAIL,
-                    'subject' => 'Haarlem Festival - Password Reset',
-                    'content' => 'Click this link to reset your password. ' . ROOT_URL . "cms/reset-password.php?email=$email" . " <br/> or try " 
+                // $reciever,$subject,$content,$name, $pdf
+                $this->mailController->sendMail(
+                    $email, 
+                    'Haarlem Festival - Password Reset',
+                    'Click this link to reset your password. ' . ROOT_URL . "cms/reset-password.php?email=$email" . " <br/> or try " 
                     . ROOT_URL_PRODUCTION . "cms/reset-password.php?email=$email",
-                ];
-    
-                // Sent  email
-                $this->sentMail($emailData);
+                    ""
+                );
 
                 // Create confirmation message
                 $this->addToSuccess('We have sent a mail to your email address. Please follow the instructions provided in the mail.');

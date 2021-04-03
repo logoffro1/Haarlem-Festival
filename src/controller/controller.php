@@ -69,14 +69,5 @@ include_once '../classes/helper.php';
                 $this->addToErrors($e->getMessage());
             }
         }
-
-        // Send email
-        protected function sentMail($emailData) : void
-        {
-            if (!mail($emailData['reciever'], $emailData['subject'], $emailData['content'], $emailData['sender']))
-            {
-                throw new Exception("could not send the email, please try again");
-            }
-        }
     }
 ?>
