@@ -109,8 +109,8 @@ class cartDisplay
             <section class='page--cart__totalPriceColumn'>
                 <h1 class='page--cart__totalPriceColumnText'>€ $priceAfterDiscount</h1>
             </section>
-            <a href='/views/jazzEvent.php'><button class='page--cart__button'>Continue Shopping</button></a>
-            <a href='/views/personaldetailspage.php' class='button page--cart__button'>Go to Payment</a>
+            <a href='../views/jazzEvent.php'><button class='page--cart__button'>Continue Shopping</button></a>
+            <a href='../views/personaldetailspage.php' class='button page--cart__button'>Go to Payment</a>
         </section>
     </section>
         ";
