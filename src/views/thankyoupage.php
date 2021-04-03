@@ -45,7 +45,7 @@
     	</article>
     	<article class='row'>
     		<header class='col-12'>
-    			<a href='../index.php'>
+    			<a href='/views/homepage.php'>
     				<button style='margin-top:25px;margin-bottom:25px;'>Return to home</button>
     			</a>
     		</header>
