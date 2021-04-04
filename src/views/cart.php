@@ -8,7 +8,7 @@
     $navigation = new navigation("");
     $navigation->render();
     // Checking the count so that it can display empty cart information on the screen when no item is in cart
-    if($_SESSION['cart']->getCountFromCart() > 0)
+    if(isset($_SESSION['cart']) && $_SESSION['cart']->getCountFromCart() > 0)
     {
         $cart = new cartDisplay($_SESSION['cart']);
         $cart->render();

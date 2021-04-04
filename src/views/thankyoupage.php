@@ -18,7 +18,7 @@
 
 
 	// Check the amount of items in cart, if it is 0, redirect back to the cart page
-	if($_SESSION['cart']->getCountFromCart() == 0 && !isset($_GET['order_id']))
+	if(isset($_SESSION['cart']) && $_SESSION['cart']->getCountFromCart() == 0 && !isset($_GET['order_id']))
 	{
 		$helper->redirect("/views/cart.php");
 	}
