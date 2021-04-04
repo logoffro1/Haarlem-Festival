@@ -6,10 +6,10 @@
             parent::__construct();
         }
 
-        public function createPdf(string $id, string $name)
+        public function createPdf(int $id, string $name)
         {
             try {
-                $pdfInvoice = new pdfInvoice($id, $_SESSION['cart'], $name);
+                $pdfInvoice = new pdfInvoice(strval($id), $_SESSION['cart'], $name);
                 return $pdfInvoice->generateInvoice();
             } catch(Exception $e){
                 echo $e->getMessage();
