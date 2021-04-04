@@ -19,7 +19,7 @@ class cmsNavigation {
         <aside class='navigation--cms'>
             <header class='navigation--cms__header'>
                 <a href='./index.php'>
-                    <img src='/assets/images/svg/logo.svg' alt=''>
+                    <img src='../assets/images/svg/logo.svg' alt=''>
                 </a>
                 <a href='./profile-page.php' class='navigation--cms__header__profile'></a>
             </header>

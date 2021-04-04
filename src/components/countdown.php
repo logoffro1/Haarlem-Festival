@@ -30,10 +30,6 @@
                     <span class='countdown__counter js-countdown__seconds'>00</span>
                     <span class='title title--tetriary'>Seconds</span>
                 </p>
-        
-                <p class='countdown__button'>
-                    <a href='$this->url' class='button'>Create your programme</a>
-                </p>
             </section>
             ";
         }

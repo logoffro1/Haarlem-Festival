@@ -86,6 +86,9 @@
             $_SESSION['email'] = $_POST['email'];
         }
         if (empty($errors)){
+            // Add the reservation to the database and return id
+            $tableId = $purchaseController->createReservations($_POST['fname']." ".$_POST["lname"], $_POST['email'], $cart);
+            
             $purchaseController->createPayment($_POST['email'], strval($cart->getPriceAfterDiscount()), $_POST['fname']." ".$_POST["lname"], $cart);
         }
     }

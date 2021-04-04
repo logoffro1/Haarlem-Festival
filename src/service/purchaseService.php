@@ -60,6 +60,50 @@ use Mollie\Api\MollieApiClient;
         }
 
         /**
+         * getPurchase - Gets on purchase details, but not the tickets related to the purchase
+         * 
+         * @return purchase - specific purchase based on id
+         */
+        public function getPurchase(int $id) : ?purchase
+        {
+            // Build query
+            $query = "SELECT * FROM Purchases WHERE purchase_id = ? LIMIT 1";
+
+            // Get connection and results
+            if ($stmt = $this->conn->query($query)) {
+                
+                // Create bind params to prevent sql injection
+                $stmt->bind_param("i", $id);
+
+                // Execute query
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                if($result->num_rows == 0){
+                    return null;
+                }
+
+                // Get the result
+                $objectResult = $result->fetch_object();
+                
+                $purchase = new purchase (
+                    (int)$objectResult->purchase_id, 
+                    $objectResult->name, 
+                    $objectResult->email, 
+                    (float)$objectResult->price, 
+                    (float)$objectResult->discount, 
+                    $objectResult->is_payed == 1, // Mysql uses 0 and 1 for true and false, so we check if 'is_payed' is equal to 1, which will return true or false
+                );
+
+                return $purchase;
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception('Could not get the purchases. Please try again');
+            }
+        }
+
+        /**
          * changePurchasePaymentStatus - Updates the payment status of a specific purchase (by id), to true or false
          * 
          * @param bool $isPayed - boolean to check if payment is set to True or False.
@@ -111,7 +155,7 @@ use Mollie\Api\MollieApiClient;
                 $emailParam = $email;
                 $totalPriceParam = $totalPrice;
                 $discountParam = $discount;
-                $isPayedParam = true;
+                $isPayedParam = false;
 
                 // Execute query
                 $query->execute();
@@ -184,14 +228,12 @@ use Mollie\Api\MollieApiClient;
             }
         }
 
-        public function createPayment(string $email, int $orderId, string $amount, string $fullname, $cart)
+        public function createPayment(string $email, string $amount, string $fullname, int $orderId)
         {    
             $protocol = isset($_SERVER['HTTPS']) && strcasecmp('off', $_SERVER['HTTPS']) !== 0 ? "https" : "http";
             $hostname = $_SERVER['HTTP_HOST'];
             $path = dirname(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $_SERVER['PHP_SELF']);
             
-            $serializedCart = serialize($cart);
-
             $payment = $this->mollie->payments->create([
                 "amount" => [
                   "currency" => "EUR",
@@ -204,7 +246,6 @@ use Mollie\Api\MollieApiClient;
                   "order_id" => $orderId,
                   "email" => $email,
                   "fullname" => $fullname,
-                  "cart"=>$serializedCart
                 ]
             ]);
         
@@ -228,6 +269,27 @@ use Mollie\Api\MollieApiClient;
             );
 
             return $data;
+        }
+
+        public function deletePurchase(int $purchaseId)
+        {
+            $sql = "DELETE FROM Purchases WHERE purchase_id=?";
+    
+            // Get connection and prepare statement
+            if($query = $this->conn->prepare($sql)) {
+                // Create bind params to prevent sql injection
+                $query->bind_param("i", 
+                    $id
+                );
+    
+                $id = $purchaseId;
+    
+                // Execute query
+                $query->execute();
+            } else {
+                // If connection cannot be established, throw an error
+                throw new Exception('Could not delete the purchase from the database. Please try again');
+            }
         }
     }
 ?>

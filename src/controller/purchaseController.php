@@ -19,6 +19,16 @@
             }
         }
 
+        public function getPurchase() : ?purchase
+        {
+            try {
+                return $this->purchaseService->getPurchase();
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
         public function changePurchasePaymentStatus() : void
         {
             try {
@@ -33,11 +43,20 @@
             }
         }
 
-        public function createPayment(string $email, string $price, string $fullname, $cart)
+        public function changePurchaseStatusFromMollie(int $isPayed, int $id) : void
         {
             try {
-                $id = time();
-                $this->purchaseService->createPayment($email, $id, $price, $fullname, $cart);
+                $this->purchaseService->changePurchasePaymentStatus($isPayed, $id);
+            } catch (Exception $e){
+                // If error occured, show it in the website
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function createPayment(string $email, string $price, string $fullname, $id)
+        {
+            try {
+                $this->purchaseService->createPayment($email, $price, $fullname, $id);
             } catch (Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
@@ -66,6 +85,8 @@
                         throw new Exception("Cart item type not supported");
                     }
                 }
+
+                return $purchaseId;
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }
@@ -99,6 +120,16 @@
                 $data = $this->purchaseService->getPayment($id);
 
                 return $data;
+            } catch (Exception $e){
+                $this->addToErrors($e->getMessage());
+            }
+        }
+
+        public function deletePurchase($id)
+        {
+            try {
+                $this->purchaseService->deletePurchase($id);
+
             } catch (Exception $e){
                 $this->addToErrors($e->getMessage());
             }

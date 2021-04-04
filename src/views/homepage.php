@@ -21,7 +21,7 @@ $_SESSION['cart']->render();
         "hero--large container", 
         $page->page_title, 
         $page->page_text, 
-        UPLOAD_FOLDER.$page->page_image,
+        $page->page_image,
         true
     );
 
@@ -80,7 +80,7 @@ $_SESSION['cart']->render();
 </section>
 
 <?php
-    $countdown = new countdown("Ticket sales and in:", "#");
+    $countdown = new countdown("Ticket sales end in:", "#");
     $countdown->render();
 
 
