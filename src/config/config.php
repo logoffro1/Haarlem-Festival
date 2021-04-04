@@ -14,7 +14,7 @@ if($useLocalhost) {
 }
 
 // Upload folder
-define ( "UPLOAD_FOLDER", "/uploads" );
+define ( "UPLOAD_FOLDER", "../uploads" );
 define ( "UPLOAD_PATH", $_SERVER['DOCUMENT_ROOT'].UPLOAD_FOLDER );
 
 // Urls for website
