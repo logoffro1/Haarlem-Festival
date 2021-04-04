@@ -16,7 +16,7 @@
 
 	$steps = new steps(4);
 
-	/*
+
 	// Check the amount of items in cart, if it is 0, redirect back to the cart page
 	if($_SESSION['cart']->getCountFromCart() == 0 && !isset($_GET['order_id']))
 	{
@@ -41,8 +41,6 @@
 			$pdf,
 		);
 	}
-	*/
-	$orderIsPayed = true;
 ?>
     <section class='container section page--cart'>
 		<section class='row align-items-end page--cart__header'>
