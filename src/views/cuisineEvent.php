@@ -8,7 +8,7 @@
 
     $page = new pageController();
     $content = $page->getPage(1);
-    $contoller = new cuisineEventController();
+
     $restaurantTypeController = new restaurantTypeController();
     $restaurantController = new restaurantController();
     $restaurants = $restaurantController->getRestaurants();
