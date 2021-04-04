@@ -19,10 +19,10 @@
             }
         }
 
-        public function getPurchase() : ?purchase
+        public function getPurchase(int $id) : ?purchase
         {
             try {
-                return $this->purchaseService->getPurchase();
+                return $this->purchaseService->getPurchase($id);
             } catch (Exception $e){
                 // If error occured, show it in the website
                 $this->addToErrors($e->getMessage());
