@@ -70,7 +70,7 @@ use Mollie\Api\MollieApiClient;
             $query = "SELECT * FROM Purchases WHERE purchase_id = ? LIMIT 1";
 
             // Get connection and results
-            if ($stmt = $this->conn->query($query)) {
+            if ($stmt = $this->conn->prepare($query)) {
                 
                 // Create bind params to prevent sql injection
                 $stmt->bind_param("i", $id);
