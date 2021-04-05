@@ -35,6 +35,7 @@ if($idExist)
         $performanceArray['location'] = $performanceArray['location']->name;
         unset($performanceArray['tickets']);
         unset($performanceArray['duration']);
+        unset($performanceArray['artistID']);
         $performances[] = $performanceArray;
     };
 
