@@ -15,7 +15,7 @@ if($useLocalhost) {
 
 // Upload folder
 define ( "UPLOAD_FOLDER", "../uploads" );
-define ( "UPLOAD_PATH", $_SERVER['DOCUMENT_ROOT'].UPLOAD_FOLDER );
+define ( "UPLOAD_PATH", $_SERVER['DOCUMENT_ROOT']."/haarlem-festival/uploads" );
 
 // Urls for website
 define ('ROOT_URL', 'http://localhost:3000/');
