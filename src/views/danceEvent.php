@@ -59,7 +59,7 @@ $pageHero->render(); // ../assets/images/dance/header.png
                             echo $page->second_section_title; 
                         ?>
                     </h1>
-                    <a class='button' href='/views/bookmoresavemore.php'>Find out more</a>
+                    <a class='button' href='../views/bookmoresavemore.php'>Find out more</a>
                 </span>
             </section>
         </header>
