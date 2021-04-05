@@ -50,9 +50,13 @@ $lastIndex = array_key_last($restaurant->__get('cuisines'));
         $i = 0;
         foreach($restaurant->__get('cuisines') as $cuisine){
             if($cuisine->__get('name') == "All") continue;
+            
             echo $cuisine->__get('name'); 
-            if($i++ != $lastIndex-1)
-                 echo " &#8226 ";
+            if($i !== $lastIndex){
+                echo " &#8226 ";
+            }
+
+            $i++;
         }
 
 echo "</h1>
@@ -130,7 +134,7 @@ the restaurant.
 $count = 1;
 //display the images
 foreach($restaurantImages as $image){
-    echo "<img class = 'images' id = 'img$count' src = '..$image'>";
+    echo "<img class = 'images' id = 'img$count' src = '$image'>";
     $count++;
 }
 echo "

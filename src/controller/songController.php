@@ -68,7 +68,7 @@
                     'image'=>$_FILES["image"]?? ''
                 );
     
-                $this->songService->updateSong($song->id, $data);
+                $this->songService->updateSong($song->id, $data, $song->image);
                 $this->helper->refresh();
             } catch(Exception $e) {
                 $this->addToErrors($e->getMessage());

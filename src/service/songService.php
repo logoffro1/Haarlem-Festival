@@ -1,5 +1,6 @@
 <?php
 include_once '../config/config.php';
+include '../classes/autoloader.php';
 
     class songService {
         private database $db;
@@ -105,7 +106,7 @@ include_once '../config/config.php';
                     $image
                 );
 
-                $image = $data['image']['name'] ?? null;
+                $image = UPLOAD_FOLDER.'/'.$data['image']['name'] ?? null;
 
                 if($image == null){
                     $query->execute();
@@ -151,9 +152,17 @@ include_once '../config/config.php';
             }
         }
 
-        public function updateSong(int $songId, array $data) : void
+        public function updateSong(int $songId, array $data, string $oldImage) : void
         {
             $sql = "UPDATE Songs SET url=?, title=?, image=? WHERE song_id=?";
+
+            $isNewImage = isset($data['image']['name']) && strlen($data['image']['name']) > 0;
+
+            if($isNewImage){
+                $image = UPLOAD_FOLDER.'/'.$data['image']['name'] ?? null;
+            } else {
+                $image = $oldImage;
+            }
 
             // Get connection and prepare statement
             if($query = $this->conn->prepare($sql)) {
@@ -161,11 +170,13 @@ include_once '../config/config.php';
                 $query->bind_param("sssi", 
                     $data['url'],
                     $data['title'],
-                    $data['image']['name'],
+                    $image,
                     $songId
                 );
 
-                $this->db->uploadImage($data['image']['tmp_name'], $data['image']['name']);
+                if($isNewImage){
+                    $this->db->uploadImage($data['image']['tmp_name'], $data['image']['name']);
+                }
                 // Execute query
                 $query->execute();
             } else {

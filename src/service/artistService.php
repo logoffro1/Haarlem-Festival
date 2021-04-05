@@ -276,20 +276,57 @@ class artistService {
                     SET $columnName=?
                 WHERE artist_id = $artist->id";
 
+        $isNewImage = isset($data['image']['name']) && strlen($data['image']['name']) > 0;
+
+        if($isNewImage){
+            $image = UPLOAD_FOLDER.'/'.$data['image']['name'] ?? null;
+        } else {
+            $image = $artist->$columnName;
+        }
+
         // Get connection and prepare statement
         if($query = $this->conn->prepare($sql)) {
             // Create bind params to prevent sql injection
-            $imageName = $data['image']['name'] ?? null;
-
             $query->bind_param("s",
-                $imageName    
+                $image    
             );
 
             // Execute query
             $query->execute();
         } else {
             // If connection cannot be established, throw an error
-            throw new Exception('Could not update the song. Please try again');
+            throw new Exception('Could not update the artist image. Please try again');
+        }
+    }
+
+     /**
+     * Deletes the artist image path
+     * 
+     * @param artist $artist - active artist o page
+     * @param array $data - data from form post
+     */
+    public function deleteArtistImage(artist $artist, array $data)
+    {
+        $columnName = $data['type'];
+
+        $sql = "UPDATE Artists 
+                    SET $columnName=?
+                WHERE artist_id = $artist->id";
+
+        // Get connection and prepare statement
+        if($query = $this->conn->prepare($sql)) {
+            // Create bind params to prevent sql injection
+            $query->bind_param("s",
+                $image    
+            );
+
+            $image = null;
+
+            // Execute query
+            $query->execute();
+        } else {
+            // If connection cannot be established, throw an error
+            throw new Exception('Could not update the artist image. Please try again');
         }
     }
 

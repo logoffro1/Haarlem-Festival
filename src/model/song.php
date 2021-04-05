@@ -19,6 +19,11 @@ class song{
             return $this->$property;
         }
     }
+
+    public function mutateToArray()
+    {
+        return get_object_vars($this);
+    }
 }
 
 ?>

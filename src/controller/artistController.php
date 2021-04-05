@@ -157,7 +157,7 @@
                 }
 
                 if($this->artistService->deleteImage($artist->$imageType)){
-                    $this->artistService->updateArtistImage($artist, $data);
+                    $this->artistService->deleteArtistImage($artist, $data);
                     $this->helper->refresh();
                 }
             } catch (Exception $e){
