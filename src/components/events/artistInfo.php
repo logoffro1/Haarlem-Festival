@@ -13,10 +13,13 @@ class artistInfo
     private string $facebook;
     private string $youtube;
 
+    private string $className;
+
     public function __construct(artist $artist, string $type)
     {
         $this->artist = $artist;
         $this->type = ucwords($type);
+        $this->className = strtolower($type);
         $this->url = $this->getUrl();
 
         $this->artistName = $this->artist->__get('name');
@@ -37,7 +40,7 @@ class artistInfo
                 <p class='artistinfo--jazz__breadCrumb'><a href='$this->url'>$this->type Artists</a> > $this->artistName</p>
                 <section class='artistinfo--jazz__textContainer'>
                     <section class='artistinfo--jazz__infoText'>
-                        <h1 class='title title--page $this->type'> $this->artistName</h1>
+                        <h1 class='title title--page $this->className'> $this->artistName</h1>
                         <p>
                             $this->biography
                         </p>
