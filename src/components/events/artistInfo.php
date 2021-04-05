@@ -47,13 +47,13 @@ class artistInfo
                         <section class='artistinfo--jazz__socialMediaContainer'>";
                             //If the artist has no social media on a specific platform, its logo is not being displayed
                             if($this->instagram != ""){
-                                echo "<a href='$this->instagram' target='_blank'><img src='../assets/images/$this->type/icons/$this->type-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                                echo "<a href='$this->instagram' target='_blank'><img src='../assets/images/$this->className/icons/$this->className-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
                             }
                             if($this->facebook != ""){                   
-                                echo "<a href='$this->facebook' target='_blank'><img src='../assets/images/$this->type/icons/$this->type-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                                echo "<a href='$this->facebook' target='_blank'><img src='../assets/images/$this->className/icons/$this->className-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
                             }
                             if($this->youtube != ""){
-                                echo "<a href='$this->youtube' target='_blank'><img src='../assets/images/$this->type/icons/$this->type-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                                echo "<a href='$this->youtube' target='_blank'><img src='../assets/images/$this->className/icons/$this->className-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
                             }
                             echo"
                             <a href='#performances' class='button artistinfo--jazz__ticketButton'>Get Your Tickets</a>
