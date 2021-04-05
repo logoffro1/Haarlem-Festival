@@ -34,11 +34,11 @@ class dancePerformanceCard
         echo "
         <section class='container section'>
         <article class='row align-items-left'>
-            <header class='col-6' style='border-color: white;'>
+            <header class='col-4' style='border-color: white;'>
                 <section class='hero text-top-left' style='position:relative;' id='artists'>
-                    <img src='$this->artistThumbnail' style='margin-left:150px; width:40%; height:auto; border-radius:12px;'>
+                    <img src='$this->artistThumbnail' style='width:100%; height:auto; border-radius:12px;'>
                </header>
-               <header class='col-6' style='font-size:26px;'>
+               <header class='col-7 col-offset-1' style='font-size:26px;'>
                 <article class='row align-items-left'>
                     <header class='col-12'>
                         <h1 style='color: black;'class='title title--page dance'>$this->artistName</h1>
