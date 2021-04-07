@@ -117,7 +117,6 @@ $navigation->render();
                                 </div>
                             </ul>
                         </div>
-                        <textarea placeholder="enter the content..." name="biography" id="biography"><?php echo $restaurant->biography ?? '';?></textarea>
                     </fieldset>
                     <fieldset class="col-6 col--children-fullwidth">
                         <label class="label">Duration of every session (in hours)</label>

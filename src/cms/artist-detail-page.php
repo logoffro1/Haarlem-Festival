@@ -25,6 +25,7 @@ if($idExist)
     foreach($artist->songs as $song){
         $songArray = $song->mutateToArray();
         $songArray[] = "<a href='artist-songs.php?id=$song->id&event=$eventId'>edit</a>";
+        unset($songArray['artistId']);
         $songs[] = $songArray;
     };
 
@@ -35,6 +36,7 @@ if($idExist)
         $performanceArray['location'] = $performanceArray['location']->name;
         unset($performanceArray['tickets']);
         unset($performanceArray['duration']);
+        unset($performanceArray['artistID']);
         $performances[] = $performanceArray;
     };
 

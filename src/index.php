@@ -1,20 +1,8 @@
 <?php
-
-require_once "router.php";
-
-route('/', function () {
+$useLocalhost = false;
+if($useLocalhost) {
     header("Location: /views/homepage.php");
-});
-
-route('/about', function () {
-    return "Hello from the about route";
-});
-
-route('/danceEvent', function () {
-    header("Location: views/danceEvent.php");
-});
-
-$action = $_SERVER['REQUEST_URI'];
-dispatch($action);
-
+} else {
+    header("Location: /haarlem-festival/views/homepage.php");
+}
 ?>

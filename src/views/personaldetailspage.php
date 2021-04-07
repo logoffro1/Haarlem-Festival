@@ -1,7 +1,7 @@
 <?php
     include '../classes/autoloader.php';
 
-    $head = new head("homepage", "");
+    $head = new head("Personal Details", "");
     $head->render();
 
     $helper = new helper();
@@ -28,7 +28,7 @@
     if(isset($_SESSION['cart']) && $_SESSION['cart']->getCountFromCart() > 0)
     {
         $cart = $_SESSION['cart'];
-    } 
+    }
     else
     {
         $helper->redirect("../views/cart.php");
@@ -88,7 +88,7 @@
         if (empty($errors)){
             // Add the reservation to the database and return id
             $tableId = $purchaseController->createReservations($_POST['fname']." ".$_POST["lname"], $_POST['email'], $cart);
-            
+
             $purchaseController->createPayment($_POST['email'], strval($cart->getPriceAfterDiscount()), $_POST['fname']." ".$_POST["lname"], $tableId);
         }
     }
@@ -242,7 +242,7 @@
                     </header>
                     <header class="col-4">
                         <input class="button" type='submit' name='submit' value='Fill in payment details' id='fillindetailsbtn' />
-                    
+
                     </header>
                     </article>
 

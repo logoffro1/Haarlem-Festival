@@ -13,10 +13,13 @@ class artistInfo
     private string $facebook;
     private string $youtube;
 
+    private string $className;
+
     public function __construct(artist $artist, string $type)
     {
         $this->artist = $artist;
         $this->type = ucwords($type);
+        $this->className = strtolower($type);
         $this->url = $this->getUrl();
 
         $this->artistName = $this->artist->__get('name');
@@ -37,20 +40,20 @@ class artistInfo
                 <p class='artistinfo--jazz__breadCrumb'><a href='$this->url'>$this->type Artists</a> > $this->artistName</p>
                 <section class='artistinfo--jazz__textContainer'>
                     <section class='artistinfo--jazz__infoText'>
-                        <h1 class='title title--page $this->type'> $this->artistName</h1>
+                        <h1 class='title title--page $this->className'> $this->artistName</h1>
                         <p>
                             $this->biography
                         </p>
                         <section class='artistinfo--jazz__socialMediaContainer'>";
                             //If the artist has no social media on a specific platform, its logo is not being displayed
                             if($this->instagram != ""){
-                                echo "<a href='$this->instagram' target='_blank'><img src='../assets/images/$this->type/icons/$this->type-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                                echo "<a href='$this->instagram' target='_blank'><img src='../assets/images/$this->className/icons/$this->className-instagram.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
                             }
                             if($this->facebook != ""){                   
-                                echo "<a href='$this->facebook' target='_blank'><img src='../assets/images/$this->type/icons/$this->type-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                                echo "<a href='$this->facebook' target='_blank'><img src='../assets/images/$this->className/icons/$this->className-facebook.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
                             }
                             if($this->youtube != ""){
-                                echo "<a href='$this->youtube' target='_blank'><img src='../assets/images/$this->type/icons/$this->type-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
+                                echo "<a href='$this->youtube' target='_blank'><img src='../assets/images/$this->className/icons/$this->className-youtube.png' alt='' class='artistinfo--jazz__socialMediaIcons'></a>";
                             }
                             echo"
                             <a href='#performances' class='button artistinfo--jazz__ticketButton'>Get Your Tickets</a>

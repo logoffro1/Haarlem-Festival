@@ -58,7 +58,7 @@ $navigation->render();
                 <?php
                 if(isset($_GET['id'])) {
                 ?>
-                    <a href="artist-performance-details.php?id=<?php echo $performance->id ?>&delete=<?php echo $performance->id ?>" class="button button--secondary">Delete Performance</a>
+                    <a href="artist-performance-details.php?id=<?php echo $performance->id ?>&delete=<?php echo $performance->id ?>&event=<?php echo $eventId; ?>" class="button button--secondary">Delete Performance</a>
                 <?php
                 }
                 ?>

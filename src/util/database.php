@@ -61,7 +61,7 @@ class database {
             return;
         }
 
-        $target_file = UPLOAD_FOLDER . '/' . basename($name);
+        $target_file = UPLOAD_PATH . '/' . basename($name);
     
         // Select file type
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -88,7 +88,7 @@ class database {
      */
     public function deleteImage(string $name) : bool
     {
-        $target_file = UPLOAD_PATH . basename($name);
+        $target_file = UPLOAD_PATH . '/' . basename($name);
 
         if (file_exists($target_file)) {
             unlink($target_file);

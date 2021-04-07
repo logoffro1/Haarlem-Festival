@@ -1,7 +1,9 @@
 <?php
-
 include '../classes/autoloader.php';
 require __DIR__ . '/../vendor/autoload.php';
+
+error_reporting(0);
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

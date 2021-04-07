@@ -1,6 +1,7 @@
   
 <?php
     include '../classes/autoloader.php';
+    include_once '../config/config.php';
 
     class restaurantController extends controller
     {
@@ -79,7 +80,7 @@
                     // Check if an new image is present
                     if(strlen($image['name']) > 0){
                         // Add it to the array
-                        $imageArray[] = $image['name'];
+                        $imageArray[] = UPLOAD_FOLDER.'/'.$image['name'];
                         // Upload it to the database
                         $this->restaurantService->uploadImage($image);
                     // If no new image is uploaded, but a current image already exist

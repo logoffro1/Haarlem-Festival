@@ -111,7 +111,7 @@ function loopRestaurants(array $restaurants){
             if($r->hasCuisine($_GET['filter']) || $_GET['filter'] == 'All'){
                 $card = new restaurantCard($r->id,
                 $r->name,
-                "..".$r->images[0],
+                $r->images[0],
                 $r->address,
                 $r->seats,
                 $r->stars,
@@ -124,7 +124,7 @@ function loopRestaurants(array $restaurants){
         } else {
             $card = new restaurantCard($r->id,
                 $r->name,
-                "..".$r->images[0],
+                $r->images[0],
                 $r->address,
                 $r->seats,
                 $r->stars,
@@ -193,15 +193,15 @@ $restaurantCount = loopRestaurants($restaurants);
 
         <ul class="cuisine-promo__steps row">
             <li class="col-4">
-                <img src="/assets/images/svg/icons/add_a_photo-24px.svg" alt="">
+                <img src="../assets/images/svg/icons/add_a_photo-24px.svg" alt="">
                 <span>Take a picture during your restaurant visit or your cooked recipe from the cookbook</span>
             </li>
             <li class="col-4">
-                <img src="/assets/images/svg/icons/cloud-upload.svg" alt="">
+                <img src="../assets/images/svg/icons/cloud-upload.svg" alt="">
                 <span>Upload your picture to Instagram, or Facebook with #HaarlemFestivalCashback</span>
             </li>
             <li class="col-4">
-                <img src="/assets/images/svg/icons/euro.svg" alt="">
+                <img src="../assets/images/svg/icons/euro.svg" alt="">
                 <span>Have a chance to win-back
                 your dinner spendings</span>
             </li>
