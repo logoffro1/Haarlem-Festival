@@ -48,7 +48,7 @@ class restaurant {
         return $sessions;
     }
 
-    private function getDurationInSeconds(){
+    private function getDurationInSeconds(){ //convert hours to seconds
         return ($this->duration / 1) * 3600 + ($this->duration % 1) * 60;
     }
 

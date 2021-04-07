@@ -130,7 +130,7 @@ the restaurant.
 $count = 1;
 //display the images
 foreach($restaurantImages as $image){
-    echo "<img class = 'images' id = 'img$count' src = '..$image'>";
+    echo "<img class = 'images' id = 'img$count' src = '$image'>";
     $count++;
 }
 echo "

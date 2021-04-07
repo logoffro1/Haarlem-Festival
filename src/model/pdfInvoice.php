@@ -8,12 +8,15 @@
         private string $id;
         private array $cartItems;
         private string $customerName;
+        private string $discount;
 
         public function __construct(string $id, cart $cart = null, string $customerName)
         {
             $this->id = $id;
             $this->cartItems = $cart->__get('cartItems');
             $this->customerName = $customerName;
+            $this->discount = $cart->getDiscount();
+            
         }
 
         public function __get($property) {
@@ -70,13 +73,23 @@
                 </thead>
             <tbody>';
             $total = 0;
+            $discount = 0;
                 foreach($this->cartItems as $item){
+
                     $each_item = $item->__get('title');
                     $each_price = $item->__get('price');
                     $each_quantity = $item->__get('count');
                     $each_total = $each_price*$each_quantity;
-                    $total+=$each_total;
+
+                        if($item->__get('itemType') != cartItemType::Cuisine)
+                            $total += $each_quantity * $each_price;
+                        else
+                            $total += $each_price;
+
                     $cuisineColor = $this->getCuisineColor($item->__get('itemType'));
+
+                   
+                    
 
                     $html .= '
                     <tr>
@@ -87,16 +100,20 @@
                             '<span style = "color:#737373">'.$item->__get('additionalInfo').'</span>
                         </td>
                         
-                        <td style="border-bottom: 1px solid #222">$'.$each_price.'</td>
+                        <td style="border-bottom: 1px solid #222">$'.$each_total.'</td>
                         <td style="border-bottom: 1px solid #222">'.$each_quantity.'</td>
                         <td style="border-bottom: 1px solid #222">$'.$each_total.'</td>
                     </tr>
                     ';
                 }
-                
+                $discount = $total/10;
+                $totalWDiscount = $total-$discount;
             $html .='
+            <tr align="right">
+            <td colspan="5"><strong>Discount: $'.$discount.'</strong></td>
+        </tr>
                     <tr align="right">
-                        <td colspan="5"><strong>Grand total: $'.$total.'</strong></td>
+                        <td colspan="5"><strong>Grand total: $'.$totalWDiscount.'</strong></td>
                     </tr>
                     <tr>
                         <td colspan="4">
